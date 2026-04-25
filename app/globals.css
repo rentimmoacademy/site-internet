@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #1a1a1a;
+  --fg: #f7f6f2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #2db84b;
+  color: #0a0a0a;
+}
+
+@layer components {
+  .dot-grid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .dot-grid-light {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .tag {
+    @apply inline-block text-tag uppercase text-brand-green;
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-6 lg:px-10;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-7 py-4 font-bold text-white transition-all duration-300 hover:shadow-glow-lg hover:scale-[1.02] active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 font-bold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/40;
+  }
+  .btn-ghost-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 bg-white px-7 py-4 font-bold text-ink transition-all duration-300 hover:border-ink;
+  }
+  .card-dark {
+    @apply relative rounded-3xl border border-white/10 bg-[#1f1f1f] p-8 transition-all duration-500;
+  }
+  .card-dark:hover {
+    @apply border-brand-green/40 shadow-glow;
+    transform: translateY(-4px);
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white/80 backdrop-blur;
+  }
+  .morocco-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-morocco px-3 py-1 text-xs font-bold text-white;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #2db84b;
+  border-radius: 10px;
+}
