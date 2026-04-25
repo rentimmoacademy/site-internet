@@ -22,7 +22,6 @@ export default function HomePage() {
       <WhyRentimmo />
       <MoroccoSpotlight />
       <AboutPreview />
-      {/* @ts-expect-error Async Server Component */}
       <BlogPreview />
       <FinalCTA />
     </>
