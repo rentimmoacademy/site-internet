@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, MessageCircle, Instagram, Youtube, MapPin, CalendarClock } from "lucide-react";
+import { Mail, Instagram, Youtube, MapPin, CalendarClock } from "lucide-react";
 import { SITE } from "@/lib/utils";
 
 function TikTokIcon({ size = 16 }: { size?: number }) {
@@ -56,20 +56,6 @@ export default function ContactPage() {
               <span>
                 <p className="text-[10px] uppercase tracking-widest text-white/50">Email</p>
                 <p className="font-bold">{SITE.email}</p>
-              </span>
-            </a>
-            <a
-              href={`https://wa.me/${SITE.whatsapp}`}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#1f1f1f] p-5 text-white transition-colors hover:border-brand-green"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green/10 text-brand-green">
-                <MessageCircle size={20} />
-              </span>
-              <span>
-                <p className="text-[10px] uppercase tracking-widest text-white/50">WhatsApp</p>
-                <p className="font-bold">Chat instantané</p>
               </span>
             </a>
             <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#1f1f1f] p-5 text-white">

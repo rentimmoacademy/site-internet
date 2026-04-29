@@ -3,7 +3,7 @@ import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
+import CallFloat from "@/components/layout/CallFloat";
 import CookieBanner from "@/components/layout/CookieBanner";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <WhatsAppFloat />
+        <CallFloat />
         <CookieBanner />
       </body>
     </html>

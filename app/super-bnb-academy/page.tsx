@@ -15,6 +15,11 @@ import {
   LayoutGrid,
   Lightbulb,
   Star,
+  TrendingUp,
+  Clock,
+  ShieldCheck,
+  Users,
+  CalendarCheck,
 } from "lucide-react";
 import SuperBnbHero from "@/components/sections/SuperBnbHero";
 import SuperBnbWeeks from "@/components/sections/SuperBnbWeeks";
@@ -48,6 +53,13 @@ const compareRows: [string, string, string][] = [
   ["Setup outils inclus", "yes", "no"],
   ["Suivi personnalisé", "yes", "no"],
   ["Garantie résultat", "yes", "no"],
+];
+
+const stats = [
+  { icon: TrendingUp, value: "+38%", label: "de revenus moyen", sub: "sur les 6 mois post-programme" },
+  { icon: Clock, value: "8h", label: "économisées / semaine", sub: "sur la gestion voyageurs" },
+  { icon: Star, value: "4,93★", label: "note moyenne hôte", sub: "après refonte de l'annonce" },
+  { icon: Users, value: "20+", label: "hôtes accompagnés", sub: "France & Maroc" },
 ];
 
 const testimonials = [
@@ -100,6 +112,49 @@ export default function SuperBnbAcademyPage() {
     <div className="font-poppins bg-auto-navy text-white">
       <SuperBnbHero />
 
+      {/* Résultats clients */}
+      <section className="relative border-y border-white/5 bg-auto-navy-soft py-20">
+        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+        <div className="container-x relative">
+          <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+                Résultats clients
+              </p>
+              <h2 className="mt-4 max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
+                Ce que les hôtes obtiennent en{" "}
+                <span className="bg-auto-mint bg-clip-text text-transparent">30 jours.</span>
+              </h2>
+            </div>
+            <p className="max-w-xs text-sm text-white/60">
+              Chiffres moyens observés sur les hôtes ayant terminé le programme avec un coach dédié.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="rounded-3xl border border-white/10 bg-auto-navy/60 p-7 backdrop-blur"
+              >
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-auto-mint/10 text-auto-mint ring-1 ring-auto-mint/30">
+                  <s.icon size={20} strokeWidth={2.2} />
+                </div>
+                <p className="mt-6 text-4xl font-extrabold tracking-[-0.02em] text-auto-mint md:text-5xl">
+                  {s.value}
+                </p>
+                <p className="mt-2 text-sm font-bold text-white">{s.label}</p>
+                <p className="mt-1 text-xs text-white/55">{s.sub}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pour qui */}
       <section className="relative bg-auto-navy-soft py-24">
         <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
@@ -148,6 +203,33 @@ export default function SuperBnbAcademyPage() {
       </section>
 
       <SuperBnbWeeks />
+
+      {/* Mid-page CTA */}
+      <section className="relative bg-auto-navy py-16">
+        <div className="container-x">
+          <div className="relative overflow-hidden rounded-3xl border border-auto-mint/30 bg-gradient-to-br from-auto-mint/15 via-auto-mint/5 to-transparent p-8 md:p-12">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-auto-mint/30 blur-[100px]" />
+            <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+                  Pas sûr que ce soit pour toi ?
+                </p>
+                <h3 className="mt-3 max-w-2xl text-2xl font-extrabold leading-tight tracking-[-0.015em] md:text-3xl">
+                  Réserve un audit gratuit de 30 min. On regarde ton annonce ensemble — sans engagement.
+                </h3>
+              </div>
+              <a
+                href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-auto-mint px-7 py-4 font-bold text-auto-navy transition-all hover:scale-[1.03] hover:shadow-glow-mint"
+              >
+                <CalendarCheck size={16} /> Réserver mon audit
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Bonus stack */}
       <section className="relative bg-auto-navy py-28">
@@ -238,6 +320,30 @@ export default function SuperBnbAcademyPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Garantie */}
+      <section className="relative bg-auto-navy py-20">
+        <div className="container-x">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border border-white/10 bg-auto-navy-soft/60 p-10 text-center md:p-14">
+            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-auto-mint/15 text-auto-mint ring-1 ring-auto-mint/40">
+              <ShieldCheck size={26} strokeWidth={2.2} />
+            </span>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+              Garantie résultat
+            </p>
+            <h3 className="max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
+              Si à la fin des 4 semaines tes outils ne sont pas opérationnels,{" "}
+              <span className="bg-auto-mint bg-clip-text text-transparent">
+                on continue jusqu'à ce qu'ils le soient.
+              </span>
+            </h3>
+            <p className="max-w-xl text-sm text-white/65">
+              Sans frais supplémentaire. C'est notre engagement : tant que ton Airbnb n'est pas
+              autopiloté, on reste à tes côtés.
+            </p>
           </div>
         </div>
       </section>
