@@ -10,7 +10,7 @@ const bullets = [
   "Site de réservation directe + outils IA",
 ];
 
-export default function AutomaticBnbCard() {
+export default function SuperBnbCard() {
   return (
     <section className="relative overflow-hidden bg-auto-navy py-24 font-poppins text-white">
       {/* Mint dot grid + glow */}
@@ -53,7 +53,7 @@ export default function AutomaticBnbCard() {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.25em] text-auto-mint">
-                    Automatic BnB Academy
+                    Super BnB Academy
                   </p>
                   <p className="text-2xl font-extrabold tracking-tight">On le fait avec toi.</p>
                 </div>
@@ -79,13 +79,13 @@ export default function AutomaticBnbCard() {
 
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link
-                  href="/automatic-bnb"
+                  href="/super-bnb-academy"
                   className="inline-flex items-center gap-2 rounded-full bg-auto-mint px-7 py-3.5 text-sm font-bold text-auto-navy transition-all hover:scale-[1.02] hover:shadow-glow-mint"
                 >
                   Découvrir le programme <ArrowRight size={14} />
                 </Link>
                 <Link
-                  href="/automatic-bnb#programme"
+                  href="/super-bnb-academy#programme"
                   className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/10"
                 >
                   Voir les 4 semaines

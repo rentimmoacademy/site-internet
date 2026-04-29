@@ -16,8 +16,8 @@ import {
   Lightbulb,
   Star,
 } from "lucide-react";
-import AutomaticBnbHero from "@/components/sections/AutomaticBnbHero";
-import AutomaticBnbWeeks from "@/components/sections/AutomaticBnbWeeks";
+import SuperBnbHero from "@/components/sections/SuperBnbHero";
+import SuperBnbWeeks from "@/components/sections/SuperBnbWeeks";
 
 const forYou = [
   "Tu as déjà au moins 1 bien Airbnb actif",
@@ -77,7 +77,7 @@ const testimonials = [
 const faq = [
   {
     q: "Quelle est la différence avec une formation Rentimmo Academy ?",
-    a: "Rentimmo Academy te forme à un métier (sous-loc, conciergerie, cleaning) avec des modules vidéo et templates. Automatic BnB est un programme d'accompagnement : on configure les outils avec toi, sur ton compte Airbnb, en 30 jours.",
+    a: "Rentimmo Academy te forme à un métier (sous-loc, conciergerie, cleaning) avec des modules vidéo et templates. Super BnB Academy est un programme d'accompagnement : on configure les outils avec toi, sur ton compte Airbnb, en 30 jours.",
   },
   {
     q: "Combien de temps je dois y consacrer chaque semaine ?",
@@ -93,12 +93,12 @@ const faq = [
   },
 ];
 
-export default function AutomaticBnbPage() {
+export default function SuperBnbAcademyPage() {
   const [faqIdx, setFaqIdx] = useState<number | null>(0);
 
   return (
     <div className="font-poppins bg-auto-navy text-white">
-      <AutomaticBnbHero />
+      <SuperBnbHero />
 
       {/* Pour qui */}
       <section className="relative bg-auto-navy-soft py-24">
@@ -147,7 +147,7 @@ export default function AutomaticBnbPage() {
         </div>
       </section>
 
-      <AutomaticBnbWeeks />
+      <SuperBnbWeeks />
 
       {/* Bonus stack */}
       <section className="relative bg-auto-navy py-28">
@@ -190,7 +190,7 @@ export default function AutomaticBnbPage() {
             La différence
           </p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            Automatic BnB vs <span className="text-white/40">formation classique</span>
+            Super BnB Academy vs <span className="text-white/40">formation classique</span>
           </h2>
 
           <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-auto-navy/50 backdrop-blur">
@@ -202,7 +202,7 @@ export default function AutomaticBnbPage() {
                   </th>
                   <th className="p-5 text-left">
                     <p className="text-[10px] uppercase tracking-widest text-auto-mint">
-                      Automatic BnB
+                      Super BnB
                     </p>
                   </th>
                   <th className="p-5 text-left">
@@ -337,12 +337,12 @@ export default function AutomaticBnbPage() {
             avant fermeture.
           </p>
           <a
-            href="https://cal.com/rentimmo-academy/appel-strategique"
+            href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
             target="_blank"
             rel="noreferrer"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-auto-navy px-8 py-4 font-bold text-auto-mint transition-transform hover:scale-[1.03]"
           >
-            Rejoindre le programme <ArrowRight size={16} />
+            Réserver mon audit gratuit <ArrowRight size={16} />
           </a>
         </div>
       </section>
@@ -354,7 +354,7 @@ export default function AutomaticBnbPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Course",
-            name: "Automatic BnB Academy",
+            name: "Super BnB Academy",
             description:
               "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On automatise ton logement avec toi : annonce, messages, pricing, réservation directe.",
             provider: {

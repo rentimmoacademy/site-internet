@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Rentimmo Academy — Brand Moodboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #2DB84B; --green-l: #5FD87A; --green-d: #1A6B33;
+    --ink: #1A1A1A; --ink-s: #2D2D2D; --ink-m: #6B6B6B;
+    --cream: #F7F6F2; --morocco: #C4933F; --morocco-d: #8B6420;
+    --navy: #0D1B2E; --mint: #00C49A; --mint-l: #5EEBC8;
+  }
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    width: 1440px;
+    padding: 64px 72px 80px;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .wordmark { font-size: 56px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
+  .wordmark::before { content: "rentimmo"; }
+  .wordmark::after { content: ""; display: inline-block; width: 14px; height: 14px; background: var(--green); border-radius: 50%; margin-left: 4px; transform: translateY(-4px); }
+  .academy { font-size: 13px; font-weight: 700; letter-spacing: 0.3em; color: rgba(255,255,255,0.55); margin-left: 12px; text-transform: uppercase; vertical-align: super; }
+  .meta { text-align: right; font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .meta strong { display: block; font-size: 14px; color: var(--green); margin-bottom: 4px; }
+
+  h2.tag { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--green); margin: 56px 0 16px; }
+
+  /* PALETTE */
+  .palette { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
+  .swatch { aspect-ratio: 3/4; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+  .swatch.gradient { background: linear-gradient(165deg, #1A6B33 0%, #2DB84B 50%, #5FD87A 100%); }
+  .swatch.green { background: var(--green); }
+  .swatch.green-d { background: var(--green-d); }
+  .swatch.green-l { background: var(--green-l); }
+  .swatch.ink { background: var(--ink); border: 1px solid rgba(255,255,255,0.15); }
+  .swatch.ink-s { background: var(--ink-s); border: 1px solid rgba(255,255,255,0.1); }
+  .swatch.cream { background: var(--cream); color: var(--ink); }
+  .swatch.morocco { background: var(--morocco); }
+  .swatch .name { font-weight: 800; font-size: 14px; letter-spacing: -0.01em; }
+  .swatch .hex { font-family: ui-monospace, "SF Mono", monospace; font-size: 12px; opacity: 0.85; }
+
+  /* TYPO */
+  .typo { background: var(--ink-s); border: 1px solid rgba(255,255,255,0.06); border-radius: 24px; padding: 40px 44px; margin-top: 14px; }
+  .display { font-size: 88px; font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
+  .display em { font-style: normal; background: linear-gradient(165deg, #1A6B33 0%, #2DB84B 50%, #5FD87A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .typo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; }
+  .typo-item { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; }
+  .typo-item .label { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+  .typo-item .specs { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 4px; font-family: ui-monospace, monospace; }
+  .h1-sample { font-size: 44px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.05; }
+  .h2-sample { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .body-sample { font-size: 17px; font-weight: 400; line-height: 1.55; color: rgba(255,255,255,0.78); }
+  .body-sample b { color: #fff; font-weight: 700; }
+  .tag-sample { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--green); }
+
+  /* COMPONENTS */
+  .components { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+  .comp-card { background: var(--ink-s); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 36px; }
+  .comp-title { font-size: 22px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 24px; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(165deg, #1A6B33 0%, #2DB84B 50%, #5FD87A 100%); color: white; padding: 16px 28px; border-radius: 999px; font-weight: 700; font-size: 15px; box-shadow: 0 0 0 1px rgba(45,184,75,0.2), 0 20px 60px -20px rgba(45,184,75,0.45); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 16px 28px; border-radius: 999px; font-weight: 700; font-size: 15px; margin-left: 10px; }
+  .arrow { width: 14px; height: 14px; }
+  .feature-card { background: #1f1f1f; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 28px; box-shadow: 0 0 0 1px rgba(45,184,75,0.18), 0 20px 60px -20px rgba(45,184,75,0.32); }
+  .feature-card .icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(45,184,75,0.1); border: 1px solid rgba(45,184,75,0.25); display: flex; align-items: center; justify-content: center; color: var(--green); margin-bottom: 18px; }
+  .feature-card h3 { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .feature-card p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; }
+  .badge.morocco { background: var(--morocco); color: white; }
+  .badge.bestseller { background: var(--green); color: var(--ink); }
+  .badge.new { background: var(--mint); color: var(--navy); }
+
+  /* SUB BRAND AUTOMATIC BNB */
+  .auto-bnb { background: var(--navy); border-radius: 24px; padding: 36px 40px; margin-top: 14px; font-family: "Poppins", system-ui, sans-serif; position: relative; overflow: hidden; border: 1px solid rgba(0,196,154,0.25); background-image: radial-gradient(rgba(0,196,154,0.1) 1px, transparent 1px); background-size: 32px 32px; }
+  .auto-bnb::after { content: ""; position: absolute; right: -120px; top: -100px; width: 360px; height: 360px; background: var(--mint); opacity: 0.18; filter: blur(120px); border-radius: 50%; }
+  .auto-bnb .auto-tag { display: inline-flex; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(0,196,154,0.12); border: 1px solid rgba(0,196,154,0.4); color: var(--mint); font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; }
+  .auto-bnb h2 { font-size: 38px; font-weight: 800; letter-spacing: -0.025em; margin-top: 18px; max-width: 600px; line-height: 1.05; }
+  .auto-bnb h2 em { font-style: normal; color: var(--mint); }
+  .auto-bnb .auto-meta { display: flex; gap: 28px; margin-top: 24px; font-size: 13px; color: rgba(255,255,255,0.7); }
+  .auto-bnb .auto-meta strong { color: var(--mint); display: block; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 4px; }
+
+  .footer { display: flex; justify-content: space-between; margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div>
+    <span class="wordmark"></span><span class="academy">academy</span>
+    <p style="font-size: 18px; color: rgba(255,255,255,0.7); margin-top: 18px; max-width: 520px; line-height: 1.5;">Brand moodboard — système de design pour les contenus social, print et digital.</p>
+  </div>
+  <div class="meta">
+    <strong>v1.0</strong>
+    Brand kit Rentimmo
+  </div>
+</div>
+
+<h2 class="tag">Palette</h2>
+<div class="palette">
+  <div class="swatch gradient"><span class="name">Brand gradient</span><span class="hex">165deg · 1A6B33 → 5FD87A</span></div>
+  <div class="swatch green"><span class="name">Green</span><span class="hex">#2DB84B</span></div>
+  <div class="swatch green-l"><span class="name">Green light</span><span class="hex">#5FD87A</span></div>
+  <div class="swatch green-d"><span class="name">Green dark</span><span class="hex">#1A6B33</span></div>
+  <div class="swatch ink"><span class="name">Ink</span><span class="hex">#1A1A1A</span></div>
+  <div class="swatch ink-s"><span class="name">Ink soft</span><span class="hex">#2D2D2D</span></div>
+  <div class="swatch cream"><span class="name">Cream</span><span class="hex">#F7F6F2</span></div>
+  <div class="swatch morocco"><span class="name">Morocco</span><span class="hex">#C4933F</span></div>
+</div>
+
+<h2 class="tag">Typographie · Plus Jakarta Sans</h2>
+<div class="typo">
+  <p class="display">Génère <em>+700 €/mois</em><br>avec ton premier Airbnb.</p>
+  <div class="typo-grid">
+    <div class="typo-item">
+      <span class="label">H1 · Section</span>
+      <p class="h1-sample">Choisis ton modèle. Lance-toi.</p>
+      <p class="specs">800 / clamp(40 → 56) / -0.025em</p>
+    </div>
+    <div class="typo-item">
+      <span class="label">H2 · Card</span>
+      <p class="h2-sample">Sous-Location Academy</p>
+      <p class="specs">800 / clamp(32 → 48) / -0.02em</p>
+    </div>
+    <div class="typo-item">
+      <span class="label">Body</span>
+      <p class="body-sample">La formation terrain pour lancer ta sous-location ou ta conciergerie Airbnb. <b>Sans banque, sans crédit, sans apport.</b></p>
+      <p class="specs">400 / 17 / 1.55 line-height</p>
+    </div>
+    <div class="typo-item">
+      <span class="label">Tag · UPPERCASE</span>
+      <p class="tag-sample">Nos formations</p>
+      <p class="specs">700 / 11 / 0.3em letter-spacing</p>
+    </div>
+  </div>
+</div>
+
+<h2 class="tag">Composants</h2>
+<div class="components">
+  <div class="comp-card">
+    <p class="comp-title">CTA & Boutons</p>
+    <div>
+      <a class="btn-primary">Découvrir les formations
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn-ghost">Réserver un appel</a>
+    </div>
+    <div class="badge-row">
+      <span class="badge bestseller">Bestseller</span>
+      <span class="badge new">Nouveau</span>
+      <span class="badge morocco">🇲🇦 Bonus Maroc</span>
+    </div>
+  </div>
+  <div class="comp-card">
+    <p class="comp-title">Card formation</p>
+    <div class="feature-card">
+      <div class="icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="8" cy="15" r="4"/><path d="M10.85 12.15 19 4M18 5l2 2M15 8l2 2"/></svg>
+      </div>
+      <h3>Sous-Location Academy</h3>
+      <p>Loue des biens que tu ne possèdes pas et génère des revenus Airbnb sans crédit ni apport.</p>
+    </div>
+  </div>
+</div>
+
+<h2 class="tag">Sous-marque · Automatic BnB Academy</h2>
+<div class="auto-bnb">
+  <span class="auto-tag">Programme — On le fait avec toi</span>
+  <h2>Automatise ton Airbnb en <em>30 jours.</em></h2>
+  <div class="auto-meta">
+    <div><strong>Police</strong>Poppins</div>
+    <div><strong>Navy</strong>#0D1B2E</div>
+    <div><strong>Mint</strong>#00C49A</div>
+    <div><strong>Mint light</strong>#5EEBC8</div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>rentimmo academy · brand book v1.0</span>
+  <span>2026 · @rentimmoacademy</span>
+</div>
+
+</body>
+</html>

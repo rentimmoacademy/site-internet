@@ -13,7 +13,7 @@ const fadeUp = {
   }),
 };
 
-export default function AutomaticBnbHero() {
+export default function SuperBnbHero() {
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-auto-navy pt-32 font-poppins text-white">
       <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
@@ -61,12 +61,12 @@ export default function AutomaticBnbHero() {
           className="mt-10 flex flex-wrap items-center gap-4"
         >
           <a
-            href="https://cal.com/rentimmo-academy/appel-strategique"
+            href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-auto-mint px-7 py-4 font-bold text-auto-navy transition-all hover:scale-[1.02] hover:shadow-glow-mint"
           >
-            Rejoindre le programme <ArrowRight size={16} />
+            Réserver mon audit gratuit <ArrowRight size={16} />
           </a>
           <Link
             href="#programme"

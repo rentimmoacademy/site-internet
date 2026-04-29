@@ -126,7 +126,7 @@ export default function FormationsPage() {
         </div>
       </section>
 
-      {/* Automatic BnB banner */}
+      {/* Super BnB Academy banner */}
       <section className="relative overflow-hidden bg-auto-navy py-16 font-poppins">
         <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
         <div className="pointer-events-none absolute -right-20 top-0 h-[300px] w-[300px] rounded-full bg-auto-mint/20 blur-[100px]" />
@@ -144,13 +144,13 @@ export default function FormationsPage() {
                   Tu as déjà un logement Airbnb actif ?
                 </p>
                 <p className="mt-1 text-sm text-white/65">
-                  Découvre <span className="text-white">Automatic BnB Academy</span> — le programme
+                  Découvre <span className="text-white">Super BnB Academy</span> — le programme
                   30 jours pour automatiser ton Airbnb.
                 </p>
               </div>
             </div>
             <Link
-              href="/automatic-bnb"
+              href="/super-bnb-academy"
               className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-auto-mint px-6 py-3.5 text-sm font-bold text-auto-navy transition-all hover:scale-[1.03] hover:shadow-glow-mint"
             >
               Découvrir le programme <ArrowRight size={14} />

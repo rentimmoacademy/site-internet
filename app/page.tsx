@@ -1,7 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import SocialProof from "@/components/sections/SocialProof";
 import FormationsGrid from "@/components/sections/FormationsGrid";
-import AutomaticBnbCard from "@/components/AutomaticBnbCard";
+import SuperBnbCard from "@/components/SuperBnbCard";
 import Results from "@/components/sections/Results";
 import PropertiesShowcase from "@/components/sections/PropertiesShowcase";
 import WhyRentimmo from "@/components/sections/WhyRentimmo";
@@ -16,7 +16,7 @@ export default function HomePage() {
       <Hero />
       <SocialProof />
       <FormationsGrid />
-      <AutomaticBnbCard />
+      <SuperBnbCard />
       <Results />
       <PropertiesShowcase />
       <WhyRentimmo />

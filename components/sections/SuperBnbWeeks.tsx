@@ -29,7 +29,7 @@ const weeks = [
   },
 ];
 
-export default function AutomaticBnbWeeks() {
+export default function SuperBnbWeeks() {
   return (
     <section id="programme" className="relative bg-auto-navy-soft py-28 font-poppins text-white">
       <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
