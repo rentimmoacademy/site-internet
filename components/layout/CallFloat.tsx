@@ -2,11 +2,18 @@
 
 import { CalendarCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function CallFloat() {
+  const pathname = usePathname();
+  const isSuperBnb = pathname?.startsWith("/super-bnb-academy") ?? false;
+  const href = isSuperBnb
+    ? "https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
+    : "https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true";
+
   return (
     <motion.a
-      href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
+      href={href}
       target="_blank"
       rel="noreferrer"
       aria-label="Réserver un appel d'audit gratuit"
