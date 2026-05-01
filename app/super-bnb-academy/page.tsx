@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import SuperBnbHero from "@/components/sections/SuperBnbHero";
 import SuperBnbWeeks from "@/components/sections/SuperBnbWeeks";
+import CallGate from "@/components/CallGate";
 
 const forYou = [
   "Tu as déjà au moins 1 bien Airbnb actif",
@@ -218,14 +219,12 @@ export default function SuperBnbAcademyPage() {
                   Réserve un audit gratuit de 30 min. On regarde ton annonce ensemble — sans engagement.
                 </h3>
               </div>
-              <a
+              <CallGate
                 href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
-                target="_blank"
-                rel="noreferrer"
                 className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-auto-mint px-7 py-4 font-bold text-auto-navy transition-all hover:scale-[1.03] hover:shadow-glow-mint"
               >
                 <CalendarCheck size={16} /> Réserver mon audit
-              </a>
+              </CallGate>
             </div>
           </div>
         </div>
@@ -442,14 +441,12 @@ export default function SuperBnbAcademyPage() {
             8 hôtes par cohorte maximum pour garantir l'accompagnement personnalisé. Réserve ta place
             avant fermeture.
           </p>
-          <a
+          <CallGate
             href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
-            target="_blank"
-            rel="noreferrer"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-auto-navy px-8 py-4 font-bold text-auto-mint transition-transform hover:scale-[1.03]"
           >
             Réserver mon audit gratuit <ArrowRight size={16} />
-          </a>
+          </CallGate>
         </div>
       </section>
 

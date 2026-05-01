@@ -15,6 +15,7 @@ import {
   MapPin,
 } from "lucide-react";
 import type { Formation } from "@/lib/formations";
+import CallGate from "@/components/CallGate";
 
 export default function FormationDetail({ formation }: { formation: Formation }) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -312,14 +313,12 @@ export default function FormationDetail({ formation }: { formation: Formation })
               ))}
             </ul>
 
-            <a
-              href="https://cal.com/rentimmo-academy/appel-strategique"
-              target="_blank"
-              rel="noreferrer"
+            <CallGate
+              href="https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true"
               className="btn-primary mt-10 w-full justify-center"
             >
               Réserver mon appel stratégique <ArrowRight size={16} />
-            </a>
+            </CallGate>
 
             <p className="mt-6 flex items-center justify-center gap-2 text-xs text-ink/60">
               <ShieldCheck size={14} /> Appel gratuit · Sans engagement · 30 minutes

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Mail, Instagram, Youtube, MapPin, CalendarClock } from "lucide-react";
 import { SITE } from "@/lib/utils";
+import CallGate from "@/components/CallGate";
 
 function TikTokIcon({ size = 16 }: { size?: number }) {
   return (
@@ -32,10 +33,8 @@ export default function ContactPage() {
           </p>
 
           <div className="mt-12 space-y-5">
-            <a
-              href={SITE.calBooking}
-              target="_blank"
-              rel="noreferrer"
+            <CallGate
+              href={`${SITE.calBooking}?overlayCalendar=true`}
               className="flex items-center gap-4 rounded-2xl border-2 border-brand-green/40 bg-brand-green/5 p-5 text-white transition-colors hover:border-brand-green hover:bg-brand-green/10"
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-green text-ink">
@@ -45,7 +44,7 @@ export default function ContactPage() {
                 <p className="text-[10px] uppercase tracking-widest text-brand-green">Recommandé</p>
                 <p className="font-bold">Réserver un appel stratégique (30 min)</p>
               </span>
-            </a>
+            </CallGate>
             <a
               href={`mailto:${SITE.email}`}
               className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#1f1f1f] p-5 text-white transition-colors hover:border-brand-green"

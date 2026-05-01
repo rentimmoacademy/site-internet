@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Users } from "lucide-react";
 import Link from "next/link";
+import CallGate from "@/components/CallGate";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -60,14 +61,12 @@ export default function SuperBnbHero() {
           animate="show"
           className="mt-10 flex flex-wrap items-center gap-4"
         >
-          <a
+          <CallGate
             href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-auto-mint px-7 py-4 font-bold text-auto-navy transition-all hover:scale-[1.02] hover:shadow-glow-mint"
+            variant="mint"
           >
             Réserver mon audit gratuit <ArrowRight size={16} />
-          </a>
+          </CallGate>
           <Link
             href="#programme"
             className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-4 font-bold text-white backdrop-blur transition-colors hover:bg-white/10"

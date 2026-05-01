@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, MousePointer2 } from "lucide-react";
 import StatCounter from "@/components/StatCounter";
+import CallGate from "@/components/CallGate";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -73,14 +74,12 @@ export default function Hero() {
           <Link href="/formations" className="btn-primary">
             Découvrir les formations <ArrowRight size={18} />
           </Link>
-          <a
-            href="https://cal.com/rentimmo-academy/appel-strategique"
-            target="_blank"
-            rel="noreferrer"
+          <CallGate
+            href="https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true"
             className="btn-ghost"
           >
             Réserver un appel stratégique
-          </a>
+          </CallGate>
         </motion.div>
 
         {/* Stats */}

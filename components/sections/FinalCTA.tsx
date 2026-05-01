@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Shield, Clock, Users } from "lucide-react";
+import CallGate from "@/components/CallGate";
 
 const badges = [
   { icon: Shield, label: "Garantie 14 jours" },
@@ -52,14 +53,12 @@ export default function FinalCTA() {
           >
             Voir les formations <ArrowRight size={16} />
           </Link>
-          <a
-            href="https://cal.com/rentimmo-academy/appel-strategique"
-            target="_blank"
-            rel="noreferrer"
+          <CallGate
+            href="https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true"
             className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
           >
             Réserver un appel stratégique
-          </a>
+          </CallGate>
         </motion.div>
 
         <div className="mt-14 flex flex-wrap items-center justify-center gap-8">
