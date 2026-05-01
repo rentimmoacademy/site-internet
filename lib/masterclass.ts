@@ -1,10 +1,10 @@
 // LocalStorage key + threshold for the masterclass watch gate
 export const MC_KEY = "rentimmo_mc_watched_v1";
-export const MC_THRESHOLD = 0.7; // 70% watched unlocks the call CTA
+export const MC_THRESHOLD = 0.5; // 50% watched unlocks the call CTA
 
-// IMPORTANT: replace with your real YouTube video ID (the part after v= in the URL)
-// e.g. https://www.youtube.com/watch?v=ABC123XYZ45 → ABC123XYZ45
-export const MC_VIDEO_ID = "VIDEO_ID_HERE";
+// YouTube video ID (the part after v= or after youtu.be/)
+// https://youtu.be/QyzwMPk_4yY → QyzwMPk_4yY
+export const MC_VIDEO_ID = "QyzwMPk_4yY";
 
 export const MC_TITLE = "Masterclass — Génère tes premiers revenus Airbnb sans crédit";
 
