@@ -194,6 +194,24 @@ interface CallGateProps {
 
 export default function CallGate({ href, children, className, variant = "primary" }: CallGateProps) {
   const [open, setOpen] = useState(false);
+
+  // Gate only the strategic call (formations funnel). Super BnB audit is a
+  // separate funnel for existing Airbnb hosts — direct booking, no gate.
+  const shouldGate = href.includes("appel-strategique");
+
+  if (!shouldGate) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className={className ?? variantClasses[variant]}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
     <>
       <a

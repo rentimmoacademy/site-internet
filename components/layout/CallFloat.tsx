@@ -14,11 +14,20 @@ export default function CallFloat() {
     ? "https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
     : "https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true";
 
+  // Super BnB audit = no gate (direct link). Strategic call = gated.
+  const handleClick = () => {
+    if (isSuperBnb) {
+      window.open(href, "_blank", "noopener,noreferrer");
+    } else {
+      setOpen(true);
+    }
+  };
+
   return (
     <>
       <motion.button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={handleClick}
         aria-label="Réserver un appel"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
