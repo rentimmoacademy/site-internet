@@ -4,7 +4,7 @@ import { ArrowRight, Trophy, MapPin, Users, BookOpen } from "lucide-react";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 export const metadata: Metadata = {
-  title: "À propos — Marwan Afassi, fondateur de Rentimmo Academy",
+  title: "À propos — Marwan Afassi, fondateur",
   description:
     "Ingénieur, papa, praticien LCD. Lancé avec 1 000 €, +500K€ générés sans être propriétaire, dizaines de biens gérés entre France et Maroc.",
 };
