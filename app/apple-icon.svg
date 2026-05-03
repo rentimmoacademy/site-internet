@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="120" fill="#1A1A1A"/>
+  <text x="50%" y="50%" dy="0.04em" text-anchor="middle" dominant-baseline="central"
+        font-family="'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="800" font-size="300"
+        letter-spacing="-10" fill="#F7F6F2">r</text>
+  <circle cx="372" cy="362" r="38" fill="#2DB84B"/>
+</svg>

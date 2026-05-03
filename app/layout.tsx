@@ -21,6 +21,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rentimmo-academy.fr"),
   title: {
     default: "Rentimmo Academy — Formations sous-location & conciergerie Airbnb",
     template: "%s | Rentimmo Academy",
@@ -46,6 +47,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+export const viewport = {
+  themeColor: "#1A1A1A",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={`${jakarta.variable} ${poppins.variable}`}>
@@ -58,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "EducationalOrganization",
               name: "Rentimmo Academy",
-              url: "https://rentimmo-academy.com",
+              url: "https://rentimmo-academy.fr",
               sameAs: ["https://instagram.com/rentimmo", "https://youtube.com/@rentimmo"],
               description:
                 "Académie de formation professionnelle aux métiers de la location courte durée : sous-location, conciergerie, ménage Airbnb.",
