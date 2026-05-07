@@ -81,12 +81,32 @@ export default function SousLocationProfessionnellePage() {
     "@type": "Article",
     headline: "Sous-location professionnelle : guide complet 2026",
     description: metadata.description,
-    author: { "@type": "Person", name: "Marwan Afassi" },
+    author: { "@type": "Person", "@id": `${SITE}/#marwan`, name: "Marwan Afassi" },
     publisher: { "@id": `${SITE}/#organization` },
     datePublished: "2026-05-07",
     dateModified: "2026-05-07",
     mainEntityOfPage: URL,
     inLanguage: "fr-FR",
+  };
+
+  // HowTo schema — extraction par les LLMs et rich result Google possible
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Comment démarrer sa sous-location professionnelle en France ou au Maroc",
+    description:
+      "Les 6 étapes concrètes pour signer ton premier bail de sous-location professionnelle, ameubler, lancer ton annonce et automatiser la gestion.",
+    totalTime: "P30D",
+    estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "3500" },
+    inLanguage: "fr-FR",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Comprendre le cadre légal", text: "Maîtriser les 3 clauses obligatoires (accord écrit du propriétaire, plafond de loyer, déclaration mairie). C'est ton garde-fou contre la résiliation du bail." },
+      { "@type": "HowToStep", position: 2, name: "Trouver le bon propriétaire", text: "3 canaux qui marchent : LeBonCoin annonces > 30 jours, agences immobilières spécialisées propriétaires-bailleurs, bouche-à-oreille MRE. Le pitch fait toute la différence." },
+      { "@type": "HowToStep", position: 3, name: "Visiter et négocier le bail", text: "Checklist de visite en 12 points, négociation du loyer pour garder une marge confortable (objectif : revenus Airbnb bruts ≥ 2x loyer payé), rédaction du bail avec clauses sécurisantes." },
+      { "@type": "HowToStep", position: 4, name: "Ameubler et lancer l'annonce", text: "Budget ameublement optimisé (2 500-3 500 € pour un T2). Photos pro, titre vendeur, description SEO Airbnb. L'annonce doit cartonner dès la mise en ligne." },
+      { "@type": "HowToStep", position: 5, name: "Pricing dynamique et premiers avis", text: "Outils gratuits pour ajuster les tarifs en temps réel. Stratégie pour obtenir 10 avis 5 étoiles dans les 2 premiers mois et grimper dans le ranking Airbnb." },
+      { "@type": "HowToStep", position: 6, name: "Automatiser et scaler", text: "Check-in autonome (smart lock), ménage délégué, réponses voyageurs automatisées. Tu passes de 1 à 5 logements sans tripler le temps." },
+    ],
   };
 
   return (
@@ -345,18 +365,10 @@ export default function SousLocationProfessionnellePage() {
 
       <FinalCTA />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </>
   );
 }

@@ -3,10 +3,82 @@ import Link from "next/link";
 import { ArrowRight, Trophy, MapPin, Users, BookOpen } from "lucide-react";
 import FinalCTA from "@/components/sections/FinalCTA";
 
+const SITE = "https://rentimmo-academy.fr";
+const URL = `${SITE}/a-propos`;
+
 export const metadata: Metadata = {
   title: "À propos — Marwan Afassi, fondateur",
   description:
     "Ingénieur, papa, praticien LCD. Lancé avec 1 000 €, +500K€ générés sans être propriétaire, dizaines de biens gérés entre France et Maroc.",
+  alternates: { canonical: URL },
+};
+
+// Person + ProfilePage schemas — signal E-E-A-T fort pour Google + autorité IA
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE}/#marwan`,
+  name: "Marwan Afassi",
+  givenName: "Marwan",
+  familyName: "Afassi",
+  jobTitle: "Fondateur, Expert location courte durée",
+  description:
+    "Ingénieur industriel, MRE, expert Airbnb depuis 2019. +500 000 € générés en sous-location professionnelle sans être propriétaire. Note 4,93/5 sur 1 196 avis Airbnb. Fondateur de Rentimmo Academy (formation LCD) et de Daribnb (conciergerie Airbnb à Tanger).",
+  image: `${SITE}/marwan.jpg`,
+  url: URL,
+  knowsAbout: [
+    "Sous-location professionnelle",
+    "Conciergerie Airbnb",
+    "Location courte durée",
+    "Investissement locatif sans apport",
+    "Marché Airbnb au Maroc",
+    "Gestion locative pour MRE",
+    "Cleaning BnB",
+  ],
+  worksFor: [
+    {
+      "@type": "EducationalOrganization",
+      "@id": `${SITE}/#organization`,
+      name: "Rentimmo Academy",
+      url: SITE,
+    },
+    {
+      "@type": "LocalBusiness",
+      name: "Daribnb",
+      url: "https://www.daribnb.com",
+    },
+  ],
+  founder: [
+    { "@type": "Organization", name: "Rentimmo Academy", url: SITE },
+    { "@type": "Organization", name: "Daribnb", url: "https://www.daribnb.com" },
+  ],
+  nationality: { "@type": "Country", name: "France" },
+  knowsLanguage: ["fr", "en", "ar"],
+  sameAs: [
+    "https://www.instagram.com/rentimmo_academy",
+    "https://www.youtube.com/@rentimmoacademy",
+    "https://www.tiktok.com/@rentimmoacademy",
+    "https://www.daribnb.com",
+  ],
+};
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: URL,
+  mainEntity: { "@id": `${SITE}/#marwan` },
+  about: { "@id": `${SITE}/#marwan` },
+  primaryImageOfPage: `${SITE}/marwan.jpg`,
+  inLanguage: "fr-FR",
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Accueil", item: SITE },
+    { "@type": "ListItem", position: 2, name: "À propos", item: URL },
+  ],
 };
 
 const timeline = [
@@ -170,6 +242,10 @@ export default function AboutPage() {
       </section>
 
       <FinalCTA />
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
     </>
   );
 }

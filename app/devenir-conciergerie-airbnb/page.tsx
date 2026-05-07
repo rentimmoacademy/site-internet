@@ -74,12 +74,29 @@ export default function DevenirConciergerieAirbnbPage() {
     "@type": "Article",
     headline: "Devenir conciergerie Airbnb : guide pour se lancer en 2026",
     description: metadata.description,
-    author: { "@type": "Person", name: "Marwan Afassi" },
+    author: { "@type": "Person", "@id": `${SITE}/#marwan`, name: "Marwan Afassi" },
     publisher: { "@id": `${SITE}/#organization` },
     datePublished: "2026-05-07",
     dateModified: "2026-05-07",
     mainEntityOfPage: URL,
     inLanguage: "fr-FR",
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Comment lancer ta conciergerie Airbnb en 60 jours",
+    description:
+      "Les 5 étapes pour créer ton statut, définir ton offre, signer tes premiers clients propriétaires et délivrer une qualité Superhost dès le premier mandat.",
+    totalTime: "P60D",
+    inLanguage: "fr-FR",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Créer ton statut juridique", text: "Auto-entrepreneur en 24h gratuit sur autoentrepreneur.urssaf.fr (code APE 6810Z ou 8299Z). Souscrire l'assurance RC pro (Hiscox, Allianz : 25-40€/mois)." },
+      { "@type": "HowToStep", position: 2, name: "Définir ton offre et ta tarification", text: "Choisir ta zone géographique (1 ville pour démarrer), ta cible (proprios occasionnels vs MRE absents), ta commission (15-25%), et tes services inclus." },
+      { "@type": "HowToStep", position: 3, name: "Trouver tes premiers clients propriétaires", text: "3 canaux qui marchent : Facebook groupes proprios Airbnb, LinkedIn, partenariats agences immo locales avec commission croisée." },
+      { "@type": "HowToStep", position: 4, name: "Setup outils et processus", text: "Channel manager (Hostaway/Smoobu : 25-50€/bien/mois), automation messages (Hospitable), checklist prise en main, templates contrat de mandat." },
+      { "@type": "HowToStep", position: 5, name: "Onboarder et délivrer une qualité Superhost", text: "Photos pro du logement (300€ ROI massif), refonte annonce, multi-canaux Airbnb+Booking+Vrbo, communication voyageur réactive. Le 1er proprio recommande à 2-3 amis dans les 60 jours." },
+    ],
   };
 
   return (
@@ -288,6 +305,7 @@ export default function DevenirConciergerieAirbnbPage() {
       <FinalCTA />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </>

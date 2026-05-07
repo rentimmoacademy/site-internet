@@ -10,7 +10,17 @@ const cols = [
       { href: "/formations/sous-location", label: "Sous-Location Academy" },
       { href: "/formations/conciergerie-bnb", label: "Conciergerie BnB Academy" },
       { href: "/formations/cleaning-bnb", label: "Cleaning BnB Academy" },
+      { href: "/super-bnb-academy", label: "Super BnB Academy" },
       { href: "/formations", label: "Voir toutes les formations" },
+    ],
+  },
+  {
+    title: "Guides",
+    links: [
+      { href: "/sous-location-professionnelle", label: "Sous-location pro" },
+      { href: "/devenir-conciergerie-airbnb", label: "Devenir conciergerie" },
+      { href: "/menage-airbnb-professionnel", label: "Devenir cleaner BnB" },
+      { href: "/se-former-airbnb-maroc", label: "Airbnb au Maroc 🇲🇦" },
     ],
   },
   {
@@ -56,7 +66,7 @@ export default function Footer() {
         </div>
 
         {/* Columns */}
-        <div className="grid gap-12 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 py-14 md:grid-cols-[1.2fr_1fr_1fr_1fr_1fr]">
           <div>
             <Logo />
             <p className="mt-5 max-w-xs text-sm text-white/60">

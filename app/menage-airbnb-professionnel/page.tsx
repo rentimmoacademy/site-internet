@@ -74,12 +74,30 @@ export default function MenageAirbnbProfessionnelPage() {
     "@type": "Article",
     headline: "Ménage Airbnb professionnel : devenir cleaner BnB en 2026",
     description: metadata.description,
-    author: { "@type": "Person", name: "Marwan Afassi" },
+    author: { "@type": "Person", "@id": `${SITE}/#marwan`, name: "Marwan Afassi" },
     publisher: { "@id": `${SITE}/#organization` },
     datePublished: "2026-05-07",
     dateModified: "2026-05-07",
     mainEntityOfPage: URL,
     inLanguage: "fr-FR",
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Comment lancer ton activité de cleaner Airbnb pro en 30 jours",
+    description:
+      "Les 5 étapes pour créer ton statut, définir ta tarification, signer tes premières conciergeries et délivrer une qualité hôtelière à chaque rotation.",
+    totalTime: "P30D",
+    estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "1500" },
+    inLanguage: "fr-FR",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Créer ton statut auto-entrepreneur", text: "Création en ligne en 24h gratuit sur autoentrepreneur.urssaf.fr (code APE 8121Z). Souscrire assurance RC pro (~25€/mois). Acheter le matériel de base (800-1 500€)." },
+      { "@type": "HowToStep", position: 2, name: "Définir ton offre tarifaire", text: "Grille claire : Studio 35€, T2 55€, T3 75€, T4 95€. Inclus : ménage complet, draps, consommables. Options : linge fourni (+8€), check-in (+15€), urgence (+30%)." },
+      { "@type": "HowToStep", position: 3, name: "Trouver tes 3 premières conciergeries", text: "LinkedIn search 'conciergerie airbnb [ville]' + email/DM avec offre claire. Google Maps + appels. Groupes Facebook 'hôtes airbnb [ville]'. Objectif 3 conciergeries = 50-80 rotations récurrentes." },
+      { "@type": "HowToStep", position: 4, name: "Délivrer impeccable et obtenir des reviews", text: "Photos avant/après envoyées au proprio à chaque rotation. Standard hôtelier non négociable. 2 reviews 5 étoiles parfaites = recommandation à 5 autres conciergeries." },
+      { "@type": "HowToStep", position: 5, name: "Recruter et déléguer dès le mois 4", text: "Quand tu satures (90 rotations/mois solo), recrutement d'un 1er cleaner externe à 30% de commission. Tu passes du métier à l'entreprise." },
+    ],
   };
 
   return (
@@ -280,6 +298,7 @@ export default function MenageAirbnbProfessionnelPage() {
       <FinalCTA />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
     </>
