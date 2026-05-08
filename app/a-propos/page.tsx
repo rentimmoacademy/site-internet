@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Trophy, MapPin, Users, BookOpen } from "lucide-react";
 import FinalCTA from "@/components/sections/FinalCTA";
 
-const SITE = "https://rentimmoacademy.fr";
+const SITE = "https://rentimmo-academy.fr";
 const URL = `${SITE}/a-propos`;
 
 export const metadata: Metadata = {

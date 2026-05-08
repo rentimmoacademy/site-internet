@@ -462,10 +462,10 @@ export default function SuperBnbAcademyPage() {
               "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On automatise ton logement avec toi : annonce, messages, pricing, réservation directe.",
             provider: {
               "@type": "EducationalOrganization",
-              "@id": "https://rentimmoacademy.fr/#organization",
+              "@id": "https://rentimmo-academy.fr/#organization",
               name: "Rentimmo Academy",
-              url: "https://rentimmoacademy.fr",
-              sameAs: "https://rentimmoacademy.fr",
+              url: "https://rentimmo-academy.fr",
+              sameAs: "https://rentimmo-academy.fr",
             },
             timeRequired: "P30D",
           }),

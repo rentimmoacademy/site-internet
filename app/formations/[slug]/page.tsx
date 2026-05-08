@@ -4,7 +4,7 @@ import FormationDetail from "@/components/FormationDetail";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { formations, getFormation } from "@/lib/formations";
 
-const SITE = "https://rentimmoacademy.fr";
+const SITE = "https://rentimmo-academy.fr";
 
 export function generateStaticParams() {
   return formations.map((f) => ({ slug: f.slug }));
