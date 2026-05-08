@@ -95,17 +95,22 @@ const organizationSchema = {
     "Académie de formation professionnelle aux métiers de la location courte durée : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BnB). Formations terrain en France et au Maroc, sans banque, sans crédit, sans apport.",
   founder: {
     "@type": "Person",
+    "@id": `${SITE}/#marwan`,
     name: "Marwan Afassi",
     jobTitle: "Fondateur · Expert location courte durée",
     sameAs: [
       "https://www.instagram.com/rentimmo_academy",
       "https://www.youtube.com/@rentimmoacademy",
+      "https://www.tiktok.com/@rentimmoacademy",
+      "https://fr.linkedin.com/in/marwan-afassi-9300b656",
     ],
   },
   sameAs: [
     "https://www.instagram.com/rentimmo_academy",
     "https://www.youtube.com/@rentimmoacademy",
     "https://www.tiktok.com/@rentimmoacademy",
+    "https://fr.linkedin.com/in/marwan-afassi-9300b656",
+    "https://fr.trustpilot.com/review/rentimmoacademy.fr",
   ],
   areaServed: [
     { "@type": "Country", name: "France" },

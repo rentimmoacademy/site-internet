@@ -10,17 +10,36 @@ export function generateStaticParams() {
   return formations.map((f) => ({ slug: f.slug }));
 }
 
+// Titles SEO-optimisés par formation pour matcher les keywords exact (volumes Google FR :
+// "sous-location professionnelle" ~3K/mois, "conciergerie airbnb" ~9K/mois, "ménage airbnb" ~1.5K/mois)
+const SEO_TITLE_BY_SLUG: Record<string, string> = {
+  "sous-location": "Formation sous-location professionnelle 2026 — Sous-Location Academy",
+  "conciergerie-bnb": "Formation conciergerie Airbnb 2026 — Conciergerie BnB Academy",
+  "cleaning-bnb": "Formation ménage Airbnb pro 2026 — Cleaning BnB Academy",
+};
+
+const SEO_DESCRIPTION_BY_SLUG: Record<string, string> = {
+  "sous-location":
+    "Formation sous-location professionnelle complète : 6 modules, 8h, applicable immédiatement. Lance ta sous-location Airbnb en 30 jours sans banque ni apport. France & Maroc.",
+  "conciergerie-bnb":
+    "Formation conciergerie Airbnb 100% terrain : 8 modules, 10h, statut juridique, prospection, mandats. Signe ton 1er propriétaire en 30 jours. Inclus Bonus Maroc.",
+  "cleaning-bnb":
+    "Formation ménage Airbnb professionnel : standards hôteliers, tarification, prospection conciergeries, scaling équipe. Lance ton activité de cleaner BnB en 30 jours.",
+};
+
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const f = getFormation(params.slug);
   if (!f) return {};
   const url = `${SITE}/formations/${f.slug}`;
+  const title = SEO_TITLE_BY_SLUG[f.slug] ?? `${f.name} — ${f.tagline}`;
+  const description = SEO_DESCRIPTION_BY_SLUG[f.slug] ?? f.description;
   return {
-    title: `${f.name} — ${f.tagline}`,
-    description: f.description,
+    title,
+    description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${f.name} — ${f.tagline}`,
-      description: f.description,
+      title,
+      description,
       url,
       type: "website",
     },
@@ -34,37 +53,48 @@ export default function FormationPage({ params }: { params: { slug: string } }) 
   const url = `${SITE}/formations/${formation.slug}`;
   const priceNumeric = formation.price.replace(/[^\d]/g, "");
 
-  // Course schema (Google rich results pour les formations)
+  // Course schema enrichi (Google rich results pour les formations + signaux d'autorité IA)
   const courseSchema = {
     "@context": "https://schema.org",
     "@type": "Course",
     name: formation.name,
     description: formation.description,
     url,
-    provider: {
-      "@type": "EducationalOrganization",
-      "@id": `${SITE}/#organization`,
-      name: "Rentimmo Academy",
-      url: SITE,
-      sameAs: SITE,
-    },
-    educationalLevel: "Beginner",
+    provider: { "@id": `${SITE}/#organization` },
+    creator: { "@id": `${SITE}/#marwan` },
+    educationalLevel: "Beginner to Intermediate",
     inLanguage: "fr-FR",
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "student",
+      audienceType: "Entrepreneurs LCD, salariés en reconversion, MRE, jeunes actifs",
+    },
     teaches: formation.outcomes,
     timeRequired: formation.duration,
+    courseCode: formation.slug,
+    numberOfCredits: formation.modules,
     offers: {
       "@type": "Offer",
       price: priceNumeric,
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
       url,
+      validFrom: "2026-01-01",
+      category: "Formation professionnelle",
     },
-    hasCourseInstance: {
-      "@type": "CourseInstance",
-      courseMode: "online",
-      inLanguage: "fr-FR",
-      courseWorkload: formation.duration,
-    },
+    hasCourseInstance: [
+      {
+        "@type": "CourseInstance",
+        courseMode: "online",
+        inLanguage: "fr-FR",
+        courseWorkload: formation.duration,
+        location: {
+          "@type": "VirtualLocation",
+          url: SITE,
+        },
+        instructor: { "@id": `${SITE}/#marwan` },
+      },
+    ],
   };
 
   // FAQPage schema (Google peut afficher les Q/R directement dans la SERP)

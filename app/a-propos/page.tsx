@@ -58,6 +58,7 @@ const personSchema = {
     "https://www.instagram.com/rentimmo_academy",
     "https://www.youtube.com/@rentimmoacademy",
     "https://www.tiktok.com/@rentimmoacademy",
+    "https://fr.linkedin.com/in/marwan-afassi-9300b656",
     "https://www.daribnb.com",
   ],
 };
