@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export const SITE = {
   name: "Rentimmo Academy",
   tagline: "L'académie qui forme les pros de la LCD",
-  url: "https://rentimmo-academy.fr",
+  url: "https://rentimmoacademy.fr",
   whatsapp: "33600000000",
   email: "rentimmoacademy@gmail.com",
   calBooking: "https://cal.com/rentimmo-academy/appel-strategique",

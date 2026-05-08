@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { formations } from "@/lib/formations";
 import { getAllPosts } from "@/lib/mdx";
 
-const BASE = "https://rentimmo-academy.fr";
+const BASE = "https://rentimmoacademy.fr";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();
