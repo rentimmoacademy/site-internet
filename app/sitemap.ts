@@ -16,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/se-former-airbnb-maroc", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/super-bnb-academy", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/lexique", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/temoignages", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/blog", priority: 0.7, changeFrequency: "weekly" as const },
     { path: "/a-propos", priority: 0.5, changeFrequency: "yearly" as const },
     { path: "/contact", priority: 0.4, changeFrequency: "yearly" as const },
