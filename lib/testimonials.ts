@@ -98,36 +98,131 @@ export const TESTIMONIALS: Testimonial[] = [
     source: { type: "trustpilot", url: TRUSTPILOT_URL, rating: 5, date: "2023-11-13" },
   },
   // ============================================================================
-  // PROCHAINES ENTRÉES À AJOUTER (en attente de Marwan):
-  //
-  // - Vidéos témoignages YouTube longue forme (URLs à fournir par Marwan)
-  // - Avis Trustpilot supplémentaires si > 12 avis publics dispo
-  // - Témoignages WhatsApp avec consentement écrit (Nassim, Yassine A., Abdoulaziz, etc.)
+  // TÉMOIGNAGES VIDÉO YOUTUBE (chaîne @rentimmoacademy)
+  // Sources publiques officielles, embeddables légalement.
+  // ============================================================================
+  {
+    id: "video-yassine-kaddouri",
+    firstName: "Yassine Kaddouri",
+    formation: "sous-location",
+    result: "Premier logement obtenu en 30 jours",
+    quote:
+      "Découvre comment Yassine a récupéré son premier logement en 30 jours grâce à la formation Rentimmo Academy.",
+    source: {
+      type: "youtube",
+      videoId: "7Dz1QpJ1Cvg",
+      videoTitle:
+        "🤩☪️ TÉMOIGNAGE DE YASSINE : Découvre Comment il a récupéré son premier logement en 30 Jours !",
+    },
+  },
+  {
+    id: "video-sabria",
+    firstName: "Sabria",
+    formation: "sous-location",
+    result: "Annonces automatisées et performantes",
+    quote:
+      "Sabria explique comment automatiser et booster la performance de ses annonces en sous-location grâce aux outils Rentimmo Academy.",
+    source: {
+      type: "youtube",
+      videoId: "vwBXbRgvi2E",
+      videoTitle:
+        "TÉMOIGNAGE DE SABRIA : Comment Automatiser & Booster la Performance de tes annonces en Sous-Location",
+    },
+  },
+  {
+    id: "video-khadija",
+    firstName: "Khadija",
+    formation: "sous-location",
+    result: "Logement complet, maman de 7 enfants",
+    quote:
+      "Khadija, maman de 7 enfants, a lancé son activité de sous-location. Aujourd'hui son logement affiche complet.",
+    source: {
+      type: "youtube",
+      videoId: "M4BGxZjKJe0",
+      videoTitle:
+        "✈️ Extrait du témoignage à succès de Khadija, maman de 7 enfants qui affiche complet !",
+    },
+  },
+  {
+    id: "video-aicha",
+    firstName: "Aïcha",
+    formation: "sous-location",
+    result: "Reconversion e-commerce → immobilier halal",
+    quote:
+      "Aïcha quitte l'e-commerce pour se lancer dans la sous-location professionnelle, dans une démarche éthique et halal.",
+    source: {
+      type: "youtube",
+      videoId: "2zvz4WngAtU",
+      videoTitle:
+        "🧕 De l'e-commerce à l'immobilier halal : Aïcha change de vie avec la sous-location pro !",
+    },
+  },
+  {
+    id: "video-yacine-20ans",
+    firstName: "Yacine",
+    city: "France",
+    formation: "sous-location",
+    result: "2 sous-locations Airbnb à 20 ans",
+    quote:
+      "Yacine a démarré la sous-location à 20 ans. Aujourd'hui il gère déjà 2 logements Airbnb rentables.",
+    source: {
+      type: "youtube",
+      videoId: "SBehcJ3CnGk",
+      videoTitle:
+        "Il a 20 ANS et déjà 2 SOUS-LOCATIONS sur Airbnb ! (Parcours inspirant de Yacine)",
+    },
+  },
+  {
+    id: "video-toulouse",
+    firstName: "Étudiant Rentimmo",
+    city: "Toulouse",
+    formation: "sous-location",
+    result: "Reconversion totale et lancement à Toulouse",
+    quote:
+      "Témoignage d'un étudiant Rentimmo Academy qui a tout quitté pour s'installer à Toulouse et se lancer en sous-location professionnelle sur Airbnb.",
+    source: {
+      type: "youtube",
+      videoId: "G5aZB5LNTBE",
+      videoTitle:
+        "❌ Il quitte tout pour Toulouse et se lance en sous-location sur Airbnb (Parcours inspirant)",
+    },
+  },
+  // ============================================================================
+  // PROCHAINES ENTRÉES À AJOUTER (en attente):
+  // - Avis Trustpilot supplémentaires si publiés
+  // - Témoignages WhatsApp avec consentement écrit
   // ============================================================================
 ];
 
-// Aggregate rating dérivé pour le schema (calculé sur les témoignages vérifiables ci-dessus)
+// Helper: ne retient que les sources avec rating numérique (= éligibles AggregateRating Google)
+const RATEABLE = TESTIMONIALS.filter(
+  (t) => t.source.type === "trustpilot" || t.source.type === "google-review"
+);
+
+// Helper: témoignages vidéo (pour la grille "Témoignages vidéo")
+export const VIDEO_TESTIMONIALS = TESTIMONIALS.filter(
+  (t) => t.source.type === "youtube"
+);
+
+// Helper: témoignages texte (Trustpilot, Google, interviews privées)
+export const TEXT_TESTIMONIALS = TESTIMONIALS.filter(
+  (t) => t.source.type !== "youtube"
+);
+
+// Aggregate rating dérivé pour le schema (calculé uniquement sur les sources avec rating)
 export const AGGREGATE_RATING = {
   ratingValue:
-    Math.round(
-      (TESTIMONIALS.filter(
-        (t) => t.source.type === "trustpilot" || t.source.type === "google-review"
-      ).reduce(
-        (acc, t) =>
-          acc +
-          ((t.source as { rating?: number }).rating ?? 5),
-        0
-      ) /
-        Math.max(
-          1,
-          TESTIMONIALS.filter(
-            (t) =>
-              t.source.type === "trustpilot" || t.source.type === "google-review"
-          ).length
-        )) *
-        10
-    ) / 10,
-  reviewCount: TESTIMONIALS.length,
+    RATEABLE.length === 0
+      ? 0
+      : Math.round(
+          (RATEABLE.reduce(
+            (acc, t) => acc + ((t.source as { rating?: number }).rating ?? 5),
+            0
+          ) /
+            RATEABLE.length) *
+            10
+        ) / 10,
+  reviewCount: RATEABLE.length,
   bestRating: 5,
   worstRating: 1,
 };
