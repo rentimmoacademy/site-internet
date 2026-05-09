@@ -27,6 +27,7 @@ const cols = [
     title: "Ressources",
     links: [
       { href: "/blog", label: "Blog" },
+      { href: "/lexique", label: "Lexique LCD" },
       { href: "/a-propos", label: "À propos" },
       { href: "/contact", label: "Contact" },
       { href: SITE.calBooking, label: "Réserver un appel" },
