@@ -4,6 +4,7 @@
 # because our audience asks AI assistants for training recommendations.
 
 User-agent: *
+Disallow: /media/
 Allow: /
 
 # Standard search engines
