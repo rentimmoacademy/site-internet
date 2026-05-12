@@ -62,4 +62,4 @@ User-agent: meta-externalagent
 Allow: /
 
 # Sitemap (canonical .fr domain)
-Sitemap: https://rentimmo-academy.fr/sitemap.xml
+Sitemap: https://www.rentimmoacademy.fr/sitemap.xml

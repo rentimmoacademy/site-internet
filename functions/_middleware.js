@@ -1,20 +1,18 @@
 /**
- * Cloudflare Pages middleware — 301 redirect anti-squat + canonical normalization.
+ * Cloudflare Pages middleware — 301 redirect + canonical normalization.
  *
- * Le canonique principal du site est rentimmo-academy.fr (avec tiret) car les
- * tunnels de vente Systeme.io, les emails déjà envoyés et les liens externes
- * existants pointent vers cette URL. Le domaine rentimmoacademy.fr (sans tiret)
- * a été acheté pour bloquer le squatting et est redirigé vers le canonique.
- *
- * Aussi : www → no-www pour avoir un seul canonique unique.
+ * Nouveau canonique : www.rentimmoacademy.fr (sans tiret, avec www).
+ * Tous les anciens domaines (rentimmo-academy.fr, www.rentimmo-academy.fr,
+ * rentimmoacademy.fr sans www) redirigent en 301 vers le canonique.
+ * Les liens et emails existants continuent de fonctionner via la redirection.
  */
 
 const REDIRECTS_TO_CANONICAL = new Set([
-  // Anti-squat : tout hit sur le sans-tiret (acheté pour bloquer) repart vers le canonique
-  "rentimmoacademy.fr",
-  "www.rentimmoacademy.fr",
-  // Canonical no-www : on uniformise vers rentimmo-academy.fr (sans www)
+  // Ancien canonique (avec tiret) — liens existants Systeme.io, emails, etc.
+  "rentimmo-academy.fr",
   "www.rentimmo-academy.fr",
+  // Non-www du nouveau domaine → on uniformise vers www
+  "rentimmoacademy.fr",
 ]);
 
 export const onRequest = async ({ request, next }) => {
@@ -22,7 +20,7 @@ export const onRequest = async ({ request, next }) => {
   const host = url.hostname.toLowerCase();
 
   if (REDIRECTS_TO_CANONICAL.has(host)) {
-    const target = `https://rentimmo-academy.fr${url.pathname}${url.search}`;
+    const target = `https://www.rentimmoacademy.fr${url.pathname}${url.search}`;
     return Response.redirect(target, 301);
   }
 

@@ -7,7 +7,7 @@ import CallFloat from "@/components/layout/CallFloat";
 import CookieBanner from "@/components/layout/CookieBanner";
 import { formations } from "@/lib/formations";
 
-const SITE = "https://rentimmo-academy.fr";
+const SITE = "https://www.rentimmoacademy.fr";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],

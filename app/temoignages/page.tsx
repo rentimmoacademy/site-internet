@@ -4,7 +4,7 @@ import { ArrowRight, Star, ExternalLink, Quote, Youtube } from "lucide-react";
 import { TESTIMONIALS, AGGREGATE_RATING } from "@/lib/testimonials";
 import FinalCTA from "@/components/sections/FinalCTA";
 
-const SITE = "https://rentimmo-academy.fr";
+const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/temoignages`;
 
 export const metadata: Metadata = {

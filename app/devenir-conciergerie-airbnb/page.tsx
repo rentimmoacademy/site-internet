@@ -5,7 +5,7 @@ import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 
-const SITE = "https://rentimmo-academy.fr";
+const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/devenir-conciergerie-airbnb`;
 
 export const metadata: Metadata = {
