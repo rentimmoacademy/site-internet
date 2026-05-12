@@ -81,11 +81,36 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
+            "@id": `https://www.rentimmoacademy.fr/blog/${post.slug}`,
             headline: post.title,
             description: post.excerpt,
             datePublished: post.date,
-            author: { "@type": "Person", name: "Marwan Afassi" },
-            publisher: { "@type": "Organization", name: "Rentimmo Academy" },
+            dateModified: post.date,
+            inLanguage: "fr-FR",
+            url: `https://www.rentimmoacademy.fr/blog/${post.slug}`,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://www.rentimmoacademy.fr/blog/${post.slug}`,
+            },
+            image: post.coverImage
+              ? `https://www.rentimmoacademy.fr${post.coverImage}`
+              : "https://www.rentimmoacademy.fr/og-image.jpg",
+            articleSection: post.category,
+            author: {
+              "@type": "Person",
+              "@id": "https://www.rentimmoacademy.fr/#marwan",
+              name: "Marwan Afassi",
+              url: "https://www.rentimmoacademy.fr/a-propos",
+            },
+            publisher: {
+              "@type": "Organization",
+              "@id": "https://www.rentimmoacademy.fr/#organization",
+              name: "Rentimmo Academy",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://www.rentimmoacademy.fr/icon.svg",
+              },
+            },
           }),
         }}
       />
