@@ -42,6 +42,9 @@ export const metadata: Metadata = {
     "Airbnb Maroc",
     "Rentimmo Academy",
   ],
+  verification: {
+    google: "H2344Njqd25JE9upWX958G1r9ZuGCwNQ2hjA1nHwg8c",
+  },
   alternates: {
     canonical: "/",
   },
