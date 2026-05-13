@@ -32,9 +32,9 @@ export const formations: Formation[] = [
   {
     slug: "sous-location",
     name: "Sous-Location Academy",
-    tagline: "Loue des biens que tu ne possèdes pas",
+    tagline: "Génère des revenus Airbnb sans crédit, sans apport",
     description:
-      "Génère des revenus Airbnb sans crédit, sans banque, sans apport. Tu loues un logement à un propriétaire, tu le sous-loues sur Airbnb, tu gardes la différence.",
+      "La formation terrain la plus complète sur la sous-location professionnelle en France & au Maroc. 6+ ans d'expérience, des dizaines de sous-locs gérées, tous les documents légaux inclus. Lance ton 1er logement en 30 jours.",
     keyPoints: [
       "Trouver des propriétaires qui disent OUI",
       "Rédiger un bail avec les 3 clauses obligatoires",
@@ -115,9 +115,9 @@ export const formations: Formation[] = [
   {
     slug: "conciergerie-bnb",
     name: "Conciergerie BnB Academy",
-    tagline: "Gère les biens des autres, encaisse les commissions",
+    tagline: "Lance ta conciergerie Airbnb, signe tes premiers mandats",
     description:
-      "Lance ta conciergerie Airbnb sans capital de départ. Tu gères les logements de propriétaires, tu prends 15 à 20% de commission sur chaque réservation.",
+      "Gère les logements des autres et encaisse 15-20% de commission par réservation. Formation 100% terrain : prospection, mandats, automatisation, scaling. Bonus Maroc inclus — le seul marché inexploité par tes concurrents.",
     keyPoints: [
       "Signer tes premiers mandats de gestion",
       "Fixer ta commission et tes tarifs",
@@ -200,19 +200,19 @@ export const formations: Formation[] = [
   {
     slug: "cleaning-bnb",
     name: "Cleaning BnB Academy",
-    tagline: "Deviens prestataire ménage Airbnb professionnel",
+    tagline: "La 1ère formation française dédiée au cleaner BnB pro",
     description:
-      "Lance ton activité de ménage professionnel dédiée aux logements Airbnb. Deviens le prestataire incontournable des hôtes et conciergeries de ta ville.",
+      "La seule formation française 100% dédiée au métier de prestataire ménage Airbnb. Lance ton activité avec les standards hôteliers, signe tes premiers contrats récurrents et bâtis ton équipe — sans capital de départ.",
     keyPoints: [
-      "Créer ton offre et fixer tes tarifs",
-      "Trouver tes premiers clients hôtes Airbnb",
-      "Mettre en place le protocole ménage professionnel",
-      "Gérer les équipes et les plannings",
-      "Facturer et gérer ta comptabilité",
+      "Créer ton offre et fixer des tarifs rentables",
+      "Trouver tes premiers contrats chez hôtes et conciergeries",
+      "Appliquer le protocole 47 points aux standards hôteliers",
+      "Gérer les plannings multi-rotations et déléguer",
+      "Facturer, scaler et créer ta micro-agence ménage",
     ],
-    duration: "6h de contenu",
-    modules: 5,
-    price: "697 €",
+    duration: "8h de contenu",
+    modules: 8,
+    price: "997 €",
     accentIcon: "sparkle",
     personas: [
       { title: "Personne sans diplôme ni capital", desc: "Tu veux lancer un business rentable avec un investissement minime." },
