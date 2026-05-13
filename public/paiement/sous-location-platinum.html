@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sous-Location Academy — Formule Platinum — Rentimmo Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root {
+  --green:#2DB84B; --green-l:#5FD87A; --green-d:#1A6B33;
+  --grad:linear-gradient(135deg,#1A6B33 0%,#2DB84B 55%,#5FD87A 100%);
+  --ink:#1A1A1A; --ink-s:#2D2D2D; --cream:#F7F6F2;
+  --bord:rgba(255,255,255,0.1);
+  --plat:#C0C0C0; --plat-l:#E8E8E8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--ink);color:#fff;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+.urgent-bar{background:var(--grad);padding:10px 20px;text-align:center;font-size:13px;font-weight:700}
+.urgent-bar .count{font-weight:800;text-decoration:underline}
+
+.header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bord)}
+.logo{font-size:19px;font-weight:800;letter-spacing:-0.025em;display:flex;align-items:center;gap:8px}
+.logo-dot{width:9px;height:9px;background:var(--green);border-radius:50%;flex-shrink:0}
+.logo-acad{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-left:2px}
+.secure-badge{font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:5px}
+
+.hero{padding:48px 20px 0;max-width:720px;margin:0 auto}
+.formule-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(192,192,192,0.1);border:1px solid rgba(192,192,192,0.3);color:var(--plat-l);font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(28px,6vw,46px);font-weight:800;letter-spacing:-0.03em;line-height:1.08;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:28px;line-height:1.65}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.06);border:1px solid var(--bord);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.hero-tag .chk{color:var(--green);font-weight:800}
+.hero-tag.no{color:rgba(255,255,255,0.3)}
+.hero-tag.no .chk{color:rgba(255,255,255,0.25)}
+
+.price-card{background:var(--ink-s);border:2px solid rgba(192,192,192,0.5);border-radius:20px;padding:28px 24px;margin-bottom:56px;box-shadow:0 0 60px -10px rgba(192,192,192,0.1)}
+.bestseller-badge{position:absolute;display:inline-flex;align-items:center;gap:6px;background:var(--green);color:var(--ink);font-size:11px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-top:-44px;margin-left:-4px}
+.stack-lbl{font-size:11px;color:rgba(255,255,255,0.45);font-weight:700;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:4px;margin-top:16px}
+.stack-val{font-size:18px;font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(220,50,50,0.5);margin-bottom:10px}
+.price-main{font-size:clamp(44px,11vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+.price-modes{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:14px}
+.savings-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(45,184,75,0.1);border:1px solid rgba(45,184,75,0.25);color:var(--green-l);font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px}
+.price-hr{border:0;border-top:1px solid var(--bord);margin:20px 0}
+.gtee-row{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:rgba(255,255,255,0.72)}
+.gtee-icon{flex-shrink:0;width:34px;height:34px;background:rgba(45,184,75,0.1);border:1px solid rgba(45,184,75,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px}
+.gtee-row strong{display:block;margin-bottom:3px;font-size:14px;color:#fff}
+
+.section{padding:64px 20px;max-width:720px;margin:0 auto}
+.s-tag{font-size:11px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.section h2{font-size:clamp(22px,5vw,34px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:8px}
+.section .s-sub{font-size:15px;color:rgba(255,255,255,0.55);margin-bottom:28px;line-height:1.65}
+
+.stk-table{background:var(--ink-s);border:1px solid var(--bord);border-radius:16px;overflow:hidden}
+.stk-row{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--bord);gap:12px}
+.stk-row:last-child{border-bottom:0}
+.stk-row.total{background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.15)}
+.stk-row.total .r-name{font-weight:800;color:#fff}
+.stk-row.total .r-price{color:rgba(255,255,255,0.35);font-size:17px;text-decoration:line-through;text-decoration-color:rgba(220,50,50,0.45)}
+.stk-row.invest{background:var(--grad)}
+.stk-row.invest .r-name{font-weight:800;color:#fff;font-size:15px}
+.stk-row.invest .r-price{font-size:20px;font-weight:800;color:#fff}
+.r-icon{flex-shrink:0;font-size:18px}
+.r-name{flex:1;font-size:13.5px;color:rgba(255,255,255,0.8);font-weight:600}
+.r-note{font-size:10.5px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-top:2px}
+.r-price{font-size:14px;font-weight:800;color:rgba(255,255,255,0.55);white-space:nowrap}
+
+.feat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:540px){.feat-grid{grid-template-columns:1fr 1fr}}
+.feat-item{background:var(--ink-s);border:1px solid var(--bord);border-radius:14px;padding:18px;display:flex;align-items:flex-start;gap:12px}
+.feat-icon{flex-shrink:0;width:36px;height:36px;background:rgba(45,184,75,0.1);border:1px solid rgba(45,184,75,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.feat-body h3{font-size:14px;font-weight:800;margin-bottom:3px}
+.feat-body p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5}
+
+.testi-grid{display:grid;gap:14px}
+@media(min-width:540px){.testi-grid{grid-template-columns:1fr 1fr}}
+.testi-card{background:var(--ink);border:1px solid var(--bord);border-radius:14px;padding:20px}
+.testi-stars{color:var(--green);font-size:15px;margin-bottom:10px;letter-spacing:2px}
+.testi-txt{font-size:13px;color:rgba(255,255,255,0.78);line-height:1.65;margin-bottom:12px;font-style:italic}
+.testi-name{font-size:12px;font-weight:800;color:#fff}
+.testi-meta{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
+.testi-bdg{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;background:rgba(45,184,75,0.1);color:var(--green);padding:2px 8px;border-radius:999px;margin-top:5px}
+
+.gtee-block{background:linear-gradient(135deg,rgba(26,107,51,0.22),rgba(45,184,75,0.06));border:1px solid rgba(45,184,75,0.35);border-radius:20px;padding:28px 24px;display:flex;gap:18px;align-items:flex-start}
+.gtee-block .gi{flex-shrink:0;font-size:38px;line-height:1}
+.gtee-block h3{font-size:19px;font-weight:800;margin-bottom:10px}
+.gtee-block p{font-size:13.5px;color:rgba(255,255,255,0.72);line-height:1.7}
+.gtee-block p strong{color:#fff}
+@media(max-width:440px){.gtee-block{flex-direction:column;gap:14px}}
+
+.bonus-card{background:linear-gradient(135deg,rgba(26,107,51,0.35),rgba(26,26,26,1));border:1px solid rgba(45,184,75,0.4);border-radius:16px;padding:24px;position:relative;overflow:hidden}
+.bonus-card::after{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:var(--green);opacity:0.06;border-radius:50%;pointer-events:none}
+.bonus-tag{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:var(--ink);font-size:10.5px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.bonus-card h3{font-size:19px;font-weight:800;margin-bottom:8px}
+.bonus-card p{font-size:13px;color:rgba(255,255,255,0.68);line-height:1.65;margin-bottom:14px}
+.bonus-val{font-size:13.5px;font-weight:700;color:rgba(255,255,255,0.45)}
+.bonus-val span{font-size:20px;font-weight:800;color:var(--green)}
+
+.faq-list{border:1px solid var(--bord);border-radius:14px;overflow:hidden}
+.faq-item{border-bottom:1px solid var(--bord)}
+.faq-item:last-child{border-bottom:0}
+.faq-q{width:100%;padding:17px 20px;background:none;border:0;color:#fff;font-family:inherit;font-size:14px;font-weight:700;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.faq-q:hover{background:rgba(255,255,255,0.03)}
+.faq-ic{flex-shrink:0;font-size:20px;color:var(--green);transition:transform 0.2s;line-height:1}
+.faq-item.open .faq-ic{transform:rotate(45deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s;font-size:13.5px;color:rgba(255,255,255,0.65);line-height:1.72}
+.faq-item.open .faq-a{max-height:320px;padding:0 20px 18px}
+
+.pay-section{padding:48px 20px 56px;max-width:540px;margin:0 auto;text-align:center}
+.pay-section h2{font-size:clamp(20px,5vw,30px);font-weight:800;letter-spacing:-0.02em;margin-bottom:8px}
+.pay-sub{font-size:13.5px;color:rgba(255,255,255,0.5);margin-bottom:26px}
+.tab-nav{display:flex;background:var(--ink-s);border:1px solid var(--bord);border-radius:12px;padding:4px;gap:4px;margin-bottom:20px}
+.tab-btn{flex:1;padding:10px 6px;background:none;border:0;color:rgba(255,255,255,0.45);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border-radius:9px;transition:all 0.18s}
+.tab-btn.active{background:var(--green);color:var(--ink)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.pay-amount{margin-bottom:18px}
+.pay-amount .amt{font-size:clamp(38px,9vw,52px);font-weight:800;letter-spacing:-0.04em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.pay-amount .amt-note{font-size:12.5px;color:rgba(255,255,255,0.45);margin-top:5px}
+.cta-btn{display:block;width:100%;padding:18px 24px;background:var(--grad);color:#fff;font-family:inherit;font-size:15px;font-weight:800;letter-spacing:0.02em;text-align:center;text-decoration:none;border:0;border-radius:14px;cursor:pointer;box-shadow:0 8px 40px -8px rgba(45,184,75,0.4);transition:transform 0.15s,box-shadow 0.15s}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 12px 48px -8px rgba(45,184,75,0.5)}
+.sec-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:18px;border-top:1px solid var(--bord);font-size:10.5px;color:rgba(255,255,255,0.3);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.sec-row .sep{opacity:0.25}
+
+.wire-wrap{max-width:540px;margin:0 auto;padding:0 20px 40px}
+.wire-card{background:var(--ink-s);border:1px solid var(--bord);border-radius:14px;padding:20px 22px}
+.wire-card h4{font-size:11px;font-weight:800;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:12px}
+.wire-iban{font-family:ui-monospace,'SF Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.05em;color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.05);padding:12px 14px;border-radius:8px;margin-bottom:8px}
+.wire-note{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.65}
+
+.footer{padding:22px 20px;text-align:center;font-size:11px;color:rgba(255,255,255,0.28);border-top:1px solid var(--bord);line-height:1.8}
+.footer a{color:rgba(255,255,255,0.38);text-decoration:none}
+
+/* compare table */
+.compare{background:var(--ink-s);border:1px solid var(--bord);border-radius:14px;overflow:hidden;margin-top:20px;font-size:13px}
+.compare-row{display:grid;grid-template-columns:1fr 60px 60px 60px;padding:11px 16px;border-bottom:1px solid var(--bord);align-items:center;gap:8px}
+.compare-row:last-child{border-bottom:0}
+.compare-row.head{background:rgba(255,255,255,0.04);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.5)}
+.compare-row.head .plat-col{color:var(--plat-l);font-size:12px}
+.compare-row .feat-lbl{color:rgba(255,255,255,0.75);font-weight:600}
+.compare-row .col{text-align:center;font-weight:700}
+.compare-row .col.yes{color:var(--green)}
+.compare-row .col.no{color:rgba(255,255,255,0.2)}
+.compare-row.highlight{background:rgba(45,184,75,0.05)}
+</style>
+</head>
+<body>
+
+<div class="urgent-bar">
+  <span class="count">Sweet spot — rapport qualité/prix optimal</span> · Tarif garanti jusqu'au 31 mai 2026
+</div>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    rentimmo<span class="logo-acad">academy</span>
+  </div>
+  <div class="secure-badge">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2DB84B" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Paiement sécurisé
+  </div>
+</header>
+
+<section class="hero">
+  <div class="formule-badge">🥈 Platinum · Sweet Spot · Le plus populaire</div>
+  <h1>Lance ta <em>sous-location professionnelle</em> avec un coaching individuel intensif</h1>
+  <p class="hero-sub">La formule équilibrée pour ceux qui veulent être guidés individuellement à chaque étape — sans payer pour des services dont ils n'ont pas encore besoin.</p>
+  <div class="hero-tags">
+    <span class="hero-tag"><span class="chk">✓</span> Coaching individuel 1-to-1</span>
+    <span class="hero-tag"><span class="chk">✓</span> Formation complète à vie</span>
+    <span class="hero-tag"><span class="chk">✓</span> Garantie 12 mois</span>
+    <span class="hero-tag"><span class="chk">✓</span> Module Maroc inclus</span>
+    <span class="hero-tag"><span class="chk">✓</span> Mastermind privé</span>
+  </div>
+
+  <div class="price-card">
+    <div class="bestseller-badge">⭐ Le plus choisi</div>
+    <div class="stack-lbl">Valeur totale estimée</div>
+    <div class="stack-val">5 600€</div>
+    <div class="price-main">1 897€</div>
+    <div class="price-modes">1× comptant · ou 2 × 950€ sans frais</div>
+    <div class="savings-badge">Tu économises 3 700€ vs valeur marché</div>
+    <hr class="price-hr">
+    <div class="gtee-row">
+      <div class="gtee-icon">🛡</div>
+      <div>
+        <strong>Garantie résultat — 12 mois</strong>
+        Si tu suis la méthode et n'obtiens pas ton 1er appart en 12 mois, remboursement intégral. Sans conditions.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK VALUE -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Ce que tu obtiens</div>
+  <h2>5 600€ de valeur · ton investissement : 1 897€</h2>
+  <p class="s-sub">Tout ce dont tu as besoin pour faire ton premier close de sous-location professionnelle.</p>
+  <div class="stk-table">
+    <div class="stk-row">
+      <span class="r-icon">🎓</span>
+      <div class="r-name">Formation complète Sous-Location Pro<div class="r-note">Accès à vie · mises à jour incluses</div></div>
+      <span class="r-price">1 200€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">🧑‍💼</span>
+      <div class="r-name">5 sessions coaching individuel avec Marwan<div class="r-note">1h par session · agenda flexible</div></div>
+      <span class="r-price">2 000€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">🛡️</span>
+      <div class="r-name">Garantie résultat 12 mois<div class="r-note">Remboursement intégral si pas de résultat</div></div>
+      <span class="r-price">400€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">📜</span>
+      <div class="r-name">Baux & contrats légaux complets<div class="r-note">Bail commercial dérogatoire + bail civil</div></div>
+      <span class="r-price">300€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">🇲🇦</span>
+      <div class="r-name">Bonus — Module Sous-Location au Maroc<div class="r-note">Offert · méthode exclusive Marwan</div></div>
+      <span class="r-price">497€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">👥</span>
+      <div class="r-name">Mastermind privé membres (1 an)<div class="r-note">Discord actif · experts · communauté</div></div>
+      <span class="r-price">800€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">📚</span>
+      <div class="r-name">Ressources & outils (checklists, scripts, templates)<div class="r-note">Mises à jour incluses à vie</div></div>
+      <span class="r-price">400€</span>
+    </div>
+    <div class="stk-row total">
+      <span class="r-icon">➕</span>
+      <div class="r-name">Valeur totale</div>
+      <span class="r-price">5 597€</span>
+    </div>
+    <div class="stk-row invest">
+      <span class="r-icon" style="filter:brightness(0) invert(1)">🥈</span>
+      <div class="r-name">Ton investissement aujourd'hui</div>
+      <span class="r-price">1 897€</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Comparatif formules</div>
+  <h2>Pourquoi Platinum est le sweet spot</h2>
+  <p class="s-sub">Bronze, Platinum et Gold — vois exactement ce qui diffère.</p>
+  <div class="compare">
+    <div class="compare-row head">
+      <span>Fonctionnalité</span>
+      <span class="col">Bronze</span>
+      <span class="col plat-col">Platinum</span>
+      <span class="col">Gold</span>
+    </div>
+    <div class="compare-row"><span class="feat-lbl">Formation complète à vie</span><span class="col yes">✓</span><span class="col yes">✓</span><span class="col yes">✓</span></div>
+    <div class="compare-row"><span class="feat-lbl">Coaching de groupe</span><span class="col yes">✓</span><span class="col yes">✓</span><span class="col yes">✓</span></div>
+    <div class="compare-row highlight"><span class="feat-lbl">Coaching individuel 1-to-1</span><span class="col no">✗</span><span class="col yes">✓</span><span class="col yes">✓</span></div>
+    <div class="compare-row highlight"><span class="feat-lbl">Garantie résultat</span><span class="col no">✗</span><span class="col yes">12 mois</span><span class="col yes">6 mois</span></div>
+    <div class="compare-row"><span class="feat-lbl">Module Maroc</span><span class="col yes">✓</span><span class="col yes">✓</span><span class="col yes">✓</span></div>
+    <div class="compare-row"><span class="feat-lbl">Création société</span><span class="col no">✗</span><span class="col no">✗</span><span class="col yes">✓</span></div>
+    <div class="compare-row"><span class="feat-lbl">Site web + identité visuelle</span><span class="col no">✗</span><span class="col no">✗</span><span class="col yes">✓</span></div>
+    <div class="compare-row"><span class="feat-lbl">Suivi personnalisé 6 mois</span><span class="col no">✗</span><span class="col no">✗</span><span class="col yes">✓</span></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" style="background:var(--ink-s);padding-top:48px;padding-bottom:48px;max-width:100%">
+<div style="max-width:720px;margin:0 auto;padding:0 20px">
+  <div class="s-tag">Tout est inclus</div>
+  <h2>Ce que contient la formule Platinum</h2>
+  <p class="s-sub">Coaching individuel + formation + garantie — tout ce qu'il faut pour réussir.</p>
+  <div class="feat-grid">
+    <div class="feat-item"><div class="feat-icon">📚</div><div class="feat-body"><h3>Formation complète à vie</h3><p>De la recherche de propriétaire au premier bail signé — chaque étape couverte avec modèles inclus.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">🎯</div><div class="feat-body"><h3>Coaching individuel 1-to-1</h3><p>5 sessions d'1h avec Marwan. Tu débloques chaque obstacle en temps réel, à ton rythme.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">🛡️</div><div class="feat-body"><h3>Garantie résultat 12 mois</h3><p>Pas de résultat en 12 mois ? On te rembourse intégralement. La plus longue garantie du marché.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">📜</div><div class="feat-body"><h3>Baux & contrats légaux</h3><p>Bail de sous-location commercial dérogatoire, bail civil, contrats — tout prêt à l'emploi.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">🇲🇦</div><div class="feat-body"><h3>Bonus Module Maroc</h3><p>Méthode Marwan pour lancer au Maroc. Marché en plein boom, moins de concurrence.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">👥</div><div class="feat-body"><h3>Mastermind privé 1 an</h3><p>Communauté Discord avec les autres membres et des experts. Questions répondues sous 24h.</p></div></div>
+  </div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="s-tag">Ils ont franchi le cap</div>
+  <h2>Ce que disent les membres Platinum</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Le coaching individuel change tout. En 3 semaines j'avais compris des choses que je n'aurais pas comprises en 3 mois seul. Marwan est direct et concret. »</p>
+      <div class="testi-name">Karim A.</div>
+      <div class="testi-meta">Toulouse · Formule Platinum</div>
+      <div class="testi-bdg">Résultat vérifié</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« La garantie 12 mois m'a rassurée. Mais j'en ai pas eu besoin — 1er appart signé en 7 semaines. Le coaching 1-to-1 c'est vraiment la différence vs Bronze. »</p>
+      <div class="testi-name">Samira B.</div>
+      <div class="testi-meta">Strasbourg · Formule Platinum</div>
+      <div class="testi-bdg">Résultat vérifié</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Je suis salarié avec 2 enfants — pas beaucoup de temps. Marwan m'a aidé à prioriser ce qui compte vraiment. 1er appartement en 10 semaines. »</p>
+      <div class="testi-name">Mehdi T.</div>
+      <div class="testi-meta">Nantes · Formule Platinum</div>
+      <div class="testi-bdg">Membre actif</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Le rapport qualité/prix est imbattable. Pour 1 897€ j'ai eu un accompagnement 1-to-1 + une garantie sur 12 mois. C'était le rapport le plus logique. »</p>
+      <div class="testi-name">Ibrahim C.</div>
+      <div class="testi-meta">Lille · Formule Platinum</div>
+      <div class="testi-bdg">Alumni</div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Zéro risque</div>
+  <h2>Garantie résultat · 12 mois</h2>
+  <div class="gtee-block">
+    <div class="gi">🛡️</div>
+    <div>
+      <h3>Satisfait ou remboursé — intégralement</h3>
+      <p>Si tu suis la méthode, tu participes aux sessions de coaching et tu ne génères pas de revenus de sous-location dans les <strong>12 mois</strong> suivant ton inscription, <strong>on te rembourse intégralement</strong> — sans justification, sans conditions cachées.<br><br>La garantie Platinum est de 12 mois — la plus longue de nos formules. Parce qu'on sait que chacun avance à son rythme, et qu'on est là sur la durée.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS -->
+<div style="max-width:720px;margin:0 auto;padding:0 20px 56px">
+  <div class="bonus-card">
+    <div class="bonus-tag">🎁 Bonus Exclusif</div>
+    <h3>Module Sous-Location au Maroc</h3>
+    <p>Un marché en plein boom, moins de concurrence, des marges plus élevées. Marwan te donne sa méthode complète pour lancer ou étendre ton activité de sous-location au Maroc — villes cibles, approche propriétaires, gestion à distance, cadre juridique local.</p>
+    <div class="bonus-val">Valeur estimée : <span>497€</span> · Offert avec la formule Platinum</div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Questions fréquentes</div>
+  <h2>On a réponse à tout</h2>
+  <p class="s-sub" style="margin-bottom:22px">Les 5 questions que tout le monde pose avant de rejoindre.</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Est-ce que j'ai besoin d'expérience dans l'immobilier ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Non. La formation est conçue pour les débutants complets. Marwan a accompagné des salariés, des étudiants, des demandeurs d'emploi — tous ont réussi en appliquant la méthode. L'important c'est la motivation et la méthode, pas l'expérience préalable.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Comment fonctionne le paiement en 2 fois ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Tu paies 2 × 950€ à 30 jours d'intervalle via Stripe. Aucun frais supplémentaire. Accès à la formation immédiatement après le premier paiement. Apple Pay et Google Pay acceptés sur mobile.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Quelle est la durée de la formation ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">La formation est en accès libre, à ton rythme, à vie — avec toutes les mises à jour incluses. Les modules principaux représentent environ 12 à 15h de contenu. En pratique, la majorité des membres font leur premier contact propriétaire en 4 à 6 semaines d'application active.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Et si ça ne marche pas pour moi ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">C'est pour ça qu'il y a une garantie 12 mois — la plus longue de nos formules. Si tu appliques la méthode et n'obtiens pas ton 1er appartement en 12 mois, on te rembourse intégralement. Donc le seul risque réel, c'est de ne pas essayer.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Quelle différence entre Platinum et Gold ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Platinum inclut la formation + coaching individuel + garantie 12 mois. Gold va plus loin : création de ta structure juridique, site web pro, identité visuelle, validation de ton étude de marché, suivi personnalisé 6 mois. Gold c'est "clé en main business complet". Si tu veux juste lancer efficacement avec un coach, Platinum est le choix parfait.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="pay-section">
+  <h2>Choisis ton mode de paiement</h2>
+  <p class="pay-sub">Accès immédiat après validation · Paiement sécurisé Stripe</p>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('comptant',this)">1× Comptant</button>
+    <button class="tab-btn" onclick="switchTab('2x',this)">2× sans frais</button>
+  </div>
+  <div class="tab-content active" id="tab-comptant">
+    <div class="pay-amount"><div class="amt">1 897€</div><div class="amt-note">Paiement unique · accès immédiat + garantie 12 mois</div></div>
+    <a class="cta-btn" href="https://rentimmoacademy.systeme.io/souslocationacademy-platinium-comptant" target="_blank">✓ CONFIRMER MA PLACE — 1 897€</a>
+  </div>
+  <div class="tab-content" id="tab-2x">
+    <div class="pay-amount"><div class="amt">2 × 950€</div><div class="amt-note">2 prélèvements à 30 jours d'intervalle · sans frais</div></div>
+    <a class="cta-btn" href="https://rentimmoacademy.systeme.io/souslocationacademy-platinium-2xsansfrais" target="_blank">✓ CONFIRMER MA PLACE — 2× 950€</a>
+  </div>
+  <div class="sec-row">
+    <span>🔒 SSL</span><span class="sep">·</span>
+    <span>Stripe</span><span class="sep">·</span>
+    <span>Visa / Mastercard</span><span class="sep">·</span>
+    <span>Apple Pay</span><span class="sep">·</span>
+    <span>Google Pay</span>
+  </div>
+</section>
+
+<div class="wire-wrap">
+  <div class="wire-card">
+    <h4>Paiement par virement (1× uniquement)</h4>
+    <div class="wire-iban">IBAN : FR76 1695 8000 0196 4689 7735 133<br>BIC : QNTOFRP1XXX</div>
+    <p class="wire-note">Envoie ta capture à <strong style="color:rgba(255,255,255,0.7)">contact@rentimmoacademy.fr</strong> — objet : <em>Virement Platinum Rentimmo</em>. Accès sous 24h.</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <strong style="color:rgba(255,255,255,0.5)">Rentimmo Academy</strong> · Formation Sous-Location Professionnelle<br>
+  <a href="https://rentimmo-academy.fr">rentimmo-academy.fr</a> · contact@rentimmoacademy.fr<br>
+  Organisme de formation certifié QUALIOPI · Paiement sécurisé par Stripe
+</footer>
+
+<script>
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!open)item.classList.add('open');
+}
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

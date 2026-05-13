@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super BnB Academy — Coaching Premium Airbnb — Rentimmo Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root {
+  --green:#2DB84B; --green-l:#5FD87A; --green-d:#1A6B33;
+  --grad:linear-gradient(135deg,#1A6B33 0%,#2DB84B 55%,#5FD87A 100%);
+  --ink:#1A1A1A; --ink-s:#2D2D2D;
+  --bord:rgba(255,255,255,0.1);
+  --gold:#F5C518; --gold-l:#FFD95A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--ink);color:#fff;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+.urgent-bar{background:var(--grad);padding:10px 20px;text-align:center;font-size:13px;font-weight:700}
+.urgent-bar .count{font-weight:800;text-decoration:underline}
+
+.header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bord)}
+.logo{font-size:19px;font-weight:800;letter-spacing:-0.025em;display:flex;align-items:center;gap:8px}
+.logo-dot{width:9px;height:9px;background:var(--green);border-radius:50%;flex-shrink:0}
+.logo-acad{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-left:2px}
+.secure-badge{font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:5px}
+
+.hero{padding:48px 20px 0;max-width:720px;margin:0 auto}
+.formule-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,197,24,0.12);border:1px solid rgba(245,197,24,0.3);color:var(--gold-l);font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(28px,6vw,46px);font-weight:800;letter-spacing:-0.03em;line-height:1.08;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:28px;line-height:1.65}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.06);border:1px solid var(--bord);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.hero-tag .chk{color:var(--green);font-weight:800}
+
+.cta-hero-wrap{background:var(--ink-s);border:2px solid rgba(245,197,24,0.35);border-radius:20px;padding:28px 24px;margin-bottom:56px;text-align:center}
+.audit-lbl{font-size:12px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:14px}
+.cta-btn{display:block;width:100%;padding:18px 24px;background:var(--grad);color:#fff;font-family:inherit;font-size:15px;font-weight:800;letter-spacing:0.02em;text-align:center;text-decoration:none;border:0;border-radius:14px;cursor:pointer;box-shadow:0 8px 40px -8px rgba(45,184,75,0.4);transition:transform 0.15s,box-shadow 0.15s}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 12px 48px -8px rgba(45,184,75,0.5)}
+.cta-sub{font-size:12px;color:rgba(255,255,255,0.4);margin-top:10px;font-weight:600}
+.cta-sub strong{color:rgba(255,255,255,0.65)}
+
+.section{padding:64px 20px;max-width:720px;margin:0 auto}
+.s-tag{font-size:11px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.section h2{font-size:clamp(22px,5vw,34px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:8px}
+.section .s-sub{font-size:15px;color:rgba(255,255,255,0.55);margin-bottom:28px;line-height:1.65}
+
+/* Steps */
+.steps{display:flex;flex-direction:column;gap:16px;margin-bottom:0}
+.step-item{display:flex;align-items:flex-start;gap:16px;background:var(--ink-s);border:1px solid var(--bord);border-radius:16px;padding:20px}
+.step-num{flex-shrink:0;width:40px;height:40px;background:var(--grad);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff}
+.step-body h3{font-size:15px;font-weight:800;margin-bottom:4px}
+.step-body p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6}
+
+/* Stack table */
+.stk-table{background:var(--ink-s);border:1px solid var(--bord);border-radius:16px;overflow:hidden}
+.stk-row{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--bord);gap:12px}
+.stk-row:last-child{border-bottom:0}
+.stk-row.total{background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.15)}
+.stk-row.total .r-name{font-weight:800;color:#fff}
+.stk-row.total .r-price{color:rgba(255,255,255,0.35);font-size:17px;text-decoration:line-through;text-decoration-color:rgba(220,50,50,0.45)}
+.stk-row.cta-row{background:var(--grad)}
+.stk-row.cta-row .r-name{font-weight:800;color:#fff;font-size:15px}
+.stk-row.cta-row .r-price{font-size:14px;font-weight:800;color:rgba(255,255,255,0.9);font-style:italic}
+.r-icon{flex-shrink:0;font-size:18px}
+.r-name{flex:1;font-size:13.5px;color:rgba(255,255,255,0.8);font-weight:600}
+.r-note{font-size:10.5px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-top:2px}
+.r-price{font-size:14px;font-weight:800;color:rgba(255,255,255,0.55);white-space:nowrap}
+
+/* Testimonials */
+.testi-grid{display:grid;gap:14px}
+@media(min-width:540px){.testi-grid{grid-template-columns:1fr 1fr}}
+.testi-card{background:var(--ink);border:1px solid var(--bord);border-radius:14px;padding:20px}
+.testi-stars{color:var(--green);font-size:15px;margin-bottom:10px;letter-spacing:2px}
+.testi-txt{font-size:13px;color:rgba(255,255,255,0.78);line-height:1.65;margin-bottom:12px;font-style:italic}
+.testi-name{font-size:12px;font-weight:800;color:#fff}
+.testi-meta{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
+.testi-bdg{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;background:rgba(45,184,75,0.1);color:var(--green);padding:2px 8px;border-radius:999px;margin-top:5px}
+.testi-result{font-size:15px;font-weight:800;color:var(--green-l);margin-bottom:8px}
+
+/* CTA Bottom */
+.cta-bottom{padding:48px 20px 64px;max-width:540px;margin:0 auto;text-align:center}
+.cta-bottom h2{font-size:clamp(20px,5vw,30px);font-weight:800;letter-spacing:-0.02em;margin-bottom:8px}
+.cta-bottom p{font-size:13.5px;color:rgba(255,255,255,0.5);margin-bottom:26px}
+.places-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(220,50,50,0.1);border:1px solid rgba(220,50,50,0.25);color:#ff7a7a;font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;margin-bottom:20px}
+.sec-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:18px;border-top:1px solid var(--bord);font-size:10.5px;color:rgba(255,255,255,0.3);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.sec-row .sep{opacity:0.25}
+
+.footer{padding:22px 20px;text-align:center;font-size:11px;color:rgba(255,255,255,0.28);border-top:1px solid var(--bord);line-height:1.8}
+.footer a{color:rgba(255,255,255,0.38);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="urgent-bar">
+  <span class="count">Audit BnB offert</span> — <span class="count">3 places disponibles</span> ce mois-ci
+</div>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    rentimmo<span class="logo-acad">academy</span>
+  </div>
+  <div class="secure-badge">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2DB84B" stroke-width="2.5"><path d="M12 2l9 4v6c0 5-4 9-9 11C3 21 0 17 0 12V6l12-4z"/></svg>
+    Programme Premium
+  </div>
+</header>
+
+<section class="hero">
+  <div class="formule-badge">⭐ Super BnB Academy · Programme d'Excellence</div>
+  <h1>Multiplie tes revenus Airbnb en 90 jours avec un <em>accompagnement sur-mesure</em></h1>
+  <p class="hero-sub">Programme de coaching individuel 1-to-1 réservé aux hôtes sérieux. Marwan analyse ton annonce, co-construit ton plan d'action et t'accompagne pendant 90 jours.</p>
+  <div class="hero-tags">
+    <span class="hero-tag"><span class="chk">✓</span> Audit complet de ton annonce</span>
+    <span class="hero-tag"><span class="chk">✓</span> 4 sessions coaching 1-to-1</span>
+    <span class="hero-tag"><span class="chk">✓</span> Plan d'action J1-J30</span>
+    <span class="hero-tag"><span class="chk">✓</span> Accès outils exclusifs</span>
+    <span class="hero-tag"><span class="chk">✓</span> Discord VIP</span>
+  </div>
+
+  <div class="cta-hero-wrap">
+    <div class="audit-lbl">Première étape — gratuit &amp; sans engagement</div>
+    <a class="cta-btn" href="https://cal.com/rentimmo-academy/superbnbacademy" target="_blank">🗓️ RÉSERVER MON AUDIT GRATUIT</a>
+    <div class="cta-sub">Session 30 min · Gratuit &amp; sans engagement · <strong>3 places disponibles</strong></div>
+  </div>
+</section>
+
+<!-- COMMENT CA MARCHE -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Le processus</div>
+  <h2>Comment ça marche en 3 étapes</h2>
+  <p class="s-sub">Un processus simple, structuré, conçu pour produire des résultats rapides.</p>
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num">🔍</div>
+      <div class="step-body">
+        <h3>Étape 1 — Audit gratuit 30 min</h3>
+        <p>Marwan analyse ton annonce Airbnb en direct, identifie les 3 leviers principaux qui freinent tes revenus, et te donne ses premières recommandations actionnables — même si tu ne rejoins pas le programme.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">📋</div>
+      <div class="step-body">
+        <h3>Étape 2 — Plan d'action personnalisé</h3>
+        <p>Si le programme est adapté à ta situation, on co-construit ensemble ton plan d'action sur 30 jours : annonce, tarification, photos, réponses voyageurs. Chaque action est priorisée par impact.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">🚀</div>
+      <div class="step-body">
+        <h3>Étape 3 — Accompagnement 90 jours</h3>
+        <p>3 sessions de suivi supplémentaires sur 90 jours pour mesurer les progrès, ajuster le plan et débloquer les obstacles. Accès WhatsApp direct à Marwan entre les sessions pour les questions urgentes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK VALUE -->
+<section class="section" style="background:var(--ink-s);padding-top:48px;padding-bottom:48px;max-width:100%">
+<div style="max-width:720px;margin:0 auto;padding:0 20px">
+  <div class="s-tag">Ce qui est inclus</div>
+  <h2>4 000€+ de valeur inclus dans le programme</h2>
+  <p class="s-sub">Tout ce dont tu as besoin pour transformer tes performances Airbnb en 90 jours.</p>
+  <div class="stk-table">
+    <div class="stk-row">
+      <span class="r-icon">🔍</span>
+      <div class="r-name">Audit annonce Airbnb complet (30 critères)<div class="r-note">Photos · titre · description · tarification · réponses</div></div>
+      <span class="r-price">300€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">🎯</span>
+      <div class="r-name">4 sessions coaching 1-to-1 avec Marwan (45 min)<div class="r-note">Session 1 audit + 3 sessions suivi sur 90 jours</div></div>
+      <span class="r-price">2 400€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">🛠️</span>
+      <div class="r-name">Templates &amp; outils exclusifs<div class="r-note">Rapport audit · cockpit KPI · scripts réponses voyageurs</div></div>
+      <span class="r-price">800€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">⭐</span>
+      <div class="r-name">Accès Discord VIP + WhatsApp direct Marwan<div class="r-note">Questions urgentes entre sessions · communauté premium</div></div>
+      <span class="r-price">500€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">📜</span>
+      <div class="r-name">Contrat d'accompagnement<div class="r-note">Objectifs · livrables · jalons — tout est formalisé</div></div>
+      <span class="r-price">inclus</span>
+    </div>
+    <div class="stk-row total">
+      <span class="r-icon">➕</span>
+      <div class="r-name">Valeur totale estimée</div>
+      <span class="r-price">4 000€+</span>
+    </div>
+    <div class="stk-row cta-row">
+      <span class="r-icon" style="filter:brightness(0) invert(1)">⭐</span>
+      <div class="r-name">Ton investissement</div>
+      <span class="r-price">Sur qualification · appel gratuit</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="s-tag">Résultats membres</div>
+  <h2>Ce que disent les membres Super BnB Academy</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-result">+41% de CA en 45 jours</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Avant l'audit, je plafonnais à 60% d'occupation depuis des mois. Marwan a identifié 3 problèmes dans mon annonce dès le premier appel. En 45 jours, mon CA a augmenté de 41%. »</p>
+      <div class="testi-name">Karim T.</div>
+      <div class="testi-meta">Barcelone · Hôte depuis 2 ans</div>
+      <div class="testi-bdg">Résultat vérifié</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-result">60% → 89% d'occupation</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Mon taux d'occupation est passé de 60 à 89% en 2 mois. Le plan d'action J1-J30 était hyper concret — j'ai juste eu à exécuter. Le suivi WhatsApp entre sessions fait toute la différence. »</p>
+      <div class="testi-name">Sanaa M.</div>
+      <div class="testi-meta">Paris 11e · 2 appartements</div>
+      <div class="testi-bdg">Alumni Super BnB</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-result">+1 200€/mois récurrents</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« J'avais essayé d'optimiser seul pendant 6 mois sans résultats. En une session avec Marwan, il a revu ma stratégie de tarification et mes photos. Résultat : +1 200€/mois stables depuis. »</p>
+      <div class="testi-name">Youssef A.</div>
+      <div class="testi-meta">Marrakech · 3 propriétés</div>
+      <div class="testi-bdg">Résultat vérifié</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-result">Note Superhost atteinte en 60 jours</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Je galérais avec les avis depuis des mois. Marwan m'a donné ses scripts de réponses et sa méthode pour demander des avis. 60 jours plus tard je suis Superhost. L'investissement a été rentabilisé en 3 semaines. »</p>
+      <div class="testi-name">Nadia B.</div>
+      <div class="testi-meta">Lyon · Hôte depuis 1 an</div>
+      <div class="testi-bdg">Alumni Super BnB</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <div class="places-badge">🔴 3 places disponibles ce mois-ci</div>
+  <h2>Réserve ton audit gratuit maintenant</h2>
+  <p>30 minutes avec Marwan pour analyser ton annonce et identifier les 3 leviers qui feront la différence — gratuit, sans engagement.</p>
+  <a class="cta-btn" href="https://cal.com/rentimmo-academy/superbnbacademy" target="_blank">🗓️ RÉSERVER MON AUDIT GRATUIT</a>
+  <div class="sec-row" style="font-size:12px;color:rgba(255,255,255,0.4)">
+    Session 30 min · Gratuit &amp; sans engagement · Places limitées
+  </div>
+</div>
+
+<footer class="footer">
+  <strong style="color:rgba(255,255,255,0.5)">Super BnB Academy</strong> — Programme coaching premium<br>
+  <a href="https://rentimmo-academy.fr">rentimmo-academy.fr</a> · contact@rentimmoacademy.fr<br>
+  Organisme de formation certifié QUALIOPI
+</footer>
+
+</body>
+</html>

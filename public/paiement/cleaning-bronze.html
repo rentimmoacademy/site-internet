@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cleaning BnB — Formule Bronze — Rentimmo Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root {
+  --green:#2DB84B; --green-l:#5FD87A; --green-d:#1A6B33;
+  --grad:linear-gradient(135deg,#1A6B33 0%,#2DB84B 55%,#5FD87A 100%);
+  --ink:#1A1A1A; --ink-s:#2D2D2D;
+  --bord:rgba(255,255,255,0.1);
+  --bronze:#CD7F32; --bronze-l:#E8A86A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--ink);color:#fff;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+.urgent-bar{background:var(--grad);padding:10px 20px;text-align:center;font-size:13px;font-weight:700}
+.urgent-bar .count{font-weight:800;text-decoration:underline}
+
+.header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bord)}
+.logo{font-size:19px;font-weight:800;letter-spacing:-0.025em;display:flex;align-items:center;gap:8px}
+.logo-dot{width:9px;height:9px;background:var(--green);border-radius:50%;flex-shrink:0}
+.logo-acad{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-left:2px}
+.secure-badge{font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:5px}
+
+.hero{padding:48px 20px 0;max-width:720px;margin:0 auto}
+.formule-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(205,127,50,0.12);border:1px solid rgba(205,127,50,0.3);color:var(--bronze-l);font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(28px,6vw,46px);font-weight:800;letter-spacing:-0.03em;line-height:1.08;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:28px;line-height:1.65}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.06);border:1px solid var(--bord);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.hero-tag .chk{color:var(--green);font-weight:800}
+
+.price-card{background:var(--ink-s);border:2px solid rgba(205,127,50,0.45);border-radius:20px;padding:28px 24px;margin-bottom:56px}
+.stack-lbl{font-size:11px;color:rgba(255,255,255,0.45);font-weight:700;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:4px}
+.stack-val{font-size:18px;font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(220,50,50,0.5);margin-bottom:10px}
+.price-main{font-size:clamp(44px,11vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+.price-modes{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:14px}
+.savings-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(45,184,75,0.1);border:1px solid rgba(45,184,75,0.25);color:var(--green-l);font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px}
+.price-hr{border:0;border-top:1px solid var(--bord);margin:20px 0}
+.no-gtee-row{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:rgba(255,255,255,0.6)}
+.no-gtee-icon{flex-shrink:0;width:34px;height:34px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px}
+.no-gtee-row strong{display:block;margin-bottom:3px;font-size:14px;color:rgba(255,255,255,0.85)}
+
+.section{padding:64px 20px;max-width:720px;margin:0 auto}
+.s-tag{font-size:11px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.section h2{font-size:clamp(22px,5vw,34px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:8px}
+.section .s-sub{font-size:15px;color:rgba(255,255,255,0.55);margin-bottom:28px;line-height:1.65}
+
+.stk-table{background:var(--ink-s);border:1px solid var(--bord);border-radius:16px;overflow:hidden}
+.stk-row{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--bord);gap:12px}
+.stk-row:last-child{border-bottom:0}
+.stk-row.total{background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.15)}
+.stk-row.total .r-name{font-weight:800;color:#fff}
+.stk-row.total .r-price{color:rgba(255,255,255,0.35);font-size:17px;text-decoration:line-through;text-decoration-color:rgba(220,50,50,0.45)}
+.stk-row.invest{background:var(--grad)}
+.stk-row.invest .r-name{font-weight:800;color:#fff;font-size:15px}
+.stk-row.invest .r-price{font-size:20px;font-weight:800;color:#fff}
+.r-icon{flex-shrink:0;font-size:18px}
+.r-name{flex:1;font-size:13.5px;color:rgba(255,255,255,0.8);font-weight:600}
+.r-note{font-size:10.5px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-top:2px}
+.r-price{font-size:14px;font-weight:800;color:rgba(255,255,255,0.55);white-space:nowrap}
+
+.feat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:540px){.feat-grid{grid-template-columns:1fr 1fr}}
+.feat-item{background:var(--ink-s);border:1px solid var(--bord);border-radius:14px;padding:18px;display:flex;align-items:flex-start;gap:12px}
+.feat-icon{flex-shrink:0;width:36px;height:36px;background:rgba(45,184,75,0.1);border:1px solid rgba(45,184,75,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.feat-body h3{font-size:14px;font-weight:800;margin-bottom:3px}
+.feat-body p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5}
+
+.testi-grid{display:grid;gap:14px}
+@media(min-width:540px){.testi-grid{grid-template-columns:1fr 1fr}}
+.testi-card{background:var(--ink);border:1px solid var(--bord);border-radius:14px;padding:20px}
+.testi-stars{color:var(--green);font-size:15px;margin-bottom:10px;letter-spacing:2px}
+.testi-txt{font-size:13px;color:rgba(255,255,255,0.78);line-height:1.65;margin-bottom:12px;font-style:italic}
+.testi-name{font-size:12px;font-weight:800;color:#fff}
+.testi-meta{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
+.testi-bdg{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;background:rgba(45,184,75,0.1);color:var(--green);padding:2px 8px;border-radius:999px;margin-top:5px}
+
+/* upsell block */
+.upsell-block{background:linear-gradient(135deg,rgba(26,107,51,0.18),rgba(26,26,26,1));border:1px solid rgba(45,184,75,0.3);border-radius:16px;padding:24px;margin-bottom:32px}
+.upsell-block h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.upsell-block p{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:16px}
+.upsell-links{display:flex;gap:10px;flex-wrap:wrap}
+.upsell-link{padding:10px 18px;border-radius:10px;font-family:inherit;font-size:13px;font-weight:700;text-decoration:none;border:0;cursor:pointer;transition:all 0.15s}
+.upsell-link.primary{background:var(--grad);color:#fff}
+.upsell-link.ghost{background:rgba(255,255,255,0.06);border:1px solid var(--bord);color:rgba(255,255,255,0.7)}
+
+.bonus-card{background:linear-gradient(135deg,rgba(26,107,51,0.35),rgba(26,26,26,1));border:1px solid rgba(45,184,75,0.4);border-radius:16px;padding:24px;position:relative;overflow:hidden}
+.bonus-card::after{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:var(--green);opacity:0.06;border-radius:50%;pointer-events:none}
+.bonus-tag{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:var(--ink);font-size:10.5px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.bonus-card h3{font-size:19px;font-weight:800;margin-bottom:8px}
+.bonus-card p{font-size:13px;color:rgba(255,255,255,0.68);line-height:1.65;margin-bottom:14px}
+.bonus-val{font-size:13.5px;font-weight:700;color:rgba(255,255,255,0.45)}
+.bonus-val span{font-size:20px;font-weight:800;color:var(--green)}
+
+.faq-list{border:1px solid var(--bord);border-radius:14px;overflow:hidden}
+.faq-item{border-bottom:1px solid var(--bord)}
+.faq-item:last-child{border-bottom:0}
+.faq-q{width:100%;padding:17px 20px;background:none;border:0;color:#fff;font-family:inherit;font-size:14px;font-weight:700;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.faq-q:hover{background:rgba(255,255,255,0.03)}
+.faq-ic{flex-shrink:0;font-size:20px;color:var(--green);transition:transform 0.2s;line-height:1}
+.faq-item.open .faq-ic{transform:rotate(45deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s;font-size:13.5px;color:rgba(255,255,255,0.65);line-height:1.72}
+.faq-item.open .faq-a{max-height:320px;padding:0 20px 18px}
+
+.pay-section{padding:48px 20px 56px;max-width:540px;margin:0 auto;text-align:center}
+.pay-section h2{font-size:clamp(20px,5vw,30px);font-weight:800;letter-spacing:-0.02em;margin-bottom:8px}
+.pay-sub{font-size:13.5px;color:rgba(255,255,255,0.5);margin-bottom:26px}
+.tab-nav{display:flex;background:var(--ink-s);border:1px solid var(--bord);border-radius:12px;padding:4px;gap:4px;margin-bottom:20px}
+.tab-btn{flex:1;padding:10px 6px;background:none;border:0;color:rgba(255,255,255,0.45);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border-radius:9px;transition:all 0.18s}
+.tab-btn.active{background:var(--green);color:var(--ink)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.pay-amount{margin-bottom:18px}
+.pay-amount .amt{font-size:clamp(38px,9vw,52px);font-weight:800;letter-spacing:-0.04em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.pay-amount .amt-note{font-size:12.5px;color:rgba(255,255,255,0.45);margin-top:5px}
+.cta-btn{display:block;width:100%;padding:18px 24px;background:var(--grad);color:#fff;font-family:inherit;font-size:15px;font-weight:800;letter-spacing:0.02em;text-align:center;text-decoration:none;border:0;border-radius:14px;cursor:pointer;box-shadow:0 8px 40px -8px rgba(45,184,75,0.4);transition:transform 0.15s,box-shadow 0.15s}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 12px 48px -8px rgba(45,184,75,0.5)}
+.no-gtee-notice{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 16px;font-size:12.5px;color:rgba(255,255,255,0.5);margin-top:14px;text-align:center}
+.sec-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:18px;border-top:1px solid var(--bord);font-size:10.5px;color:rgba(255,255,255,0.3);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.sec-row .sep{opacity:0.25}
+
+.wire-wrap{max-width:540px;margin:0 auto;padding:0 20px 40px}
+.wire-card{background:var(--ink-s);border:1px solid var(--bord);border-radius:14px;padding:20px 22px}
+.wire-card h4{font-size:11px;font-weight:800;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:12px}
+.wire-iban{font-family:ui-monospace,'SF Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.05em;color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.05);padding:12px 14px;border-radius:8px;margin-bottom:8px}
+.wire-note{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.65}
+
+.footer{padding:22px 20px;text-align:center;font-size:11px;color:rgba(255,255,255,0.28);border-top:1px solid var(--bord);line-height:1.8}
+.footer a{color:rgba(255,255,255,0.38);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="urgent-bar">
+  <span class="count">Tarif d'entrée — accès complet à vie</span> · Garanti jusqu'au 31 mai 2026
+</div>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    rentimmo<span class="logo-acad">academy</span>
+  </div>
+  <div class="secure-badge">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2DB84B" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Paiement sécurisé
+  </div>
+</header>
+
+<section class="hero">
+  <div class="formule-badge">🥉 Bronze · Formule Essentielle</div>
+  <h1>Lance ton activité de <em>ménage BnB professionnel</em> et signe tes premiers contrats réguliers</h1>
+  <p class="hero-sub">Tout le contenu, tous les protocoles, le groupe privé et les checklists pro — pour ceux qui veulent bâtir leur activité cleaning en autonomie avec les meilleures ressources du marché.</p>
+  <div class="hero-tags">
+    <span class="hero-tag"><span class="chk">✓</span> Formation complète M0-M8 à vie</span>
+    <span class="hero-tag"><span class="chk">✓</span> Coaching de groupe</span>
+    <span class="hero-tag"><span class="chk">✓</span> Protocoles & SOPs ménage</span>
+    <span class="hero-tag"><span class="chk">✓</span> Mastermind privé</span>
+    <span class="hero-tag"><span class="chk">✓</span> Checklists & grilles qualité</span>
+  </div>
+
+  <div class="price-card">
+    <div class="stack-lbl">Valeur totale estimée</div>
+    <div class="stack-val">3 700€</div>
+    <div class="price-main">997€</div>
+    <div class="price-modes">1× comptant · ou 2 × 500€ sans frais</div>
+    <div class="savings-badge">Tu économises 2 700€ vs valeur marché</div>
+    <hr class="price-hr">
+    <div class="no-gtee-row">
+      <div class="no-gtee-icon">ℹ️</div>
+      <div>
+        <strong>Formule sans garantie remboursement</strong>
+        Cette formule ne comprend pas de garantie de résultat. Pour une garantie, voir les formules Platinum (garantie 12 mois) ou Gold (accompagnement complet).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK VALUE -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Ce que tu obtiens</div>
+  <h2>3 700€ de valeur · ton investissement : 997€</h2>
+  <p class="s-sub">Tout le contenu et les ressources pour lancer ton activité de ménage BnB professionnel.</p>
+  <div class="stk-table">
+    <div class="stk-row">
+      <span class="r-icon">🎓</span>
+      <div class="r-name">Formation complète Cleaning BnB (accès à vie, M0-M8)<div class="r-note">Accès à vie · mises à jour incluses</div></div>
+      <span class="r-price">1 200€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">👨‍👩‍👧‍👦</span>
+      <div class="r-name">Coaching de groupe hebdomadaire<div class="r-note">52 semaines · questions en direct</div></div>
+      <span class="r-price">1 000€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">👥</span>
+      <div class="r-name">Mastermind privé membres (1 an)<div class="r-note">Discord actif · experts · communauté</div></div>
+      <span class="r-price">800€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">🧹</span>
+      <div class="r-name">Protocoles + Checklists + SOPs ménage<div class="r-note">Templates pro prêts à l'emploi</div></div>
+      <span class="r-price">400€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">📊</span>
+      <div class="r-name">Grilles évaluation qualité + fiches produits<div class="r-note">Standards hôteliers adaptés BnB</div></div>
+      <span class="r-price">300€</span>
+    </div>
+    <div class="stk-row total">
+      <span class="r-icon">➕</span>
+      <div class="r-name">Valeur totale</div>
+      <span class="r-price">3 700€</span>
+    </div>
+    <div class="stk-row invest">
+      <span class="r-icon" style="filter:brightness(0) invert(1)">🥉</span>
+      <div class="r-name">Ton investissement aujourd'hui</div>
+      <span class="r-price">997€</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" style="background:var(--ink-s);padding-top:48px;padding-bottom:48px;max-width:100%">
+<div style="max-width:720px;margin:0 auto;padding:0 20px">
+  <div class="s-tag">Tout est inclus</div>
+  <h2>Ce que contient la formule Bronze Cleaning</h2>
+  <p class="s-sub">Le contenu complet pour lancer ton activité de ménage BnB en autonomie.</p>
+  <div class="feat-grid">
+    <div class="feat-item"><div class="feat-icon">📚</div><div class="feat-body"><h3>Formation M0-M8 à vie</h3><p>De la création de ta micro-entreprise au premier contrat régulier — chaque étape détaillée avec méthodes et modèles inclus.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">🧹</div><div class="feat-body"><h3>Protocoles ménage pro</h3><p>SOPs de nettoyage pièce par pièce, standards hôteliers adaptés BnB, gestion des produits et du matériel.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">📋</div><div class="feat-body"><h3>Checklists opérationnelles</h3><p>Checklists entrées/sorties, contrôle qualité, gestion du linge — prêtes à imprimer et utiliser dès le 1er jour.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">👨‍👩‍👧‍👦</div><div class="feat-body"><h3>Coaching de groupe</h3><p>Sessions hebdomadaires en direct avec Marwan. Pose tes questions, apprends des retours terrain des autres membres.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">📊</div><div class="feat-body"><h3>Grilles qualité & fiches produits</h3><p>Grilles d'évaluation standardisées et fiches produits recommandés pour des interventions irréprochables à chaque fois.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">👥</div><div class="feat-body"><h3>Mastermind privé 1 an</h3><p>Discord actif avec les autres membres. Questions répondues sous 24h, partage d'expériences, réseau de prestataires.</p></div></div>
+  </div>
+
+  <!-- UPSELL -->
+  <div style="margin-top:28px">
+    <div class="upsell-block">
+      <h3>Tu veux un accompagnement individuel ?</h3>
+      <p>La formule Bronze est parfaite pour les profils autonomes. Si tu veux un coaching 1-to-1 avec Marwan + une garantie de résultat, les formules Platinum ou Gold sont faites pour toi.</p>
+      <div class="upsell-links">
+        <a class="upsell-link primary" href="cleaning-platinum.html">Voir Platinum — 1 497€ + garantie 12 mois</a>
+        <a class="upsell-link ghost" href="cleaning-gold.html">Voir Gold — 2 497€ + clé en main</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="s-tag">Ils ont franchi le cap</div>
+  <h2>Ce que disent les membres Cleaning Bronze</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Les protocoles sont ultra-complets. Dès la 1ère semaine j'ai pu travailler de façon professionnelle, les hôtes me l'ont dit. J'ai décroché mon 2e contrat en 3 semaines. »</p>
+      <div class="testi-name">Samira K.</div>
+      <div class="testi-meta">Bordeaux · Formule Bronze Cleaning</div>
+      <div class="testi-bdg">Membre actif</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« J'avais peur de pas être assez organisée. Les checklists m'ont tout simplifié. Maintenant je gère 6 logements réguliers et je cherche à recruter. »</p>
+      <div class="testi-name">Fatima O.</div>
+      <div class="testi-meta">Paris · Formule Bronze Cleaning</div>
+      <div class="testi-bdg">Résultat vérifié</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Pour 997€ c'est rentabilisé en 2 interventions. La formation est claire, directe, sans blabla. Les modules sur la gestion du linge m'ont vraiment fait gagner du temps. »</p>
+      <div class="testi-name">Karim M.</div>
+      <div class="testi-meta">Nice · Formule Bronze Cleaning</div>
+      <div class="testi-bdg">Membre actif</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Le groupe Discord m'a aidé à fixer mes tarifs correctement. J'avais sous-facturé au départ — les autres membres m'ont donné les bons repères marché. »</p>
+      <div class="testi-name">Nadia B.</div>
+      <div class="testi-meta">Lyon · Bronze → Platinum</div>
+      <div class="testi-bdg">Alumni Platinum</div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS -->
+<div style="max-width:720px;margin:0 auto;padding:0 20px 56px">
+  <div class="bonus-card">
+    <div class="bonus-tag">🎁 Bonus Exclusif</div>
+    <h3>Grilles qualité & fiches produits pro</h3>
+    <p>Des grilles d'évaluation qualité standardisées pour chaque type de logement et des fiches produits complètes avec les références recommandées par Marwan — les mêmes standards que les meilleures conciergeries BnB. Intègre-les dès ta 1ère intervention pour te démarquer immédiatement de la concurrence.</p>
+    <div class="bonus-val">Valeur estimée : <span>300€</span> · Offert avec la formule Bronze</div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Questions fréquentes</div>
+  <h2>On a réponse à tout</h2>
+  <p class="s-sub" style="margin-bottom:22px">Les 5 questions que tout le monde pose avant de rejoindre.</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Faut-il déjà avoir des clients ou du matériel pour commencer ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Non. La formation commence de zéro — création du statut auto-entrepreneur, acquisition du matériel de départ avec les bons budgets, prospection auprès des conciergeries et hôtes particuliers. Marwan t'accompagne de la page blanche au premier contrat signé.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Comment fonctionne le paiement en 2 fois ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Tu paies 2 × 500€ à 30 jours d'intervalle via Stripe. Aucun frais supplémentaire. Accès à la formation immédiatement après le premier paiement. Apple Pay et Google Pay acceptés sur mobile.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Pourquoi il n'y a pas de garantie sur Bronze ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">La formule Bronze n'inclut pas de coaching individuel. La garantie de résultat implique un suivi 1-to-1 pour s'assurer que tu appliques correctement les protocoles et que tu prospectes efficacement — ce qui n'est pas possible sans accompagnement personnalisé. Si tu veux une garantie, les formules Platinum (12 mois) ou Gold (accompagnement complet) sont faites pour toi.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Combien peut-on gagner avec le ménage BnB ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Une intervention de ménage BnB se facture entre 50€ et 150€ selon la taille du logement et la région. Avec 3 à 5 logements réguliers, tu peux dégager un complément de revenu solide dès le 1er mois. Les membres qui gèrent une équipe atteignent 3 000€-8 000€/mois nets.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Puis-je upgrader en Platinum ou Gold plus tard ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Oui. Si tu démarres par Bronze et que tu veux accéder au coaching individuel ou à l'aide à la création de ta structure, tu peux upgrader vers Platinum ou Gold. Contacte-nous à contact@rentimmoacademy.fr pour connaître les modalités d'upgrade.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="pay-section">
+  <h2>Choisis ton mode de paiement</h2>
+  <p class="pay-sub">Accès immédiat après validation · Paiement sécurisé Stripe</p>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('comptant',this)">1× Comptant</button>
+    <button class="tab-btn" onclick="switchTab('2x',this)">2× sans frais</button>
+  </div>
+  <div class="tab-content active" id="tab-comptant">
+    <div class="pay-amount"><div class="amt">997€</div><div class="amt-note">Paiement unique · accès immédiat à vie</div></div>
+    <a class="cta-btn" href="https://rentimmoacademy.systeme.io/cleaning-bronze-comptant" target="_blank">✓ REJOINDRE LA FORMATION — 997€</a>
+    <div class="no-gtee-notice">ℹ️ Formule sans garantie remboursement — <a href="cleaning-platinum.html" style="color:var(--green-l);text-decoration:none;font-weight:700">voir Platinum pour la garantie 12 mois</a></div>
+  </div>
+  <div class="tab-content" id="tab-2x">
+    <div class="pay-amount"><div class="amt">2 × 500€</div><div class="amt-note">2 prélèvements à 30 jours d'intervalle · sans frais</div></div>
+    <a class="cta-btn" href="https://rentimmoacademy.systeme.io/cleaning-bronze-2x" target="_blank">✓ REJOINDRE LA FORMATION — 2× 500€</a>
+    <div class="no-gtee-notice">ℹ️ Formule sans garantie remboursement — <a href="cleaning-platinum.html" style="color:var(--green-l);text-decoration:none;font-weight:700">voir Platinum pour la garantie 12 mois</a></div>
+  </div>
+  <div class="sec-row">
+    <span>🔒 SSL</span><span class="sep">·</span>
+    <span>Stripe</span><span class="sep">·</span>
+    <span>Visa / Mastercard</span><span class="sep">·</span>
+    <span>Apple Pay</span><span class="sep">·</span>
+    <span>Google Pay</span>
+  </div>
+</section>
+
+<div class="wire-wrap">
+  <div class="wire-card">
+    <h4>Paiement par virement (1× uniquement)</h4>
+    <div class="wire-iban">IBAN : FR76 1695 8000 0196 4689 7735 133<br>BIC : QNTOFRP1XXX</div>
+    <p class="wire-note">Envoie ta capture à <strong style="color:rgba(255,255,255,0.7)">contact@rentimmoacademy.fr</strong> — objet : <em>Virement Cleaning Bronze Rentimmo</em>. Accès sous 24h.</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <strong style="color:rgba(255,255,255,0.5)">Rentimmo Academy</strong> · Formation Cleaning BnB<br>
+  <a href="https://rentimmo-academy.fr">rentimmo-academy.fr</a> · contact@rentimmoacademy.fr<br>
+  Organisme de formation certifié QUALIOPI · Paiement sécurisé par Stripe
+</footer>
+
+<script>
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!open)item.classList.add('open');
+}
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

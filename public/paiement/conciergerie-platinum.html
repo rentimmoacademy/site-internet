@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conciergerie Airbnb — Formule Platinum — Rentimmo Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root {
+  --green:#2DB84B; --green-l:#5FD87A; --green-d:#1A6B33;
+  --grad:linear-gradient(135deg,#1A6B33 0%,#2DB84B 55%,#5FD87A 100%);
+  --ink:#1A1A1A; --ink-s:#2D2D2D;
+  --bord:rgba(255,255,255,0.1);
+  --plat:#A8B8C8; --plat-l:#D0E0F0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--ink);color:#fff;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+.urgent-bar{background:var(--grad);padding:10px 20px;text-align:center;font-size:13px;font-weight:700}
+.urgent-bar .count{font-weight:800;text-decoration:underline}
+
+.header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bord)}
+.logo{font-size:19px;font-weight:800;letter-spacing:-0.025em;display:flex;align-items:center;gap:8px}
+.logo-dot{width:9px;height:9px;background:var(--green);border-radius:50%;flex-shrink:0}
+.logo-acad{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-left:2px}
+.secure-badge{font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:5px}
+
+.hero{padding:48px 20px 0;max-width:720px;margin:0 auto}
+.formule-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(168,184,200,0.12);border:1px solid rgba(168,184,200,0.35);color:var(--plat-l);font-size:11px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(28px,6vw,46px);font-weight:800;letter-spacing:-0.03em;line-height:1.08;margin-bottom:16px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:28px;line-height:1.65}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.06);border:1px solid var(--bord);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.hero-tag .chk{color:var(--green);font-weight:800}
+
+.price-card{background:var(--ink-s);border:2px solid rgba(168,184,200,0.4);border-radius:20px;padding:28px 24px;margin-bottom:56px}
+.stack-lbl{font-size:11px;color:rgba(255,255,255,0.45);font-weight:700;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:4px}
+.stack-val{font-size:18px;font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(220,50,50,0.5);margin-bottom:10px}
+.price-main{font-size:clamp(44px,11vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+.price-modes{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:14px}
+.savings-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(45,184,75,0.1);border:1px solid rgba(45,184,75,0.25);color:var(--green-l);font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px}
+.price-hr{border:0;border-top:1px solid var(--bord);margin:20px 0}
+.gtee-row{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:rgba(255,255,255,0.6)}
+.gtee-icon{flex-shrink:0;width:34px;height:34px;background:rgba(45,184,75,0.1);border:1px solid rgba(45,184,75,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px}
+.gtee-row strong{display:block;margin-bottom:3px;font-size:14px;color:rgba(255,255,255,0.85)}
+
+.section{padding:64px 20px;max-width:720px;margin:0 auto}
+.s-tag{font-size:11px;font-weight:800;letter-spacing:0.28em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.section h2{font-size:clamp(22px,5vw,34px);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:8px}
+.section .s-sub{font-size:15px;color:rgba(255,255,255,0.55);margin-bottom:28px;line-height:1.65}
+
+.stk-table{background:var(--ink-s);border:1px solid var(--bord);border-radius:16px;overflow:hidden}
+.stk-row{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--bord);gap:12px}
+.stk-row:last-child{border-bottom:0}
+.stk-row.total{background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.15)}
+.stk-row.total .r-name{font-weight:800;color:#fff}
+.stk-row.total .r-price{color:rgba(255,255,255,0.35);font-size:17px;text-decoration:line-through;text-decoration-color:rgba(220,50,50,0.45)}
+.stk-row.invest{background:var(--grad)}
+.stk-row.invest .r-name{font-weight:800;color:#fff;font-size:15px}
+.stk-row.invest .r-price{font-size:20px;font-weight:800;color:#fff}
+.r-icon{flex-shrink:0;font-size:18px}
+.r-name{flex:1;font-size:13.5px;color:rgba(255,255,255,0.8);font-weight:600}
+.r-note{font-size:10.5px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-top:2px}
+.r-price{font-size:14px;font-weight:800;color:rgba(255,255,255,0.55);white-space:nowrap}
+
+.feat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:540px){.feat-grid{grid-template-columns:1fr 1fr}}
+.feat-item{background:var(--ink-s);border:1px solid var(--bord);border-radius:14px;padding:18px;display:flex;align-items:flex-start;gap:12px}
+.feat-icon{flex-shrink:0;width:36px;height:36px;background:rgba(45,184,75,0.1);border:1px solid rgba(45,184,75,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.feat-body h3{font-size:14px;font-weight:800;margin-bottom:3px}
+.feat-body p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5}
+
+.testi-grid{display:grid;gap:14px}
+@media(min-width:540px){.testi-grid{grid-template-columns:1fr 1fr}}
+.testi-card{background:var(--ink);border:1px solid var(--bord);border-radius:14px;padding:20px}
+.testi-stars{color:var(--green);font-size:15px;margin-bottom:10px;letter-spacing:2px}
+.testi-txt{font-size:13px;color:rgba(255,255,255,0.78);line-height:1.65;margin-bottom:12px;font-style:italic}
+.testi-name{font-size:12px;font-weight:800;color:#fff}
+.testi-meta{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px}
+.testi-bdg{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;background:rgba(168,184,200,0.12);color:var(--plat-l);padding:2px 8px;border-radius:999px;margin-top:5px}
+
+.gtee-block{background:linear-gradient(135deg,rgba(45,184,75,0.12),rgba(26,26,26,1));border:1px solid rgba(45,184,75,0.35);border-radius:16px;padding:28px 24px;margin-bottom:0}
+.gtee-block .gtee-title{font-size:20px;font-weight:800;margin-bottom:10px}
+.gtee-block .gtee-desc{font-size:13.5px;color:rgba(255,255,255,0.65);line-height:1.72}
+
+/* upsell block */
+.upsell-block{background:linear-gradient(135deg,rgba(26,107,51,0.18),rgba(26,26,26,1));border:1px solid rgba(45,184,75,0.3);border-radius:16px;padding:24px;margin-bottom:32px}
+.upsell-block h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.upsell-block p{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:16px}
+.upsell-links{display:flex;gap:10px;flex-wrap:wrap}
+.upsell-link{padding:10px 18px;border-radius:10px;font-family:inherit;font-size:13px;font-weight:700;text-decoration:none;border:0;cursor:pointer;transition:all 0.15s}
+.upsell-link.primary{background:var(--grad);color:#fff}
+.upsell-link.ghost{background:rgba(255,255,255,0.06);border:1px solid var(--bord);color:rgba(255,255,255,0.7)}
+
+.bonus-card{background:linear-gradient(135deg,rgba(26,107,51,0.35),rgba(26,26,26,1));border:1px solid rgba(45,184,75,0.4);border-radius:16px;padding:24px;position:relative;overflow:hidden}
+.bonus-card::after{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:var(--green);opacity:0.06;border-radius:50%;pointer-events:none}
+.bonus-tag{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:var(--ink);font-size:10.5px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.bonus-card h3{font-size:19px;font-weight:800;margin-bottom:8px}
+.bonus-card p{font-size:13px;color:rgba(255,255,255,0.68);line-height:1.65;margin-bottom:14px}
+.bonus-val{font-size:13.5px;font-weight:700;color:rgba(255,255,255,0.45)}
+.bonus-val span{font-size:20px;font-weight:800;color:var(--green)}
+
+.faq-list{border:1px solid var(--bord);border-radius:14px;overflow:hidden}
+.faq-item{border-bottom:1px solid var(--bord)}
+.faq-item:last-child{border-bottom:0}
+.faq-q{width:100%;padding:17px 20px;background:none;border:0;color:#fff;font-family:inherit;font-size:14px;font-weight:700;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.faq-q:hover{background:rgba(255,255,255,0.03)}
+.faq-ic{flex-shrink:0;font-size:20px;color:var(--green);transition:transform 0.2s;line-height:1}
+.faq-item.open .faq-ic{transform:rotate(45deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s;font-size:13.5px;color:rgba(255,255,255,0.65);line-height:1.72}
+.faq-item.open .faq-a{max-height:320px;padding:0 20px 18px}
+
+.pay-section{padding:48px 20px 56px;max-width:540px;margin:0 auto;text-align:center}
+.pay-section h2{font-size:clamp(20px,5vw,30px);font-weight:800;letter-spacing:-0.02em;margin-bottom:8px}
+.pay-sub{font-size:13.5px;color:rgba(255,255,255,0.5);margin-bottom:26px}
+.tab-nav{display:flex;background:var(--ink-s);border:1px solid var(--bord);border-radius:12px;padding:4px;gap:4px;margin-bottom:20px}
+.tab-btn{flex:1;padding:10px 6px;background:none;border:0;color:rgba(255,255,255,0.45);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border-radius:9px;transition:all 0.18s}
+.tab-btn.active{background:var(--green);color:var(--ink)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.pay-amount{margin-bottom:18px}
+.pay-amount .amt{font-size:clamp(38px,9vw,52px);font-weight:800;letter-spacing:-0.04em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.pay-amount .amt-note{font-size:12.5px;color:rgba(255,255,255,0.45);margin-top:5px}
+.cta-btn{display:block;width:100%;padding:18px 24px;background:var(--grad);color:#fff;font-family:inherit;font-size:15px;font-weight:800;letter-spacing:0.02em;text-align:center;text-decoration:none;border:0;border-radius:14px;cursor:pointer;box-shadow:0 8px 40px -8px rgba(45,184,75,0.4);transition:transform 0.15s,box-shadow 0.15s}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 12px 48px -8px rgba(45,184,75,0.5)}
+.gtee-notice{background:rgba(45,184,75,0.06);border:1px solid rgba(45,184,75,0.2);border-radius:10px;padding:12px 16px;font-size:12.5px;color:rgba(255,255,255,0.6);margin-top:14px;text-align:center}
+.sec-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:18px;border-top:1px solid var(--bord);font-size:10.5px;color:rgba(255,255,255,0.3);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.sec-row .sep{opacity:0.25}
+
+.wire-wrap{max-width:540px;margin:0 auto;padding:0 20px 40px}
+.wire-card{background:var(--ink-s);border:1px solid var(--bord);border-radius:14px;padding:20px 22px}
+.wire-card h4{font-size:11px;font-weight:800;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:12px}
+.wire-iban{font-family:ui-monospace,'SF Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.05em;color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.05);padding:12px 14px;border-radius:8px;margin-bottom:8px}
+.wire-note{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.65}
+
+.footer{padding:22px 20px;text-align:center;font-size:11px;color:rgba(255,255,255,0.28);border-top:1px solid var(--bord);line-height:1.8}
+.footer a{color:rgba(255,255,255,0.38);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="urgent-bar">
+  <span class="count">Tarif d'entrée — accès complet à vie</span> · Garanti jusqu'au 31 mai 2026
+</div>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    rentimmo<span class="logo-acad">academy</span>
+  </div>
+  <div class="secure-badge">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2DB84B" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    Paiement sécurisé
+  </div>
+</header>
+
+<section class="hero">
+  <div class="formule-badge">🥈 Platinum · Formule Sérénité</div>
+  <h1>Lance ta <em>conciergerie Airbnb</em> avec un coaching individuel et une garantie résultat</h1>
+  <p class="hero-sub">La formation complète, deux sessions de coaching 1-to-1 avec Marwan, tous les templates légaux et une garantie de résultat sur 12 mois — pour lancer sereinement, sans risque.</p>
+  <div class="hero-tags">
+    <span class="hero-tag"><span class="chk">✓</span> Formation complète à vie</span>
+    <span class="hero-tag"><span class="chk">✓</span> Coaching 1-to-1 (2 sessions)</span>
+    <span class="hero-tag"><span class="chk">✓</span> CGV & contrats légaux</span>
+    <span class="hero-tag"><span class="chk">✓</span> Bonus Maroc inclus</span>
+    <span class="hero-tag"><span class="chk">✓</span> Garantie 12 mois</span>
+  </div>
+
+  <div class="price-card">
+    <div class="stack-lbl">Valeur totale estimée</div>
+    <div class="stack-val">5 500€</div>
+    <div class="price-main">1 497€</div>
+    <div class="price-modes">1× comptant · ou 2 × 750€ sans frais</div>
+    <div class="savings-badge">Tu économises 4 000€ vs valeur marché</div>
+    <hr class="price-hr">
+    <div class="gtee-row">
+      <div class="gtee-icon">🛡️</div>
+      <div>
+        <strong>Garantie 1er contrat propriétaire signé en 12 mois</strong>
+        Tu appliques la méthode et tu n'as pas signé ton premier mandat de gestion en 12 mois — on te rembourse intégralement. La garantie la plus longue du marché.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK VALUE -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Ce que tu obtiens</div>
+  <h2>5 500€ de valeur · ton investissement : 1 497€</h2>
+  <p class="s-sub">Formation + coaching individuel + garantie résultat — le juste milieu entre autonomie et accompagnement.</p>
+  <div class="stk-table">
+    <div class="stk-row">
+      <span class="r-icon">🎓</span>
+      <div class="r-name">Formation complète Conciergerie Airbnb<div class="r-note">Accès à vie · mises à jour incluses</div></div>
+      <span class="r-price">1 200€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">🤝</span>
+      <div class="r-name">Coaching individuel 1-to-1 (2 sessions 45min)<div class="r-note">Suivi personnalisé avec Marwan</div></div>
+      <span class="r-price">900€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">👨‍👩‍👧‍👦</span>
+      <div class="r-name">Coaching de groupe + Discord 1 an<div class="r-note">Sessions hebdomadaires · communauté privée</div></div>
+      <span class="r-price">1 000€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">📜</span>
+      <div class="r-name">CGV + Templates légaux + Bonus Maroc<div class="r-note">8 modèles · contrats propriétaire prêts</div></div>
+      <span class="r-price">900€</span>
+    </div>
+    <div class="stk-row">
+      <span class="r-icon">⭐</span>
+      <div class="r-name">Garantie résultat 12 mois<div class="r-note">1er contrat signé ou remboursé intégralement</div></div>
+      <span class="r-price">inclus</span>
+    </div>
+    <div class="stk-row total">
+      <span class="r-icon">➕</span>
+      <div class="r-name">Valeur totale</div>
+      <span class="r-price">5 500€</span>
+    </div>
+    <div class="stk-row invest">
+      <span class="r-icon" style="filter:brightness(0) invert(1)">🥈</span>
+      <div class="r-name">Ton investissement aujourd'hui</div>
+      <span class="r-price">1 497€</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" style="background:var(--ink-s);padding-top:48px;padding-bottom:48px;max-width:100%">
+<div style="max-width:720px;margin:0 auto;padding:0 20px">
+  <div class="s-tag">Tout est inclus</div>
+  <h2>Ce que contient la formule Platinum</h2>
+  <p class="s-sub">La formation complète avec un coaching individuel pour débloquer les étapes clés et une garantie sur 12 mois.</p>
+  <div class="feat-grid">
+    <div class="feat-item"><div class="feat-icon">🏠</div><div class="feat-body"><h3>Méthode prospection propriétaires</h3><p>Scripts d'approche, gestion des objections, argumentaire de conviction — comment décrocher des mandats de gestion en partant de zéro.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">🤝</div><div class="feat-body"><h3>Coaching 1-to-1 Marwan (2 × 45min)</h3><p>Deux sessions individuelles pour analyser ta situation, définir ta stratégie locale et débloquer les points de friction spécifiques à ton marché.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">💰</div><div class="feat-body"><h3>Tarification & revenue management</h3><p>Comment fixer les prix, gérer la saisonnalité, maximiser le taux d'occupation de chaque bien géré pour satisfaire tes propriétaires.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">📜</div><div class="feat-body"><h3>CGV & contrats légaux complets</h3><p>8 templates prêts à l'emploi : mandat de gestion, CGV voyageurs, contrat prestataire ménage — tout est cadré juridiquement.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">⭐</div><div class="feat-body"><h3>Optimisation annonces & 5 étoiles</h3><p>Méthode pour créer des annonces qui convertissent et des séjours qui génèrent des avis 5 étoiles systématiquement.</p></div></div>
+    <div class="feat-item"><div class="feat-icon">🛡️</div><div class="feat-body"><h3>Garantie résultat 12 mois</h3><p>La garantie la plus longue du marché. Si tu n'as pas signé ton 1er contrat propriétaire en 12 mois d'application, remboursement intégral.</p></div></div>
+  </div>
+
+  <!-- GARANTIE BLOCK -->
+  <div style="margin-top:28px">
+    <div class="gtee-block">
+      <div class="gtee-title">🛡️ La garantie Platinum — 1er contrat en 12 mois</div>
+      <p class="gtee-desc">Tu suis la formation, tu utilises tes 2 sessions de coaching, tu appliques la méthode de prospection. Si dans les 12 mois suivant ton accès tu n'as pas signé ton premier mandat de gestion propriétaire, Rentimmo Academy te rembourse intégralement. C'est la garantie la plus longue disponible — parce que Marwan sait que la méthode fonctionne, même pour les profils qui avancent doucement.</p>
+    </div>
+  </div>
+
+  <!-- UPSELL -->
+  <div style="margin-top:24px">
+    <div class="upsell-block">
+      <h3>Tu veux aller encore plus loin ?</h3>
+      <p>La formule Gold ajoute 4 sessions de coaching, la création de ta structure juridique, un site internet pro et une identité visuelle complète — avec une garantie résultat en 6 mois.</p>
+      <div class="upsell-links">
+        <a class="upsell-link primary" href="conciergerie-gold.html">Voir Gold — 2 497€ + garantie 6 mois</a>
+        <a class="upsell-link ghost" href="conciergerie-bronze.html">Voir Bronze — 997€ sans garantie</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="s-tag">Ils ont franchi le cap</div>
+  <h2>Ce que disent les membres Platinum</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Les 2 sessions de coaching ont tout changé. Marwan a regardé mon marché (Rennes), identifié les résidences à cibler et m'a redonné confiance. J'avais peur de prospecter — maintenant c'est ma partie préférée. »</p>
+      <div class="testi-name">Leila M.</div>
+      <div class="testi-meta">Rennes · Formule Platinum</div>
+      <div class="testi-bdg">Résultat garanti</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« La garantie 12 mois m'a permis de me lancer sans pression. J'avais un CDI, peu de temps — Platinum m'a laissé avancer à mon rythme en sachant que j'étais couvert. Contrat signé en 5 mois. »</p>
+      <div class="testi-name">Tarik H.</div>
+      <div class="testi-meta">Lille · Formule Platinum</div>
+      <div class="testi-bdg">Membre actif</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Les templates légaux sont béton. Mon premier propriétaire voulait un contrat très précis — j'ai eu le mandat de gestion adapté immédiatement, sans payer un avocat. Ça m'a crédibilisé instantanément. »</p>
+      <div class="testi-name">Amina C.</div>
+      <div class="testi-meta">Marseille · Formule Platinum</div>
+      <div class="testi-bdg">Alumni Platinum</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-txt">« Parfait équilibre entre Bronze et Gold. Je voulais un accompagnement individuel sans le budget Gold. Les 2 sessions m'ont suffi — Marwan va très droit au but, chaque minute est utile. »</p>
+      <div class="testi-name">Youssef A.</div>
+      <div class="testi-meta">Grenoble · Formule Platinum</div>
+      <div class="testi-bdg">Résultat garanti</div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS -->
+<div style="max-width:720px;margin:0 auto;padding:0 20px 56px">
+  <div class="bonus-card">
+    <div class="bonus-tag">🎁 Bonus Exclusif</div>
+    <h3>Module Conciergerie au Maroc</h3>
+    <p>Un marché en plein boom touristique, une demande Airbnb explosive et très peu de conciergeries professionnelles. Marwan te donne sa méthode complète pour lancer ou étendre ton activité au Maroc — villes cibles (Marrakech, Agadir, Tanger), approche propriétaires locale, gestion à distance, cadre juridique marocain.</p>
+    <div class="bonus-val">Inclus dans la formule Platinum · Valeur estimée : <span>497€</span></div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="section" style="padding-top:0">
+  <div class="s-tag">Questions fréquentes</div>
+  <h2>On a réponse à tout</h2>
+  <p class="s-sub" style="margin-bottom:22px">Les 5 questions que tout le monde pose avant de rejoindre Platinum.</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Quelle est la différence entre Platinum et Gold ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Platinum inclut 2 sessions de coaching 1-to-1 avec une garantie de 12 mois. Gold inclut 4 sessions de coaching, la création de ta structure juridique (SASU/micro), un site internet professionnel, une identité visuelle complète et une garantie de 6 mois. Si tu veux que tout soit créé pour toi (business + branding + web), Gold est fait pour ça. Si tu veux juste un coup de main individuel ponctuel + la sécurité d'une garantie longue, Platinum suffit.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Comment fonctionne le paiement en 2 fois ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Tu paies 2 × 750€ à 30 jours d'intervalle via Stripe. Aucun frais supplémentaire. Accès à la formation et au planning de coaching immédiatement après le premier paiement. Apple Pay et Google Pay acceptés sur mobile.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Quelles sont les conditions de la garantie 12 mois ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Pour activer la garantie : (1) avoir suivi les modules principaux de la formation, (2) avoir utilisé au moins une session de coaching 1-to-1, (3) avoir effectué des approches propriétaires documentées (emails, appels, rendez-vous). Si après 12 mois d'application active tu n'as pas de mandat signé, tu envoies une preuve de démarches et tu es remboursé intégralement.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Quand puis-je planifier mes 2 sessions de coaching ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Dès l'accès à la formation, tu reçois le lien vers le calendrier de Marwan pour réserver tes 2 sessions à ton rythme sur 12 mois. En général, les membres utilisent la 1ère session dans les 2 premières semaines (stratégie), puis la 2ème après avoir lancé leurs premières prospections (déblocage).</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Puis-je upgrader vers Gold après avoir rejoint Platinum ?<span class="faq-ic">+</span></button>
+      <div class="faq-a">Oui. Si tu démarres par Platinum et que tu veux accéder au site internet, à la création de structure juridique ou aux 2 sessions supplémentaires de coaching, tu peux upgrader vers Gold. Contacte-nous à contact@rentimmoacademy.fr pour connaître le tarif d'upgrade depuis Platinum.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section class="pay-section">
+  <h2>Choisis ton mode de paiement</h2>
+  <p class="pay-sub">Accès immédiat après validation · Paiement sécurisé Stripe</p>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('comptant',this)">1× Comptant</button>
+    <button class="tab-btn" onclick="switchTab('2x',this)">2× sans frais</button>
+  </div>
+  <div class="tab-content active" id="tab-comptant">
+    <div class="pay-amount"><div class="amt">1 497€</div><div class="amt-note">Paiement unique · accès immédiat à vie</div></div>
+    <a class="cta-btn" href="https://rentimmoacademy.systeme.io/conciergerie-platinum-comptant" target="_blank">✓ REJOINDRE LA FORMATION PLATINUM — 1 497€</a>
+    <div class="gtee-notice">🛡️ Garanti — 1er contrat propriétaire signé en 12 mois ou remboursé</div>
+  </div>
+  <div class="tab-content" id="tab-2x">
+    <div class="pay-amount"><div class="amt">2 × 750€</div><div class="amt-note">2 prélèvements à 30 jours d'intervalle · sans frais</div></div>
+    <a class="cta-btn" href="https://rentimmoacademy.systeme.io/conciergerie-platinum-2x" target="_blank">✓ REJOINDRE LA FORMATION PLATINUM — 2× 750€</a>
+    <div class="gtee-notice">🛡️ Garanti — 1er contrat propriétaire signé en 12 mois ou remboursé</div>
+  </div>
+  <div class="sec-row">
+    <span>🔒 SSL</span><span class="sep">·</span>
+    <span>Stripe</span><span class="sep">·</span>
+    <span>Visa / Mastercard</span><span class="sep">·</span>
+    <span>Apple Pay</span><span class="sep">·</span>
+    <span>Google Pay</span>
+  </div>
+</section>
+
+<div class="wire-wrap">
+  <div class="wire-card">
+    <h4>Paiement par virement (1× uniquement)</h4>
+    <div class="wire-iban">IBAN : FR76 1695 8000 0196 4689 7735 133<br>BIC : QNTOFRP1XXX</div>
+    <p class="wire-note">Envoie ta capture à <strong style="color:rgba(255,255,255,0.7)">contact@rentimmoacademy.fr</strong> — objet : <em>Virement Conciergerie Platinum Rentimmo</em>. Accès sous 24h.</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <strong style="color:rgba(255,255,255,0.5)">Rentimmo Academy</strong> · Formation Conciergerie Airbnb<br>
+  <a href="https://rentimmo-academy.fr">rentimmo-academy.fr</a> · contact@rentimmoacademy.fr<br>
+  Organisme de formation certifié QUALIOPI · Paiement sécurisé par Stripe
+</footer>
+
+<script>
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!open)item.classList.add('open');
+}
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
