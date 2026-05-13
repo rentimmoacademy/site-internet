@@ -15,16 +15,16 @@ export function generateStaticParams() {
 const SEO_TITLE_BY_SLUG: Record<string, string> = {
   "sous-location": "Formation sous-location professionnelle 2026 — Sous-Location Academy",
   "conciergerie-bnb": "Formation conciergerie Airbnb 2026 — Conciergerie BnB Academy",
-  "cleaning-bnb": "Formation ménage Airbnb pro 2026 — Cleaning BnB Academy",
+  "cleaning-bnb": "Formation ménage Airbnb 2026 — Cleaning BnB Academy · Seule formation FR dédiée",
 };
 
 const SEO_DESCRIPTION_BY_SLUG: Record<string, string> = {
   "sous-location":
-    "Formation sous-location professionnelle complète : 6 modules, 8h, applicable immédiatement. Lance ta sous-location Airbnb en 30 jours sans banque ni apport. France & Maroc.",
+    "Formation sous-location professionnelle : 8 modules, 8h, baux inclus, applicable immédiatement. 6+ ans d'expérience terrain, dizaines de sous-locs gérées. Lance ton 1er logement en 30 jours — France & Maroc.",
   "conciergerie-bnb":
-    "Formation conciergerie Airbnb 100% terrain : 8 modules, 10h, statut juridique, prospection, mandats. Signe ton 1er propriétaire en 30 jours. Inclus Bonus Maroc.",
+    "Formation conciergerie Airbnb 100% terrain : 8 modules, 10h, statut juridique, prospection, mandats, automatisation. Signe ton 1er mandat en 30 jours. Bonus Maroc inclus.",
   "cleaning-bnb":
-    "Formation ménage Airbnb professionnel : standards hôteliers, tarification, prospection conciergeries, scaling équipe. Lance ton activité de cleaner BnB en 30 jours.",
+    "La 1ère formation française dédiée au cleaner BnB professionnel. 8 modules, standards hôteliers, protocole 47 points, grille tarifaire, prospection conciergeries. Lance ton activité en 30 jours.",
 };
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
