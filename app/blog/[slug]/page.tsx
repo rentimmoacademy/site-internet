@@ -75,6 +75,21 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <FinalCTA />
 
       {/* BlogPosting JSON-LD */}
+      {/* BreadcrumbList schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.rentimmoacademy.fr" },
+              { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.rentimmoacademy.fr/blog" },
+              { "@type": "ListItem", position: 3, name: post.title, item: `https://www.rentimmoacademy.fr/blog/${post.slug}` },
+            ],
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

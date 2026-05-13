@@ -28,11 +28,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const formationRoutes = formations.map((f) => ({
     url: `${BASE}/formations/${f.slug}`,
     lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
   }));
 
   const postRoutes = posts.map((p) => ({
     url: `${BASE}/blog/${p.slug}`,
     lastModified: new Date(p.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }));
 
   return [...staticRoutes, ...formationRoutes, ...postRoutes];
