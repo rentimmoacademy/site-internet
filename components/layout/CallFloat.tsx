@@ -11,8 +11,8 @@ export default function CallFloat() {
   const [open, setOpen] = useState(false);
   const isSuperBnb = pathname?.startsWith("/super-bnb-academy") ?? false;
   const href = isSuperBnb
-    ? "https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
-    : "https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true";
+    ? "https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
+    : "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true";
 
   // Super BnB audit = no gate (direct link). Strategic call = gated.
   const handleClick = () => {

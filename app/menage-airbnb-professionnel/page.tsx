@@ -107,7 +107,7 @@ export default function MenageAirbnbProfessionnelPage() {
         h1="Ménage Airbnb pro : devenir cleaner BnB en 2026"
         intro="Le ménage Airbnb professionnel est un des métiers les plus rentables et stables du secteur LCD : tarif fixe par rotation, demande croissante, faible barrière à l'entrée. Voici comment lancer ton activité de cleaner BnB en 2026."
         primaryCta={{ href: "/formations/cleaning-bnb", label: "Voir la formation" }}
-        secondaryCta={{ href: "https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
+        secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Ménage Airbnb professionnel" }]}
       />
 

@@ -11,7 +11,7 @@ export const SITE = {
   url: "https://www.rentimmoacademy.fr",
   whatsapp: "33600000000",
   email: "rentimmoacademy@gmail.com",
-  calBooking: "https://cal.com/rentimmo-academy/appel-strategique",
+  calBooking: "https://cal.com/rentimmoacademy/appel-strategique",
   socials: {
     instagram: "https://instagram.com/rentimmoacademy",
     youtube: "https://youtube.com/@rentimmoacademy",

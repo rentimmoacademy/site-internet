@@ -75,7 +75,7 @@ export default function Hero() {
             Découvrir les formations <ArrowRight size={18} />
           </Link>
           <CallGate
-            href="https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true"
+            href="https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true"
             className="btn-ghost"
           >
             Réserver un appel stratégique

@@ -54,7 +54,7 @@ export default function FinalCTA() {
             Voir les formations <ArrowRight size={16} />
           </Link>
           <CallGate
-            href="https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true"
+            href="https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true"
             className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-4 font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
           >
             Réserver un appel stratégique

@@ -62,7 +62,7 @@ export default function SuperBnbHero() {
           className="mt-10 flex flex-wrap items-center gap-4"
         >
           <CallGate
-            href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
+            href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
             variant="mint"
           >
             Réserver mon audit gratuit <ArrowRight size={16} />

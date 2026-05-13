@@ -93,7 +93,7 @@ export default function SeFormerAirbnbMarocPage() {
         h1="Se former à Airbnb au Maroc en 2026"
         intro="Coupe du Monde 2030, marché en explosion, coût d'entrée 3x plus bas qu'en France : le Maroc est l'opportunité Airbnb la plus claire de la décennie. Voici comment t'y positionner — en sous-location, conciergerie ou ménage pro — depuis la France ou sur place."
         primaryCta={{ href: "/formations", label: "Voir toutes les formations" }}
-        secondaryCta={{ href: "https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
+        secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Se former à Airbnb au Maroc" }]}
       />
 

@@ -116,7 +116,7 @@ export default function SousLocationProfessionnellePage() {
         h1="Sous-location professionnelle : démarrer en 2026 sans banque, sans apport"
         intro="La sous-location professionnelle est le moyen le plus rapide pour générer des revenus locatifs sans crédit immobilier. Tu loues un bien, tu le sous-loues sur Airbnb avec accord du propriétaire, tu gardes la marge. Voici comment ça marche concrètement."
         primaryCta={{ href: "/formations/sous-location", label: "Voir la formation" }}
-        secondaryCta={{ href: "https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
+        secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Sous-location professionnelle" }]}
       />
 
@@ -344,7 +344,7 @@ export default function SousLocationProfessionnellePage() {
           </Link>
 
           <Link
-            href="https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true"
+            href="https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true"
             className="group block rounded-2xl border-2 border-ink/10 bg-white p-8 transition-transform hover:-translate-y-1"
           >
             <div className="flex items-center gap-3">

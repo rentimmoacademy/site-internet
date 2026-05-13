@@ -220,7 +220,7 @@ export default function SuperBnbAcademyPage() {
                 </h3>
               </div>
               <CallGate
-                href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
+                href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
                 className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-auto-mint px-7 py-4 font-bold text-auto-navy transition-all hover:scale-[1.03] hover:shadow-glow-mint"
               >
                 <CalendarCheck size={16} /> Réserver mon audit
@@ -442,7 +442,7 @@ export default function SuperBnbAcademyPage() {
             avant fermeture.
           </p>
           <CallGate
-            href="https://cal.com/rentimmo-academy/superbnbacademy?overlayCalendar=true"
+            href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-auto-navy px-8 py-4 font-bold text-auto-mint transition-transform hover:scale-[1.03]"
           >
             Réserver mon audit gratuit <ArrowRight size={16} />

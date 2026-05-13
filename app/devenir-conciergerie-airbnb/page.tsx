@@ -106,7 +106,7 @@ export default function DevenirConciergerieAirbnbPage() {
         h1="Devenir conciergerie Airbnb : se lancer en 2026 sans capital"
         intro="Tu veux ouvrir ta conciergerie Airbnb en France ou au Maroc ? Tu n'as pas besoin de logements en propre — tu gères ceux des autres et tu prends 15 à 25% de commission. Voici comment se lancer concrètement, étape par étape."
         primaryCta={{ href: "/formations/conciergerie-bnb", label: "Voir la formation" }}
-        secondaryCta={{ href: "https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
+        secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Devenir conciergerie Airbnb" }]}
       />
 
