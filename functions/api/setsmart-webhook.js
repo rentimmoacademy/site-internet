@@ -92,14 +92,14 @@ export async function onRequestPost(context) {
   let createDeal = false;
 
   if (eventLow.includes('book') || eventLow.includes('appointment') || eventLow.includes('scheduled')) {
-    statut    = 'Call booké';
+    statut    = 'call_booké';    // valeur interne HubSpot
     stageId   = STAGE_ID.call_booke;
     createDeal = true;
   } else if (eventLow.includes('qualif')) {
-    statut  = 'Qualifié';
+    statut  = 'qualifié';        // valeur interne HubSpot
     stageId = STAGE_ID.qualifie;
   } else if (eventLow.includes('message') || eventLow.includes('conversation') || eventLow.includes('contact')) {
-    statut  = 'Contacté';
+    statut  = 'contacté';        // valeur interne HubSpot
     stageId = STAGE_ID.contacte;
   }
 
@@ -110,7 +110,7 @@ export async function onRequestPost(context) {
   }
 
   const hsProps = {
-    statut_setting: statut,
+    statut_setting: statut,  // valeur interne HubSpot ex: 'contacté'
     lifecyclestage: 'lead',
     ...(name ? {
       firstname: name.split(' ')[0] || '',

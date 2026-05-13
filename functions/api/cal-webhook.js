@@ -175,7 +175,7 @@ export async function onRequestPost(context) {
       const lastName  = name.split(' ').slice(1).join(' ') || '';
       const hsProps   = {
         firstname: firstName, lastname: lastName,
-        statut_setting: 'Call booké',
+        statut_setting: 'call_booké',   // valeur interne HubSpot
         lifecyclestage: 'lead',
         ...(source ? { source_rentimmo: source } : {}),
       };
