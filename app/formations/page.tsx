@@ -4,6 +4,7 @@ import FormationCard from "@/components/FormationCard";
 import SectionHeader from "@/components/SectionHeader";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { formations } from "@/lib/formations";
+import { AGGREGATE_RATING } from "@/lib/testimonials";
 import { Check, X, ArrowRight, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -160,6 +161,24 @@ export default function FormationsPage() {
       </section>
 
       <FinalCTA />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            "@id": "https://www.rentimmoacademy.fr/#organization",
+            name: "Rentimmo Academy",
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: AGGREGATE_RATING.ratingValue,
+              reviewCount: AGGREGATE_RATING.reviewCount,
+              bestRating: AGGREGATE_RATING.bestRating,
+              worstRating: AGGREGATE_RATING.worstRating,
+            },
+          }),
+        }}
+      />
     </>
   );
 }

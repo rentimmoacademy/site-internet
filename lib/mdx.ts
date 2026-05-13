@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
+export type FaqItem = { q: string; a: string };
+
 export type BlogPostMeta = {
   slug: string;
   title: string;
@@ -12,7 +14,7 @@ export type BlogPostMeta = {
   readTime: string;
 };
 
-export type BlogPost = BlogPostMeta & { content: string };
+export type BlogPost = BlogPostMeta & { content: string; faq?: FaqItem[] };
 
 const POSTS_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -49,5 +51,6 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
     coverImage: data.coverImage,
     readTime: data.readTime ?? "5 min",
     content,
+    faq: data.faq,
   };
 }

@@ -9,6 +9,7 @@ import MoroccoSpotlight from "@/components/sections/MoroccoSpotlight";
 import AboutPreview from "@/components/sections/AboutPreview";
 import BlogPreview from "@/components/sections/BlogPreview";
 import FinalCTA from "@/components/sections/FinalCTA";
+import { AGGREGATE_RATING } from "@/lib/testimonials";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,24 @@ export default function HomePage() {
       <AboutPreview />
       <BlogPreview />
       <FinalCTA />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            "@id": "https://www.rentimmoacademy.fr/#organization",
+            name: "Rentimmo Academy",
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: AGGREGATE_RATING.ratingValue,
+              reviewCount: AGGREGATE_RATING.reviewCount,
+              bestRating: AGGREGATE_RATING.bestRating,
+              worstRating: AGGREGATE_RATING.worstRating,
+            },
+          }),
+        }}
+      />
     </>
   );
 }
