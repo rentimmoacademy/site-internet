@@ -276,54 +276,57 @@ export default function FormationDetail({ formation }: { formation: Formation })
           <div className="mx-auto max-w-3xl text-center">
             <p className="tag mb-5 text-brand-dark">Investissement</p>
             <h2 className="text-h2 font-extrabold leading-[1.05] tracking-[-0.02em]">
-              Un investissement qui se rentabilise en quelques mois.
+              Choisis ta formule. Démarre aujourd&apos;hui.
             </h2>
+            <p className="mt-4 text-ink/60">Paiement sécurisé Stripe · Apple Pay · virement IBAN · paiement en plusieurs fois sans frais</p>
           </div>
 
-          <div className="mx-auto mt-14 max-w-xl rounded-3xl border-2 border-ink/10 bg-white p-10 text-center shadow-[0_30px_80px_-30px_rgba(0,0,0,0.15)]">
-            <p className="text-sm uppercase tracking-widest text-ink/50">{formation.name}</p>
-            <p className="mt-4 flex items-start justify-center gap-2">
-              <span className="mt-3 text-sm font-bold uppercase tracking-widest text-ink/60">
-                À partir de
-              </span>
-              <span className="text-6xl font-extrabold tracking-[-0.03em]">{formation.price}</span>
-              <span className="mt-2 text-2xl font-extrabold text-brand-green">*</span>
-            </p>
-            <p className="mt-2 text-sm text-ink/60">
-              * Tarif indicatif. Prise en charge CPF, OPCO, paiement en 3× sans frais.{" "}
-              <br className="hidden sm:block" />
-              Devis personnalisé lors de l'appel stratégique.
-            </p>
-
-            <ul className="mt-10 space-y-3 text-left">
-              {[
-                `${formation.modules} modules complets + module bonus Maroc`,
-                `${formation.duration} de vidéos terrain`,
-                "Tous les templates, bails et checklists",
-                "Accès à la communauté privée",
-                "Mises à jour à vie",
-                "Garantie satisfait ou remboursé 14 jours",
-              ].map((f) => (
-                <li key={f} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-brand-green/15 text-brand-green">
-                    <Check size={14} />
-                  </span>
-                  <span className="text-sm">{f}</span>
-                </li>
-              ))}
-            </ul>
-
-            <CallGate
-              href="https://cal.com/rentimmo-academy/appel-strategique?overlayCalendar=true"
-              className="btn-primary mt-10 w-full justify-center"
-            >
-              Réserver mon appel stratégique <ArrowRight size={16} />
-            </CallGate>
-
-            <p className="mt-6 flex items-center justify-center gap-2 text-xs text-ink/60">
-              <ShieldCheck size={14} /> Appel gratuit · Sans engagement · 30 minutes
-            </p>
+          <div className="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-3">
+            {formation.tiers.map((tier, i) => (
+              <div
+                key={tier.label}
+                className={`relative flex flex-col rounded-3xl border-2 bg-white p-8 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.12)] ${
+                  i === 1 ? "border-brand-green ring-4 ring-brand-green/10" : "border-ink/10"
+                }`}
+              >
+                {i === 1 && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-brand-green px-4 py-1 text-xs font-bold uppercase tracking-wider text-white">
+                    Recommandé
+                  </div>
+                )}
+                <p className="text-sm font-bold text-ink/50">{tier.badge}</p>
+                <p className="mt-3 text-4xl font-extrabold tracking-tight">{tier.price}</p>
+                <p className="mt-1 text-xs text-ink/50">{tier.priceNote}</p>
+                {tier.guarantee && (
+                  <div className="mt-4 rounded-xl bg-brand-green/10 px-3 py-2 text-xs font-semibold text-brand-dark">
+                    ✓ {tier.guarantee}
+                  </div>
+                )}
+                <ul className="mt-6 flex-1 space-y-2">
+                  {tier.highlights.map((h) => (
+                    <li key={h} className="flex items-start gap-2 text-sm">
+                      <span className="mt-0.5 flex-shrink-0 text-brand-green"><Check size={14} /></span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={tier.checkoutUrl}
+                  className={`mt-8 block rounded-2xl py-4 text-center text-sm font-bold transition-transform hover:scale-[1.02] ${
+                    i === 1
+                      ? "bg-brand-gradient text-white shadow-[0_8px_30px_-8px_rgba(45,184,75,0.5)]"
+                      : "bg-ink text-white hover:bg-ink/80"
+                  }`}
+                >
+                  Choisir {tier.label} <ArrowRight size={14} className="ml-1 inline" />
+                </a>
+              </div>
+            ))}
           </div>
+
+          <p className="mt-10 text-center text-sm text-ink/50">
+            Organisme de formation certifié QUALIOPI · Paiement en plusieurs fois disponible
+          </p>
         </div>
       </section>
 

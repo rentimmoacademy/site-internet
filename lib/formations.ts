@@ -1,3 +1,13 @@
+export type FormationTier = {
+  label: string;
+  badge: string;
+  price: string;
+  priceNote: string;
+  guarantee: string | null;
+  highlights: string[];
+  checkoutUrl: string;
+};
+
 export type Formation = {
   slug: string;
   name: string;
@@ -15,6 +25,7 @@ export type Formation = {
   moroccoText: string;
   faq: { q: string; a: string }[];
   testimonials: { name: string; city: string; result: string }[];
+  tiers: FormationTier[];
 };
 
 export const formations: Formation[] = [
@@ -70,6 +81,35 @@ export const formations: Formation[] = [
       { name: "Karim B.", city: "Paris 17e", result: "+1 200 €/mois net sur le premier logement en 45 jours" },
       { name: "Sophie L.", city: "Lyon", result: "3 logements signés en 6 mois, 2 800 €/mois net" },
       { name: "Yassine A.", city: "Tanger", result: "Premier bail signé au Maroc, +8 000 MAD/mois" },
+    ],
+    tiers: [
+      {
+        label: "Bronze",
+        badge: "🥉 Essentiel",
+        price: "997 €",
+        priceNote: "ou 2 × 500 € sans frais",
+        guarantee: null,
+        highlights: ["Formation complète à vie", "Coaching de groupe hebdo", "Baux & contrats légaux", "Mastermind Discord 1 an", "Bonus Module Maroc"],
+        checkoutUrl: "/paiement/sous-location-bronze.html",
+      },
+      {
+        label: "Platinum",
+        badge: "🥈 Sérénité",
+        price: "1 497 €",
+        priceNote: "ou 2 × 750 € sans frais",
+        guarantee: "1er logement signé en 12 mois ou remboursé",
+        highlights: ["Tout Bronze inclus", "2 sessions coaching 1-to-1", "Garantie résultat 12 mois", "Suivi personnalisé"],
+        checkoutUrl: "/paiement/sous-location-platinum.html",
+      },
+      {
+        label: "Gold",
+        badge: "🥇 Clé en main",
+        price: "2 497 €",
+        priceNote: "ou 3 × 850 € sans frais",
+        guarantee: "1er logement signé en 6 mois ou remboursé",
+        highlights: ["Tout Platinum inclus", "4 sessions coaching 1-to-1", "Création société offerte", "Site web professionnel", "Identité visuelle", "Garantie 6 mois"],
+        checkoutUrl: "/paiement/sous-location-gold.html",
+      },
     ],
   },
   {
@@ -127,6 +167,35 @@ export const formations: Formation[] = [
       { name: "Thomas K.", city: "Bordeaux", result: "Première équipe montée à 3 personnes en 9 mois" },
       { name: "Fatima E.", city: "Marrakech", result: "5 riads en gestion, activité rentable dès le 2e mois" },
     ],
+    tiers: [
+      {
+        label: "Bronze",
+        badge: "🥉 Essentiel",
+        price: "997 €",
+        priceNote: "ou 2 × 500 € sans frais",
+        guarantee: null,
+        highlights: ["Formation complète à vie", "Coaching de groupe hebdo", "CGV & templates légaux", "Mastermind Discord 1 an", "Bonus Module Maroc"],
+        checkoutUrl: "/paiement/conciergerie-bronze.html",
+      },
+      {
+        label: "Platinum",
+        badge: "🥈 Sérénité",
+        price: "1 497 €",
+        priceNote: "ou 2 × 750 € sans frais",
+        guarantee: "1er contrat propriétaire en 12 mois ou remboursé",
+        highlights: ["Tout Bronze inclus", "2 sessions coaching 1-to-1", "Garantie résultat 12 mois", "Suivi personnalisé"],
+        checkoutUrl: "/paiement/conciergerie-platinum.html",
+      },
+      {
+        label: "Gold",
+        badge: "🥇 Clé en main",
+        price: "2 497 €",
+        priceNote: "ou 3 × 850 € sans frais",
+        guarantee: "1er contrat propriétaire en 6 mois ou remboursé",
+        highlights: ["Tout Platinum inclus", "4 sessions coaching 1-to-1", "Création société offerte", "Site web conciergerie", "Identité visuelle", "Garantie 6 mois"],
+        checkoutUrl: "/paiement/conciergerie-gold.html",
+      },
+    ],
   },
   {
     slug: "cleaning-bnb",
@@ -178,6 +247,35 @@ export const formations: Formation[] = [
       { name: "Laura M.", city: "Nantes", result: "12 logements en rotation, 2 400 €/mois net" },
       { name: "Mehdi O.", city: "Lille", result: "Équipe de 2 personnes, 4 100 €/mois à 8 mois" },
       { name: "Salma H.", city: "Casablanca", result: "Premier contrat signé en 3 semaines" },
+    ],
+    tiers: [
+      {
+        label: "Bronze",
+        badge: "🥉 Essentiel",
+        price: "997 €",
+        priceNote: "ou 2 × 500 € sans frais",
+        guarantee: null,
+        highlights: ["Formation M0-M8 à vie", "Protocoles & checklists pro", "Coaching de groupe hebdo", "Mastermind Discord 1 an", "Bonus Module Maroc"],
+        checkoutUrl: "/paiement/cleaning-bronze.html",
+      },
+      {
+        label: "Platinum",
+        badge: "🥈 Sérénité",
+        price: "1 497 €",
+        priceNote: "ou 2 × 750 € sans frais",
+        guarantee: "1er contrat ménage régulier en 12 mois ou remboursé",
+        highlights: ["Tout Bronze inclus", "2 sessions coaching 1-to-1", "Garantie résultat 12 mois", "Suivi personnalisé"],
+        checkoutUrl: "/paiement/cleaning-platinum.html",
+      },
+      {
+        label: "Gold",
+        badge: "🥇 Clé en main",
+        price: "2 497 €",
+        priceNote: "ou 3 × 850 € sans frais",
+        guarantee: "1er contrat ménage régulier en 6 mois ou remboursé",
+        highlights: ["Tout Platinum inclus", "4 sessions coaching 1-to-1", "Création société offerte", "Site web prestataire", "Identité visuelle", "Garantie 6 mois"],
+        checkoutUrl: "/paiement/cleaning-gold.html",
+      },
     ],
   },
 ];
