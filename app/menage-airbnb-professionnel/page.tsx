@@ -9,14 +9,14 @@ const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/menage-airbnb-professionnel`;
 
 export const metadata: Metadata = {
-  title: "Ménage Airbnb professionnel : devenir cleaner BnB en 2026",
+  title: "Ménage Airbnb professionnel : devenir cleaner BnB en 2026 — Cleaning BnB Academy",
   description:
-    "Comment devenir cleaner Airbnb professionnel : standards hôteliers, tarification au m², premiers clients conciergeries. Le guide pour lancer ton activité de ménage BnB en 2026.",
+    "Comment devenir cleaner Airbnb professionnel : standards hôteliers, tarification au m², premiers clients conciergeries. Guide 2026 par la Cleaning BnB Academy — Rentimmo Academy.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Ménage Airbnb professionnel : devenir cleaner BnB en 2026 | Rentimmo Academy",
+    title: "Ménage Airbnb professionnel 2026 — Cleaning BnB Academy",
     description:
-      "Standards hôteliers, tarification, premiers clients. Le guide pour lancer ton activité de cleaner Airbnb pro.",
+      "Standards hôteliers, tarification, premiers clients. Le guide de la Cleaning BnB Academy (Rentimmo Academy) pour lancer ton activité en 2026.",
     url: URL,
     type: "article",
   },

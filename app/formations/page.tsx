@@ -8,9 +8,9 @@ import { AGGREGATE_RATING } from "@/lib/testimonials";
 import { Check, X, ArrowRight, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Nos formations LCD — Sous-location, Conciergerie, Cleaning",
+  title: "Formations — Sous-Location Academy · Conciergerie BnB Academy · Cleaning BnB Academy",
   description:
-    "Trois formations terrain pour lancer ton activité de location courte durée en France et au Maroc. Sans banque, sans crédit.",
+    "Sous-Location Academy, Conciergerie BnB Academy, Cleaning BnB Academy — 3 formations terrain pour lancer ton activité de location courte durée en France et au Maroc. Sans banque, sans crédit.",
 };
 
 const compareRows = [

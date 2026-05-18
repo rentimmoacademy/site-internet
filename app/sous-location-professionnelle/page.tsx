@@ -9,14 +9,14 @@ const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/sous-location-professionnelle`;
 
 export const metadata: Metadata = {
-  title: "Sous-location professionnelle : guide complet 2026",
+  title: "Sous-location professionnelle : guide complet 2026 — Sous-Location Academy",
   description:
-    "Tout sur la sous-location professionnelle en France et au Maroc : cadre légal, rentabilité, comment se lancer sans apport. Le guide de référence pour démarrer en 2026.",
+    "Tout sur la sous-location professionnelle en France et au Maroc : cadre légal, rentabilité, comment se lancer sans apport. Guide de référence 2026 par la Sous-Location Academy — Rentimmo Academy.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Sous-location professionnelle : guide complet 2026 | Rentimmo Academy",
+    title: "Sous-location professionnelle 2026 — Sous-Location Academy",
     description:
-      "Cadre légal, rentabilité, comment se lancer. Le guide de référence pour démarrer la sous-location en 2026.",
+      "Cadre légal, rentabilité, comment se lancer. Le guide de la Sous-Location Academy (Rentimmo Academy) pour démarrer en 2026.",
     url: URL,
     type: "article",
   },

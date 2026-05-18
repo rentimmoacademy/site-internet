@@ -9,14 +9,14 @@ const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/devenir-conciergerie-airbnb`;
 
 export const metadata: Metadata = {
-  title: "Devenir conciergerie Airbnb : guide pour se lancer en 2026",
+  title: "Devenir conciergerie Airbnb : guide pour se lancer en 2026 — Conciergerie BnB Academy",
   description:
-    "Comment lancer ta conciergerie Airbnb sans capital ni diplôme : statut juridique, tarification, premiers clients propriétaires, contrats. Le guide pratique 2026.",
+    "Comment lancer ta conciergerie Airbnb sans capital ni diplôme : statut juridique, tarification, premiers clients, contrats. Guide pratique 2026 par la Conciergerie BnB Academy — Rentimmo Academy.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Devenir conciergerie Airbnb : guide pour se lancer en 2026 | Rentimmo Academy",
+    title: "Devenir conciergerie Airbnb 2026 — Conciergerie BnB Academy",
     description:
-      "Statut juridique, tarification, premiers clients propriétaires. Le guide pratique 2026 pour lancer ta conciergerie Airbnb.",
+      "Statut juridique, tarification, premiers clients. Le guide pratique de la Conciergerie BnB Academy (Rentimmo Academy) pour lancer en 2026.",
     url: URL,
     type: "article",
   },
