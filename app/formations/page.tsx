@@ -179,6 +179,23 @@ export default function FormationsPage() {
           }),
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Formations Rentimmo Academy",
+            description: "Sous-Location Academy, Conciergerie BnB Academy, Cleaning BnB Academy",
+            itemListElement: formations.map((f, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `https://www.rentimmoacademy.fr/formations/${f.slug}`,
+              name: f.name,
+            })),
+          }),
+        }}
+      />
     </>
   );
 }

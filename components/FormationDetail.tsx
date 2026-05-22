@@ -15,11 +15,13 @@ import {
   MapPin,
 } from "lucide-react";
 import type { Formation } from "@/lib/formations";
+import { formations } from "@/lib/formations";
 import CallGate from "@/components/CallGate";
 
 export default function FormationDetail({ formation }: { formation: Formation }) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
   const [faqIdx, setFaqIdx] = useState<number | null>(0);
+  const others = formations.filter((f) => f.slug !== formation.slug);
 
   return (
     <>
@@ -363,6 +365,33 @@ export default function FormationDetail({ formation }: { formation: Formation })
                 </button>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Cross-sell : autres formations */}
+      <section className="bg-cream py-16 text-ink">
+        <div className="container-x">
+          <p className="mb-8 text-xs font-bold uppercase tracking-[0.25em] text-ink/40">
+            Aussi dans Rentimmo Academy
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {others.map((f) => (
+              <Link
+                key={f.slug}
+                href={`/formations/${f.slug}`}
+                className="group flex items-center justify-between rounded-2xl border border-ink/10 bg-white px-6 py-5 transition-all hover:border-brand-green/40 hover:shadow-md"
+              >
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-ink/40">Formation</p>
+                  <p className="mt-0.5 font-extrabold tracking-tight text-ink group-hover:text-brand-green transition-colors">
+                    {f.name}
+                  </p>
+                  <p className="mt-1 text-xs text-ink/55 line-clamp-1">{f.tagline}</p>
+                </div>
+                <ArrowRight size={16} className="flex-shrink-0 text-ink/30 group-hover:text-brand-green transition-colors" />
+              </Link>
+            ))}
           </div>
         </div>
       </section>
