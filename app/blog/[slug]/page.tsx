@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import { getAllPosts, getPost } from "@/lib/mdx";
 import FinalCTA from "@/components/sections/FinalCTA";
+import BlogIllustration from "@/components/blog/BlogIllustration";
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -66,7 +67,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <div className="container-x mt-16">
           <div className="mx-auto max-w-3xl rounded-3xl bg-cream p-8 text-ink md:p-12">
             <div className="prose prose-lg prose-neutral mx-auto max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-h2:mt-10 prose-h2:text-3xl prose-a:text-brand-dark prose-a:font-bold prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-ul:my-5 prose-li:my-1">
-              <MDXRemote source={post.content} />
+              <MDXRemote source={post.content} components={{ BlogIllustration }} />
             </div>
           </div>
         </div>
