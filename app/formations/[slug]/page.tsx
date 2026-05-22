@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import FormationDetail from "@/components/FormationDetail";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { formations, getFormation } from "@/lib/formations";
+import { AGGREGATE_RATING } from "@/lib/testimonials";
 
 const SITE = "https://www.rentimmoacademy.fr";
 
@@ -81,6 +82,13 @@ export default function FormationPage({ params }: { params: { slug: string } }) 
       url,
       validFrom: "2026-01-01",
       category: "Formation professionnelle",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: AGGREGATE_RATING.ratingValue,
+      reviewCount: AGGREGATE_RATING.reviewCount,
+      bestRating: AGGREGATE_RATING.bestRating,
+      worstRating: AGGREGATE_RATING.worstRating,
     },
     hasCourseInstance: [
       {
