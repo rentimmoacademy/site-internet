@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Logo from "@/components/layout/Logo";
 
 const BULLETS = [
   "La méthode pour trouver et négocier un bail commercial en moins de 14 jours",
@@ -83,10 +84,7 @@ export default function MasterclassPage() {
   const Topbar = () => (
     <header style={{ background: "#fff", borderBottom: "1px solid rgba(26,26,26,.07)", padding: "13px 24px", position: "sticky", top: 0, zIndex: 50 }}>
       <div style={{ maxWidth: 1180, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 800, fontSize: 16, color: INK }}>
-          <div style={{ width: 32, height: 32, borderRadius: 8, background: `linear-gradient(135deg,${GD},${G})`, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 14 }}>R</div>
-          Rentimmo <span style={{ color: G, marginLeft: 4 }}>Academy</span>
-        </div>
+        <Logo dark />
         <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: CREAM, padding: "6px 12px", borderRadius: 999, fontSize: 12, fontWeight: 700, border: `1px solid rgba(26,107,51,.12)`, color: "#2D2D2D" }}>
           <span style={{ color: G }}>✓</span> Organisme QUALIOPI
         </div>
