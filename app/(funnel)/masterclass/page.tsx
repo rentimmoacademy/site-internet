@@ -94,8 +94,17 @@ export default function MasterclassPage() {
 
   if (step === "video") return (
     <div style={{ background: INK, minHeight: "100vh", fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)" }}>
+      <style>{`
+        @media (max-width: 767px) {
+          .mc-video-section { padding: 28px 16px 56px !important; }
+          .mc-video-section h1 { font-size: 22px !important; }
+          .mc-video-section p { font-size: 15px !important; }
+          .mc-video-cta { padding: 20px 16px !important; }
+          .mc-video-cta a { font-size: 15px !important; padding: 16px 18px !important; }
+        }
+      `}</style>
       <Topbar />
-      <section style={{ padding: "56px 24px 80px" }}>
+      <section className="mc-video-section" style={{ padding: "56px 24px 80px" }}>
         <div style={{ maxWidth: 980, margin: "0 auto", textAlign: "center" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(45,184,75,.12)", color: G, padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 700, marginBottom: 24 }}>
             ▶ Accès débloqué — Masterclass offerte
@@ -110,7 +119,7 @@ export default function MasterclassPage() {
           <iframe src="https://www.youtube.com/embed/QyzwMPk_4yY?rel=0&modestbranding=1&controls=1&playsinline=1&autoplay=1" title="Masterclass Rentimmo Academy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ width: "100%", height: "100%", border: 0, display: "block" }} />
         </div>
 
-        <div style={{ maxWidth: 640, margin: "0 auto", background: `rgba(45,184,75,.08)`, border: `1px solid rgba(45,184,75,.25)`, borderRadius: 24, padding: "clamp(24px,5vw,40px) clamp(18px,5vw,32px)", textAlign: "center" }}>
+        <div className="mc-video-cta" style={{ maxWidth: 640, margin: "0 auto", background: `rgba(45,184,75,.08)`, border: `1px solid rgba(45,184,75,.25)`, borderRadius: 24, padding: "clamp(24px,5vw,40px) clamp(18px,5vw,32px)", textAlign: "center" }}>
           <div style={{ fontSize: 32, marginBottom: 12 }}>📞</div>
           <h2 style={{ color: "#fff", fontSize: "clamp(20px,3vw,28px)", fontWeight: 800, marginBottom: 12, letterSpacing: "-.02em" }}>Tu veux passer à l'action ?</h2>
           <p style={{ color: "rgba(255,255,255,.6)", fontSize: 16, marginBottom: 28 }}>Réserve 45 min avec Marwan. On analyse ta situation et on voit si la formation peut t'accompagner.</p>
@@ -128,11 +137,24 @@ export default function MasterclassPage() {
 
   return (
     <div style={{ background: CREAM, minHeight: "100vh", fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)", color: INK }}>
+      <style>{`
+        @media (max-width: 767px) {
+          .mc-hero-section { padding: 28px 16px 48px !important; }
+          .mc-hero-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+          .mc-hero-grid > div:first-child h1 { font-size: 26px !important; }
+          .mc-form-card { padding: 20px 16px !important; border-radius: 18px !important; }
+          .mc-form-card h2 { font-size: 20px !important; }
+          .mc-form-card button { font-size: 15px !important; padding: 16px 18px !important; }
+          .mc-trust-bar { padding: 18px 16px !important; gap: 16px !important; }
+          .mc-testimonials-section { padding: 48px 16px !important; }
+          .mc-second-cta { padding: 44px 16px !important; }
+        }
+      `}</style>
       <Topbar />
 
       {/* HERO + FORM */}
-      <section style={{ padding: "56px 24px 72px", background: `linear-gradient(180deg,${CREAM} 0%,#fff 100%)` }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,480px),1fr))", gap: "clamp(32px,5vw,56px)", alignItems: "center" }}>
+      <section className="mc-hero-section" style={{ padding: "56px 24px 72px", background: `linear-gradient(180deg,${CREAM} 0%,#fff 100%)` }}>
+        <div className="mc-hero-grid" style={{ maxWidth: 1140, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center" }}>
 
           {/* LEFT */}
           <div>
@@ -170,7 +192,7 @@ export default function MasterclassPage() {
           </div>
 
           {/* FORM CARD */}
-          <div style={{ background: "#fff", borderRadius: 24, padding: "clamp(22px,4vw,36px) clamp(18px,4vw,32px)", boxShadow: "0 40px 80px rgba(26,107,51,.18)", border: "1px solid rgba(26,107,51,.07)", position: "relative", overflow: "hidden" }}>
+          <div className="mc-form-card" style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 40px 80px rgba(26,107,51,.18)", border: "1px solid rgba(26,107,51,.07)", position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: `linear-gradient(90deg,${GD},${G})` }} />
             <div style={{ display: "inline-block", background: "rgba(45,184,75,.12)", color: GD, padding: "5px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700, letterSpacing: ".04em", textTransform: "uppercase", marginBottom: 14 }}>
               Accès offert · 0€
@@ -219,7 +241,7 @@ export default function MasterclassPage() {
       </section>
 
       {/* TRUST BAR */}
-      <div style={{ background: "#fff", padding: "22px 24px", borderTop: "1px solid rgba(26,26,26,.06)", borderBottom: "1px solid rgba(26,26,26,.06)" }}>
+      <div className="mc-trust-bar" style={{ background: "#fff", padding: "22px 24px", borderTop: "1px solid rgba(26,26,26,.06)", borderBottom: "1px solid rgba(26,26,26,.06)" }}>
         <div style={{ maxWidth: 1140, margin: "0 auto", display: "flex", flexWrap: "wrap" as const, justifyContent: "center", gap: 32 }}>
           {[
             { n: "+6 ans", l: "d'expérience terrain" },
@@ -236,7 +258,7 @@ export default function MasterclassPage() {
       </div>
 
       {/* TESTIMONIALS */}
-      <section style={{ padding: "64px 24px", background: CREAM }}>
+      <section className="mc-testimonials-section" style={{ padding: "64px 24px", background: CREAM }}>
         <div style={{ maxWidth: 1140, margin: "0 auto" }}>
           <h2 style={{ fontSize: "clamp(22px,3vw,34px)", fontWeight: 800, letterSpacing: "-.025em", textAlign: "center", marginBottom: 10 }}>Ils sont passés à l'action</h2>
           <p style={{ textAlign: "center", color: MUTED, fontSize: 16, marginBottom: 44 }}>Témoignages réels de la communauté Rentimmo Academy</p>
@@ -259,7 +281,7 @@ export default function MasterclassPage() {
       </section>
 
       {/* SECOND CTA */}
-      <section style={{ padding: "56px 24px", background: INK, textAlign: "center" }}>
+      <section className="mc-second-cta" style={{ padding: "56px 24px", background: INK, textAlign: "center" }}>
         <div style={{ maxWidth: 640, margin: "0 auto" }}>
           <h2 style={{ color: "#fff", fontSize: "clamp(22px,3vw,32px)", fontWeight: 800, marginBottom: 12, letterSpacing: "-.02em" }}>Tu hésites encore ?<br />Inscris-toi, c'est gratuit.</h2>
           <p style={{ color: "rgba(255,255,255,.6)", marginBottom: 28, fontSize: 16 }}>
