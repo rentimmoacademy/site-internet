@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import CallFloat from "@/components/layout/CallFloat";
-import CookieBanner from "@/components/layout/CookieBanner";
+
+
+
+
 import { formations } from "@/lib/formations";
+import SiteShell from "@/components/layout/SiteShell";
 
 const SITE = "https://www.rentimmoacademy.fr";
 
@@ -164,11 +165,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-ink text-cream antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <CallFloat />
-        <CookieBanner />
+
+        <SiteShell>{children}</SiteShell>
+
+
+
       </body>
     </html>
   );
