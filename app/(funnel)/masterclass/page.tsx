@@ -110,11 +110,11 @@ export default function MasterclassPage() {
           <iframe src="https://www.youtube.com/embed/QyzwMPk_4yY?rel=0&modestbranding=1&controls=1&playsinline=1&autoplay=1" title="Masterclass Rentimmo Academy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ width: "100%", height: "100%", border: 0, display: "block" }} />
         </div>
 
-        <div style={{ maxWidth: 640, margin: "0 auto", background: `rgba(45,184,75,.08)`, border: `1px solid rgba(45,184,75,.25)`, borderRadius: 24, padding: "40px 32px", textAlign: "center" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto", background: `rgba(45,184,75,.08)`, border: `1px solid rgba(45,184,75,.25)`, borderRadius: 24, padding: "clamp(24px,5vw,40px) clamp(18px,5vw,32px)", textAlign: "center" }}>
           <div style={{ fontSize: 32, marginBottom: 12 }}>📞</div>
           <h2 style={{ color: "#fff", fontSize: "clamp(20px,3vw,28px)", fontWeight: 800, marginBottom: 12, letterSpacing: "-.02em" }}>Tu veux passer à l'action ?</h2>
           <p style={{ color: "rgba(255,255,255,.6)", fontSize: 16, marginBottom: 28 }}>Réserve 45 min avec Marwan. On analyse ta situation et on voit si la formation peut t'accompagner.</p>
-          <a href="https://cal.com/rentimmoacademy/appel-strategique" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "20px 36px", background: `linear-gradient(135deg,${GD},${G})`, color: "#fff", borderRadius: 14, fontWeight: 800, fontSize: 17, textDecoration: "none", boxShadow: "0 12px 28px rgba(45,184,75,.35)" }}>
+          <a href="https://cal.com/rentimmoacademy/appel-strategique" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "18px 28px", background: `linear-gradient(135deg,${GD},${G})`, color: "#fff", borderRadius: 14, fontWeight: 800, fontSize: "clamp(15px,2.5vw,17px)", textDecoration: "none", boxShadow: "0 12px 28px rgba(45,184,75,.35)", textAlign: "center" as const }}>
             Réserver mon appel stratégique offert →
           </a>
           <p style={{ color: "rgba(255,255,255,.35)", fontSize: 13, marginTop: 14 }}>45 min · 0€ · Sans engagement</p>
@@ -132,7 +132,7 @@ export default function MasterclassPage() {
 
       {/* HERO + FORM */}
       <section style={{ padding: "56px 24px 72px", background: `linear-gradient(180deg,${CREAM} 0%,#fff 100%)` }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center" }}>
+        <div style={{ maxWidth: 1140, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,480px),1fr))", gap: "clamp(32px,5vw,56px)", alignItems: "center" }}>
 
           {/* LEFT */}
           <div>
@@ -159,7 +159,7 @@ export default function MasterclassPage() {
             </ul>
 
             {/* Social proof mini */}
-            <div style={{ display: "flex", gap: 20, marginTop: 28, padding: "18px 0", borderTop: "1px solid rgba(26,26,26,.08)" }}>
+            <div style={{ display: "flex", gap: 20, marginTop: 28, padding: "18px 0", borderTop: "1px solid rgba(26,26,26,.08)", flexWrap: "wrap" as const }}>
               {[{ n: "+6 ans", l: "d'expérience" }, { n: "Dizaines", l: "de logements" }, { n: "QUALIOPI", l: "certifié" }].map(({ n, l }) => (
                 <div key={l} style={{ textAlign: "center" }}>
                   <div style={{ fontSize: 20, fontWeight: 800, color: GD }}>{n}</div>
@@ -170,7 +170,7 @@ export default function MasterclassPage() {
           </div>
 
           {/* FORM CARD */}
-          <div style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 40px 80px rgba(26,107,51,.18)", border: "1px solid rgba(26,107,51,.07)", position: "relative", overflow: "hidden" }}>
+          <div style={{ background: "#fff", borderRadius: 24, padding: "clamp(22px,4vw,36px) clamp(18px,4vw,32px)", boxShadow: "0 40px 80px rgba(26,107,51,.18)", border: "1px solid rgba(26,107,51,.07)", position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: `linear-gradient(90deg,${GD},${G})` }} />
             <div style={{ display: "inline-block", background: "rgba(45,184,75,.12)", color: GD, padding: "5px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700, letterSpacing: ".04em", textTransform: "uppercase", marginBottom: 14 }}>
               Accès offert · 0€
