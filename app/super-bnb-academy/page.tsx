@@ -456,18 +456,48 @@ export default function SuperBnbAcademyPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Course",
-            name: "Super BnB Academy",
-            description:
-              "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On automatise ton logement avec toi : annonce, messages, pricing, réservation directe.",
-            provider: {
-              "@type": "EducationalOrganization",
-              "@id": "https://www.rentimmoacademy.fr/#organization",
-              name: "Rentimmo Academy",
-              url: "https://www.rentimmoacademy.fr",
-              sameAs: "https://www.rentimmoacademy.fr",
-            },
-            timeRequired: "P30D",
+            "@graph": [
+              {
+                "@type": "Course",
+                "@id": "https://www.rentimmoacademy.fr/super-bnb-academy#course",
+                name: "Super BnB Academy",
+                description:
+                  "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On automatise ton logement avec toi : annonce, messages, pricing, réservation directe.",
+                url: "https://www.rentimmoacademy.fr/super-bnb-academy",
+                provider: {
+                  "@type": "EducationalOrganization",
+                  "@id": "https://www.rentimmoacademy.fr/#organization",
+                  name: "Rentimmo Academy",
+                  url: "https://www.rentimmoacademy.fr",
+                },
+                timeRequired: "P30D",
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "4.93",
+                  bestRating: "5",
+                  worstRating: "1",
+                  ratingCount: "20",
+                },
+                offers: {
+                  "@type": "Offer",
+                  url: "https://cal.com/rentimmoacademy/superbnbacademy",
+                  availability: "https://schema.org/LimitedAvailability",
+                  priceCurrency: "EUR",
+                  category: "Coaching individuel",
+                },
+              },
+              {
+                "@type": "FAQPage",
+                mainEntity: faq.map((item) => ({
+                  "@type": "Question",
+                  name: item.q,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: item.a,
+                  },
+                })),
+              },
+            ],
           }),
         }}
       />
