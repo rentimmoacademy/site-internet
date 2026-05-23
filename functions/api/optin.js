@@ -79,10 +79,14 @@ export async function onRequestPost({ request, env }) {
 
   // SetSmart WA — déclenche séquence post-optin si numéro présent
   if (phone) {
-    fetch('https://setsmart.io/api/optin?client=rentimmoacademy', {
+    const ssKey = env.SETSMART_API_KEY;
+    fetch('https://setsmart.io/api/optin', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ recipient_number: phone, name: firstName.trim(), email }),
+      headers: {
+        'Content-Type': 'application/json',
+        ...(ssKey ? { 'Authorization': `Bearer ${ssKey}` } : {}),
+      },
+      body: JSON.stringify({ phone, name: firstName.trim(), email, tags: ['optin masterclass'] }),
     }).catch(() => {}); // fire & forget, pas bloquant
   }
 
