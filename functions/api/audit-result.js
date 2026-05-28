@@ -342,23 +342,23 @@ Réponds UNIQUEMENT avec le JSON ci-dessous, sans texte avant ni après, sans ma
   ]
 }`;
 
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 4096,
-      messages: [{ role: 'user', content: prompt }],
-    }),
-  });
+  const r = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { maxOutputTokens: 8192, temperature: 0.2 },
+      }),
+    }
+  );
 
-  if (!r.ok) throw new Error(`Claude API error: ${r.status}`);
+  if (!r.ok) throw new Error(`Gemini API error: ${r.status} ${await r.text()}`);
   const d = await r.json();
-  return extractJSON(d.content[0].text);
+  const text = d.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!text) throw new Error('Réponse Gemini vide');
+  return extractJSON(text);
 }
 
 // ── Main handler ───────────────────────────────────────────────────────────
@@ -368,7 +368,7 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestGet({ request, env }) {
-  const { APIFY_API_TOKEN, ANTHROPIC_API_KEY } = env;
+  const { APIFY_API_TOKEN, GEMINI_API_KEY } = env;
   const p = new URL(request.url).searchParams;
 
   const listingRunId = p.get('listingRunId');
@@ -456,8 +456,8 @@ export async function onRequestGet({ request, env }) {
       // Si FAILED : on continue sans benchmark (dégradé)
     }
 
-    // ── Phase 4 : Analyse Claude ──
-    const audit = await analyzeWithClaude(listing, competitors, platform, ANTHROPIC_API_KEY);
+    // ── Phase 4 : Analyse Gemini ──
+    const audit = await analyzeWithClaude(listing, competitors, platform, GEMINI_API_KEY);
 
     // Injecter la coverPhotoUrl depuis listing si manquante dans audit
     if (!audit.listing.coverPhotoUrl) audit.listing.coverPhotoUrl = listing.coverPhotoUrl;
