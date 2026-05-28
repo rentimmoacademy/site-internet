@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import CallFloat from "./CallFloat";
 import CookieBanner from "./CookieBanner";
 
-const FUNNEL_ROUTES = ["/masterclass"];
+const FUNNEL_ROUTES = ["/masterclass", "/outils/audit-annonce", "/super-bnb-academy/audit"];
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
