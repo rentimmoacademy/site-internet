@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Annonce LCD — Outil interne Rentimmo</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#F7F6F2;color:#1A1A1A;min-height:100vh}
+.hidden{display:none!important}
+
+/* ── Input screen ── */
+.screen-center{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.input-card{background:#fff;border-radius:20px;box-shadow:0 4px 40px rgba(0,0,0,.08);padding:52px 44px;width:100%;max-width:520px;text-align:center}
+.badge{display:inline-block;font-size:11px;font-weight:700;color:#2DB84B;text-transform:uppercase;letter-spacing:.1em;background:#F0FDF4;padding:5px 14px;border-radius:20px;margin-bottom:24px}
+.input-card h1{font-size:28px;font-weight:800;margin-bottom:10px;line-height:1.2}
+.input-card>.sub{color:#6B7280;font-size:15px;margin-bottom:32px}
+.platform-toggle{display:flex;background:#F3F4F6;border-radius:12px;padding:4px;margin-bottom:20px;gap:4px}
+.platform-toggle button{flex:1;padding:11px 8px;border:none;border-radius:9px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:#6B7280}
+.platform-toggle button.active{background:#fff;color:#1A1A1A;box-shadow:0 1px 8px rgba(0,0,0,.1)}
+.url-input{width:100%;border:1.5px solid #E5E3DE;border-radius:12px;padding:15px 18px;font-family:inherit;font-size:15px;outline:none;transition:border-color .2s;margin-bottom:14px}
+.url-input:focus{border-color:#2DB84B}
+.btn-primary{width:100%;padding:15px;background:#2DB84B;color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-primary:hover{background:#239E3D;transform:translateY(-1px);box-shadow:0 4px 16px rgba(45,184,75,.3)}
+.btn-primary:disabled{background:#9CA3AF;cursor:not-allowed;transform:none;box-shadow:none}
+.hint{font-size:13px;color:#9CA3AF;margin-top:14px}
+.err{background:#FEE2E2;color:#DC2626;border-radius:10px;padding:12px 16px;font-size:14px;font-weight:500;margin-bottom:14px;text-align:left;display:none}
+
+/* ── Loading screen ── */
+.loading-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.loading-card{background:#fff;border-radius:20px;box-shadow:0 4px 40px rgba(0,0,0,.08);padding:44px;width:100%;max-width:440px}
+.loading-card h2{font-size:22px;font-weight:800;margin-bottom:6px}
+.loading-msg{color:#6B7280;font-size:14px;margin-bottom:32px;min-height:20px}
+.steps{list-style:none;display:flex;flex-direction:column;gap:10px}
+.step{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:12px;background:#F9F9F8;transition:all .3s}
+.step.active{background:#F0FDF4;border:1.5px solid rgba(45,184,75,.2)}
+.step.done{background:#F0FDF4}
+.step-ico{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700}
+.step-ico.pending{background:#F3F4F6;color:#D1D5DB;font-size:10px}
+.step-ico.active{background:#DCFCE7;color:#16A34A;animation:spin 1.2s linear infinite}
+.step-ico.done{background:#2DB84B;color:#fff}
+.step-lbl{font-size:14px;font-weight:600;color:#9CA3AF}
+.step.active .step-lbl,.step.done .step-lbl{color:#1A1A1A}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.cancel-btn{margin-top:24px;background:none;border:none;color:#9CA3AF;font-size:13px;cursor:pointer;font-family:inherit;padding:0}
+.cancel-btn:hover{color:#6B7280}
+
+/* ── Results ── */
+.results-screen{min-height:100vh;background:#F7F6F2;padding:28px 16px 80px}
+.results-wrap{max-width:880px;margin:0 auto}
+
+/* Header */
+.res-header{background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(0,0,0,.06);padding:28px;display:flex;gap:22px;align-items:flex-start;margin-bottom:20px}
+.res-photo{width:150px;height:108px;object-fit:cover;border-radius:12px;flex-shrink:0;background:#F3F4F6}
+.res-info{flex:1;min-width:0}
+.res-title{font-size:20px;font-weight:800;line-height:1.3;margin-bottom:6px}
+.res-loc{font-size:14px;color:#6B7280;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.res-meta{display:flex;gap:16px;font-size:14px;flex-wrap:wrap}
+.res-meta span{display:flex;align-items:center;gap:5px;color:#374151}
+.res-link{color:#2DB84B;text-decoration:none;font-size:13px;font-weight:600;margin-top:10px;display:inline-flex;align-items:center;gap:4px}
+.res-link:hover{text-decoration:underline}
+.res-summary{background:#F9F9F8;border-radius:10px;padding:10px 14px;font-size:13px;color:#374151;margin-top:12px;font-style:italic;line-height:1.6}
+.res-gauge{flex-shrink:0;text-align:center}
+.res-grade-lbl{font-size:13px;font-weight:700;margin-top:2px}
+
+/* Tabs */
+.tab-nav{display:flex;background:#fff;border-radius:14px;padding:5px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:20px;gap:4px}
+.tab-btn{flex:1;padding:12px 8px;border:none;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:#6B7280}
+.tab-btn.active{background:#1A1A1A;color:#fff}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Résumé tab */
+.resume-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:18px;margin-bottom:18px}
+.card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9CA3AF;margin-bottom:18px}
+.grade-pill{display:inline-block;padding:5px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-top:10px}
+.rev-block{margin-top:18px;padding-top:16px;border-top:1px solid #F3F4F6}
+.rev-row{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;color:#374151}
+.rev-row b{font-weight:700;color:#1A1A1A}
+.rev-gain{font-size:20px;font-weight:800;color:#2DB84B;margin-top:8px}
+.rev-basis{font-size:11px;color:#9CA3AF;margin-top:4px;line-height:1.4}
+
+/* Action items */
+.action-item{padding:14px;border-radius:12px;margin-bottom:10px}
+.action-item:last-child{margin-bottom:0}
+.action-item.high{background:#FFF5F5}
+.action-item.medium{background:#FFFBEB}
+.action-top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.act-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.act-badge.high{color:#DC2626}
+.act-badge.medium{color:#D97706}
+.act-cat{font-size:11px;color:#9CA3AF;font-weight:600}
+.act-text{font-size:14px;font-weight:500;color:#1A1A1A;line-height:1.5}
+
+/* Competitor table */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px 12px;color:#9CA3AF;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #F3F4F6}
+td{padding:10px 12px;border-bottom:1px solid #F9F9F8}
+tr:last-child td{border-bottom:none}
+tr.hl td{background:#F0FDF4;font-weight:700}
+.comp-link{color:#2DB84B;text-decoration:none;font-size:11px}
+.comp-link:hover{text-decoration:underline}
+
+/* Diagnostic tab */
+.cat-card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:14px}
+.cat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cat-left{display:flex;align-items:center;gap:10px}
+.cat-ico{font-size:22px}
+.cat-lbl{font-size:15px;font-weight:700}
+.cat-right{text-align:right}
+.cat-num{font-size:24px;font-weight:800;line-height:1}
+.cat-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-top:4px}
+.bar-track{height:8px;background:#F3F4F6;border-radius:4px;overflow:hidden;margin-bottom:18px}
+.bar-fill{height:100%;border-radius:4px;transition:width 1.2s ease}
+.findings{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.findings li{font-size:13px;color:#374151;padding-left:16px;position:relative;line-height:1.6}
+.findings li::before{content:'•';position:absolute;left:0;color:#9CA3AF}
+.reco{background:#F9F9F8;border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start}
+.impact{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.impact.high{background:#FEE2E2;color:#DC2626}
+.impact.medium{background:#FEF3C7;color:#D97706}
+.impact.low{background:#DBEAFE;color:#2563EB}
+.reco-txt{font-size:13px;font-weight:500;color:#1A1A1A;line-height:1.6}
+
+/* Plan tab */
+.plan-sec{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:14px}
+.plan-sec h3{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.title-var{background:#F9F9F8;border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.title-var.primary{background:#F0FDF4;border:1.5px solid #BBF7D0}
+.title-txt{font-size:14px;font-weight:600;color:#1A1A1A;line-height:1.5;flex:1}
+.copy-btn{font-size:12px;font-weight:600;color:#2DB84B;background:none;border:1.5px solid #2DB84B;border-radius:8px;padding:6px 12px;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:inherit;flex-shrink:0}
+.copy-btn:hover{background:#2DB84B;color:#fff}
+.copy-btn.ok{background:#22C55E;color:#fff;border-color:#22C55E}
+.desc-box{background:#F9F9F8;border-radius:10px;padding:16px;font-size:13px;color:#374151;line-height:1.8;white-space:pre-wrap;margin-bottom:12px}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:10px}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F9F9F8;border-radius:10px;cursor:pointer;transition:all .2s}
+.chk:hover{background:#F0FDF4}
+.chk-box{width:20px;height:20px;border:2px solid #D1D5DB;border-radius:6px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:12px;font-weight:700;color:transparent}
+.chk.checked .chk-box{background:#2DB84B;border-color:#2DB84B;color:#fff}
+.chk.checked .chk-txt{text-decoration:line-through;color:#9CA3AF}
+.chk-n{font-size:12px;font-weight:700;color:#9CA3AF;min-width:18px;margin-top:2px;text-align:center}
+.chk-txt{font-size:14px;font-weight:500;color:#1A1A1A;line-height:1.5}
+
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:#6B7280;font-size:14px;font-weight:600;background:#fff;border:none;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:12px 20px;cursor:pointer;font-family:inherit;margin-top:4px;transition:all .2s}
+.back-btn:hover{color:#1A1A1A;transform:translateY(-1px)}
+
+@media(max-width:640px){
+  .input-card{padding:32px 20px}
+  .res-header{flex-wrap:wrap}
+  .res-photo{width:100%;height:160px}
+  .res-gauge{width:100%}
+  .resume-grid{grid-template-columns:1fr}
+  .tab-btn{font-size:13px;padding:10px 4px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── SAISIE ── -->
+<div id="s-input" class="screen-center">
+  <div class="input-card">
+    <div class="badge">Outil interne · Rentimmo Academy</div>
+    <h1>Audit Annonce LCD</h1>
+    <p class="sub">Scoring complet, benchmark concurrents et contenu optimisé généré par IA.</p>
+    <div id="err" class="err"></div>
+    <div class="platform-toggle">
+      <button id="btn-air" class="active" onclick="setPlatform('airbnb')">🏠 Airbnb</button>
+      <button id="btn-bkg" onclick="setPlatform('booking')">🔵 Booking.com</button>
+    </div>
+    <input id="url-in" type="url" class="url-input" placeholder="https://www.airbnb.fr/rooms/...">
+    <button class="btn-primary" id="go-btn" onclick="startAudit()">Analyser l'annonce →</button>
+    <p class="hint">URL publique · Résultats en 60–90 secondes</p>
+  </div>
+</div>
+
+<!-- ── CHARGEMENT ── -->
+<div id="s-load" class="loading-wrap hidden">
+  <div class="loading-card">
+    <h2>Analyse en cours…</h2>
+    <div class="loading-msg" id="load-msg">Démarrage</div>
+    <ul class="steps">
+      <li class="step done" data-step="start">
+        <div class="step-ico done">✓</div>
+        <span class="step-lbl">Annonce détectée</span>
+      </li>
+      <li class="step pending" data-step="listing">
+        <div class="step-ico pending">·</div>
+        <span class="step-lbl">Extraction de l'annonce</span>
+      </li>
+      <li class="step pending" data-step="competitors">
+        <div class="step-ico pending">·</div>
+        <span class="step-lbl">Benchmark concurrents</span>
+      </li>
+      <li class="step pending" data-step="analyzing">
+        <div class="step-ico pending">·</div>
+        <span class="step-lbl">Analyse IA & scoring</span>
+      </li>
+    </ul>
+    <button class="cancel-btn" onclick="cancelAudit()">Annuler</button>
+  </div>
+</div>
+
+<!-- ── RÉSULTATS ── -->
+<div id="s-res" class="results-screen hidden">
+  <div class="results-wrap">
+    <div id="res-header" class="res-header"></div>
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="setTab(0)">Résumé</button>
+      <button class="tab-btn" onclick="setTab(1)">Diagnostic</button>
+      <button class="tab-btn" onclick="setTab(2)">Plan d'action</button>
+    </div>
+    <div id="t0" class="tab-content active"></div>
+    <div id="t1" class="tab-content"></div>
+    <div id="t2" class="tab-content"></div>
+  </div>
+</div>
+
+<script>
+// ── État ───────────────────────────────────────────────────────────────────
+const S = { platform:'airbnb', url:'', lid:null, cid:null, polling:false };
+
+const $=id=>document.getElementById(id);
+const show=id=>$(id).classList.remove('hidden');
+const hide=id=>$(id).classList.add('hidden');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+// ── Couleurs score ─────────────────────────────────────────────────────────
+const C=s=>s>=85?'#22C55E':s>=70?'#84CC16':s>=55?'#F59E0B':s>=40?'#F97316':'#EF4444';
+const L=s=>s>=85?'Excellent':s>=70?'Bien':s>=55?'Correct':s>=40?'À améliorer':'Critique';
+const BG=s=>s>=85?'#DCFCE7':s>=70?'#D9F99D':s>=55?'#FEF3C7':s>=40?'#FFEDD5':'#FEE2E2';
+
+// ── Gauge SVG ──────────────────────────────────────────────────────────────
+function gauge(score, color) {
+  const r=55,cx=80,cy=74,total=0.75*2*Math.PI*r;
+  const fill=(score/100)*total;
+  const a1=135*Math.PI/180,a2=45*Math.PI/180;
+  const x1=(cx+r*Math.cos(a1)).toFixed(1),y1=(cy+r*Math.sin(a1)).toFixed(1);
+  const x2=(cx+r*Math.cos(a2)).toFixed(1),y2=(cy+r*Math.sin(a2)).toFixed(1);
+  return `<svg viewBox="0 0 160 130" width="160" height="130" style="overflow:visible">
+    <path d="M${x1},${y1} A${r},${r} 0 1,1 ${x2},${y2}" fill="none" stroke="#E5E3DE" stroke-width="10" stroke-linecap="round"/>
+    <path d="M${x1},${y1} A${r},${r} 0 1,1 ${x2},${y2}" fill="none" stroke="${color}" stroke-width="10" stroke-linecap="round"
+      stroke-dasharray="${fill.toFixed(1)} ${total.toFixed(1)}"/>
+    <text x="${cx}" y="${cy+8}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="40" font-weight="800" fill="${color}">${score}</text>
+    <text x="${cx}" y="${cy+26}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="12" fill="#9CA3AF">/ 100</text>
+  </svg>`;
+}
+
+// ── Platform toggle ────────────────────────────────────────────────────────
+function setPlatform(p){
+  S.platform=p;
+  $('btn-air').className=p==='airbnb'?'active':'';
+  $('btn-bkg').className=p==='booking'?'active':'';
+  $('url-in').placeholder=p==='airbnb'?'https://www.airbnb.fr/rooms/...':'https://www.booking.com/hotel/fr/...html';
+}
+
+// ── Démarrer analyse ───────────────────────────────────────────────────────
+async function startAudit(){
+  const url=$('url-in').value.trim();
+  const errBox=$('err');
+  errBox.style.display='none';
+
+  if(!url){showErr('Entrez une URL valide.');return}
+  if(S.platform==='airbnb'&&!url.includes('airbnb.')){showErr("Cette URL ne ressemble pas à une annonce Airbnb.");return}
+  if(S.platform==='booking'&&!url.includes('booking.com')){showErr("Cette URL ne ressemble pas à une annonce Booking.com.");return}
+
+  S.url=url;S.lid=null;S.cid=null;S.polling=true;
+  $('go-btn').disabled=true;
+  hide('s-input');show('s-load');
+  setStep('listing','active');
+  $('load-msg').textContent='Démarrage du scraping…';
+
+  try{
+    const r=await fetch('/api/start-audit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url,platform:S.platform})});
+    const d=await r.json();
+    if(!r.ok||d.error)throw new Error(d.error||'Erreur au démarrage');
+    S.lid=d.listingRunId;
+    await pollLoop();
+  }catch(e){
+    showErr(e.message);
+    hide('s-load');show('s-input');
+    $('go-btn').disabled=false;
+  }
+}
+
+// ── Polling ────────────────────────────────────────────────────────────────
+async function pollLoop(){
+  let n=0;
+  while(S.polling&&n<90){
+    await sleep(3000);n++;
+    try{
+      const p=new URLSearchParams({listingRunId:S.lid,platform:S.platform,url:S.url});
+      if(S.cid)p.set('competitorRunId',S.cid);
+      const r=await fetch('/api/audit-result?'+p);
+      const d=await r.json();
+
+      if(d.status==='RUNNING'){
+        setStep(d.phase||'listing','active');
+        $('load-msg').textContent=d.message||'En cours…';
+      }else if(d.status==='COMPETITORS_STARTED'){
+        S.cid=d.competitorRunId;
+        setStep('competitors','active');
+        $('load-msg').textContent=d.message||'Analyse des concurrents…';
+      }else if(d.status==='DONE'){
+        S.polling=false;
+        setStep('analyzing','done');
+        $('load-msg').textContent='Rapport prêt !';
+        await sleep(500);
+        showResults(d.audit);
+        return;
+      }else if(d.status==='ERROR'){
+        throw new Error(d.message||"Erreur d'analyse");
+      }
+    }catch(e){
+      S.polling=false;
+      showErr(e.message);
+      hide('s-load');show('s-input');
+      $('go-btn').disabled=false;
+      return;
+    }
+  }
+  S.polling=false;
+  showErr("Délai d'attente dépassé. Réessayez avec une autre annonce.");
+  hide('s-load');show('s-input');
+  $('go-btn').disabled=false;
+}
+
+// ── Progress steps ─────────────────────────────────────────────────────────
+function setStep(id,state){
+  const ORDER=['listing','competitors','analyzing'];
+  const idx=ORDER.indexOf(id);
+  ORDER.forEach((s,i)=>{
+    const el=document.querySelector(`[data-step="${s}"]`);
+    if(!el)return;
+    const ico=el.querySelector('.step-ico');
+    el.className='step';
+    if(i<idx){el.classList.add('done');ico.className='step-ico done';ico.textContent='✓'}
+    else if(i===idx&&state==='done'){el.classList.add('done');ico.className='step-ico done';ico.textContent='✓'}
+    else if(i===idx){el.classList.add('active');ico.className='step-ico active';ico.textContent='↻'}
+    else{el.classList.add('pending');ico.className='step-ico pending';ico.textContent='·'}
+  });
+}
+
+function cancelAudit(){S.polling=false;hide('s-load');show('s-input');$('go-btn').disabled=false}
+
+// ── Afficher résultats ─────────────────────────────────────────────────────
+function showResults(a){
+  hide('s-load');show('s-res');
+  const color=a.gradeColor||C(a.globalScore);
+  const l=a.listing||{};
+
+  $('res-header').innerHTML=`
+    ${l.coverPhotoUrl?`<img class="res-photo" src="${esc(l.coverPhotoUrl)}" alt="" onerror="this.style.display='none'">`:''}
+    <div class="res-info">
+      <div class="res-title">${esc(l.title||'Annonce')}</div>
+      <div class="res-loc">📍 ${esc(l.location||'')}</div>
+      <div class="res-meta">
+        ${l.rating?`<span>⭐ ${l.rating}${l.reviewsCount?' ('+l.reviewsCount+' avis)':''}</span>`:''}
+        ${l.pricePerNight?`<span>💰 ${l.pricePerNight}${l.currency||'€'}/nuit</span>`:''}
+        ${l.photosCount?`<span>📸 ${l.photosCount} photos</span>`:''}
+      </div>
+      ${l.url?`<a href="${esc(l.url)}" target="_blank" rel="noopener" class="res-link">Voir l'annonce ↗</a>`:''}
+      ${a.summary?`<div class="res-summary">${esc(a.summary)}</div>`:''}
+    </div>
+    <div class="res-gauge">
+      ${gauge(a.globalScore,color)}
+      <div class="res-grade-lbl" style="color:${color}">${esc(a.grade)} — ${esc(a.gradeFr)}</div>
+    </div>`;
+
+  renderResume(a);
+  renderDiagnostic(a);
+  renderPlan(a);
+  window.scrollTo(0,0);
+}
+
+// ── Onglet Résumé ──────────────────────────────────────────────────────────
+function renderResume(a){
+  const color=a.gradeColor||C(a.globalScore);
+  const rev=a.revenueProjection||{};
+  const actions=(a.topActions||[]).slice(0,4);
+  const comps=(a.competitors||[]).filter(c=>c.title);
+
+  const actHtml=actions.map(ac=>`
+    <div class="action-item ${ac.impact.toLowerCase()}">
+      <div class="action-top">
+        <span class="act-badge ${ac.impact.toLowerCase()}">${ac.impact==='HIGH'?'⚠ IMPACT ÉLEVÉ':'◎ IMPACT MOYEN'}</span>
+        <span class="act-cat">${esc(ac.category||'')}</span>
+      </div>
+      <div class="act-text">${ac.icon||''} ${esc(ac.action||'')}</div>
+    </div>`).join('');
+
+  let compHtml='';
+  if(comps.length){
+    const l=a.listing||{};
+    compHtml=`
+      <div class="card" style="margin-top:18px">
+        <div class="card-title">Benchmark concurrents (${comps.length} annonces)</div>
+        <table>
+          <thead><tr><th>Annonce</th><th>Prix/nuit</th><th>Note</th><th>Avis</th><th>Photos</th></tr></thead>
+          <tbody>
+            <tr class="hl">
+              <td>✦ Votre annonce</td>
+              <td>${l.pricePerNight?l.pricePerNight+'€':'—'}</td>
+              <td>${l.rating?'⭐ '+l.rating:'—'}</td>
+              <td>${l.reviewsCount||'—'}</td>
+              <td>${l.photosCount||'—'}</td>
+            </tr>
+            ${comps.map(c=>`<tr>
+              <td>${esc((c.title||'').slice(0,42))}${(c.title||'').length>42?'…':''}</td>
+              <td>${c.pricePerNight?c.pricePerNight+'€':'—'}</td>
+              <td>${c.rating?'⭐ '+c.rating:'—'}</td>
+              <td>${c.reviewsCount||'—'}</td>
+              <td>${c.photosCount||'—'}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`;
+  }
+
+  $('t0').innerHTML=`
+    <div class="resume-grid">
+      <div class="card">
+        <div class="card-title">Score global</div>
+        <div style="text-align:center">${gauge(a.globalScore,color)}</div>
+        <div style="text-align:center"><span class="grade-pill" style="background:${BG(a.globalScore)};color:${color}">${esc(a.gradeFr||'')}</span></div>
+        ${(rev.currentOccupancy||rev.potentialGain)?`
+        <div class="rev-block">
+          <div class="card-title">Projection revenus</div>
+          ${rev.currentOccupancy?`<div class="rev-row"><span>Taux actuel est.</span><b>${esc(rev.currentOccupancy)}</b></div>`:''}
+          ${rev.targetOccupancy?`<div class="rev-row"><span>Après optimisation</span><b>${esc(rev.targetOccupancy)}</b></div>`:''}
+          ${rev.potentialGain?`<div class="rev-gain">${esc(rev.potentialGain)}/mois</div>`:''}
+          ${rev.basis?`<div class="rev-basis">${esc(rev.basis)}</div>`:''}
+        </div>`:''}
+      </div>
+      <div class="card">
+        <div class="card-title">Top actions prioritaires</div>
+        ${actHtml||'<p style="color:#9CA3AF;font-size:14px">Aucune action définie</p>'}
+      </div>
+    </div>
+    ${compHtml}`;
+}
+
+// ── Onglet Diagnostic ──────────────────────────────────────────────────────
+function renderDiagnostic(a){
+  const cats=a.categories||[];
+  $('t1').innerHTML=cats.map(cat=>{
+    const color=cat.gradeColor||C(cat.score);
+    const bg=BG(cat.score);
+    const reco=cat.recommendation||{};
+    const impCls=(reco.impact||'low').toLowerCase();
+    const impLbl=reco.impact==='HIGH'?'Impact élevé':reco.impact==='MEDIUM'?'Impact moyen':'Impact faible';
+    return `
+      <div class="cat-card">
+        <div class="cat-head">
+          <div class="cat-left"><span class="cat-ico">${cat.icon||'📊'}</span><span class="cat-lbl">${esc(cat.label||'')}</span></div>
+          <div class="cat-right">
+            <div class="cat-num" style="color:${color}">${cat.score}</div>
+            <span class="cat-badge" style="background:${bg};color:${color}">${esc(cat.gradeLabel||L(cat.score))}</span>
+          </div>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:${cat.score}%;background:${color}"></div></div>
+        <ul class="findings">${(cat.findings||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+        ${reco.action?`<div class="reco"><span class="impact ${impCls}">${impLbl}</span><span class="reco-txt">${esc(reco.action)}</span></div>`:''}
+      </div>`;
+  }).join('')||'<p style="color:#9CA3AF;padding:20px">Aucune donnée de diagnostic.</p>';
+}
+
+// ── Onglet Plan d'action ───────────────────────────────────────────────────
+function renderPlan(a){
+  const gen=a.generatedContent||{};
+  const main=gen.optimizedTitle||'';
+  const vars=gen.optimizedTitleVariants||[];
+  const desc=gen.optimizedDescriptionOpening||'';
+  const impr=gen.keyImprovements||[];
+
+  let titlesHtml='';
+  if(main)titlesHtml+=`<div class="title-var primary"><span class="title-txt">✦ ${esc(main)}</span><button class="copy-btn" onclick="cp(${JSON.stringify(main)},this)">Copier</button></div>`;
+  vars.forEach(v=>{titlesHtml+=`<div class="title-var"><span class="title-txt">${esc(v)}</span><button class="copy-btn" onclick="cp(${JSON.stringify(v)},this)">Copier</button></div>`});
+
+  $('t2').innerHTML=`
+    ${titlesHtml?`<div class="plan-sec"><h3>✏️ Titre optimisé</h3>${titlesHtml}</div>`:''}
+    ${desc?`<div class="plan-sec">
+      <h3>📝 Description (style fiche technique 2026)</h3>
+      <div class="desc-box">${esc(desc)}</div>
+      <button class="copy-btn" onclick="cp(${JSON.stringify(desc)},this)">Copier</button>
+    </div>`:''}
+    ${impr.length?`<div class="plan-sec">
+      <h3>✅ Checklist prioritaire</h3>
+      <ul class="checklist">${impr.map((it,i)=>`
+        <li class="chk" onclick="this.classList.toggle('checked')">
+          <div class="chk-box">✓</div>
+          <span class="chk-n">${i+1}</span>
+          <span class="chk-txt">${esc(it)}</span>
+        </li>`).join('')}
+      </ul>
+    </div>`:''}
+    <button class="back-btn" onclick="reset()">← Analyser une autre annonce</button>`;
+}
+
+// ── Onglets ────────────────────────────────────────────────────────────────
+function setTab(i){
+  document.querySelectorAll('.tab-btn').forEach((b,j)=>b.classList.toggle('active',i===j));
+  document.querySelectorAll('.tab-content').forEach((c,j)=>c.classList.toggle('active',i===j));
+}
+
+// ── Utils ──────────────────────────────────────────────────────────────────
+function showErr(msg){const b=$('err');b.textContent=msg;b.style.display='block'}
+function esc(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+async function cp(txt,btn){
+  try{await navigator.clipboard.writeText(txt);const o=btn.textContent;btn.textContent='✓ Copié';btn.classList.add('ok');setTimeout(()=>{btn.textContent=o;btn.classList.remove('ok')},2000)}catch{}
+}
+function reset(){S.url='';S.lid=null;S.cid=null;$('url-in').value='';hide('s-res');show('s-input');$('go-btn').disabled=false;window.scrollTo(0,0)}
+
+// Init
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&!$('s-input').classList.contains('hidden'))startAudit()});
+setPlatform('airbnb');
+</script>
+</body>
+</html>

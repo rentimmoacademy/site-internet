@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Annonce Gratuit — Super BnB Academy</title>
+<meta name="description" content="Obtenez votre audit d'annonce Airbnb ou Booking.com gratuit : score, benchmark concurrents et recommandations IA en 60 secondes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#F7F6F2;color:#1A1A1A;min-height:100vh}
+.hidden{display:none!important}
+
+/* ── Header ── */
+.site-header{padding:18px 24px;display:flex;align-items:center;justify-content:space-between;background:#fff;box-shadow:0 1px 0 #E5E3DE}
+.logo-wrap{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-ico{width:36px;height:36px;background:linear-gradient(135deg,#1A6B33,#2DB84B);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:800}
+.logo-name{font-size:15px;font-weight:800;color:#1A1A1A}
+.logo-tag{font-size:11px;color:#6B7280;font-weight:500}
+.header-cta{font-size:13px;font-weight:600;color:#2DB84B;text-decoration:none;display:none}
+@media(min-width:640px){.header-cta{display:block}}
+
+/* ── Landing screen ── */
+.screen-center{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.input-card{background:#fff;border-radius:24px;box-shadow:0 8px 48px rgba(0,0,0,.1);padding:52px 48px;width:100%;max-width:560px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#2DB84B;text-transform:uppercase;letter-spacing:.08em;background:#F0FDF4;border:1px solid #BBF7D0;padding:6px 16px;border-radius:20px;margin-bottom:24px}
+.input-card h1{font-size:30px;font-weight:800;line-height:1.2;margin-bottom:12px}
+.input-card h1 span{color:#2DB84B}
+.input-card .sub{color:#6B7280;font-size:15px;line-height:1.6;margin-bottom:32px}
+.platform-toggle{display:flex;background:#F3F4F6;border-radius:12px;padding:4px;margin-bottom:20px;gap:4px}
+.platform-toggle button{flex:1;padding:12px 8px;border:none;border-radius:9px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:#6B7280}
+.platform-toggle button.active{background:#fff;color:#1A1A1A;box-shadow:0 1px 8px rgba(0,0,0,.1)}
+.url-input{width:100%;border:1.5px solid #E5E3DE;border-radius:12px;padding:16px 18px;font-family:inherit;font-size:15px;outline:none;transition:border-color .2s;margin-bottom:14px}
+.url-input:focus{border-color:#2DB84B}
+.btn-green{width:100%;padding:16px;background:linear-gradient(135deg,#1A6B33,#2DB84B);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 20px rgba(45,184,75,.25)}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,184,75,.35)}
+.btn-green:disabled{background:#9CA3AF;cursor:not-allowed;transform:none;box-shadow:none}
+.trust-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:20px;flex-wrap:wrap}
+.trust-item{font-size:12px;color:#9CA3AF;display:flex;align-items:center;gap:5px}
+.err{background:#FEE2E2;color:#DC2626;border-radius:10px;padding:12px 16px;font-size:14px;font-weight:500;margin-bottom:14px;text-align:left;display:none}
+
+/* ── Split screen (loading + survey) ── */
+.split-screen{min-height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:768px){.split-screen{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
+
+/* LEFT: progress */
+.split-left{background:#1A1A1A;padding:40px;display:flex;flex-direction:column;gap:0}
+.split-left .ttl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#5FD87A;margin-bottom:12px}
+.split-left h2{font-size:22px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:32px}
+.progress-steps{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ps{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:12px;background:rgba(255,255,255,.05);transition:all .3s}
+.ps.active{background:rgba(45,184,75,.12);border:1px solid rgba(45,184,75,.25)}
+.ps.done{background:rgba(45,184,75,.08)}
+.ps-ico{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.ps-ico.pending{background:rgba(255,255,255,.08);color:#6B7280;font-size:9px}
+.ps-ico.active{background:#2DB84B22;color:#5FD87A;animation:spin 1.2s linear infinite}
+.ps-ico.done{background:#2DB84B;color:#fff}
+.ps-lbl{font-size:13px;font-weight:600;color:#6B7280}
+.ps.active .ps-lbl,.ps.done .ps-lbl{color:#E5E3DE}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.progress-bar-wrap{margin-top:32px}
+.progress-bar-track{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,#1A6B33,#5FD87A);border-radius:2px;transition:width 3s linear;width:5%}
+.progress-pct{font-size:12px;color:#6B7280;margin-top:8px;text-align:right}
+
+/* RIGHT: survey */
+.split-right{background:#fff;padding:40px;display:flex;flex-direction:column;justify-content:center}
+@media(max-width:768px){.split-right{padding:32px 24px}}
+.survey-step{display:none}
+.survey-step.active{display:flex;flex-direction:column;gap:16px}
+.survey-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.survey-tag.required{color:#F97316}
+.survey-tag.optional{color:#9CA3AF}
+.survey-q{font-size:20px;font-weight:800;line-height:1.3;margin-bottom:4px}
+.survey-hint{font-size:13px;color:#6B7280;margin-bottom:8px}
+
+/* Tiles (radio) */
+.tiles-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tiles-grid.single{grid-template-columns:1fr}
+.tile{padding:14px 16px;border:1.5px solid #E5E3DE;border-radius:12px;cursor:pointer;font-size:14px;font-weight:600;color:#374151;transition:all .2s;text-align:left;background:#fff}
+.tile:hover{border-color:#2DB84B;background:#F0FDF4}
+.tile.selected{border-color:#2DB84B;background:#F0FDF4;color:#1A6B33}
+
+/* Checkboxes */
+.check-options{display:flex;flex-direction:column;gap:10px}
+.chk-opt{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1.5px solid #E5E3DE;border-radius:12px;cursor:pointer;font-size:14px;font-weight:500;transition:all .2s}
+.chk-opt:hover{border-color:#2DB84B;background:#F0FDF4}
+.chk-opt.selected{border-color:#2DB84B;background:#F0FDF4}
+.chk-box2{width:20px;height:20px;border:2px solid #D1D5DB;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:transparent;transition:all .2s}
+.chk-opt.selected .chk-box2{background:#2DB84B;border-color:#2DB84B;color:#fff}
+
+/* Contact form */
+.contact-form{display:flex;flex-direction:column;gap:12px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.field-wrap{display:flex;flex-direction:column;gap:6px}
+.field-label{font-size:13px;font-weight:600;color:#374151}
+.field-label span{color:#EF4444}
+.field-input{border:1.5px solid #E5E3DE;border-radius:10px;padding:13px 16px;font-family:inherit;font-size:15px;outline:none;transition:border-color .2s;width:100%}
+.field-input:focus{border-color:#2DB84B}
+.privacy-note{font-size:12px;color:#9CA3AF;line-height:1.5;margin-top:4px}
+
+/* Survey nav */
+.survey-nav{display:flex;gap:10px;align-items:center;margin-top:8px}
+.btn-next{flex:1;padding:14px;background:#1A1A1A;color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;opacity:.4}
+.btn-next:not(:disabled){opacity:1}
+.btn-next:not(:disabled):hover{background:#2DB84B;transform:translateY(-1px)}
+.btn-skip{padding:14px 18px;background:none;border:1.5px solid #E5E3DE;border-radius:12px;font-family:inherit;font-size:14px;font-weight:600;color:#6B7280;cursor:pointer;transition:all .2s}
+.btn-skip:hover{border-color:#9CA3AF;color:#374151}
+.step-dots{display:flex;gap:6px;align-items:center}
+.dot{width:6px;height:6px;border-radius:50%;background:#E5E3DE;transition:all .2s}
+.dot.active{background:#1A1A1A;width:18px;border-radius:3px}
+.dot.done{background:#2DB84B}
+
+/* "Analyse terminée" waiting state */
+.analysis-done-msg{background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:14px;padding:20px 24px;text-align:center}
+.analysis-done-msg .ico{font-size:32px;margin-bottom:10px}
+.analysis-done-msg p{font-size:15px;font-weight:600;color:#1A6B33;line-height:1.5}
+.analysis-done-msg .small{font-size:13px;color:#6B7280;font-weight:400;margin-top:6px}
+
+/* ── Results screen ── */
+.results-screen{background:#F7F6F2;padding:28px 16px 80px;min-height:calc(100vh - 64px)}
+.results-wrap{max-width:880px;margin:0 auto}
+
+.res-header{background:#fff;border-radius:18px;box-shadow:0 2px 16px rgba(0,0,0,.06);padding:28px;display:flex;gap:22px;align-items:flex-start;margin-bottom:20px}
+.res-photo{width:150px;height:108px;object-fit:cover;border-radius:12px;flex-shrink:0;background:#F3F4F6}
+.res-info{flex:1;min-width:0}
+.res-title{font-size:20px;font-weight:800;line-height:1.3;margin-bottom:6px}
+.res-loc{font-size:14px;color:#6B7280;margin-bottom:10px}
+.res-meta{display:flex;gap:16px;font-size:14px;flex-wrap:wrap;color:#374151}
+.res-link{color:#2DB84B;text-decoration:none;font-size:13px;font-weight:600;margin-top:10px;display:inline-block}
+.res-summary{background:#F9F9F8;border-radius:10px;padding:10px 14px;font-size:13px;color:#374151;margin-top:12px;font-style:italic;line-height:1.6}
+.res-gauge{flex-shrink:0;text-align:center}
+.res-grade-lbl{font-size:13px;font-weight:700;margin-top:2px}
+
+/* Tabs */
+.tab-nav{display:flex;background:#fff;border-radius:14px;padding:5px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:20px;gap:4px}
+.tab-btn{flex:1;padding:12px 8px;border:none;border-radius:10px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:#6B7280}
+.tab-btn.active{background:#1A1A1A;color:#fff}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Cards */
+.card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9CA3AF;margin-bottom:18px}
+.resume-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:18px;margin-bottom:18px}
+.grade-pill{display:inline-block;padding:5px 14px;border-radius:20px;font-size:13px;font-weight:700;margin-top:10px}
+.rev-block{margin-top:18px;padding-top:16px;border-top:1px solid #F3F4F6}
+.rev-row{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;color:#374151}
+.rev-row b{font-weight:700;color:#1A1A1A}
+.rev-gain{font-size:20px;font-weight:800;color:#2DB84B;margin-top:8px}
+.rev-basis{font-size:11px;color:#9CA3AF;margin-top:4px;line-height:1.4}
+.action-item{padding:14px;border-radius:12px;margin-bottom:10px}
+.action-item.high{background:#FFF5F5}
+.action-item.medium{background:#FFFBEB}
+.action-top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.act-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.act-badge.high{color:#DC2626}
+.act-badge.medium{color:#D97706}
+.act-cat{font-size:11px;color:#9CA3AF;font-weight:600}
+.act-text{font-size:14px;font-weight:500;line-height:1.5}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px 12px;color:#9CA3AF;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #F3F4F6}
+td{padding:10px 12px;border-bottom:1px solid #F9F9F8}
+tr:last-child td{border-bottom:none}
+tr.hl td{background:#F0FDF4;font-weight:700}
+
+/* Category cards */
+.cat-card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:14px}
+.cat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cat-left{display:flex;align-items:center;gap:10px}
+.cat-right{text-align:right}
+.cat-num{font-size:24px;font-weight:800;line-height:1}
+.cat-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-top:4px}
+.bar-track{height:8px;background:#F3F4F6;border-radius:4px;overflow:hidden;margin-bottom:18px}
+.bar-fill{height:100%;border-radius:4px;transition:width 1.2s ease}
+.findings{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.findings li{font-size:13px;color:#374151;padding-left:16px;position:relative;line-height:1.6}
+.findings li::before{content:'•';position:absolute;left:0;color:#9CA3AF}
+.reco{background:#F9F9F8;border-radius:10px;padding:12px 16px;display:flex;gap:12px;align-items:flex-start}
+.impact{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.impact.high{background:#FEE2E2;color:#DC2626}
+.impact.medium{background:#FEF3C7;color:#D97706}
+.impact.low{background:#DBEAFE;color:#2563EB}
+.reco-txt{font-size:13px;font-weight:500;line-height:1.6}
+
+/* Plan */
+.plan-sec{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05);margin-bottom:14px}
+.plan-sec h3{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.title-var{background:#F9F9F8;border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.title-var.primary{background:#F0FDF4;border:1.5px solid #BBF7D0}
+.title-txt{font-size:14px;font-weight:600;line-height:1.5;flex:1}
+.copy-btn{font-size:12px;font-weight:600;color:#2DB84B;background:none;border:1.5px solid #2DB84B;border-radius:8px;padding:6px 12px;cursor:pointer;white-space:nowrap;transition:all .2s;font-family:inherit;flex-shrink:0}
+.copy-btn:hover{background:#2DB84B;color:#fff}
+.copy-btn.ok{background:#22C55E;color:#fff;border-color:#22C55E}
+.desc-box{background:#F9F9F8;border-radius:10px;padding:16px;font-size:13px;color:#374151;line-height:1.8;white-space:pre-wrap;margin-bottom:12px}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:10px}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:#F9F9F8;border-radius:10px;cursor:pointer;transition:all .2s}
+.chk:hover{background:#F0FDF4}
+.chk-box3{width:20px;height:20px;border:2px solid #D1D5DB;border-radius:6px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:transparent;transition:all .2s}
+.chk.checked .chk-box3{background:#2DB84B;border-color:#2DB84B;color:#fff}
+.chk.checked .chk-txt{text-decoration:line-through;color:#9CA3AF}
+.chk-n{font-size:12px;font-weight:700;color:#9CA3AF;min-width:18px;margin-top:2px;text-align:center}
+.chk-txt{font-size:14px;font-weight:500;line-height:1.5}
+
+/* CTA block */
+.cta-block{background:linear-gradient(135deg,#1A1A1A 0%,#1A6B33 100%);border-radius:20px;padding:36px;text-align:center;margin-top:24px;margin-bottom:40px}
+.cta-block h3{font-size:22px;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.3}
+.cta-block p{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:24px;line-height:1.6}
+.cta-btn{display:inline-block;padding:16px 32px;background:linear-gradient(135deg,#2DB84B,#5FD87A);color:#fff;text-decoration:none;border-radius:12px;font-size:16px;font-weight:700;transition:all .2s;box-shadow:0 4px 20px rgba(45,184,75,.3)}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(45,184,75,.4)}
+.cta-social{margin-top:16px;font-size:12px;color:rgba(255,255,255,.5)}
+
+.back-btn{display:inline-flex;align-items:center;gap:6px;color:#6B7280;font-size:14px;font-weight:600;background:#fff;border:none;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:12px 20px;cursor:pointer;font-family:inherit;margin-top:4px;transition:all .2s}
+.back-btn:hover{color:#1A1A1A;transform:translateY(-1px)}
+
+@media(max-width:640px){
+  .res-header{flex-wrap:wrap}
+  .res-photo{width:100%;height:160px}
+  .res-gauge{width:100%}
+  .resume-grid{grid-template-columns:1fr}
+  .tab-btn{font-size:12px;padding:10px 4px}
+  .input-card{padding:36px 24px}
+  .split-left{padding:28px 20px}
+  .split-right{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <a href="/super-bnb-academy/" class="logo-wrap">
+    <div class="logo-ico">S</div>
+    <div>
+      <div class="logo-name">Super BnB Academy</div>
+      <div class="logo-tag">by Rentimmo Academy</div>
+    </div>
+  </a>
+  <a href="/super-bnb-academy/" class="header-cta">← Retour</a>
+</header>
+
+<!-- ── SAISIE ── -->
+<div id="s-input" class="screen-center">
+  <div class="input-card">
+    <div class="hero-badge">✦ Gratuit · Sans inscription</div>
+    <h1>Auditez votre annonce <span>Airbnb ou Booking</span></h1>
+    <p class="sub">Score détaillé, benchmark des concurrents et contenu optimisé généré par IA — en 60 secondes.</p>
+    <div id="err" class="err"></div>
+    <div class="platform-toggle">
+      <button id="btn-air" class="active" onclick="setPlatform('airbnb')">🏠 Airbnb</button>
+      <button id="btn-bkg" onclick="setPlatform('booking')">🔵 Booking.com</button>
+    </div>
+    <input id="url-in" type="url" class="url-input" placeholder="https://www.airbnb.fr/rooms/...">
+    <button class="btn-green" id="go-btn" onclick="startAudit()">Obtenir mon audit gratuit →</button>
+    <div class="trust-row">
+      <span class="trust-item">⚡ Résultats en 60s</span>
+      <span class="trust-item">🔒 Données sécurisées</span>
+      <span class="trust-item">🎯 100% gratuit</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── SPLIT SCREEN ── -->
+<div id="s-split" class="split-screen hidden">
+
+  <!-- Gauche : progression -->
+  <div class="split-left">
+    <div class="ttl">Analyse en cours</div>
+    <h2>Votre audit est en cours —<br>60 sec pour mieux comprendre votre annonce</h2>
+    <ul class="progress-steps">
+      <li class="ps done" data-ps="start">
+        <div class="ps-ico done">✓</div>
+        <span class="ps-lbl">Annonce détectée</span>
+      </li>
+      <li class="ps pending" data-ps="listing">
+        <div class="ps-ico pending">·</div>
+        <span class="ps-lbl">Analyse des photos…</span>
+      </li>
+      <li class="ps pending" data-ps="listing2">
+        <div class="ps-ico pending">·</div>
+        <span class="ps-lbl">Vérification titre et description…</span>
+      </li>
+      <li class="ps pending" data-ps="competitors">
+        <div class="ps-ico pending">·</div>
+        <span class="ps-lbl">Benchmark prix marché…</span>
+      </li>
+      <li class="ps pending" data-ps="competitors2">
+        <div class="ps-ico pending">·</div>
+        <span class="ps-lbl">Analyse des avis voyageurs…</span>
+      </li>
+      <li class="ps pending" data-ps="analyzing">
+        <div class="ps-ico pending">·</div>
+        <span class="ps-lbl">Finalisation du rapport…</span>
+      </li>
+    </ul>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-track"><div class="progress-bar-fill" id="prog-fill"></div></div>
+      <div class="progress-pct" id="prog-pct">5%</div>
+    </div>
+    <div id="analysis-done-indicator" class="analysis-done-msg hidden" style="margin-top:24px">
+      <div class="ico">🎉</div>
+      <p>Votre rapport est prêt !<br><span class="small">Complétez le formulaire pour y accéder.</span></p>
+    </div>
+  </div>
+
+  <!-- Droite : questions -->
+  <div class="split-right">
+
+    <!-- Étape 1 : Qui gère ? -->
+    <div class="survey-step active" id="sq1">
+      <div class="survey-tag required">OBLIGATOIRE</div>
+      <div class="survey-q">Qui gère l'annonce au quotidien ?</div>
+      <div class="tiles-grid single" id="tiles-gestion">
+        <div class="tile" onclick="selectTile('gestion',this,'Moi-même')">Moi-même</div>
+        <div class="tile" onclick="selectTile('gestion',this,'Moi avec des prestataires')">Moi avec des prestataires</div>
+        <div class="tile" onclick="selectTile('gestion',this,'Je suis conciergerie / property manager')">Je suis conciergerie / property manager</div>
+        <div class="tile" onclick="selectTile('gestion',this,'Autre')">Autre</div>
+      </div>
+      <div class="survey-nav">
+        <button class="btn-next" id="next1" disabled onclick="goStep(2)">Suivant →</button>
+        <div class="step-dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Étape 2 : Combien de biens ? -->
+    <div class="survey-step" id="sq2">
+      <div class="survey-tag required">OBLIGATOIRE</div>
+      <div class="survey-q">Combien de biens gérez-vous ?</div>
+      <div class="tiles-grid" id="tiles-portfolio">
+        <div class="tile" onclick="selectTile('portfolio',this,'1')">1</div>
+        <div class="tile" onclick="selectTile('portfolio',this,'2 à 5')">2 à 5</div>
+        <div class="tile" onclick="selectTile('portfolio',this,'6 à 20')">6 à 20</div>
+        <div class="tile" onclick="selectTile('portfolio',this,'20+')">20+</div>
+      </div>
+      <div class="survey-nav">
+        <button class="btn-next" id="next2" disabled onclick="goStep(3)">Suivant →</button>
+        <div class="step-dots">
+          <div class="dot done"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Étape 3 : Défi principal -->
+    <div class="survey-step" id="sq3">
+      <div class="survey-tag optional">OPTIONNEL</div>
+      <div class="survey-q">Votre principal défi avec vos annonces ?</div>
+      <div class="survey-hint">2 réponses max</div>
+      <div class="check-options" id="chk-defi">
+        <div class="chk-opt" onclick="toggleCheck(this,'defi')">
+          <div class="chk-box2">✓</div><span>Augmenter mon taux d'occupation</span>
+        </div>
+        <div class="chk-opt" onclick="toggleCheck(this,'defi')">
+          <div class="chk-box2">✓</div><span>Améliorer mes avis et ma note</span>
+        </div>
+        <div class="chk-opt" onclick="toggleCheck(this,'defi')">
+          <div class="chk-box2">✓</div><span>Optimiser ma tarification</span>
+        </div>
+        <div class="chk-opt" onclick="toggleCheck(this,'defi')">
+          <div class="chk-box2">✓</div><span>Passer à l'échelle / ajouter des biens</span>
+        </div>
+        <div class="chk-opt" onclick="toggleCheck(this,'defi')">
+          <div class="chk-box2">✓</div><span>Me libérer du temps de gestion</span>
+        </div>
+      </div>
+      <div class="survey-nav">
+        <button class="btn-next" onclick="goStep(4)">Suivant →</button>
+        <button class="btn-skip" onclick="goStep(4)">Passer →</button>
+        <div class="step-dots">
+          <div class="dot done"></div>
+          <div class="dot done"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Étape 4 : Coordonnées (gate) -->
+    <div class="survey-step" id="sq4">
+      <div class="survey-tag required">POUR ACCÉDER À VOTRE RAPPORT</div>
+      <div class="survey-q">Où envoyer votre audit ?</div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="field-wrap">
+            <label class="field-label">Prénom <span>*</span></label>
+            <input id="f-prenom" type="text" class="field-input" placeholder="Votre prénom">
+          </div>
+          <div class="field-wrap">
+            <label class="field-label">Téléphone</label>
+            <input id="f-phone" type="tel" class="field-input" placeholder="+33 6 ...">
+          </div>
+        </div>
+        <div class="field-wrap">
+          <label class="field-label">Email <span>*</span></label>
+          <input id="f-email" type="email" class="field-input" placeholder="votre@email.com">
+        </div>
+        <div id="form-err" class="err" style="margin-bottom:0"></div>
+        <button class="btn-green" id="see-report-btn" onclick="submitContact()">Voir mon rapport →</button>
+        <p class="privacy-note">🔒 Vos données sont protégées. Pas de spam. Désabonnement en 1 clic.</p>
+      </div>
+      <div class="step-dots" style="margin-top:16px">
+        <div class="dot done"></div>
+        <div class="dot done"></div>
+        <div class="dot done"></div>
+        <div class="dot active"></div>
+      </div>
+    </div>
+
+    <!-- Waiting state (si formulaire complété avant analyse) -->
+    <div class="survey-step" id="sq-wait">
+      <div style="text-align:center;padding:20px 0">
+        <div style="font-size:48px;margin-bottom:16px">⏳</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:8px">Finalisation de l'analyse…</div>
+        <div style="font-size:14px;color:#6B7280">Encore quelques secondes, votre rapport est en cours de génération.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── RÉSULTATS ── -->
+<div id="s-res" class="results-screen hidden">
+  <div class="results-wrap">
+
+    <div id="res-header" class="res-header"></div>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="setTab(0)">Résumé</button>
+      <button class="tab-btn" onclick="setTab(1)">Diagnostic</button>
+      <button class="tab-btn" onclick="setTab(2)">Plan d'action</button>
+    </div>
+    <div id="t0" class="tab-content active"></div>
+    <div id="t1" class="tab-content"></div>
+    <div id="t2" class="tab-content"></div>
+
+    <!-- CTA Super BnB Academy -->
+    <div class="cta-block">
+      <h3>Passez de propriétaire à investisseur performant</h3>
+      <p>Votre score révèle du potentiel. La Super BnB Academy vous accompagne pas à pas pour maximiser vos revenus, déléguer et scaler votre activité.</p>
+      <a href="https://cal.com/rentimmoacademy/superbnbacademy" target="_blank" rel="noopener" class="cta-btn">Réserver mon audit gratuit Super BnB Academy →</a>
+      <div class="cta-social">Rejoignez + de 800 propriétaires formés · Résultats concrets</div>
+    </div>
+
+    <button class="back-btn" onclick="reset()">← Analyser une autre annonce</button>
+  </div>
+</div>
+
+<script>
+// ── État ───────────────────────────────────────────────────────────────────
+const S = {
+  platform: 'airbnb', url: '', lid: null, cid: null,
+  polling: false, auditDone: false, audit: null,
+  formDone: false, currentStep: 1,
+  answers: { gestion: '', portfolio: '', defi: [] }
+};
+
+const $=id=>document.getElementById(id);
+const show=id=>$(id).classList.remove('hidden');
+const hide=id=>$(id).classList.add('hidden');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+// ── Couleurs ───────────────────────────────────────────────────────────────
+const C=s=>s>=85?'#22C55E':s>=70?'#84CC16':s>=55?'#F59E0B':s>=40?'#F97316':'#EF4444';
+const L=s=>s>=85?'Excellent':s>=70?'Bien':s>=55?'Correct':s>=40?'À améliorer':'Critique';
+const BG=s=>s>=85?'#DCFCE7':s>=70?'#D9F99D':s>=55?'#FEF3C7':s>=40?'#FFEDD5':'#FEE2E2';
+
+// ── Gauge SVG ──────────────────────────────────────────────────────────────
+function gauge(score,color){
+  const r=55,cx=80,cy=74,total=0.75*2*Math.PI*r;
+  const fill=(score/100)*total;
+  const a1=135*Math.PI/180,a2=45*Math.PI/180;
+  const x1=(cx+r*Math.cos(a1)).toFixed(1),y1=(cy+r*Math.sin(a1)).toFixed(1);
+  const x2=(cx+r*Math.cos(a2)).toFixed(1),y2=(cy+r*Math.sin(a2)).toFixed(1);
+  return `<svg viewBox="0 0 160 130" width="160" height="130" style="overflow:visible">
+    <path d="M${x1},${y1} A${r},${r} 0 1,1 ${x2},${y2}" fill="none" stroke="#E5E3DE" stroke-width="10" stroke-linecap="round"/>
+    <path d="M${x1},${y1} A${r},${r} 0 1,1 ${x2},${y2}" fill="none" stroke="${color}" stroke-width="10" stroke-linecap="round"
+      stroke-dasharray="${fill.toFixed(1)} ${total.toFixed(1)}"/>
+    <text x="${cx}" y="${cy+8}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="40" font-weight="800" fill="${color}">${score}</text>
+    <text x="${cx}" y="${cy+26}" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="12" fill="#9CA3AF">/ 100</text>
+  </svg>`;
+}
+
+// ── Platform ───────────────────────────────────────────────────────────────
+function setPlatform(p){
+  S.platform=p;
+  $('btn-air').className=p==='airbnb'?'active':'';
+  $('btn-bkg').className=p==='booking'?'active':'';
+  $('url-in').placeholder=p==='airbnb'?'https://www.airbnb.fr/rooms/...':'https://www.booking.com/hotel/fr/...html';
+}
+
+// ── Start ──────────────────────────────────────────────────────────────────
+async function startAudit(){
+  const url=$('url-in').value.trim();
+  $('err').style.display='none';
+  if(!url){showErr('err','Entrez une URL valide.');return}
+  if(S.platform==='airbnb'&&!url.includes('airbnb.')){showErr('err','URL Airbnb attendue.');return}
+  if(S.platform==='booking'&&!url.includes('booking.com')){showErr('err','URL Booking.com attendue.');return}
+
+  S.url=url;S.lid=null;S.cid=null;S.polling=true;S.auditDone=false;S.audit=null;S.formDone=false;
+  $('go-btn').disabled=true;
+  hide('s-input');show('s-split');
+  setPS('listing','active');
+  setProgress(10);
+
+  try{
+    const r=await fetch('/api/start-audit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url,platform:S.platform})});
+    const d=await r.json();
+    if(!r.ok||d.error)throw new Error(d.error||'Erreur au démarrage');
+    S.lid=d.listingRunId;
+    pollLoop();
+  }catch(e){
+    showErr('err',e.message);hide('s-split');show('s-input');$('go-btn').disabled=false;S.polling=false;
+  }
+}
+
+// ── Poll loop (indépendant du formulaire) ──────────────────────────────────
+async function pollLoop(){
+  let n=0;
+  while(S.polling&&n<90){
+    await sleep(3000);n++;
+    try{
+      const p=new URLSearchParams({listingRunId:S.lid,platform:S.platform,url:S.url});
+      if(S.cid)p.set('competitorRunId',S.cid);
+      const r=await fetch('/api/audit-result?'+p);
+      const d=await r.json();
+
+      if(d.status==='RUNNING'){
+        const ph=d.phase||'listing';
+        setPS(ph,'active');
+        if(ph==='competitors')setProgress(60);
+        else setProgress(30);
+      }else if(d.status==='COMPETITORS_STARTED'){
+        S.cid=d.competitorRunId;
+        setPS('competitors','active');
+        setProgress(55);
+      }else if(d.status==='DONE'){
+        S.polling=false;S.auditDone=true;S.audit=d.audit;
+        setPS('analyzing','done');
+        setProgress(100);
+        // Si le formulaire est déjà complété → afficher résultats
+        if(S.formDone){showResults(d.audit)}
+        else{show('analysis-done-indicator')}
+        return;
+      }else if(d.status==='ERROR'){
+        throw new Error(d.message||"Erreur d'analyse");
+      }
+    }catch(e){
+      S.polling=false;
+      showErr('form-err',e.message);
+    }
+  }
+}
+
+// ── Progress bar ───────────────────────────────────────────────────────────
+function setProgress(pct){
+  $('prog-fill').style.width=pct+'%';
+  $('prog-pct').textContent=pct+'%';
+}
+
+// ── Progress steps ─────────────────────────────────────────────────────────
+const PS_ORDER=['listing','listing2','competitors','competitors2','analyzing'];
+const PS_WEIGHTS=[10,30,55,75,100];
+
+function setPS(id,state){
+  // Map real API phases to display steps
+  const MAP={listing:0,competitors:2,analyzing:4};
+  const idx=MAP[id]!==undefined?MAP[id]:0;
+
+  PS_ORDER.forEach((s,i)=>{
+    const el=document.querySelector(`[data-ps="${s}"]`);
+    if(!el)return;
+    const ico=el.querySelector('.ps-ico');
+    el.className='ps';
+    if(i<idx){el.classList.add('done');ico.className='ps-ico done';ico.textContent='✓'}
+    else if(i===idx&&state==='done'){el.classList.add('done');ico.className='ps-ico done';ico.textContent='✓';setProgress(PS_WEIGHTS[i])}
+    else if(i===idx){el.classList.add('active');ico.className='ps-ico active';ico.textContent='↻';setProgress(PS_WEIGHTS[i])}
+    else{el.classList.add('pending');ico.className='ps-ico pending';ico.textContent='·'}
+  });
+}
+
+// ── Survey ────────────────────────────────────────────────────────────────
+function selectTile(key,tile,value){
+  const container=tile.parentElement;
+  container.querySelectorAll('.tile').forEach(t=>t.classList.remove('selected'));
+  tile.classList.add('selected');
+  S.answers[key]=value;
+  // Activer bouton suivant
+  const stepNum=key==='gestion'?1:2;
+  $('next'+stepNum).disabled=false;
+  // Auto-avance sur les tiles
+  setTimeout(()=>goStep(stepNum+1),400);
+}
+
+function toggleCheck(el,key){
+  const selected=document.querySelectorAll(`#chk-${key} .selected`).length;
+  if(!el.classList.contains('selected')&&selected>=2)return;
+  el.classList.toggle('selected');
+  S.answers[key]=Array.from(document.querySelectorAll(`#chk-${key} .selected`))
+    .map(e=>e.querySelector('span').textContent);
+}
+
+function goStep(n){
+  document.querySelectorAll('.survey-step').forEach(s=>s.classList.remove('active'));
+  $(`sq${n}`)?.classList.add('active');
+  S.currentStep=n;
+}
+
+// ── Contact submission ────────────────────────────────────────────────────
+async function submitContact(){
+  const prenom=$('f-prenom').value.trim();
+  const email=$('f-email').value.trim();
+  const phone=$('f-phone').value.trim();
+  $('form-err').style.display='none';
+
+  if(!prenom){showErr('form-err','Votre prénom est requis.');return}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showErr('form-err','Email invalide.');return}
+
+  $('see-report-btn').disabled=true;
+  $('see-report-btn').textContent='Enregistrement…';
+  S.formDone=true;
+
+  // Envoyer le lead en arrière-plan (fire & forget)
+  fetch('/api/audit-optin',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      firstName:prenom,email,phone,
+      gestion:S.answers.gestion,
+      portfolio:S.answers.portfolio,
+      defi:S.answers.defi,
+      listingUrl:S.url,
+      listingScore:S.audit?.globalScore??null,
+      platform:S.platform
+    })
+  }).catch(()=>{});
+
+  // Si l'analyse est déjà terminée → afficher
+  if(S.auditDone&&S.audit){
+    showResults(S.audit);
+  }else{
+    // Afficher état d'attente
+    document.querySelectorAll('.survey-step').forEach(s=>s.classList.remove('active'));
+    $('sq-wait').classList.add('active');
+    // Attendre que l'analyse finisse (polling continue)
+    while(!S.auditDone){await sleep(500)}
+    showResults(S.audit);
+  }
+}
+
+// ── Show results ───────────────────────────────────────────────────────────
+function showResults(a){
+  hide('s-split');show('s-res');
+  const color=a.gradeColor||C(a.globalScore);
+  const l=a.listing||{};
+
+  $('res-header').innerHTML=`
+    ${l.coverPhotoUrl?`<img class="res-photo" src="${esc(l.coverPhotoUrl)}" alt="" onerror="this.style.display='none'">`:''}
+    <div class="res-info">
+      <div class="res-title">${esc(l.title||'Annonce')}</div>
+      <div class="res-loc">📍 ${esc(l.location||'')}</div>
+      <div class="res-meta">
+        ${l.rating?`<span>⭐ ${l.rating}${l.reviewsCount?' ('+l.reviewsCount+' avis)':''}</span>`:''}
+        ${l.pricePerNight?`<span>💰 ${l.pricePerNight}${l.currency||'€'}/nuit</span>`:''}
+        ${l.photosCount?`<span>📸 ${l.photosCount} photos</span>`:''}
+      </div>
+      ${l.url?`<a href="${esc(l.url)}" target="_blank" rel="noopener" class="res-link">Voir l'annonce ↗</a>`:''}
+      ${a.summary?`<div class="res-summary">${esc(a.summary)}</div>`:''}
+    </div>
+    <div class="res-gauge">
+      ${gauge(a.globalScore,color)}
+      <div class="res-grade-lbl" style="color:${color}">${esc(a.grade)} — ${esc(a.gradeFr)}</div>
+    </div>`;
+
+  renderResume(a);renderDiagnostic(a);renderPlan(a);
+  window.scrollTo(0,0);
+}
+
+// ── Résumé ────────────────────────────────────────────────────────────────
+function renderResume(a){
+  const color=a.gradeColor||C(a.globalScore);
+  const rev=a.revenueProjection||{};
+  const actions=(a.topActions||[]).slice(0,4);
+  const comps=(a.competitors||[]).filter(c=>c.title);
+  const l=a.listing||{};
+
+  const actHtml=actions.map(ac=>`
+    <div class="action-item ${ac.impact.toLowerCase()}">
+      <div class="action-top">
+        <span class="act-badge ${ac.impact.toLowerCase()}">${ac.impact==='HIGH'?'⚠ IMPACT ÉLEVÉ':'◎ IMPACT MOYEN'}</span>
+        <span class="act-cat">${esc(ac.category||'')}</span>
+      </div>
+      <div class="act-text">${ac.icon||''} ${esc(ac.action||'')}</div>
+    </div>`).join('');
+
+  let compHtml='';
+  if(comps.length){
+    compHtml=`<div class="card" style="margin-top:18px">
+      <div class="card-title">Benchmark concurrents (${comps.length} annonces)</div>
+      <table>
+        <thead><tr><th>Annonce</th><th>Prix/nuit</th><th>Note</th><th>Avis</th><th>Photos</th></tr></thead>
+        <tbody>
+          <tr class="hl">
+            <td>✦ Votre annonce</td>
+            <td>${l.pricePerNight?l.pricePerNight+'€':'—'}</td>
+            <td>${l.rating?'⭐ '+l.rating:'—'}</td>
+            <td>${l.reviewsCount||'—'}</td>
+            <td>${l.photosCount||'—'}</td>
+          </tr>
+          ${comps.map(c=>`<tr>
+            <td>${esc((c.title||'').slice(0,42))}${(c.title||'').length>42?'…':''}</td>
+            <td>${c.pricePerNight?c.pricePerNight+'€':'—'}</td>
+            <td>${c.rating?'⭐ '+c.rating:'—'}</td>
+            <td>${c.reviewsCount||'—'}</td>
+            <td>${c.photosCount||'—'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  }
+
+  $('t0').innerHTML=`
+    <div class="resume-grid">
+      <div class="card">
+        <div class="card-title">Score global</div>
+        <div style="text-align:center">${gauge(a.globalScore,color)}</div>
+        <div style="text-align:center"><span class="grade-pill" style="background:${BG(a.globalScore)};color:${color}">${esc(a.gradeFr||'')}</span></div>
+        ${(rev.currentOccupancy||rev.potentialGain)?`<div class="rev-block">
+          <div class="card-title">Projection revenus</div>
+          ${rev.currentOccupancy?`<div class="rev-row"><span>Taux actuel est.</span><b>${esc(rev.currentOccupancy)}</b></div>`:''}
+          ${rev.targetOccupancy?`<div class="rev-row"><span>Après optimisation</span><b>${esc(rev.targetOccupancy)}</b></div>`:''}
+          ${rev.potentialGain?`<div class="rev-gain">${esc(rev.potentialGain)}/mois</div>`:''}
+          ${rev.basis?`<div class="rev-basis">${esc(rev.basis)}</div>`:''}
+        </div>`:''}
+      </div>
+      <div class="card">
+        <div class="card-title">Top actions prioritaires</div>
+        ${actHtml||'<p style="color:#9CA3AF;font-size:14px">Aucune action définie</p>'}
+      </div>
+    </div>
+    ${compHtml}`;
+}
+
+// ── Diagnostic ────────────────────────────────────────────────────────────
+function renderDiagnostic(a){
+  $('t1').innerHTML=(a.categories||[]).map(cat=>{
+    const color=cat.gradeColor||C(cat.score);
+    const bg=BG(cat.score);
+    const reco=cat.recommendation||{};
+    const impCls=(reco.impact||'low').toLowerCase();
+    const impLbl=reco.impact==='HIGH'?'Impact élevé':reco.impact==='MEDIUM'?'Impact moyen':'Impact faible';
+    return `<div class="cat-card">
+      <div class="cat-head">
+        <div class="cat-left"><span style="font-size:22px">${cat.icon||'📊'}</span><span style="font-size:15px;font-weight:700">${esc(cat.label||'')}</span></div>
+        <div class="cat-right">
+          <div class="cat-num" style="color:${color}">${cat.score}</div>
+          <span class="cat-badge" style="background:${bg};color:${color}">${esc(cat.gradeLabel||L(cat.score))}</span>
+        </div>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${cat.score}%;background:${color}"></div></div>
+      <ul class="findings">${(cat.findings||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+      ${reco.action?`<div class="reco"><span class="impact ${impCls}">${impLbl}</span><span class="reco-txt">${esc(reco.action)}</span></div>`:''}
+    </div>`;
+  }).join('')||'<p style="color:#9CA3AF;padding:20px">Aucune donnée disponible.</p>';
+}
+
+// ── Plan d'action ─────────────────────────────────────────────────────────
+function renderPlan(a){
+  const gen=a.generatedContent||{};
+  const main=gen.optimizedTitle||'';
+  const vars=gen.optimizedTitleVariants||[];
+  const desc=gen.optimizedDescriptionOpening||'';
+  const impr=gen.keyImprovements||[];
+
+  let titlesHtml='';
+  if(main)titlesHtml+=`<div class="title-var primary"><span class="title-txt">✦ ${esc(main)}</span><button class="copy-btn" onclick="cp(${JSON.stringify(main)},this)">Copier</button></div>`;
+  vars.forEach(v=>{titlesHtml+=`<div class="title-var"><span class="title-txt">${esc(v)}</span><button class="copy-btn" onclick="cp(${JSON.stringify(v)},this)">Copier</button></div>`});
+
+  $('t2').innerHTML=`
+    ${titlesHtml?`<div class="plan-sec"><h3>✏️ Titre optimisé</h3>${titlesHtml}</div>`:''}
+    ${desc?`<div class="plan-sec">
+      <h3>📝 Description (style fiche technique 2026)</h3>
+      <div class="desc-box">${esc(desc)}</div>
+      <button class="copy-btn" onclick="cp(${JSON.stringify(desc)},this)">Copier</button>
+    </div>`:''}
+    ${impr.length?`<div class="plan-sec">
+      <h3>✅ Checklist prioritaire</h3>
+      <ul class="checklist">${impr.map((it,i)=>`
+        <li class="chk" onclick="this.classList.toggle('checked')">
+          <div class="chk-box3">✓</div>
+          <span class="chk-n">${i+1}</span>
+          <span class="chk-txt">${esc(it)}</span>
+        </li>`).join('')}
+      </ul>
+    </div>`:''}`;
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────
+function setTab(i){
+  document.querySelectorAll('.tab-btn').forEach((b,j)=>b.classList.toggle('active',i===j));
+  document.querySelectorAll('.tab-content').forEach((c,j)=>c.classList.toggle('active',i===j));
+}
+
+// ── Utils ──────────────────────────────────────────────────────────────────
+function showErr(id,msg){const b=$(id);b.textContent=msg;b.style.display='block'}
+function esc(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+async function cp(txt,btn){
+  try{await navigator.clipboard.writeText(txt);const o=btn.textContent;btn.textContent='✓ Copié';btn.classList.add('ok');setTimeout(()=>{btn.textContent=o;btn.classList.remove('ok')},2000)}catch{}
+}
+function reset(){S.url='';S.lid=null;S.cid=null;S.auditDone=false;S.audit=null;S.formDone=false;S.currentStep=1;S.answers={gestion:'',portfolio:'',defi:[]};
+  $('url-in').value='';$('go-btn').disabled=false;
+  hide('s-res');hide('s-split');show('s-input');window.scrollTo(0,0);
+  // Reset survey
+  document.querySelectorAll('.survey-step').forEach(s=>s.classList.remove('active'));
+  $('sq1').classList.add('active');
+  document.querySelectorAll('.tile').forEach(t=>t.classList.remove('selected'));
+  document.querySelectorAll('.chk-opt').forEach(t=>t.classList.remove('selected'));
+  $('next1').disabled=true;$('next2').disabled=true;
+  hide('analysis-done-indicator');
+}
+
+setPlatform('airbnb');
+</script>
+</body>
+</html>
