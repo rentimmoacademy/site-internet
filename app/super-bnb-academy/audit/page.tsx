@@ -3,548 +3,487 @@
 import { useState, useRef } from "react";
 
 const API_BASE = "/api";
-const POLL_INTERVAL = 4000;
+const POLL_MS = 4000;
 const CAL_URL = "https://cal.com/rentimmoacademy/superbnbacademy";
 
 type Platform = "airbnb" | "booking";
 type Step = "form" | "loading" | "optin" | "result" | "error";
 
-interface AuditResult {
-  globalScore: number;
-  grade: string;
-  gradeFr: string;
-  gradeColor: string;
-  summary: string;
+interface Category {
+  id: string; label: string; icon: string; score: number;
+  gradeLabel: string; gradeColor: string; findings: string[];
+  recommendation: { impact: string; action: string };
+}
+interface Audit {
+  globalScore: number; grade: string; gradeFr: string; gradeColor: string; summary: string;
   listing: {
-    title: string;
-    location: string;
-    coverPhotoUrl: string;
-    photosCount: number;
-    rating: number | null;
-    reviewsCount: number;
-    pricePerNight: number | null;
-    currency: string;
-    url: string;
+    title: string; location: string; coverPhotoUrl: string; photosCount: number;
+    rating: number | null; reviewsCount: number; pricePerNight: number | null;
+    currency: string; url: string;
   };
-  categories: Array<{
-    id: string;
-    label: string;
-    icon: string;
-    score: number;
-    gradeLabel: string;
-    gradeColor: string;
-    findings: string[];
-    recommendation: { impact: string; action: string };
-  }>;
-  topActions: Array<{
-    impact: string;
-    category: string;
-    action: string;
-    icon: string;
-  }>;
+  categories: Category[];
+  topActions: Array<{ impact: string; category: string; action: string; icon: string }>;
   revenueProjection: {
-    currentOccupancy: string;
-    targetOccupancy: string;
-    potentialGain: string;
-    basis: string;
+    currentOccupancy: string; targetOccupancy: string; potentialGain: string; basis: string;
   };
   generatedContent: {
-    optimizedTitle: string;
-    keyImprovements: string[];
+    optimizedTitle: string; keyImprovements: string[];
   };
 }
 
-function ScoreGauge({ score, color }: { score: number; color: string }) {
+function GaugeScore({ score, color, size = "lg" }: { score: number; color: string; size?: "sm" | "lg" }) {
+  const isLg = size === "lg";
+  const w = isLg ? 160 : 120; const h = isLg ? 92 : 70;
+  const r = isLg ? 70 : 52;
+  const cx = w / 2; const cy = h - 8;
+  const circumference = Math.PI * r;
   return (
-    <div className="relative flex items-center justify-center w-36 h-20">
-      <svg width="144" height="84" viewBox="0 0 144 84">
-        <path d={`M 8 76 A 64 64 0 0 1 136 76`} fill="none" stroke="#e5e7eb" strokeWidth="12" strokeLinecap="round" />
+    <div className="relative flex flex-col items-center">
+      <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} fill="none">
+        <path d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`} stroke="#ffffff08" strokeWidth={isLg ? 12 : 9} strokeLinecap="round" />
         <path
-          d={`M 8 76 A 64 64 0 0 1 136 76`}
-          fill="none"
-          stroke={color}
-          strokeWidth="12"
-          strokeLinecap="round"
-          strokeDasharray={`${(score / 100) * 201} 201`}
+          d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`}
+          stroke={color} strokeWidth={isLg ? 12 : 9} strokeLinecap="round"
+          strokeDasharray={`${(score / 100) * circumference} ${circumference}`}
+          style={{ transition: "stroke-dasharray 1.2s cubic-bezier(.4,0,.2,1)" }}
         />
       </svg>
-      <div className="absolute bottom-0 flex flex-col items-center">
-        <span className="text-3xl font-black" style={{ color }}>{score}</span>
-        <span className="text-xs text-gray-400 -mt-1">/100</span>
+      <div className="absolute bottom-0 text-center">
+        <div className={`font-extrabold text-white leading-none tracking-tight ${isLg ? "text-4xl" : "text-2xl"}`}>{score}</div>
+        <div className={`text-white/40 font-semibold mt-0.5 ${isLg ? "text-xs" : "text-[10px]"}`}>/100</div>
       </div>
     </div>
   );
 }
 
-function ScoreBar({ score, color }: { score: number; color: string }) {
+function BarScore({ score, color }: { score: number; color: string }) {
   return (
-    <div className="w-full bg-gray-100 rounded-full h-1.5 mt-1.5">
-      <div className="h-1.5 rounded-full" style={{ width: `${score}%`, backgroundColor: color }} />
+    <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+      <div className="h-full rounded-full" style={{ width: `${score}%`, backgroundColor: color }} />
     </div>
   );
+}
+
+function ImpactPill({ impact }: { impact: string }) {
+  const map: Record<string, { bg: string; text: string; label: string }> = {
+    HIGH:   { bg: "bg-red-500/15",   text: "text-red-400",   label: "Impact fort" },
+    MEDIUM: { bg: "bg-amber-500/15", text: "text-amber-400", label: "Impact moyen" },
+    LOW:    { bg: "bg-blue-500/15",  text: "text-blue-400",  label: "Impact faible" },
+  };
+  const s = map[impact] ?? map.LOW;
+  return <span className={`text-[10px] font-bold tracking-widest uppercase px-2 py-1 rounded-full ${s.bg} ${s.text}`}>{s.label}</span>;
 }
 
 export default function AuditPublicPage() {
   const [step, setStep] = useState<Step>("form");
   const [platform, setPlatform] = useState<Platform>("airbnb");
   const [url, setUrl] = useState("");
-  const [message, setMessage] = useState("");
-  const [audit, setAudit] = useState<AuditResult | null>(null);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [audit, setAudit] = useState<Audit | null>(null);
 
-  // Optin form
+  // Optin
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [gestion, setGestion] = useState("");
-  const [portfolio, setPortfolio] = useState("");
   const [defi, setDefi] = useState<string[]>([]);
   const [optinLoading, setOptinLoading] = useState(false);
 
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const stateRef = useRef({ listingRunId: "", competitorRunId: "" });
-  const pendingAuditRef = useRef<AuditResult | null>(null);
+  const run = useRef({ listing: "", competitor: "" });
+  const pendingAudit = useRef<Audit | null>(null);
 
-  const startAudit = async () => {
+  const launch = async () => {
     if (!url.trim()) return;
-    setStep("loading");
-    setMessage("Lancement de l'analyse…");
-
+    setStep("loading"); setMsg("Lancement de l'analyse…");
     try {
       const r = await fetch(`${API_BASE}/start-audit`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: url.trim(), platform }),
       });
       const d = await r.json();
-      if (!r.ok || d.error) { setErrorMsg(d.error || "Erreur démarrage"); setStep("error"); return; }
-      stateRef.current = { listingRunId: d.listingRunId, competitorRunId: "" };
-      pollRef.current = setInterval(poll, POLL_INTERVAL);
-    } catch (e: unknown) {
-      setErrorMsg(e instanceof Error ? e.message : "Erreur réseau");
-      setStep("error");
-    }
+      if (!r.ok || d.error) { setErrMsg(d.error || "Erreur"); setStep("error"); return; }
+      run.current = { listing: d.listingRunId, competitor: "" };
+      pollRef.current = setInterval(doPoll, POLL_MS);
+    } catch (e: unknown) { setErrMsg(e instanceof Error ? e.message : "Erreur réseau"); setStep("error"); }
   };
 
-  const poll = async () => {
-    const { listingRunId, competitorRunId } = stateRef.current;
-    if (!listingRunId) return;
+  const doPoll = async () => {
+    const { listing, competitor } = run.current;
+    if (!listing) return;
     try {
-      const params = new URLSearchParams({
-        listingRunId,
-        platform,
-        url: url.trim(),
-        ...(competitorRunId ? { competitorRunId } : {}),
-      });
-      const r = await fetch(`${API_BASE}/audit-result?${params}`);
+      const p = new URLSearchParams({ listingRunId: listing, platform, url: url.trim(), ...(competitor ? { competitorRunId: competitor } : {}) });
+      const r = await fetch(`${API_BASE}/audit-result?${p}`);
       const d = await r.json();
-      if (d.status === "RUNNING") { setMessage(d.message || "Analyse en cours…"); return; }
-      if (d.status === "COMPETITORS_STARTED") {
-        stateRef.current.competitorRunId = d.competitorRunId;
-        setMessage("Benchmarking concurrents…");
-        return;
-      }
+      if (d.status === "RUNNING") { setMsg(d.message || "Analyse en cours…"); return; }
+      if (d.status === "COMPETITORS_STARTED") { run.current.competitor = d.competitorRunId; setMsg("Benchmark concurrents…"); return; }
       if (d.status === "DONE") {
         clearInterval(pollRef.current!);
-        pendingAuditRef.current = d.audit;
+        pendingAudit.current = d.audit;
         setStep("optin");
         return;
       }
-      if (d.status === "ERROR") {
-        clearInterval(pollRef.current!);
-        setErrorMsg(d.message || "Erreur analyse");
-        setStep("error");
-      }
-    } catch { /* réseau temporaire */ }
+      if (d.status === "ERROR") { clearInterval(pollRef.current!); setErrMsg(d.message || "Erreur"); setStep("error"); }
+    } catch { /* continue */ }
   };
 
   const toggleDefi = (v: string) =>
-    setDefi((prev) => prev.includes(v) ? prev.filter((x) => x !== v) : [...prev, v]);
+    setDefi((p) => p.includes(v) ? p.filter((x) => x !== v) : [...p, v]);
 
   const submitOptin = async () => {
     if (!email || !firstName) return;
     setOptinLoading(true);
-    const a = pendingAuditRef.current!;
+    const a = pendingAudit.current!;
     try {
       await fetch(`${API_BASE}/audit-optin`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName, email, phone, gestion, portfolio, defi,
-          listingUrl: url,
-          listingScore: a.globalScore,
-          platform,
-        }),
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, email, phone, gestion, defi, listingUrl: url, listingScore: a.globalScore, platform }),
       });
     } catch { /* silently pass */ }
-    setAudit(a);
-    setStep("result");
-    setOptinLoading(false);
+    setAudit(a); setStep("result"); setOptinLoading(false);
   };
 
   const reset = () => {
     if (pollRef.current) clearInterval(pollRef.current);
-    setStep("form"); setUrl(""); setAudit(null); setErrorMsg("");
-    stateRef.current = { listingRunId: "", competitorRunId: "" };
+    setStep("form"); setUrl(""); setAudit(null); setErrMsg("");
+    run.current = { listing: "", competitor: "" };
   };
 
-  return (
-    <div className="min-h-screen bg-[#f9f8f4]">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-2xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-base font-black text-gray-900">Rentimmo Academy</span>
-            <span className="text-xs text-gray-300">|</span>
-            <span className="text-sm text-gray-500">Audit Annonce LCD</span>
-          </div>
-          {(step === "result" || step === "optin") && (
-            <button onClick={reset} className="text-sm text-gray-400 hover:text-gray-600">← Nouvelle analyse</button>
-          )}
-        </div>
+  /* ── FORM ── */
+  if (step === "form") return (
+    <div className="min-h-screen bg-ink" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+      <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
+        <span className="text-white font-extrabold text-base tracking-tight">Rentimmo Academy</span>
+        <span className="text-white/30 text-sm font-semibold">Audit Annonce LCD</span>
       </header>
 
-      <main className="max-w-2xl mx-auto px-4 py-10">
+      <div className="max-w-xl mx-auto px-4 pt-16 pb-20 text-center">
+        <div className="inline-flex items-center gap-2 bg-brand-green/10 border border-brand-green/20 rounded-full px-4 py-2 mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse-soft" />
+          <span className="text-xs text-brand-green font-bold">Gratuit · Résultat en 90 secondes</span>
+        </div>
 
-        {/* STEP 1: Form */}
-        {step === "form" && (
-          <div className="text-center">
-            <div className="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-4">
-              GRATUIT · RÉSULTAT EN 90 SEC
-            </div>
-            <h1 className="text-3xl font-black text-gray-900 mb-3">
-              Ton annonce mérite-t-elle<br />plus de réservations ?
-            </h1>
-            <p className="text-gray-500 mb-8 text-base">
-              Analyse instantanée par IA · Score /100 · Benchmark concurrents · Contenu optimisé généré
-            </p>
+        <h1 className="text-h1 text-white mb-4 tracking-tight">
+          Ton annonce est-elle{" "}
+          <span className="bg-brand-gradient bg-clip-text text-transparent">optimisée ?</span>
+        </h1>
+        <p className="text-white/45 text-base mb-12 leading-relaxed">
+          Analyse IA de ton annonce Airbnb ou Booking.com · Score /100 · Benchmark concurrents · Plan d&apos;action personnalisé
+        </p>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-left">
-              <div className="flex gap-3 mb-5">
-                {(["airbnb", "booking"] as Platform[]).map((p) => (
-                  <button
-                    key={p}
-                    onClick={() => setPlatform(p)}
-                    className={`flex-1 py-3 rounded-xl font-semibold text-sm border-2 transition-all ${
-                      platform === p
-                        ? p === "airbnb" ? "border-rose-500 bg-rose-50 text-rose-700" : "border-blue-500 bg-blue-50 text-blue-700"
-                        : "border-gray-200 text-gray-500"
-                    }`}
-                  >
-                    {p === "airbnb" ? "🏠 Airbnb" : "🌐 Booking.com"}
-                  </button>
-                ))}
-              </div>
-
-              <input
-                type="url"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && startAudit()}
-                placeholder={
-                  platform === "airbnb"
-                    ? "https://www.airbnb.fr/rooms/12345678"
-                    : "https://www.booking.com/hotel/..."
-                }
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-green-400"
-              />
-              <button
-                onClick={startAudit}
-                disabled={!url.trim()}
-                className="w-full bg-[#2DB84B] hover:bg-[#25a040] disabled:opacity-50 text-white font-bold py-3.5 rounded-xl text-base transition-colors"
-              >
-                Analyser mon annonce gratuitement →
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
+          <div className="flex gap-3 mb-5">
+            {(["airbnb", "booking"] as Platform[]).map((p) => (
+              <button key={p} onClick={() => setPlatform(p)}
+                className={`flex-1 py-3 rounded-xl font-semibold text-sm border transition-all ${
+                  platform === p
+                    ? "border-brand-green bg-brand-green/10 text-brand-green"
+                    : "border-white/10 bg-white/5 text-white/35 hover:border-white/20"
+                }`}>
+                {p === "airbnb" ? "🏠 Airbnb" : "🌐 Booking.com"}
               </button>
-            </div>
-
-            {/* Social proof */}
-            <div className="mt-6 flex items-center justify-center gap-6 text-xs text-gray-400">
-              <span>✓ Gratuit, sans engagement</span>
-              <span>✓ Résultat en ~90 secondes</span>
-              <span>✓ IA spécialisée LCD</span>
-            </div>
+            ))}
           </div>
-        )}
 
-        {/* STEP 2: Loading */}
-        {step === "loading" && (
-          <div className="text-center py-16">
-            <div className="w-14 h-14 border-4 border-green-200 border-t-green-500 rounded-full animate-spin mx-auto mb-6" />
-            <p className="text-gray-700 font-semibold text-lg mb-2">{message}</p>
-            <p className="text-gray-400 text-sm mb-8">L&apos;analyse prend ~90 secondes, ne ferme pas cette page</p>
-            <div className="flex items-center justify-center gap-3 text-xs">
-              {["Scraping annonce", "Benchmark concurrents", "Analyse IA"].map((s, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  {i > 0 && <span className="text-gray-200">→</span>}
-                  <span className={`px-2.5 py-1 rounded-full font-semibold ${
-                    message.includes("concurr") && i === 1 ? "bg-green-100 text-green-700" :
-                    message.includes("IA") && i === 2 ? "bg-green-100 text-green-700" :
-                    i === 0 ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-400"
-                  }`}>
-                    {s}
-                  </span>
+          <div className="flex gap-2 bg-white/5 border border-white/10 rounded-xl p-1.5 focus-within:border-brand-green/40 transition-colors mb-4">
+            <input
+              type="url" value={url} onChange={(e) => setUrl(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && launch()}
+              placeholder={platform === "airbnb" ? "airbnb.fr/rooms/12345678" : "booking.com/hotel/..."}
+              className="flex-1 bg-transparent text-white text-sm placeholder-white/20 px-3 py-2 focus:outline-none min-w-0"
+            />
+            <button onClick={launch} disabled={!url.trim()}
+              className="bg-brand-green hover:bg-brand-light disabled:opacity-40 text-white font-bold text-sm px-5 py-2.5 rounded-lg transition-colors shrink-0">
+              Analyser →
+            </button>
+          </div>
+
+          <p className="text-white/20 text-xs text-center">Gratuit · Sans inscription · Sans engagement</p>
+        </div>
+
+        {/* Proof */}
+        <div className="mt-10 grid grid-cols-3 gap-3 text-center">
+          {[
+            { icon: "📊", label: "Score /100", sub: "par catégorie" },
+            { icon: "🏆", label: "Benchmark", sub: "5 concurrents" },
+            { icon: "✨", label: "Contenu IA", sub: "titre + description" },
+          ].map((f) => (
+            <div key={f.label} className="bg-white/5 border border-white/8 rounded-xl p-4">
+              <div className="text-2xl mb-2">{f.icon}</div>
+              <div className="text-white/75 text-xs font-bold">{f.label}</div>
+              <div className="text-white/25 text-xs">{f.sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  /* ── LOADING ── */
+  if (step === "loading") {
+    const steps = [
+      { label: "Scraping annonce", done: msg.includes("concurrent") || msg.includes("IA") },
+      { label: "Benchmark concurrents", done: false, active: msg.includes("concurrent") },
+      { label: "Analyse IA", done: false, active: msg.includes("IA") || msg.includes("nal") },
+    ];
+    return (
+      <div className="min-h-screen bg-ink flex flex-col items-center justify-center px-4 text-center">
+        <div className="relative w-20 h-20 mb-8">
+          <div className="absolute inset-0 rounded-full border-4 border-white/5" />
+          <div className="absolute inset-0 rounded-full border-4 border-t-brand-green border-r-transparent border-b-transparent border-l-transparent animate-spin" />
+        </div>
+        <p className="text-white font-extrabold text-xl mb-2">{msg}</p>
+        <p className="text-white/25 text-sm mb-10">Ne ferme pas cette page · ~90 secondes</p>
+        <div className="flex items-center gap-2">
+          {steps.map((s, i) => (
+            <div key={i} className="flex items-center gap-2">
+              {i > 0 && <div className="w-5 h-px bg-white/10" />}
+              <span className={`text-xs font-bold px-3 py-1.5 rounded-full transition-all ${
+                s.done ? "bg-brand-green/20 text-brand-green" :
+                s.active ? "bg-brand-green/15 text-brand-green border border-brand-green/30" :
+                "bg-white/5 text-white/20"
+              }`}>
+                {s.done ? "✓ " : ""}{s.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  /* ── OPTIN ── */
+  if (step === "optin" && pendingAudit.current) {
+    const a = pendingAudit.current;
+    return (
+      <div className="min-h-screen bg-ink py-10 px-4">
+        <div className="max-w-lg mx-auto">
+          {/* Preview floutée */}
+          <div className="relative bg-white/5 border border-white/10 rounded-2xl p-5 mb-4 overflow-hidden">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-1">Analyse terminée</p>
+                <p className="text-white font-extrabold text-base leading-tight">{a.listing.title || "Ton annonce"}</p>
+                <p className="text-white/30 text-xs mt-0.5">{a.listing.location}</p>
+              </div>
+              <div className="relative">
+                <div className="filter blur-sm pointer-events-none opacity-60">
+                  <GaugeScore score={a.globalScore} color={a.gradeColor} size="sm" />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xl">🔒</span>
+                </div>
+              </div>
+            </div>
+            {/* Barres floutées */}
+            <div className="mt-4 grid grid-cols-4 gap-2 filter blur-sm opacity-40 pointer-events-none">
+              {a.categories.slice(0, 4).map((c) => (
+                <div key={c.id} className="bg-white/5 rounded-lg p-2 text-center">
+                  <div className="text-sm">{c.icon}</div>
+                  <div className="h-1 bg-white/20 rounded-full mt-1">
+                    <div className="h-full rounded-full" style={{ width: `${c.score}%`, backgroundColor: c.gradeColor }} />
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-        )}
-
-        {/* STEP 3: Optin form — before showing results */}
-        {step === "optin" && pendingAuditRef.current && (
-          <div>
-            {/* Score preview blurred */}
-            <div className="relative bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6 overflow-hidden">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-bold text-gray-400 mb-1 uppercase tracking-wider">Analyse terminée</div>
-                  <div className="text-lg font-black text-gray-900">{pendingAuditRef.current.listing.title || "Ton annonce"}</div>
-                  <div className="text-sm text-gray-400">{pendingAuditRef.current.listing.location}</div>
-                </div>
-                <div className="relative">
-                  <div className="filter blur-sm pointer-events-none">
-                    <ScoreGauge score={pendingAuditRef.current.globalScore} color={pendingAuditRef.current.gradeColor} />
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-2xl">🔒</span>
-                  </div>
-                </div>
-              </div>
-              {/* Category bars blurred */}
-              <div className="mt-4 space-y-2 filter blur-sm pointer-events-none">
-                {pendingAuditRef.current.categories.slice(0, 4).map((c) => (
-                  <div key={c.id} className="flex items-center gap-2">
-                    <span className="text-xs text-gray-400 w-28">{c.label}</span>
-                    <div className="flex-1">
-                      <ScoreBar score={c.score} color={c.gradeColor} />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
-                <p className="text-sm font-bold text-gray-700 bg-white px-4 py-2 rounded-xl shadow border border-gray-100">
-                  Remplis le formulaire pour voir ton rapport complet
-                </p>
-              </div>
-            </div>
-
-            {/* Optin form */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h2 className="text-xl font-black text-gray-900 mb-1">Voir mon rapport complet</h2>
-              <p className="text-sm text-gray-400 mb-6">Gratuit · Score /100 · Benchmark · Contenu réoptimisé</p>
-
-              <div className="grid grid-cols-2 gap-3 mb-3">
-                <input
-                  type="text"
-                  placeholder="Prénom *"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
-                />
-                <input
-                  type="email"
-                  placeholder="Email *"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
-                />
-              </div>
-              <input
-                type="tel"
-                placeholder="Téléphone (WhatsApp)"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-green-400"
-              />
-
-              <div className="mb-4">
-                <label className="text-xs font-semibold text-gray-500 mb-2 block">Tu gères combien de logements ?</label>
-                <div className="grid grid-cols-4 gap-2">
-                  {["1", "2-5", "6-15", "15+"].map((v) => (
-                    <button
-                      key={v}
-                      onClick={() => setGestion(v)}
-                      className={`py-2 rounded-lg text-sm font-semibold border transition-all ${
-                        gestion === v ? "border-green-500 bg-green-50 text-green-700" : "border-gray-200 text-gray-500"
-                      }`}
-                    >
-                      {v}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <label className="text-xs font-semibold text-gray-500 mb-2 block">Ton défi principal ?</label>
-                <div className="grid grid-cols-2 gap-2">
-                  {["Taux d'occupation trop bas", "Prix non optimisé", "Mauvaises reviews", "Annonce peu visible", "Trop de gestion manuelle", "Autre"].map((v) => (
-                    <button
-                      key={v}
-                      onClick={() => toggleDefi(v)}
-                      className={`py-2 px-3 rounded-lg text-xs font-semibold border transition-all text-left ${
-                        defi.includes(v) ? "border-green-500 bg-green-50 text-green-700" : "border-gray-200 text-gray-500"
-                      }`}
-                    >
-                      {defi.includes(v) ? "✓ " : ""}{v}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <button
-                onClick={submitOptin}
-                disabled={!email || !firstName || optinLoading}
-                className="w-full bg-[#2DB84B] hover:bg-[#25a040] disabled:opacity-50 text-white font-bold py-3.5 rounded-xl text-base transition-colors"
-              >
-                {optinLoading ? "Chargement…" : "Voir mon rapport complet →"}
-              </button>
-              <p className="text-xs text-center text-gray-300 mt-3">
-                Pas de spam. Tes données restent confidentielles.
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-ink/0 via-ink/60 to-ink/90 flex items-end justify-center pb-5">
+              <p className="text-white/60 text-sm font-semibold bg-white/8 backdrop-blur-sm border border-white/10 px-4 py-2 rounded-full">
+                Renseigne tes infos pour accéder au rapport complet
               </p>
             </div>
           </div>
-        )}
 
-        {/* STEP 4: Results */}
-        {step === "result" && audit && (
-          <div className="space-y-5">
-            {/* Score hero */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <div className="flex items-start gap-4">
-                {audit.listing.coverPhotoUrl && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={audit.listing.coverPhotoUrl}
-                    alt={audit.listing.title}
-                    className="w-20 h-20 object-cover rounded-xl flex-shrink-0"
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                  />
-                )}
-                <div className="flex-1">
-                  <h2 className="font-black text-gray-900 text-base leading-tight mb-0.5">{audit.listing.title}</h2>
-                  <p className="text-xs text-gray-400 mb-2">{audit.listing.location}</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">{audit.summary}</p>
-                </div>
-                <div className="flex-shrink-0 text-center">
-                  <ScoreGauge score={audit.globalScore} color={audit.gradeColor} />
-                  <div className="text-xs font-bold mt-1" style={{ color: audit.gradeColor }}>{audit.gradeFr.toUpperCase()}</div>
-                </div>
-              </div>
+          {/* Formulaire */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+            <h2 className="text-white font-extrabold text-xl mb-1">Voir mon rapport complet</h2>
+            <p className="text-white/30 text-sm mb-6">Score /100 · Benchmark · Plan d&apos;action · Contenu optimisé</p>
+
+            <div className="grid grid-cols-2 gap-3 mb-3">
+              <input type="text" placeholder="Prénom *" value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                className="bg-white/5 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-green/50 transition-colors" />
+              <input type="email" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)}
+                className="bg-white/5 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-green/50 transition-colors" />
             </div>
+            <input type="tel" placeholder="WhatsApp (recommandé)" value={phone} onChange={(e) => setPhone(e.target.value)}
+              className="w-full bg-white/5 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm mb-4 focus:outline-none focus:border-brand-green/50 transition-colors" />
 
-            {/* Category scores */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-black text-gray-900 mb-4 text-sm">Diagnostic par catégorie</h3>
-              <div className="space-y-3">
-                {audit.categories.map((cat) => (
-                  <div key={cat.id}>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-base">{cat.icon}</span>
-                      <span className="text-xs text-gray-700 font-semibold flex-1">{cat.label}</span>
-                      <span className="text-xs font-black" style={{ color: cat.gradeColor }}>{cat.score}/100</span>
-                      <span className="text-xs px-2 py-0.5 rounded-full font-semibold" style={{ backgroundColor: cat.gradeColor + "20", color: cat.gradeColor }}>
-                        {cat.gradeLabel}
-                      </span>
-                    </div>
-                    <ScoreBar score={cat.score} color={cat.gradeColor} />
-                    <p className="text-xs text-gray-500 mt-1 ml-6">{cat.recommendation.action}</p>
-                  </div>
+            <div className="mb-4">
+              <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-2">Logements gérés</p>
+              <div className="grid grid-cols-4 gap-2">
+                {["1", "2–5", "6–15", "15+"].map((v) => (
+                  <button key={v} onClick={() => setGestion(v)}
+                    className={`py-2 rounded-lg text-sm font-bold border transition-all ${
+                      gestion === v ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/5 text-white/35 hover:border-white/20"
+                    }`}>{v}</button>
                 ))}
               </div>
             </div>
 
-            {/* Top actions */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-black text-gray-900 mb-4 text-sm">Actions prioritaires</h3>
-              <div className="space-y-3">
-                {audit.topActions.map((a, i) => (
-                  <div
-                    key={i}
-                    className={`p-3 rounded-xl flex items-start gap-3 ${
-                      a.impact === "HIGH" ? "bg-red-50 border border-red-100" : "bg-amber-50 border border-amber-100"
-                    }`}
-                  >
-                    <span className="text-lg flex-shrink-0">{a.icon}</span>
-                    <div>
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <span className={`text-xs font-bold ${a.impact === "HIGH" ? "text-red-600" : "text-amber-600"}`}>
-                          {a.impact === "HIGH" ? "IMPACT FORT" : "IMPACT MOYEN"}
-                        </span>
-                        <span className="text-xs text-gray-400">· {a.category}</span>
-                      </div>
-                      <p className="text-sm text-gray-800 font-medium">{a.action}</p>
-                    </div>
-                  </div>
+            <div className="mb-5">
+              <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-2">Ton défi principal</p>
+              <div className="grid grid-cols-2 gap-2">
+                {["Taux d'occupation trop bas", "Annonce peu visible", "Prix non optimisé", "Mauvaises reviews"].map((v) => (
+                  <button key={v} onClick={() => toggleDefi(v)}
+                    className={`py-2 px-3 rounded-lg text-xs font-semibold border text-left transition-all ${
+                      defi.includes(v) ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/5 text-white/35 hover:border-white/20"
+                    }`}>
+                    {defi.includes(v) ? "✓ " : ""}{v}
+                  </button>
                 ))}
               </div>
             </div>
 
-            {/* Revenue projection */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-black text-gray-900 mb-4 text-sm">Potentiel de revenus</h3>
-              <div className="grid grid-cols-3 gap-3 text-center mb-3">
-                <div className="bg-gray-50 rounded-xl p-3">
-                  <div className="text-xs text-gray-400 mb-1">Occupation actuelle</div>
-                  <div className="text-xl font-black text-gray-700">{audit.revenueProjection.currentOccupancy}</div>
-                </div>
-                <div className="bg-green-50 rounded-xl p-3">
-                  <div className="text-xs text-gray-400 mb-1">Objectif réaliste</div>
-                  <div className="text-xl font-black text-green-600">{audit.revenueProjection.targetOccupancy}</div>
-                </div>
-                <div className="bg-green-50 rounded-xl p-3">
-                  <div className="text-xs text-gray-400 mb-1">Gain potentiel</div>
-                  <div className="text-xl font-black text-green-600">{audit.revenueProjection.potentialGain}</div>
-                </div>
-              </div>
-              <p className="text-xs text-gray-400">{audit.revenueProjection.basis}</p>
-            </div>
-
-            {/* Optimized title preview */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-black text-gray-900 mb-2 text-sm">Titre optimisé suggéré</h3>
-              <div className="bg-green-50 border border-green-100 rounded-xl p-4 text-sm font-semibold text-green-800">
-                &ldquo;{audit.generatedContent.optimizedTitle}&rdquo;
-              </div>
-              <p className="text-xs text-gray-400 mt-2">
-                Conçu pour l&apos;algorithme {platform === "airbnb" ? "Airbnb" : "Booking.com"} 2026 · données brutes + atouts réels du logement
-              </p>
-            </div>
-
-            {/* CTA Super BnB Academy */}
-            <div className="bg-gradient-to-br from-[#1A6B33] to-[#2DB84B] rounded-2xl p-6 text-white text-center">
-              <div className="text-2xl mb-3">🚀</div>
-              <h3 className="text-xl font-black mb-2">
-                {audit.globalScore < 70
-                  ? `Ton annonce score ${audit.globalScore}/100 — on peut faire beaucoup mieux`
-                  : `Bonne base ! Passe de ${audit.globalScore} à 90+ /100`}
-              </h3>
-              <p className="text-white/80 text-sm mb-5">
-                Réserve un audit stratégique gratuit avec l&apos;équipe Super BnB Academy.
-                On analyse ton portfolio complet et on te donne le plan exact pour maximiser tes revenus LCD.
-              </p>
-              <a
-                href={CAL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-white text-[#1A6B33] font-black px-8 py-3.5 rounded-xl text-base hover:bg-gray-50 transition-colors"
-              >
-                Réserver mon audit gratuit →
-              </a>
-              <p className="text-white/50 text-xs mt-3">30 minutes · Sans engagement · Places limitées</p>
-            </div>
-          </div>
-        )}
-
-        {/* Error */}
-        {step === "error" && (
-          <div className="bg-white rounded-2xl shadow-sm border border-red-100 p-8 text-center">
-            <div className="text-4xl mb-4">⚠️</div>
-            <p className="text-red-600 font-semibold mb-4">{errorMsg}</p>
-            <button onClick={reset} className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-6 py-2.5 rounded-xl text-sm">
-              Réessayer
+            <button onClick={submitOptin} disabled={!email || !firstName || optinLoading}
+              className="w-full bg-brand-green hover:bg-brand-light disabled:opacity-40 text-white font-extrabold py-3.5 rounded-xl text-base transition-colors">
+              {optinLoading ? "Chargement…" : "Voir mon rapport complet →"}
             </button>
+            <p className="text-white/15 text-xs text-center mt-3">Pas de spam · Données confidentielles</p>
           </div>
-        )}
-      </main>
+        </div>
+      </div>
+    );
+  }
+
+  /* ── RESULT ── */
+  if (step === "result" && audit) return (
+    <div className="min-h-screen bg-ink">
+      <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
+        <span className="text-white font-extrabold text-base tracking-tight">Rentimmo Academy</span>
+        <button onClick={reset} className="text-white/30 hover:text-white text-sm font-semibold transition-colors">← Nouvelle analyse</button>
+      </header>
+
+      <div className="max-w-2xl mx-auto px-4 py-8 space-y-4">
+        {/* Score hero */}
+        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+          <div className="flex items-start gap-4">
+            {audit.listing.coverPhotoUrl && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={audit.listing.coverPhotoUrl} alt={audit.listing.title}
+                className="w-20 h-20 object-cover rounded-xl shrink-0 border border-white/10"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            )}
+            <div className="flex-1 min-w-0">
+              <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-1">
+                {platform === "airbnb" ? "Airbnb" : "Booking.com"}
+              </p>
+              <h2 className="text-white font-extrabold text-base leading-tight mb-0.5 truncate">{audit.listing.title}</h2>
+              <p className="text-white/30 text-xs mb-2">{audit.listing.location}</p>
+              <p className="text-white/55 text-sm leading-relaxed line-clamp-2">{audit.summary}</p>
+            </div>
+            <div className="shrink-0 text-center">
+              <GaugeScore score={audit.globalScore} color={audit.gradeColor} size="sm" />
+              <div className="mt-1.5 text-xs font-bold px-2.5 py-1 rounded-full inline-block"
+                style={{ backgroundColor: audit.gradeColor + "20", color: audit.gradeColor }}>
+                {audit.gradeFr.toUpperCase()}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Category scores */}
+        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+          <h3 className="text-white font-extrabold text-sm mb-4">Scores par catégorie</h3>
+          <div className="space-y-3">
+            {audit.categories.map((c) => (
+              <div key={c.id}>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span>{c.icon}</span>
+                  <span className="text-white/65 text-xs font-semibold flex-1">{c.label}</span>
+                  <span className="text-xs font-extrabold" style={{ color: c.gradeColor }}>{c.score}</span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: c.gradeColor + "20", color: c.gradeColor }}>{c.gradeLabel}</span>
+                </div>
+                <BarScore score={c.score} color={c.gradeColor} />
+                <p className="text-white/30 text-xs mt-1 ml-6 leading-tight">{c.recommendation.action}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Top actions */}
+        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+          <h3 className="text-white font-extrabold text-sm mb-4">Actions prioritaires</h3>
+          <div className="space-y-2.5">
+            {audit.topActions.map((a, i) => (
+              <div key={i} className={`flex items-start gap-3 p-3.5 rounded-xl border ${
+                a.impact === "HIGH" ? "bg-red-500/8 border-red-500/15" : "bg-amber-500/8 border-amber-500/15"
+              }`}>
+                <span className="text-lg shrink-0 mt-0.5">{a.icon}</span>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <ImpactPill impact={a.impact} />
+                    <span className="text-[10px] text-white/20 uppercase tracking-wider font-bold">{a.category}</span>
+                  </div>
+                  <p className="text-white/75 text-sm leading-snug">{a.action}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Optimized title preview */}
+        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+          <h3 className="text-white font-extrabold text-sm mb-3">Titre optimisé suggéré</h3>
+          <div className="bg-brand-green/10 border border-brand-green/20 rounded-xl p-4 text-sm font-semibold text-brand-green leading-relaxed">
+            &ldquo;{audit.generatedContent.optimizedTitle}&rdquo;
+          </div>
+          <p className="text-white/20 text-xs mt-2">Conçu pour l&apos;algorithme 2026 · données concrètes, zéro marketing flou</p>
+        </div>
+
+        {/* Revenue */}
+        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+          <h3 className="text-white font-extrabold text-sm mb-4">Potentiel de revenus</h3>
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { label: "Occupation actuelle", value: audit.revenueProjection.currentOccupancy, accent: false },
+              { label: "Objectif réaliste", value: audit.revenueProjection.targetOccupancy, accent: true },
+              { label: "Gain potentiel", value: audit.revenueProjection.potentialGain, accent: true },
+            ].map((s) => (
+              <div key={s.label} className={`rounded-xl p-3.5 text-center border ${s.accent ? "bg-brand-green/10 border-brand-green/20" : "bg-white/5 border-white/8"}`}>
+                <div className="font-extrabold text-lg mb-0.5" style={{ color: s.accent ? "#2DB84B" : "rgba(255,255,255,0.65)" }}>{s.value}</div>
+                <div className="text-[10px] text-white/25 font-semibold">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Super BnB Academy */}
+        <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1A6B33 0%, #2DB84B 60%, #5FD87A 100%)" }}>
+          <div className="px-6 py-8 text-center">
+            <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1.5 mb-5">
+              <span className="text-[10px] font-bold text-white uppercase tracking-widest">Super BnB Academy</span>
+            </div>
+            <h3 className="text-white font-extrabold text-xl mb-2 tracking-tight">
+              {audit.globalScore < 70
+                ? `Ton annonce score ${audit.globalScore}/100 — on peut largement faire mieux`
+                : `Bonne base ! Passe de ${audit.globalScore} → 90+ /100`}
+            </h3>
+            <p className="text-white/75 text-sm mb-6 leading-relaxed max-w-sm mx-auto">
+              Réserve ton audit stratégique gratuit. On analyse ton portfolio complet et tu repars avec le plan exact pour maximiser tes revenus LCD.
+            </p>
+            <a href={CAL_URL} target="_blank" rel="noopener noreferrer"
+              className="inline-block bg-white text-brand-dark font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-cream transition-colors shadow-glow">
+              Réserver mon audit gratuit →
+            </a>
+            <p className="text-white/40 text-xs mt-4">30 min · Gratuit · Places limitées</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
+
+  /* ── ERROR ── */
+  if (step === "error") return (
+    <div className="min-h-screen bg-ink flex flex-col items-center justify-center px-4 text-center">
+      <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5 text-3xl">⚠️</div>
+      <p className="text-white font-extrabold text-xl mb-2">Analyse échouée</p>
+      <p className="text-white/35 text-sm mb-7 max-w-sm">{errMsg}</p>
+      <button onClick={reset} className="bg-white/10 hover:bg-white/15 text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors">
+        ← Réessayer
+      </button>
+    </div>
+  );
+
+  return null;
 }
