@@ -32,8 +32,10 @@ interface Audit {
     optimizedDescriptionOpening: string; keyImprovements: string[];
   };
   revenueProjection: {
-    currentOccupancy: string; targetOccupancy: string;
-    potentialGain: string; basis: string;
+    currentOccupancy: number; targetOccupancy: number;
+    currentADR: number; marketADR: number;
+    currentMonthlyRevenue: number; optimizedMonthlyRevenue: number;
+    annualGain: number; occupancySource: string; insight: string;
   };
   topActions: Array<{ impact: string; category: string; action: string; icon: string }>;
 }
@@ -419,19 +421,24 @@ export default function AuditPage() {
               {/* Revenue projection */}
               <div className="bg-white/5 border border-white/8 rounded-2xl p-6">
                 <h2 className="text-white font-extrabold text-base mb-4">Projection revenus</h2>
-                <div className="grid grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-3 mb-3">
                   {[
-                    { label: "Occupation actuelle", value: audit.revenueProjection.currentOccupancy, accent: false },
-                    { label: "Objectif réaliste", value: audit.revenueProjection.targetOccupancy, accent: true },
-                    { label: "Gain potentiel", value: audit.revenueProjection.potentialGain, accent: true },
+                    { label: "Revenu/mois actuel", value: `${(audit.revenueProjection.currentMonthlyRevenue||0).toLocaleString("fr-FR")} €`, accent: false },
+                    { label: "Revenu/mois optimisé", value: `${(audit.revenueProjection.optimizedMonthlyRevenue||0).toLocaleString("fr-FR")} €`, accent: true },
+                    { label: "Occupation actuelle", value: `${audit.revenueProjection.currentOccupancy||0} %`, accent: false },
+                    { label: "Objectif réaliste", value: `${audit.revenueProjection.targetOccupancy||0} %`, accent: true },
                   ].map((s) => (
                     <div key={s.label} className={`rounded-xl p-4 text-center border ${s.accent ? "bg-brand-green/10 border-brand-green/20" : "bg-white/5 border-white/8"}`}>
-                      <div className="text-2xl font-extrabold mb-1" style={{ color: s.accent ? "#2DB84B" : "rgba(255,255,255,0.7)" }}>{s.value}</div>
+                      <div className="text-xl font-extrabold mb-1" style={{ color: s.accent ? "#2DB84B" : "rgba(255,255,255,0.7)" }}>{s.value}</div>
                       <div className="text-[11px] text-white/35 font-semibold">{s.label}</div>
                     </div>
                   ))}
                 </div>
-                <p className="text-white/25 text-xs">{audit.revenueProjection.basis}</p>
+                <div className="flex items-center justify-between bg-brand-green/5 border border-brand-green/15 rounded-xl px-4 py-3 mb-2">
+                  <span className="text-white/50 text-xs">Gain annuel potentiel</span>
+                  <span className="text-brand-green font-extrabold text-lg">+{(audit.revenueProjection.annualGain||0).toLocaleString("fr-FR")} €</span>
+                </div>
+                <p className="text-white/25 text-xs">{audit.revenueProjection.insight} {audit.revenueProjection.occupancySource === "calendar_data" ? "· Données calendrier réelles" : "· Estimation marché"}</p>
               </div>
             </div>
           )}

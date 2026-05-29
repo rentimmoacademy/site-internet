@@ -329,10 +329,15 @@ Réponds UNIQUEMENT avec le JSON ci-dessous, sans texte avant ni après, sans ma
     ]
   },
   "revenueProjection": {
-    "currentOccupancy": "<estimation % basée sur données calendrier si dispo, sinon estimation marché>",
-    "targetOccupancy": "<% réaliste après implémentation des recommandations>",
-    "potentialGain": "<+X€/mois estimé ou 'Non calculable sans données pricing'>",
-    "basis": "<explication courte de l'estimation>"
+    "currentOccupancy": <integer 0-100, % occupation actuel estimé — utilise calendarOccupancy si dispo dans les données listing, sinon benchmark marché pour cette ville/type de bien>,
+    "targetOccupancy": <integer 0-100, % réaliste atteignable après implémentation des recommandations, max +25pts vs current>,
+    "currentADR": <number, prix moyen par nuit actuel en EUR — utilise pricePerNight du listing>,
+    "marketADR": <number, prix moyen par nuit des concurrents en EUR — calcule la moyenne des concurrents ou estime si pas de données>,
+    "currentMonthlyRevenue": <integer, revenu mensuel actuel estimé = round(currentADR * 30 * currentOccupancy/100)>,
+    "optimizedMonthlyRevenue": <integer, revenu mensuel optimisé = round(marketADR * 30 * targetOccupancy/100)>,
+    "annualGain": <integer, gain annuel potentiel = (optimizedMonthlyRevenue - currentMonthlyRevenue) * 12>,
+    "occupancySource": "<'calendar_data' si données calendrier dispo, 'market_estimate' sinon>",
+    "insight": "<1 phrase clé sur le levier principal de croissance pour CE logement>"
   },
   "topActions": [
     { "impact": "HIGH", "category": "<catégorie>", "action": "<action courte et spécifique>", "icon": "<emoji>" },

@@ -24,7 +24,10 @@ interface Audit {
   categories: Category[];
   topActions: Array<{ impact: string; category: string; action: string; icon: string }>;
   revenueProjection: {
-    currentOccupancy: string; targetOccupancy: string; potentialGain: string; basis: string;
+    currentOccupancy: number; targetOccupancy: number;
+    currentADR: number; marketADR: number;
+    currentMonthlyRevenue: number; optimizedMonthlyRevenue: number;
+    annualGain: number; occupancySource: string; insight: string;
   };
   generatedContent: {
     optimizedTitle: string; keyImprovements: string[];
@@ -434,11 +437,12 @@ export default function AuditPublicPage() {
         {/* Revenue */}
         <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-4">Potentiel de revenus</h3>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 gap-3 mb-3">
             {[
-              { label: "Occupation actuelle", value: audit.revenueProjection.currentOccupancy, accent: false },
-              { label: "Objectif réaliste", value: audit.revenueProjection.targetOccupancy, accent: true },
-              { label: "Gain potentiel", value: audit.revenueProjection.potentialGain, accent: true },
+              { label: "Revenu/mois actuel", value: `${(audit.revenueProjection.currentMonthlyRevenue||0).toLocaleString("fr-FR")} €`, accent: false },
+              { label: "Revenu/mois optimisé", value: `${(audit.revenueProjection.optimizedMonthlyRevenue||0).toLocaleString("fr-FR")} €`, accent: true },
+              { label: "Occupation actuelle", value: `${audit.revenueProjection.currentOccupancy||0} %`, accent: false },
+              { label: "Objectif réaliste", value: `${audit.revenueProjection.targetOccupancy||0} %`, accent: true },
             ].map((s) => (
               <div key={s.label} className={`rounded-xl p-3.5 text-center border ${s.accent ? "bg-brand-green/10 border-brand-green/20" : "bg-white/5 border-white/8"}`}>
                 <div className="font-extrabold text-lg mb-0.5" style={{ color: s.accent ? "#2DB84B" : "rgba(255,255,255,0.65)" }}>{s.value}</div>
@@ -446,6 +450,13 @@ export default function AuditPublicPage() {
               </div>
             ))}
           </div>
+          <div className="flex items-center justify-between bg-brand-green/5 border border-brand-green/15 rounded-xl px-4 py-3">
+            <span className="text-white/50 text-xs">Gain annuel potentiel</span>
+            <span className="text-brand-green font-extrabold text-base">+{(audit.revenueProjection.annualGain||0).toLocaleString("fr-FR")} €</span>
+          </div>
+          {audit.revenueProjection.insight && (
+            <p className="text-white/25 text-xs mt-2">{audit.revenueProjection.insight} · {audit.revenueProjection.occupancySource === "calendar_data" ? "Données calendrier" : "Estimation marché"}</p>
+          )}
         </div>
 
         {/* CTA Super BnB Academy */}
