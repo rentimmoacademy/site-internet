@@ -77,5 +77,14 @@ export async function onRequestPost({ request, env }) {
   const toAdd = [TAGS.optinMasterclass, sourceTagId(source)].filter(Boolean);
   await Promise.all(toAdd.map(tagId => sio(`/contacts/${contact.id}/tags`, 'POST', { tagId }, key)));
 
+  // SetSmart WA — séquence post-optin si numéro présent
+  if (phone) {
+    fetch('https://setsmart.io/api/optin?client=rentimmoacademy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ recipient_number: phone, name: firstName.trim(), email }),
+    }).catch(() => {});
+  }
+
   return json({ ok: true, contactId: contact.id });
 }
