@@ -18,21 +18,28 @@ const ACTORS = {
   booking: 'dtrungtin~booking-scraper',
 };
 
+function futureDate(days) {
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  return d.toISOString().split('T')[0];
+}
+
 const buildInput = (platform, url) => {
   if (platform === 'airbnb') {
     return {
       startUrls: [{ url }],
       maxListings: 1,
       includeReviews: true,
-      maxReviews: 50,
+      maxReviews: 30,
       currency: 'EUR',
-      limitPoints: 20,
+      checkIn: futureDate(14),
+      checkOut: futureDate(15),
+      calendarMonths: 3,
     };
   }
   return {
     startUrls: [{ url }],
-    maxReviews: 50,
-    sortReviews: 'f_recent_desc',
+    maxReviews: 30,
   };
 };
 

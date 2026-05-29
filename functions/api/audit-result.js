@@ -2,7 +2,7 @@
  * CF Pages Function — GET /api/audit-result
  * Orchestre : polling Apify → benchmark concurrents → analyse Claude
  *
- * Env requis : APIFY_API_TOKEN, ANTHROPIC_API_KEY
+ * Env requis : APIFY_API_TOKEN, GEMINI_API_KEY
  *
  * Flow (piloté par le frontend via polling) :
  *   1. ?listingRunId=xxx&platform=xxx&url=xxx
@@ -382,6 +382,8 @@ export async function onRequestGet({ request, env }) {
   const url = p.get('url');
 
   if (!listingRunId) return json({ error: 'listingRunId requis' }, 400);
+  if (!APIFY_API_TOKEN) return json({ error: 'APIFY_API_TOKEN non configuré' }, 500);
+  if (!GEMINI_API_KEY) return json({ error: 'GEMINI_API_KEY non configuré' }, 500);
 
   try {
     // ── Phase 1 : Vérifier le run listing ──
