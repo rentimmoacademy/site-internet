@@ -24,6 +24,7 @@ import {
 import SuperBnbHero from "@/components/sections/SuperBnbHero";
 import SuperBnbWeeks from "@/components/sections/SuperBnbWeeks";
 import CallGate from "@/components/CallGate";
+import SuperBnbAuditModal from "@/components/SuperBnbAuditModal";
 
 const forYou = [
   "Tu as déjà au moins 1 bien Airbnb actif",
@@ -108,6 +109,7 @@ const faq = [
 
 export default function SuperBnbAcademyPage() {
   const [faqIdx, setFaqIdx] = useState<number | null>(0);
+  const [auditOpen, setAuditOpen] = useState(false);
 
   return (
     <div className="font-poppins bg-auto-navy text-white">
@@ -202,6 +204,32 @@ export default function SuperBnbAcademyPage() {
           </div>
         </div>
       </section>
+
+      {/* Audit hook — modal trigger */}
+      <section className="relative bg-auto-navy border-y border-white/5 py-16">
+        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-auto-mint/8 blur-[100px]" />
+        <div className="container-x relative text-center">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint mb-4">
+            Diagnostic gratuit
+          </p>
+          <h2 className="text-[clamp(1.75rem,3.5vw,2.25rem)] font-extrabold text-white leading-tight tracking-tight mb-3">
+            Commence par voir où en est ton annonce
+          </h2>
+          <p className="text-white/50 text-sm max-w-md mx-auto mb-8 leading-relaxed">
+            Score /100 · Points critiques · Gain de revenus estimé · Résultat en 60 secondes
+          </p>
+          <button
+            onClick={() => setAuditOpen(true)}
+            className="inline-flex items-center gap-2 rounded-full bg-auto-mint px-8 py-4 font-bold text-auto-navy hover:brightness-110 transition-all hover:shadow-glow-mint"
+          >
+            <Sparkles size={14} /> Analyser mon annonce gratuitement
+          </button>
+          <p className="text-white/25 text-xs mt-3">Sans inscription · Sans engagement</p>
+        </div>
+      </section>
+
+      <SuperBnbAuditModal open={auditOpen} onClose={() => setAuditOpen(false)} />
 
       <SuperBnbWeeks />
 
