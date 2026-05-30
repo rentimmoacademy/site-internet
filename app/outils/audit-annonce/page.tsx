@@ -174,7 +174,7 @@ export default function AuditPage() {
           <span className="text-white/40 text-sm">Audit Annonce LCD</span>
         </div>
         <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">
-          Outil Privé
+          Gratuit · IA
         </span>
       </header>
 

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "setsmart": {
+      "type": "http",
+      "url": "https://setsmart.io/api/mcp"
+    }
+  }
+}

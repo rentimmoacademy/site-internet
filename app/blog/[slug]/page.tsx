@@ -22,7 +22,8 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { title: post.title, description: post.excerpt, type: "article" },
+    alternates: { canonical: `https://www.rentimmoacademy.fr/blog/${params.slug}` },
+    openGraph: { title: post.title, description: post.excerpt, type: "article", url: `https://www.rentimmoacademy.fr/blog/${params.slug}` },
   };
 }
 

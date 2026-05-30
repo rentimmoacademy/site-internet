@@ -302,6 +302,26 @@ export default function DevenirConciergerieAirbnbPage() {
         </div>
       </LandingSection>
 
+
+      {/* Outil audit annonce */}
+      <section className="bg-ink py-16">
+        <div className="container-x">
+          <div className="rounded-3xl border border-brand-green/20 bg-brand-green/5 p-8 flex flex-col md:flex-row items-center gap-6 justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-green mb-2">Outil gratuit</p>
+              <h3 className="text-xl font-extrabold text-white tracking-tight">Auditez votre annonce Airbnb en 90 secondes</h3>
+              <p className="text-white/55 text-sm mt-1">Score /100 · Benchmark concurrents · Titre réoptimisé par IA</p>
+            </div>
+            <Link
+              href="/outils/audit-annonce"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white transition-all hover:bg-brand-light"
+            >
+              Analyser mon annonce <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <FinalCTA />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
