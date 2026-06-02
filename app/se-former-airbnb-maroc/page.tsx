@@ -231,6 +231,18 @@ export default function SeFormerAirbnbMarocPage() {
         </div>
       </LandingSection>
 
+      <LandingSection kicker="Exemple opérationnel" title="Daribnb : une conciergerie bâtie sur ce modèle" bg="white">
+        <div className="rounded-2xl border border-brand-green/20 bg-brand-green/5 p-8">
+          <p className="text-lg text-ink leading-relaxed">
+            <a href="https://www.daribnb.com" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-dark underline decoration-brand-green/40 underline-offset-2 hover:text-brand-green transition-colors">Daribnb</a>{" "}
+            est la conciergerie Airbnb fondée par Marwan à Tanger en 2019. Elle opère aujourd'hui à Tanger, Marrakech, Casablanca et Rabat — plusieurs dizaines de biens gérés, note Airbnb 4,93/5 sur près de 1 200 avis.
+          </p>
+          <p className="mt-4 text-ink-muted">
+            Ce n'est pas un exemple théorique. C'est le modèle exact que les formations Rentimmo Academy t'apprennent à reproduire — mandat, équipe terrain, pricing dynamique, gestion à distance pour les MRE absents.
+          </p>
+        </div>
+      </LandingSection>
+
       <LandingSection kicker="FAQ" title="Questions fréquentes Airbnb Maroc" bg="cream">
         <div className="space-y-3">
           {FAQS.map((f) => (
