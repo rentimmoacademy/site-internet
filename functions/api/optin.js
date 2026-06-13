@@ -63,8 +63,11 @@ export async function onRequestPost({ request, env }) {
     if (phone) fields.push({ slug: 'phone_number', value: phone });
     const create = await sio('/contacts', 'POST', { email, fields }, key);
     if (!create.ok) {
-      const detail = JSON.stringify(create.data);
-      const badEmail = /n'existe pas|invalide|MX|DNS/i.test(detail);
+      const violations = create.data?.violations || [];
+      const allText = JSON.stringify(create.data).toLowerCase();
+      const badEmail = violations.some(v => v.propertyPath === 'email') ||
+        allText.includes('existe pas') || allText.includes('invalide') ||
+        allText.includes('mx') || allText.includes('dns');
       return json({
         error: badEmail ? 'email_invalid' : 'sio_error',
         message: badEmail ? 'Adresse email invalide. Vérifie et réessaie.' : 'Erreur technique. Réessaie dans une minute.',
