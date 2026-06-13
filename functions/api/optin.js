@@ -21,6 +21,14 @@ function sourceTagId(src) {
   return null;
 }
 
+function formatPhone(phone) {
+  const d = phone.replace(/\D/g, '');
+  if (d.startsWith('33') && d.length === 11) return '+' + d;
+  if (d.startsWith('0') && d.length === 10) return '+33' + d.slice(1);
+  if (d.length >= 10) return '+' + d;
+  return null;
+}
+
 async function sio(path, method, body, key) {
   const r = await fetch(SIO + path, {
     method,
@@ -68,6 +76,18 @@ export async function onRequestPost({ request, env }) {
       const badEmail = violations.some(v => v.propertyPath === 'email') ||
         allText.includes('existe pas') || allText.includes('invalide') ||
         allText.includes('mx') || allText.includes('dns');
+      if (badEmail && phone) {
+        // Email rejeté par Sio mais on a le tel → déclenche SetSmart WA directement
+        const wa = formatPhone(phone);
+        if (wa) {
+          await fetch(`https://setsmart.io/api/optin?client=rentimmoacademy`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ recipient_number: wa, name: firstName.trim(), email }),
+          }).catch(() => {});
+        }
+        return json({ ok: true, contactId: null }); // lead capturé via WA
+      }
       return json({
         error: badEmail ? 'email_invalid' : 'sio_error',
         message: badEmail ? 'Adresse email invalide. Vérifie et réessaie.' : 'Erreur technique. Réessaie dans une minute.',
