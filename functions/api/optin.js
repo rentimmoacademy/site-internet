@@ -91,7 +91,6 @@ export async function onRequestPost({ request, env }) {
       return json({
         error: badEmail ? 'email_invalid' : 'sio_error',
         message: badEmail ? 'Adresse email invalide. Vérifie et réessaie.' : 'Erreur technique. Réessaie dans une minute.',
-        _debug: { status: create.status, badEmail, hasKey: !!key, violations: create.data?.violations, detail: create.data?.detail },
       }, badEmail ? 400 : 422);
     }
     contact = create.data;
