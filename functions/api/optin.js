@@ -1,42 +1,8 @@
 /**
  * Cloudflare Pages Function — POST /api/optin
- * Crée contact Systeme.io + tag "optin masterclass"
- * Variable requise : SYSTEMEIO_API_KEY (déjà présente dans CF Pages)
+ * Capture lead masterclass → SetSmart WA + Systeme.io via webhook natif
+ * Note: Systeme.io API bloque les requêtes CF Pages (WAF). Pipeline : CF Pages → SetSmart → Sio via automation native.
  */
-
-const SIO = 'https://api.systeme.io/api';
-const TAGS = {
-  optinMasterclass: 1721885,
-  sourceInsta:      1054256,
-  sourceTiktok:     1057171,
-  sourceYoutube:    1057170,
-};
-
-function sourceTagId(src) {
-  if (!src) return null;
-  const s = src.toLowerCase();
-  if (s.includes('tiktok') || s.startsWith('tt')) return TAGS.sourceTiktok;
-  if (s.includes('youtube') || s.startsWith('yt')) return TAGS.sourceYoutube;
-  if (s.includes('insta') || s.startsWith('ig')) return TAGS.sourceInsta;
-  return null;
-}
-
-function formatPhone(phone) {
-  const d = phone.replace(/\D/g, '');
-  if (d.startsWith('33') && d.length === 11) return '+' + d;
-  if (d.startsWith('0') && d.length === 10) return '+33' + d.slice(1);
-  if (d.length >= 10) return '+' + d;
-  return null;
-}
-
-async function sio(path, method, body, key) {
-  const r = await fetch(SIO + path, {
-    method,
-    headers: { 'X-API-Key': key, 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    ...(body ? { body: JSON.stringify(body) } : {}),
-  });
-  return { ok: r.ok, status: r.status, data: await r.json().catch(() => ({})) };
-}
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -44,12 +10,20 @@ const CORS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
+function formatPhone(phone) {
+  if (!phone) return null;
+  const d = phone.replace(/\D/g, '');
+  if (d.startsWith('33') && d.length === 11) return '+' + d;
+  if (d.startsWith('0') && d.length === 10) return '+33' + d.slice(1);
+  if (d.length >= 10) return '+' + d;
+  return null;
+}
+
 export async function onRequestOptions() {
   return new Response('', { status: 200, headers: CORS });
 }
 
-export async function onRequestPost({ request, env }) {
-  const key = env.SYSTEMEIO_API_KEY;
+export async function onRequestPost({ request }) {
   const json = (body, status = 200) =>
     new Response(JSON.stringify(body), { status, headers: { ...CORS, 'Content-Type': 'application/json' } });
 
@@ -60,46 +34,15 @@ export async function onRequestPost({ request, env }) {
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: 'invalid_email' }, 400);
   if (!firstName?.trim()) return json({ error: 'missing_first_name' }, 400);
 
-  if (!key) return json({ ok: true, contactId: null }); // pas de clé = on laisse passer quand même
+  const wa = formatPhone(phone);
+  if (!wa) return json({ error: 'missing_phone', message: 'Numéro de téléphone requis.' }, 400);
 
-  // Cherche ou crée le contact
-  const search = await sio(`/contacts?email=${encodeURIComponent(email)}`, 'GET', null, key);
-  if (!search.ok) return json({ error: 'sio_search_error', _debug: { status: search.status, data: search.data } }, 500);
-  let contact = (search.data?.items || search.data?.['hydra:member'] || [])[0] || null;
+  // Déclenche SetSmart → séquence WA + automation Sio native
+  const ss = await fetch('https://setsmart.io/api/optin?client=rentimmoacademy', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ recipient_number: wa, name: firstName.trim(), email }),
+  }).catch(() => null);
 
-  if (!contact) {
-    const fields = [{ slug: 'first_name', value: firstName.trim() }];
-    if (phone) fields.push({ slug: 'phone_number', value: phone });
-    const create = await sio('/contacts', 'POST', { email, fields }, key);
-    if (!create.ok) {
-      const violations = create.data?.violations || [];
-      const allText = JSON.stringify(create.data).toLowerCase();
-      const badEmail = violations.some(v => v.propertyPath === 'email') ||
-        allText.includes('existe pas') || allText.includes('invalide') ||
-        allText.includes('mx') || allText.includes('dns');
-      if (badEmail && phone) {
-        // Email rejeté par Sio mais on a le tel → déclenche SetSmart WA directement
-        const wa = formatPhone(phone);
-        if (wa) {
-          await fetch(`https://setsmart.io/api/optin?client=rentimmoacademy`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ recipient_number: wa, name: firstName.trim(), email }),
-          }).catch(() => {});
-        }
-        return json({ ok: true, contactId: null }); // lead capturé via WA
-      }
-      return json({
-        error: badEmail ? 'email_invalid' : 'sio_error',
-        message: badEmail ? 'Adresse email invalide. Vérifie et réessaie.' : 'Erreur technique. Réessaie dans une minute.',
-      }, badEmail ? 400 : 422);
-    }
-    contact = create.data;
-  }
-
-  // Tags
-  const toAdd = [TAGS.optinMasterclass, sourceTagId(source)].filter(Boolean);
-  await Promise.all(toAdd.map(tagId => sio(`/contacts/${contact.id}/tags`, 'POST', { tagId }, key)));
-
-  return json({ ok: true, contactId: contact.id });
+  return json({ ok: true });
 }
