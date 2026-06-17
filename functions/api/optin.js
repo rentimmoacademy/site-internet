@@ -64,6 +64,7 @@ export async function onRequestPost({ request, env }) {
 
   // Cherche ou crée le contact
   const search = await sio(`/contacts?email=${encodeURIComponent(email)}`, 'GET', null, key);
+  if (!search.ok) return json({ error: 'sio_search_error', _debug: { status: search.status, data: search.data } }, 500);
   let contact = (search.data?.items || search.data?.['hydra:member'] || [])[0] || null;
 
   if (!contact) {
