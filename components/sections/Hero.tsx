@@ -47,8 +47,8 @@ export default function Hero() {
           animate="show"
           className="max-w-5xl text-[clamp(2.5rem,6.5vw,5.25rem)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
         >
-          Génère <span className="bg-brand-gradient bg-clip-text text-transparent">+700 €/mois</span>{" "}
-          avec ton premier logement Airbnb.
+          Formation <span className="bg-brand-gradient bg-clip-text text-transparent">sous-location & conciergerie Airbnb</span>{" "}
+          — génère +700 €/mois sans crédit, sans apport.
         </motion.h1>
 
         {/* Subtitle */}
