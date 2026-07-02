@@ -64,12 +64,12 @@ export async function onRequestPost({ request, env }) {
   const userIP = request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For') || '1.1.1.1';
   const key = env.SYSTEMEIO_API_KEY;
 
-  // 1. SetSmart WA (toujours, indépendant)
-  if (wa) {
-    fetch('https://setsmart.io/api/optin?client=rentimmoacademy', {
+  // 1. Google Sheets log (fire-and-forget)
+  if (env.APPS_SCRIPT_URL) {
+    fetch(env.APPS_SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ recipient_number: wa, name: firstName.trim(), email }),
+      body: JSON.stringify({ firstName: firstName.trim(), email, phone: phone || '', source: source || '' }),
     }).catch(() => {});
   }
 

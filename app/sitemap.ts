@@ -26,17 +26,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/mentions-legales", priority: 0.2, changeFrequency: "yearly" as const },
     { path: "/cgv", priority: 0.2, changeFrequency: "yearly" as const },
     { path: "/politique-confidentialite", priority: 0.2, changeFrequency: "yearly" as const },
-  ].map((r) => ({ url: `${BASE}${r.path}`, lastModified: now, changeFrequency: r.changeFrequency, priority: r.priority }));
+  ].map((r) => ({ url: `${BASE}${r.path}/`, lastModified: now, changeFrequency: r.changeFrequency, priority: r.priority }));
 
   const formationRoutes = formations.map((f) => ({
-    url: `${BASE}/formations/${f.slug}`,
+    url: `${BASE}/formations/${f.slug}/`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.85,
   }));
 
   const postRoutes = posts.map((p) => ({
-    url: `${BASE}/blog/${p.slug}`,
+    url: `${BASE}/blog/${p.slug}/`,
     lastModified: new Date(p.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
