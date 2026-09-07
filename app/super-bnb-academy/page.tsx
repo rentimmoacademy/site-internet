@@ -57,7 +57,7 @@ const compareRows: [string, string, string][] = [
 
 const stats = [
   { icon: TrendingUp, value: "+38%", label: "de revenus en 30 jours", sub: "moyenne de nos clients ayant complété le programme" },
-  { icon: Clock, value: "-8h", label: "de gestion par semaine", sub: "temps récupéré grâce à l'automatisation complète du logement" },
+  { icon: Clock, value: "15 min", label: "par jour de gestion", sub: "temps moyen de gestion quotidienne une fois le système installé" },
   { icon: ShieldCheck, value: "4,93 / 5", label: "note hôte moyenne atteinte", sub: "en partant d'une note inférieure à 4,8 avant le programme" },
 ];
 
