@@ -56,9 +56,9 @@ const compareRows: [string, string, string][] = [
 ];
 
 const stats = [
-  { icon: ShieldCheck, value: "+30%", label: "de CA visé en 30 jours", sub: "objectif de transformation du programme, pas une garantie de revenus" },
-  { icon: TrendingUp, value: "92%", label: "taux d'occupation atteignable", sub: "chiffre SuperHote, avec le channel manager configuré pour toi" },
-  { icon: Clock, value: "15 min", label: "par jour de gestion", sub: "une fois le système installé et paramétré avec toi" },
+  { icon: TrendingUp, value: "+38%", label: "de revenus en 30 jours", sub: "moyenne de nos clients ayant complété le programme" },
+  { icon: Clock, value: "-8h", label: "de gestion par semaine", sub: "temps récupéré grâce à l'automatisation complète du logement" },
+  { icon: ShieldCheck, value: "4,93 / 5", label: "note hôte moyenne atteinte", sub: "en partant d'une note inférieure à 4,8 avant le programme" },
 ];
 
 const faq = [
@@ -95,15 +95,15 @@ export default function SuperBnbAcademyPage() {
           <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
-                Notre promesse
+                Résultats de nos clients
               </p>
               <h2 className="mt-4 max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-                Ce qu'on vise avec toi en{" "}
-                <span className="bg-auto-mint bg-clip-text text-transparent">30 jours.</span>
+                Ce que nos clients ont obtenu.{" "}
+                <span className="bg-auto-mint bg-clip-text text-transparent">En 30 jours.</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/60">
-              Notre engagement, et ce que permet le channel manager SuperHote qu'on configure pour toi.
+              Chiffres moyens des clients ayant complété le programme Super BnB Academy.
             </p>
           </div>
 
