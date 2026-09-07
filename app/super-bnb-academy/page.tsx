@@ -23,6 +23,7 @@ import SuperBnbHero from "@/components/sections/SuperBnbHero";
 import SuperBnbWeeks from "@/components/sections/SuperBnbWeeks";
 import CallGate from "@/components/CallGate";
 import SuperBnbAuditModal from "@/components/SuperBnbAuditModal";
+import SuperBnbAuditPopup from "@/components/SuperBnbAuditPopup";
 
 const forYou = [
   "Tu as déjà au moins 1 bien Airbnb actif",
@@ -510,6 +511,8 @@ export default function SuperBnbAcademyPage() {
           }),
         }}
       />
+
+      <SuperBnbAuditPopup />
     </div>
   );
 }

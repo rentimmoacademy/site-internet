@@ -8,6 +8,7 @@ import { SITE, cn } from "@/lib/utils";
 import FinalCTA from "@/components/sections/FinalCTA";
 import BlogIllustration from "@/components/blog/BlogIllustration";
 import BlogCTA from "@/components/blog/BlogCTA";
+import MasterclassPopup from "@/components/blog/MasterclassPopup";
 
 function TikTokIcon({ size = 16 }: { size?: number }) {
   return (
@@ -243,6 +244,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
       <BlogFinalCTA category={post.category} />
       <FinalCTA />
+
+      {/* Popup masterclass — sous-location articles uniquement */}
+      {post.category === "sous-location" && <MasterclassPopup />}
 
       {/* BlogPosting JSON-LD */}
       {/* BreadcrumbList schema */}
