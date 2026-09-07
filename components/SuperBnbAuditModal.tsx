@@ -264,7 +264,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
               >
                 <CalendarCheck size={16} /> Réserve ton audit gratuit — on corrige ça ensemble
               </button>
-              <p className="text-white/30 text-xs text-center mt-3">30 min · Sans engagement · Avec Marwan</p>
+              <p className="text-white/30 text-xs text-center mt-3">30 min · Sans engagement · avec ton coach dédié</p>
             </div>
           )}
 

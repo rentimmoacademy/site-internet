@@ -14,11 +14,9 @@ import {
   Brain,
   LayoutGrid,
   Lightbulb,
-  Star,
   TrendingUp,
   Clock,
   ShieldCheck,
-  Users,
   CalendarCheck,
 } from "lucide-react";
 import SuperBnbHero from "@/components/sections/SuperBnbHero";
@@ -41,8 +39,8 @@ const notForYou = [
 
 const bonuses = [
   { icon: Box, title: "Plan 3D du logement", desc: "Vue isométrique de ton logement, intégrée à ton annonce." },
-  { icon: Lock, title: "Serrure connectée", desc: "Kit SmartLife installé, check-in autonome 24/7." },
-  { icon: Globe, title: "Site de réservation directe", desc: "Domaine, design, paiement Stripe — économies 15% de commissions." },
+  { icon: Lock, title: "Kit domotique complet", desc: "Serrure connectée, détecteur fumée, détecteur nuisance sonore et kit radiateur économie énergie. Offert, installé et paramétré avec toi." },
+  { icon: Globe, title: "Site de réservation directe", desc: "Domaine, design, paiement Stripe — 0% de commission, contrairement aux plateformes." },
   { icon: Brain, title: "GPTs personnalisés", desc: "Assistants IA pour répondre, traduire, screener les voyageurs." },
   { icon: LayoutGrid, title: "Cockpit personnalisé", desc: "Dashboard Notion + Make connecté à toutes tes plateformes." },
   { icon: Lightbulb, title: "Kit SmartLife", desc: "Capteurs bruit, thermostat, ampoules connectées paramétrés." },
@@ -54,38 +52,13 @@ const compareRows: [string, string, string][] = [
   ["Coach dédié", "yes", "no"],
   ["Setup outils inclus", "yes", "no"],
   ["Suivi personnalisé", "yes", "no"],
-  ["Garantie résultat", "yes", "no"],
+  ["Garantie installation", "yes", "no"],
 ];
 
 const stats = [
-  { icon: TrendingUp, value: "+38%", label: "de revenus moyen", sub: "sur les 6 mois post-programme" },
-  { icon: Clock, value: "8h", label: "économisées / semaine", sub: "sur la gestion voyageurs" },
-  { icon: Star, value: "4,93★", label: "note moyenne hôte", sub: "après refonte de l'annonce" },
-  { icon: Users, value: "20+", label: "hôtes accompagnés", sub: "France & Maroc" },
-];
-
-const testimonials = [
-  {
-    name: "Sébastien R.",
-    city: "Bordeaux",
-    quote:
-      "Avant : 2h/jour à répondre aux voyageurs. Après 30 jours : 15 min/semaine. Je ne suis plus esclave de mon annonce.",
-    metric: "+38% de revenus",
-  },
-  {
-    name: "Camille D.",
-    city: "Annecy",
-    quote:
-      "Le site de réservation directe + les GPTs : je passe 0 commission Airbnb sur 30% de mes nuitées maintenant.",
-    metric: "8h gagnées / sem",
-  },
-  {
-    name: "Yassine T.",
-    city: "Tanger",
-    quote:
-      "On a tout reconfiguré avec Yassine. Mes notes sont passées de 4,7 à 4,93. Et j'ai 2 fois plus de réservations directes.",
-    metric: "Note 4,93★",
-  },
+  { icon: ShieldCheck, value: "+30%", label: "de CA visé en 30 jours", sub: "objectif de transformation du programme, pas une garantie de revenus" },
+  { icon: TrendingUp, value: "92%", label: "taux d'occupation atteignable", sub: "chiffre SuperHote, avec le channel manager configuré pour toi" },
+  { icon: Clock, value: "15 min", label: "par jour de gestion", sub: "une fois le système installé et paramétré avec toi" },
 ];
 
 const faq = [
@@ -103,7 +76,7 @@ const faq = [
   },
   {
     q: "Y a-t-il une garantie ?",
-    a: "Oui. Si à la fin des 4 semaines tes outils ne sont pas opérationnels, on continue jusqu'à ce qu'ils le soient. Sans frais supplémentaire.",
+    a: "Oui. Ton système est installé et opérationnel à J30, vérifié ensemble par une checklist de réception à 38 points. Si ce n'est pas le cas : remboursement intégral. Notre objectif de transformation est de te faire atteindre +30% de CA comparé à l'année précédente et de ramener ta gestion quotidienne à 15 minutes par jour. C'est ce qu'on vise avec toi, pas une garantie de revenus.",
   },
 ];
 
@@ -122,19 +95,19 @@ export default function SuperBnbAcademyPage() {
           <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
-                Résultats clients
+                Notre promesse
               </p>
               <h2 className="mt-4 max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-                Ce que les hôtes obtiennent en{" "}
+                Ce qu'on vise avec toi en{" "}
                 <span className="bg-auto-mint bg-clip-text text-transparent">30 jours.</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/60">
-              Chiffres moyens observés sur les hôtes ayant terminé le programme avec un coach dédié.
+              Notre engagement, et ce que permet le channel manager SuperHote qu'on configure pour toi.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-4 sm:grid-cols-1 lg:grid-cols-3">
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}
@@ -205,6 +178,50 @@ export default function SuperBnbAcademyPage() {
         </div>
       </section>
 
+      {/* 4 Piliers */}
+      <section className="relative bg-auto-navy py-24">
+        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+        <div className="container-x relative">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+            Méthode
+          </p>
+          <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
+            Les 4 piliers du{" "}
+            <span className="bg-auto-mint bg-clip-text text-transparent">programme.</span>
+          </h2>
+          <p className="mt-5 max-w-2xl text-white/60 text-sm leading-relaxed">
+            Peu importe d&apos;où tu pars aujourd&apos;hui, on fait le bilan de ta situation réelle puis on avance sur ces 4 axes en 30 jours avec ton coach dédié.
+          </p>
+
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: ShieldCheck, n: "01", title: "Diagnostiquer", desc: "Bilan complet de ton annonce, de tes revenus actuels et de ta gestion quotidienne. On part de la réalité, pas d'hypothèses." },
+              { icon: TrendingUp, n: "02", title: "Optimiser", desc: "Titre, photos, description, pricing dynamique. Chaque levier travaillé pour maximiser la visibilité et le taux de conversion." },
+              { icon: Brain, n: "03", title: "Automatiser", desc: "Messages voyageurs, check-in autonome, cautions, calendriers multi-plateformes. Ton Airbnb tourne sans toi." },
+              { icon: LayoutGrid, n: "04", title: "Scaler", desc: "Site de réservation directe, cockpit de pilotage, outils IA. Le système qui te permet de gérer plusieurs biens sans multiplier le temps." },
+            ].map((pilier, i) => (
+              <motion.div
+                key={pilier.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="rounded-3xl border border-white/10 bg-auto-navy-soft/60 p-7 backdrop-blur"
+              >
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-auto-mint/10 text-auto-mint ring-1 ring-auto-mint/30">
+                    <pilier.icon size={20} strokeWidth={2.2} />
+                  </div>
+                  <span className="text-3xl font-extrabold tracking-tight text-auto-mint/30">{pilier.n}</span>
+                </div>
+                <h3 className="text-lg font-extrabold tracking-tight text-white">{pilier.title}</h3>
+                <p className="mt-2 text-sm text-white/60 leading-relaxed">{pilier.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Audit hook — modal trigger */}
       <section className="relative bg-auto-navy border-y border-white/5 py-16">
         <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
@@ -244,8 +261,20 @@ export default function SuperBnbAcademyPage() {
                   Pas sûr que ce soit pour toi ?
                 </p>
                 <h3 className="mt-3 max-w-2xl text-2xl font-extrabold leading-tight tracking-[-0.015em] md:text-3xl">
-                  Réserve un audit gratuit de 30 min. On regarde ton annonce ensemble — sans engagement.
+                  Réserve ton appel diagnostic gratuit de 30 minutes. On regarde ton annonce ensemble, sans engagement.
                 </h3>
+                <ul className="mt-4 space-y-1.5">
+                  {[
+                    "Un regard extérieur expert sur ton annonce",
+                    "3 axes concrets d'amélioration identifiés",
+                    "La réponse claire : Super BnB Academy est-il fait pour toi ?",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-white/70">
+                      <Check size={14} className="mt-0.5 shrink-0 text-auto-mint" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
               <CallGate
                 href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
@@ -311,7 +340,7 @@ export default function SuperBnbAcademyPage() {
                   </th>
                   <th className="p-5 text-left">
                     <p className="text-[10px] uppercase tracking-widest text-auto-mint">
-                      Super BnB
+                      Super BnB Academy
                     </p>
                   </th>
                   <th className="p-5 text-left">
@@ -359,60 +388,20 @@ export default function SuperBnbAcademyPage() {
               <ShieldCheck size={26} strokeWidth={2.2} />
             </span>
             <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
-              Garantie résultat
+              Garantie installation
             </p>
             <h3 className="max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
-              Si à la fin des 4 semaines tes outils ne sont pas opérationnels,{" "}
+              Ton système est installé et opérationnel à J30.{" "}
               <span className="bg-auto-mint bg-clip-text text-transparent">
-                on continue jusqu'à ce qu'ils le soient.
+                Sinon remboursement intégral.
               </span>
             </h3>
             <p className="max-w-xl text-sm text-white/65">
-              Sans frais supplémentaire. C'est notre engagement : tant que ton Airbnb n'est pas
-              autopiloté, on reste à tes côtés.
+              C'est notre seule garantie contractuelle, protégée par une checklist de réception à 38 points signée ensemble à la fin du programme.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="relative bg-auto-navy py-24">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
-        <div className="container-x relative">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
-            Hôtes accompagnés
-          </p>
-          <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            Ils ont fait le programme.
-          </h2>
-
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="rounded-3xl border border-white/10 bg-auto-navy-soft/70 p-7 backdrop-blur"
-              >
-                <div className="flex items-center gap-1 text-warning">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} size={13} fill="currentColor" strokeWidth={0} />
-                  ))}
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-white/85">« {t.quote} »</p>
-                <div className="mt-6 flex items-end justify-between border-t border-white/10 pt-4">
-                  <div>
-                    <p className="text-sm font-bold">{t.name}</p>
-                    <p className="text-xs text-white/55">{t.city}</p>
-                  </div>
-                  <span className="rounded-full bg-auto-mint/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-auto-mint">
-                    {t.metric}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+            <div className="mt-2 rounded-2xl border border-auto-mint/20 bg-auto-mint/5 px-6 py-4 text-sm text-white/70 text-center max-w-lg">
+              <span className="font-bold text-auto-mint">Notre objectif de transformation :</span> +30% de chiffre d'affaires comparé à l'année précédente, et une gestion quotidienne ramenée à 15 minutes par jour. C'est ce qu'on vise avec toi, pas une garantie sur les revenus générés.
+            </div>
           </div>
         </div>
       </section>
@@ -460,14 +449,13 @@ export default function SuperBnbAcademyPage() {
         <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:radial-gradient(rgba(13,27,46,0.18)_1px,transparent_1px)] [background-size:32px_32px]" />
         <div className="container-x relative text-center">
           <p className="inline-flex items-center gap-2 rounded-full bg-auto-navy px-4 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-auto-mint">
-            <Sparkles size={12} /> Cohorte limitée
+            <Sparkles size={12} /> Diagnostic gratuit
           </p>
           <h2 className="mx-auto mt-8 max-w-3xl text-[clamp(2.25rem,5.5vw,4.5rem)] font-extrabold leading-[1] tracking-[-0.03em]">
-            Les places sont limitées.
+            Prêt à automatiser ton Airbnb ?
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg">
-            8 hôtes par cohorte maximum pour garantir l'accompagnement personnalisé. Réserve ta place
-            avant fermeture.
+            On regarde ensemble où tu perds de l'argent, et comment on le corrige en 30 jours.
           </p>
           <CallGate
             href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
@@ -499,17 +487,10 @@ export default function SuperBnbAcademyPage() {
                   url: "https://www.rentimmoacademy.fr",
                 },
                 timeRequired: "P30D",
-                aggregateRating: {
-                  "@type": "AggregateRating",
-                  ratingValue: "4.93",
-                  bestRating: "5",
-                  worstRating: "1",
-                  ratingCount: "20",
-                },
                 offers: {
                   "@type": "Offer",
                   url: "https://cal.com/rentimmoacademy/superbnbacademy",
-                  availability: "https://schema.org/LimitedAvailability",
+                  availability: "https://schema.org/InStock",
                   priceCurrency: "EUR",
                   category: "Coaching individuel",
                 },

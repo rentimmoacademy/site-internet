@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Users } from "lucide-react";
+import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import CallGate from "@/components/CallGate";
 
@@ -51,7 +51,8 @@ export default function SuperBnbHero() {
           className="mt-8 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl"
         >
           Un accompagnement sur mesure pour les hôtes Airbnb actifs qui veulent reprendre leur temps.
-          Annonce, messages, pricing, réservation directe — on configure tout avec toi.
+          Annonce, messages, pricing, domotique, outils IA : on configure tout avec ton coach dédié.
+          Un format encore rare sur le marché francophone de la location courte durée.
         </motion.p>
 
         <motion.div
@@ -75,7 +76,7 @@ export default function SuperBnbHero() {
           </Link>
         </motion.div>
 
-        {/* Available seats */}
+        {/* Trust badge */}
         <motion.div
           variants={fadeUp}
           custom={4}
@@ -84,12 +85,12 @@ export default function SuperBnbHero() {
           className="mt-14 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-auto-mint/15 text-auto-mint">
-            <Users size={18} />
+            <ShieldCheck size={18} />
           </div>
           <div>
-            <p className="text-xs uppercase tracking-widest text-white/60">Cohorte avril-mai 2026</p>
+            <p className="text-xs uppercase tracking-widest text-white/60">Propulsé par SuperHote</p>
             <p className="text-sm font-bold">
-              <span className="text-auto-mint">3 places</span> sur 8 disponibles
+              Le channel manager qui rend <span className="text-auto-mint">92% de taux d'occupation</span> atteignable
             </p>
           </div>
         </motion.div>
