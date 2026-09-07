@@ -10,18 +10,26 @@ const categoryColors: Record<string, string> = {
   "sous-location": "bg-brand-green text-ink",
   conciergerie: "bg-brand-dark text-white",
   cleaning: "bg-brand-light text-ink",
+  "cleaning-bnb": "bg-brand-light text-ink",
   "lcd-france": "bg-ink text-white",
   maroc: "bg-morocco text-white",
   outils: "bg-info text-white",
+  legal: "bg-amber-600 text-white",
+  formation: "bg-brand-dark text-white",
+  actualite: "bg-info text-white",
 };
 
 const categoryLabel: Record<string, string> = {
   "sous-location": "Sous-location",
   conciergerie: "Conciergerie",
   cleaning: "Cleaning",
+  "cleaning-bnb": "Cleaning",
   "lcd-france": "LCD France",
   maroc: "Maroc",
   outils: "Outils",
+  legal: "Réglementation",
+  formation: "Formation",
+  actualite: "Actualité",
 };
 
 export default function BlogCard({ post, index = 0 }: { post: BlogPostMeta; index?: number }) {

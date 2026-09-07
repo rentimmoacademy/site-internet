@@ -27,7 +27,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.8 }}
           className="mx-auto max-w-4xl text-[clamp(2.25rem,5.5vw,4.5rem)] font-extrabold leading-[1] tracking-[-0.03em]"
         >
-          Prêt à générer tes premiers revenus Airbnb ?
+          Chaque semaine d&apos;attente = 700 à 1 500 € qui n&apos;entrent pas.
         </motion.h2>
 
         <motion.p
@@ -37,7 +37,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="mx-auto mt-6 max-w-xl text-lg text-white/85"
         >
-          Choisis ta formation, applique dès le premier module, encaisse dans les 30 jours.
+          Choisis ta formation, applique dès le premier module. Les premiers revenus arrivent dans les 30 jours — ou on te rembourse.
         </motion.p>
 
         <motion.div
