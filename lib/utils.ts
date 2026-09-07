@@ -13,7 +13,7 @@ export const SITE = {
   email: "rentimmoacademy@gmail.com",
   calBooking: "https://cal.com/rentimmoacademy/appel-strategique",
   socials: {
-    instagram: "https://instagram.com/rentimmoacademy",
+    instagram: "https://instagram.com/rentimmo_academy",
     youtube: "https://youtube.com/@rentimmoacademy",
     tiktok: "https://tiktok.com/@rentimmoacademy",
   },

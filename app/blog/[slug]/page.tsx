@@ -2,10 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Youtube, Instagram } from "lucide-react";
 import { getAllPosts, getPost } from "@/lib/mdx";
+import { SITE } from "@/lib/utils";
 import FinalCTA from "@/components/sections/FinalCTA";
 import BlogIllustration from "@/components/blog/BlogIllustration";
+
+function TikTokIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
+    </svg>
+  );
+}
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -73,6 +82,52 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           </div>
         </div>
       </article>
+
+      {/* Social follow section */}
+      <section className="bg-ink py-14 border-t border-white/10">
+        <div className="container-x">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-white/40">
+              Rentimmo Academy
+            </p>
+            <h2 className="mt-3 text-2xl font-extrabold text-white">
+              Contenus gratuits chaque semaine sur la LCD
+            </h2>
+            <p className="mt-2 text-sm text-white/60">
+              Sous-location, conciergerie, automatisation, réglementation : abonne-toi pour ne rien manquer.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href={SITE.socials.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+              >
+                <Youtube size={16} className="text-red-400" />
+                YouTube — @rentimmoacademy
+              </a>
+              <a
+                href={SITE.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+              >
+                <Instagram size={16} className="text-pink-400" />
+                Instagram — @rentimmo_academy
+              </a>
+              <a
+                href={SITE.socials.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+              >
+                <TikTokIcon size={16} />
+                TikTok — @rentimmoacademy
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <FinalCTA />
 
