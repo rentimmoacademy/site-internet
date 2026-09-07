@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/formations", label: "Formations" },
-  { href: "/super-bnb-academy", label: "Super BnB", badge: "Programme" },
+  { href: "/super-bnb-academy", label: "SuperBNB", badge: "Programme" },
   { href: "/blog", label: "Blog" },
   { href: "/a-propos", label: "À propos" },
   { href: "/contact", label: "Contact" },

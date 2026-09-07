@@ -280,7 +280,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
                 src="https://cal.com/rentimmoacademy/superbnbacademy?embed=true"
                 className="w-full rounded-2xl border border-white/10 bg-white/5"
                 style={{ height: "520px" }}
-                title="Réserver un audit Super BnB Academy"
+                title="Réserver un audit SuperBNB Academy"
               />
             </div>
           )}

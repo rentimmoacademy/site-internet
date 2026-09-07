@@ -1,6 +1,6 @@
 /**
  * CF Pages Function — POST /api/audit-optin
- * Capture lead depuis l'outil audit public (Super BnB Academy)
+ * Capture lead depuis l'outil audit public (SuperBNB Academy)
  * Env requis : SYSTEMEIO_API_KEY
  *
  * ⚠️  Créer manuellement dans Systeme.io le tag "Audit Annonce LCD"

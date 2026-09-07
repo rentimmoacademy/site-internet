@@ -459,11 +459,11 @@ export default function AuditPublicPage() {
           )}
         </div>
 
-        {/* CTA Super BnB Academy */}
+        {/* CTA SuperBNB Academy */}
         <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1A6B33 0%, #2DB84B 60%, #5FD87A 100%)" }}>
           <div className="px-6 py-8 text-center">
             <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1.5 mb-5">
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">Super BnB Academy</span>
+              <span className="text-[10px] font-bold text-white uppercase tracking-widest">SuperBNB Academy</span>
             </div>
             <h3 className="text-white font-extrabold text-xl mb-2 tracking-tight">
               {audit.globalScore < 70

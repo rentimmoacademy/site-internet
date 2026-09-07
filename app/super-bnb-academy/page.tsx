@@ -64,7 +64,7 @@ const stats = [
 const faq = [
   {
     q: "Quelle est la différence avec une formation Rentimmo Academy ?",
-    a: "Rentimmo Academy te forme à un métier (sous-loc, conciergerie, cleaning) avec des modules vidéo et templates. Super BnB Academy est un programme d'accompagnement : on configure les outils avec toi, sur ton compte Airbnb, en 30 jours.",
+    a: "Rentimmo Academy te forme à un métier (sous-loc, conciergerie, cleaning) avec des modules vidéo et templates. SuperBNB Academy est un programme d'accompagnement : on configure les outils avec toi, sur ton compte Airbnb, en 30 jours.",
   },
   {
     q: "Combien de temps je dois y consacrer chaque semaine ?",
@@ -103,7 +103,7 @@ export default function SuperBnbAcademyPage() {
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/60">
-              Chiffres moyens des clients ayant complété le programme Super BnB Academy.
+              Chiffres moyens des clients ayant complété le programme SuperBNB Academy.
             </p>
           </div>
 
@@ -267,7 +267,7 @@ export default function SuperBnbAcademyPage() {
                   {[
                     "Un regard extérieur expert sur ton annonce",
                     "3 axes concrets d'amélioration identifiés",
-                    "La réponse claire : Super BnB Academy est-il fait pour toi ?",
+                    "La réponse claire : SuperBNB Academy est-il fait pour toi ?",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-white/70">
                       <Check size={14} className="mt-0.5 shrink-0 text-auto-mint" />
@@ -328,7 +328,7 @@ export default function SuperBnbAcademyPage() {
             La différence
           </p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            Super BnB Academy vs <span className="text-white/40">formation classique</span>
+            SuperBNB Academy vs <span className="text-white/40">formation classique</span>
           </h2>
 
           <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-auto-navy/50 backdrop-blur">
@@ -340,7 +340,7 @@ export default function SuperBnbAcademyPage() {
                   </th>
                   <th className="p-5 text-left">
                     <p className="text-[10px] uppercase tracking-widest text-auto-mint">
-                      Super BnB Academy
+                      SuperBNB Academy
                     </p>
                   </th>
                   <th className="p-5 text-left">
@@ -476,7 +476,7 @@ export default function SuperBnbAcademyPage() {
               {
                 "@type": "Course",
                 "@id": "https://www.rentimmoacademy.fr/super-bnb-academy#course",
-                name: "Super BnB Academy",
+                name: "SuperBNB Academy",
                 description:
                   "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On automatise ton logement avec toi : annonce, messages, pricing, réservation directe.",
                 url: "https://www.rentimmoacademy.fr/super-bnb-academy",

@@ -53,7 +53,7 @@ export default function SuperBnbCard() {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.25em] text-auto-mint">
-                    Super BnB Academy
+                    SuperBNB Academy
                   </p>
                   <p className="text-2xl font-extrabold tracking-tight">On le fait avec toi.</p>
                 </div>

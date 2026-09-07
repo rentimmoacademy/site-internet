@@ -14,7 +14,7 @@ export default function CallFloat() {
     ? "https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
     : "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true";
 
-  // Super BnB audit = no gate (direct link). Strategic call = gated.
+  // SuperBNB audit = no gate (direct link). Strategic call = gated.
   const handleClick = () => {
     if (isSuperBnb) {
       window.open(href, "_blank", "noopener,noreferrer");
