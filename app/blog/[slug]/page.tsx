@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { ArrowLeft, ArrowRight, Clock, Calendar, Youtube, Instagram, BookOpen, Scale, Wrench, Globe } from "lucide-react";
 import { getAllPosts, getPost } from "@/lib/mdx";
+import RelatedArticles from "@/components/blog/RelatedArticles";
 import { SITE, cn } from "@/lib/utils";
 import FinalCTA from "@/components/sections/FinalCTA";
 import BlogIllustration from "@/components/blog/BlogIllustration";
@@ -123,7 +124,7 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPost(params.slug);
+  const [post, allPosts] = await Promise.all([getPost(params.slug), getAllPosts()]);
   if (!post) notFound();
 
   const cat = categoryConfig[post.category] ?? defaultCat;
@@ -195,6 +196,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           </div>
         </div>
       </article>
+
+      <RelatedArticles posts={allPosts} currentSlug={post.slug} category={post.category} />
 
       {/* Social follow section */}
       <section className="bg-ink py-14 border-t border-white/10">

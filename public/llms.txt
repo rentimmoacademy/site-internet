@@ -52,6 +52,23 @@ Rentimmo Academy est dirigée par Marwan Afassi, MRE et expert Airbnb depuis 201
 - [Accord propriétaire sous-location : modèle et arguments 2026](https://www.rentimmoacademy.fr/blog/accord-proprietaire-sous-location-modele-2026/) : Cadre légal art. 1717, arguments pour convaincre, modèle de clause bail et email d'accord.
 - [Optimiser son annonce Airbnb : titre, photos, description 2026](https://www.rentimmoacademy.fr/blog/optimiser-annonce-airbnb-titre-description-photos/) : 5 leviers (titre 50 chars, photos, description SEO, tarif de lancement, avis) pour passer de 50% à 80% de taux d'occupation.
 - [Taxe de séjour Airbnb en France 2026](https://www.rentimmoacademy.fr/blog/taxe-sejour-airbnb-france-2026/) : Collecte automatique Airbnb, montants par ville (Paris 6,50€, Nice 4,88€), cas particuliers et déclaration.
+- [Algorithme Airbnb 2026 : les 8 facteurs de classement](https://www.rentimmoacademy.fr/blog/algorithme-airbnb-2026-remonter-annonce/) : Les 8 leviers qui font remonter une annonce — taux de réponse, conversion, qualité des avis, lisibilité IA.
+- [PriceLabs 2026 : guide complet](https://www.rentimmoacademy.fr/blog/pricelabs-guide-complet-airbnb-2026/) : L'outil de pricing dynamique de référence — configuration, Market Dashboard, résultats mesurés.
+- [Intelligence artificielle et Airbnb 2026](https://www.rentimmoacademy.fr/blog/intelligence-artificielle-airbnb-2026/) : Summer Release 2026 — recherche en langage naturel, "lisibilité IA", 40% du support géré par IA, outils spécialisés.
+- [ChatGPT pour hôtes Airbnb 2026 : 8 usages et prompts](https://www.rentimmoacademy.fr/blog/chatgpt-airbnb-prompts-hotes-2026/) : Annonces, messages check-in, réponses avis négatifs, guides séjour — les prompts copy-paste.
+- [Channel manager Airbnb 2026 : Superhote, Smoobu, Hostaway, Guesty](https://www.rentimmoacademy.fr/blog/channel-manager-airbnb-comparatif-2026/) : Comparatif détaillé des 4 solutions leaders avec critères par taille de parc.
+- [Messagerie automatisée Airbnb : séquence complète 5 messages](https://www.rentimmoacademy.fr/blog/messagerie-automatisee-airbnb-sequence-complete/) : De la confirmation à la demande d'avis — la séquence qui génère des 5 étoiles.
+- [Réservation directe Airbnb 2026 : réduire les commissions](https://www.rentimmoacademy.fr/blog/site-reservation-directe-airbnb-2026/) : 3 piliers (anciens voyageurs, Google My Business, réseaux), outils, risques à couvrir.
+- [Superhost Airbnb 2026 : guide complet](https://www.rentimmoacademy.fr/blog/superhost-airbnb-2026-guide-complet/) : 4 critères (note ≥4,8, réponse <1h, annulations <1%, 10 séjours), plan d'action semaine par semaine.
+- [Domotique Airbnb 2026 : équipements connectés](https://www.rentimmoacademy.fr/blog/domotique-airbnb-2026-equipements-connectes/) : Serrures connectées, détecteurs de nuisance, thermostats intelligents — ROI et mise en place.
+- [Airbnb Summer Release 2026 : impact conciergeries et sous-locataires](https://www.rentimmoacademy.fr/blog/airbnb-summer-release-2026-conciergeries-sous-locataires/) : Transferts aéroport, Rooms, nouvelles fonctionnalités — ce qui change pour les pros LCD.
+- [Fiscalité sous-location Airbnb 2026 : micro-BIC 30%](https://www.rentimmoacademy.fr/blog/fiscalite-sous-location-airbnb-2026-micro-bic-auto-entrepreneur/) : Abattement micro-BIC ramené à 30%, auto-entrepreneur, obligation facturation électronique.
+- [Declaloc 2026 : guide complet pour sous-loueurs](https://www.rentimmoacademy.fr/blog/declaloc-sous-location-professionnelle-guide-2026/) : Numéro Declaloc obligatoire depuis mai 2026 — démarches, délais, sanctions, cas particuliers.
+- [Sous-location en copropriété 2026 : décision Conseil Constitutionnel](https://www.rentimmoacademy.fr/blog/sous-location-copropriete-conseil-constitutionnel-2026/) : Mars 2026 — nouvelles règles, comment sécuriser son activité, vérifications à faire.
+- [Conciergerie Airbnb sans carte G 2026 : ce qui est légal](https://www.rentimmoacademy.fr/blog/conciergerie-airbnb-sans-carte-g-legalite-2026/) : Loi Hoguet, rappel à l'ordre 2026 — ce qu'on peut faire sans carte G et comment se protéger.
+- [Combien gagne vraiment une conciergerie Airbnb en 2026](https://www.rentimmoacademy.fr/blog/combien-gagne-conciergerie-airbnb-chiffres-reels-2026/) : Chiffres réels par palier — 5, 15, 30 logements. Commission, charges, marge nette.
+- [Sous-location professionnelle au Maroc 2026](https://www.rentimmoacademy.fr/blog/sous-location-professionnelle-maroc-guide-2026/) : Zéro plafond 90 jours, pas de Loi Le Meur — opportunité, légalité, villes à cibler.
+- [Formation Airbnb en ligne : comment bien se former en 2026](https://www.rentimmoacademy.fr/blog/formation-airbnb-en-ligne-comment-se-former-2026/) : Critères pour choisir une formation sérieuse, signaux d'arnaque, comparatif formats.
 
 ## Faits clés
 
@@ -83,5 +100,5 @@ Rentimmo Academy forme principalement :
 
 - Site : https://www.rentimmoacademy.fr
 - Email : rentimmoacademy@gmail.com
-- Cal.com appel stratégique offert : https://cal.com/rentimmo-academy/appel-strategique
+- Cal.com appel stratégique offert : https://cal.com/rentimmoacademy/appel-strategique
 - Masterclass gratuite : https://www.rentimmoacademy.fr/masterclass/

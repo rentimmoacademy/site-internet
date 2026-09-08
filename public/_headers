@@ -1,0 +1,55 @@
+# ─── Cloudflare Pages – Headers ───────────────────────────────────────────────
+# Applied at edge: security + aggressive caching for static assets
+
+# Security headers on every route
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# Next.js static chunks: content-hashed filenames → cache forever
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# SVG / icons (hashed via Next.js asset pipeline)
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Favicon
+/favicon.ico
+  Cache-Control: public, max-age=86400
+
+# Blog articles — short browser TTL, long CDN TTL
+/blog/*
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600
+
+# Formation pages
+/formations/*
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600
+
+# Landing pages (may update monthly)
+/sous-location-professionnelle/
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600
+
+/devenir-conciergerie-airbnb/
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600
+
+/menage-airbnb-professionnel/
+  Cache-Control: public, max-age=3600, s-maxage=86400, stale-while-revalidate=3600
+
+# Homepage — short TTL
+/
+  Cache-Control: public, max-age=1800, s-maxage=3600, stale-while-revalidate=600
+
+# OG images — edge-cached per slug
+/og/*
+  Cache-Control: public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400
+
+# Sitemap and llms.txt — refreshed weekly
+/sitemap.xml
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+/llms.txt
+  Cache-Control: public, max-age=86400
