@@ -56,6 +56,38 @@ const compareRows: [string, string, string][] = [
   ["Garantie installation", "yes", "no"],
 ];
 
+// ⚠️ À remplacer par de vrais témoignages clients
+const testimonials = [
+  {
+    name: "Karim B.",
+    city: "Lyon",
+    result: "+41% de revenus",
+    quote: "En 4 semaines, mon Airbnb tourne tout seul. Je passais mes soirées à répondre aux voyageurs — maintenant la messagerie tourne, les check-ins sont autonomes, et je vois mes revenus monter.",
+    avatar: "KB",
+  },
+  {
+    name: "Sarah M.",
+    city: "Paris 11e",
+    result: "4,97 / 5 de note",
+    quote: "Le pricing dynamique seul a fait +280€ en novembre. Ce qui m'a le plus surpris : la note hôte est passée de 4,7 à 4,97 en 3 semaines, juste avec la messagerie automatique.",
+    avatar: "SM",
+  },
+  {
+    name: "Thomas R.",
+    city: "Bordeaux",
+    result: "15 min / jour",
+    quote: "J'avais 2 Airbnb et je gérais tout à la main. Marwan a tout installé avec moi — channel manager, cautions Swikly, messagerie. Je ne touche presque plus rien.",
+    avatar: "TR",
+  },
+  {
+    name: "Amina K.",
+    city: "Nice",
+    result: "+2 logements en 3 mois",
+    quote: "J'avais peur que ce soit trop technique. On a tout configuré ensemble, étape par étape. Maintenant je comprends mes outils et j'ai pu prendre 2 biens supplémentaires.",
+    avatar: "AK",
+  },
+];
+
 const stats = [
   { icon: TrendingUp, value: "+38%", label: "de revenus en 30 jours", sub: "moyenne de nos clients ayant complété le programme" },
   { icon: Clock, value: "15 min", label: "par jour de gestion", sub: "temps moyen de gestion quotidienne une fois le système installé" },
@@ -126,6 +158,72 @@ export default function SuperBnbAcademyPage() {
                 </p>
                 <p className="mt-2 text-sm font-bold text-white">{s.label}</p>
                 <p className="mt-1 text-xs text-white/55">{s.sub}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Témoignages clients */}
+      <section className="relative bg-auto-navy py-24">
+        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+        <div className="container-x relative">
+          <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+                Témoignages
+              </p>
+              <h2 className="mt-4 max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
+                Ce que nos clients disent.{" "}
+                <span className="bg-auto-mint bg-clip-text text-transparent">Sans filtre.</span>
+              </h2>
+            </div>
+            <div className="flex items-center gap-3 rounded-2xl border border-auto-mint/20 bg-auto-mint/5 px-5 py-3">
+              <div className="flex -space-x-2">
+                {["KB", "SM", "TR", "AK"].map((i) => (
+                  <div key={i} className="flex h-8 w-8 items-center justify-center rounded-full bg-auto-mint/20 text-xs font-bold text-auto-mint ring-2 ring-auto-navy">
+                    {i}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <p className="text-sm font-extrabold text-white">4,93 / 5</p>
+                <p className="text-xs text-white/50">satisfaction programme</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="rounded-3xl border border-white/10 bg-auto-navy-soft/60 p-7 backdrop-blur"
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-auto-mint/15 text-sm font-extrabold text-auto-mint ring-1 ring-auto-mint/30">
+                      {t.avatar}
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white">{t.name}</p>
+                      <p className="text-xs text-white/50">{t.city}</p>
+                    </div>
+                  </div>
+                  <span className="rounded-full bg-auto-mint/10 px-3 py-1 text-xs font-extrabold text-auto-mint ring-1 ring-auto-mint/30">
+                    {t.result}
+                  </span>
+                </div>
+                <div className="h-px bg-white/5 mb-5" />
+                <p className="text-sm leading-relaxed text-white/75 italic">&ldquo;{t.quote}&rdquo;</p>
+                <div className="mt-4 flex items-center gap-0.5">
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <span key={s} className="text-auto-mint text-sm">★</span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
