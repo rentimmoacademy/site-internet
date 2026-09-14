@@ -138,6 +138,44 @@ export default function SuperBnbAcademyPage() {
     <div className="font-poppins bg-auto-navy text-white">
       <SuperBnbHero />
 
+      {/* Journée type — narratif douleur */}
+      <section className="relative bg-auto-navy-soft py-20">
+        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+        <div className="container-x relative mx-auto max-w-3xl">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint text-center">
+            Le quotidien d&apos;un hôte qui gère seul
+          </p>
+          <div className="mt-10 space-y-5">
+            {[
+              { h: "07h14", d: "Une annulation de dernière minute tombe. Il faut décaler le ménage en urgence et repenser le calendrier." },
+              { h: "12h30", d: "Un voyageur redemande le code de la porte pour la 3e fois. Tu réponds depuis ta pause déjeuner." },
+              { h: "18h50", d: "Le prix du week-end n'a pas bougé depuis 3 semaines alors que toute la ville affiche complet." },
+              { h: "22h40", d: "Un message d'un futur voyageur traîne depuis 6h sans réponse. Ton taux de réponse commence à chuter." },
+            ].map((row, i) => (
+              <motion.div
+                key={row.h}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="flex items-start gap-5 rounded-2xl border border-white/10 bg-auto-navy/50 p-5"
+              >
+                <span className="shrink-0 rounded-full bg-auto-mint/10 px-3 py-1.5 text-xs font-extrabold text-auto-mint">
+                  {row.h}
+                </span>
+                <p className="text-sm leading-relaxed text-white/70">{row.d}</p>
+              </motion.div>
+            ))}
+          </div>
+          <p className="mt-10 text-center text-xl font-extrabold tracking-tight text-white">
+            Ça te parle ?
+          </p>
+          <p className="mt-3 text-center text-sm text-white/55">
+            C&apos;est exactement ce qu&apos;on élimine avec toi en 30 jours&nbsp;: messages automatiques, pricing dynamique, check-in autonome.
+          </p>
+        </div>
+      </section>
+
       {/* Résultats clients */}
       <section className="relative border-y border-white/5 bg-auto-navy-soft py-20">
         <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
@@ -289,6 +327,17 @@ export default function SuperBnbAcademyPage() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 text-xs text-white/40 leading-relaxed">
+                Pas encore de logement ? Découvre notre formation{" "}
+                <Link href="/sous-location-professionnelle" className="text-auto-mint underline underline-offset-2 hover:text-white">
+                  sous-location professionnelle
+                </Link>
+                . Tu préfères tout déléguer ?{" "}
+                <Link href="/devenir-conciergerie-airbnb" className="text-auto-mint underline underline-offset-2 hover:text-white">
+                  Découvre la conciergerie Airbnb
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </div>

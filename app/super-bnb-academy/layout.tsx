@@ -23,6 +23,10 @@ export const metadata: Metadata = {
     "augmenter taux occupation airbnb",
     "gérer plusieurs logements airbnb",
     "outil gestion airbnb propriétaire",
+    "réduire temps de gestion airbnb",
+    "hôte airbnb professionnel",
+    "propriétaire airbnb rentabilité",
+    "sous location professionnelle airbnb",
   ],
   alternates: {
     canonical: URL,
