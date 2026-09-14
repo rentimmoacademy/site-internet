@@ -4,6 +4,7 @@ import { Check, ArrowRight, ShieldCheck, TrendingUp, MapPin, Wallet } from "luci
 import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import ActivityCallPopup from "@/components/ActivityCallPopup";
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/sous-location-professionnelle`;
@@ -389,6 +390,7 @@ export default function SousLocationProfessionnellePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ActivityCallPopup activity="sous-location" />
     </>
   );
 }

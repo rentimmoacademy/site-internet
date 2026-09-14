@@ -4,6 +4,7 @@ import { Check, ArrowRight, Sparkles, Clock, TrendingUp, Star } from "lucide-rea
 import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import ActivityCallPopup from "@/components/ActivityCallPopup";
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/menage-airbnb-professionnel`;
@@ -301,6 +302,7 @@ export default function MenageAirbnbProfessionnelPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ActivityCallPopup activity="cleaning" />
     </>
   );
 }

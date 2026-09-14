@@ -4,6 +4,7 @@ import { Check, ArrowRight, Briefcase, Users, BarChart3, ShieldCheck } from "luc
 import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import ActivityCallPopup from "@/components/ActivityCallPopup";
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/devenir-conciergerie-airbnb`;
@@ -328,6 +329,7 @@ export default function DevenirConciergerieAirbnbPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ActivityCallPopup activity="conciergerie" />
     </>
   );
 }
