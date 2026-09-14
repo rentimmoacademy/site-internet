@@ -20,6 +20,7 @@ const guides = [
   { href: "/devenir-conciergerie-airbnb", label: "Devenir conciergerie Airbnb" },
   { href: "/menage-airbnb-professionnel", label: "Ménage Airbnb professionnel" },
   { href: "/se-former-airbnb-maroc", label: "Se former à Airbnb au Maroc" },
+  { href: "/questions-frequentes", label: "Questions fréquentes" },
 ];
 
 export default function Navbar() {
