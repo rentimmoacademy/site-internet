@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -342,6 +343,12 @@ export default function SuperBnbAcademyPage() {
             <Sparkles size={14} /> Analyser mon annonce gratuitement
           </button>
           <p className="text-white/25 text-xs mt-3">Sans inscription · Sans engagement</p>
+          <Link
+            href="/super-bnb-academy/audit"
+            className="mt-4 inline-block text-xs font-semibold text-white/40 underline underline-offset-4 hover:text-auto-mint transition-colors"
+          >
+            Ou utilise l&apos;outil sur sa page dédiée →
+          </Link>
         </div>
       </section>
 

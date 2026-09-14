@@ -219,6 +219,42 @@ export default function AuditPublicPage() {
             </div>
           ))}
         </div>
+
+        {/* Résultats prouvés */}
+        <div className="mt-14 grid grid-cols-3 gap-3 text-center">
+          {[
+            { value: "+38%", label: "de revenus en 30 jours" },
+            { value: "15 min", label: "de gestion / jour" },
+            { value: "4,93/5", label: "note hôte moyenne" },
+          ].map((s) => (
+            <div key={s.label}>
+              <p className="text-2xl font-extrabold text-brand-green tracking-tight">{s.value}</p>
+              <p className="text-white/30 text-[11px] mt-1 leading-snug">{s.label}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-white/15 text-[11px] text-center mt-3">Moyenne des hôtes accompagnés en SuperBNB Academy</p>
+
+        {/* FAQ */}
+        <div className="mt-14 text-left">
+          <p className="text-white/40 text-xs font-bold uppercase tracking-widest text-center mb-5">Questions fréquentes</p>
+          <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/5">
+            {[
+              { q: "Comment fonctionne cet audit gratuit ?", a: "Notre IA analyse les données publiques de ton annonce (titre, photos, description, prix, avis) et les compare aux standards et aux annonces concurrentes de ta zone. Tu obtiens un score par catégorie et un plan d'action en 90 secondes." },
+              { q: "Est-ce vraiment gratuit et sans engagement ?", a: "Oui. Aucune carte bancaire, aucun abonnement. Tu renseignes juste tes coordonnées pour recevoir le rapport complet." },
+              { q: "Que deviennent mes données ?", a: "Elles servent uniquement à générer ton rapport et, si tu le souhaites, à te recontacter pour un audit stratégique gratuit. Aucune revente à des tiers." },
+              { q: "Et après l'audit ?", a: "Tu peux réserver un appel stratégique gratuit de 30 minutes avec un coach SuperBNB Academy pour aller plus loin sur ton annonce." },
+            ].map((item) => (
+              <details key={item.q} className="group p-4">
+                <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-semibold text-white/80">
+                  {item.q}
+                  <span className="text-white/30 group-open:rotate-45 transition-transform ml-3">+</span>
+                </summary>
+                <p className="text-white/40 text-sm mt-2 leading-relaxed">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
