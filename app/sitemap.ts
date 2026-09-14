@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/masterclass", priority: 0.85, changeFrequency: "monthly" as const },
     { path: "/super-bnb-academy", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/outils/audit-annonce", priority: 0.8, changeFrequency: "monthly" as const },
-    { path: "/super-bnb-academy/audit", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/super-bnb-academy/audit", priority: 0.75, changeFrequency: "monthly" as const },
     { path: "/lexique", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/temoignages", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/blog", priority: 0.7, changeFrequency: "weekly" as const },

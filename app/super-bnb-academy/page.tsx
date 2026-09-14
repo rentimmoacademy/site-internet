@@ -112,6 +112,22 @@ const faq = [
     q: "Y a-t-il une garantie ?",
     a: "Oui. Ton système est installé et opérationnel à J30, vérifié ensemble par une checklist de réception à 38 points. Si ce n'est pas le cas : remboursement intégral. Notre objectif de transformation est de te faire atteindre +30% de CA comparé à l'année précédente et de ramener ta gestion quotidienne à 15 minutes par jour. C'est ce qu'on vise avec toi, pas une garantie de revenus.",
   },
+  {
+    q: "Comment optimiser une annonce Airbnb pour avoir plus de réservations ?",
+    a: "Les leviers qui comptent le plus : un titre qui répond à une recherche précise, des photos professionnelles dans le bon ordre, une description structurée par bénéfices, un prix ajusté en dynamique (pas fixe) et une note hôte au-dessus de 4,8. C'est exactement ce qu'on reprend avec toi dans SuperBNB Academy.",
+  },
+  {
+    q: "Faut-il passer par une conciergerie Airbnb ou automatiser soi-même sa gestion ?",
+    a: "Une conciergerie délègue tout mais coûte 15 à 25% de commission à vie. SuperBNB Academy t'apprend à automatiser ta propre gestion (messages, pricing, check-in) en 30 jours : tu gardes 100% de tes revenus et tu restes autonome sur le long terme.",
+  },
+  {
+    q: "Comment augmenter son taux d'occupation sur Airbnb ?",
+    a: "Le pricing dynamique (type PriceLabs) ajusté au marché local, la diffusion multi-plateformes (Airbnb + Booking + site direct) et un temps de réponse voyageur sous la minute sont les 3 facteurs qui font le plus varier ton taux d'occupation.",
+  },
+  {
+    q: "Quel est le meilleur outil pour gérer plusieurs logements Airbnb en même temps ?",
+    a: "Un channel manager (comme Superhote) centralise calendriers et messages sur tous tes logements et toutes tes plateformes. C'est l'outil qu'on configure en priorité dans SuperBNB Academy dès que tu gères 2 biens ou plus.",
+  },
 ];
 
 export default function SuperBnbAcademyPage() {
