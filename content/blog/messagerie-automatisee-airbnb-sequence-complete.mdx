@@ -46,9 +46,9 @@ Chaque message de la séquence a un rôle distinct. Les hôtes qui n'envoient qu
 
 **Template (à personnaliser) :**
 
-> Bonjour {{prénom_voyageur}},
+> Bonjour \{\{prénom_voyageur\}\},
 >
-> Votre réservation est confirmée pour votre séjour du {{date_arrivée}} au {{date_départ}}.
+> Votre réservation est confirmée pour votre séjour du \{\{date_arrivée\}\} au \{\{date_départ\}\}.
 >
 > Je suis ravi(e) de vous accueillir prochainement.
 >
@@ -71,9 +71,9 @@ Chaque message de la séquence a un rôle distinct. Les hôtes qui n'envoient qu
 
 **Template :**
 
-> Bonjour {{prénom_voyageur}},
+> Bonjour \{\{prénom_voyageur\}\},
 >
-> Votre séjour approche ! Voici tout ce qu'il faut savoir pour votre arrivée le {{date_arrivée}} à partir de {{heure_checkin}}.
+> Votre séjour approche ! Voici tout ce qu'il faut savoir pour votre arrivée le \{\{date_arrivée\}\} à partir de \{\{heure_checkin\}\}.
 >
 > **Adresse complète :**
 > [adresse + indications si besoin (bâtiment, code immeuble, étage)]
@@ -82,7 +82,7 @@ Chaque message de la séquence a un rôle distinct. Les hôtes qui n'envoient qu
 > [parking / rue / consigne spécifique]
 >
 > **Accès au logement :**
-> La porte s'ouvre avec le code : **{{code_accès}}**
+> La porte s'ouvre avec le code : **\{\{code_accès\}\}**
 > [Instructions étape par étape si serrure connectée ou boîte à clé]
 >
 > **WiFi :**
@@ -112,7 +112,7 @@ Un message proactif à 9h du matin, le premier jour, coupe ce processus à la ra
 
 **Template :**
 
-> Bonjour {{prénom_voyageur}},
+> Bonjour \{\{prénom_voyageur\}\},
 >
 > J'espère que votre installation s'est bien passée et que vous êtes à l'aise !
 >
@@ -138,11 +138,11 @@ Dans 90 % des cas, la réponse est "Tout va bien, merci !" — et cet échange p
 
 **Template :**
 
-> Bonjour {{prénom_voyageur}},
+> Bonjour \{\{prénom_voyageur\}\},
 >
 > Votre séjour touche bientôt à sa fin — j'espère que vous avez passé un excellent moment !
 >
-> Quelques consignes pour votre départ demain à {{heure_checkout}} :
+> Quelques consignes pour votre départ demain à \{\{heure_checkout\}\} :
 >
 > - Laisser les clés [sur le plan de travail / dans la serrure / autre]
 > - Jeter les poubelles dans [emplacement]
@@ -164,7 +164,7 @@ Dans 90 % des cas, la réponse est "Tout va bien, merci !" — et cet échange p
 
 **Template :**
 
-> Bonjour {{prénom_voyageur}},
+> Bonjour \{\{prénom_voyageur\}\},
 >
 > Merci d'avoir séjourné chez nous — c'était un plaisir de vous accueillir.
 >

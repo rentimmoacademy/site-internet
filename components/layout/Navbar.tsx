@@ -15,9 +15,17 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
+const guides = [
+  { href: "/sous-location-professionnelle", label: "Sous-location professionnelle" },
+  { href: "/devenir-conciergerie-airbnb", label: "Devenir conciergerie Airbnb" },
+  { href: "/menage-airbnb-professionnel", label: "Ménage Airbnb professionnel" },
+  { href: "/se-former-airbnb-maroc", label: "Se former à Airbnb au Maroc" },
+];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [guidesOpen, setGuidesOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -38,6 +46,38 @@ export default function Navbar() {
           <Logo />
 
           <nav className="hidden items-center gap-7 md:flex">
+            <div
+              className="relative"
+              onMouseEnter={() => setGuidesOpen(true)}
+              onMouseLeave={() => setGuidesOpen(false)}
+            >
+              <button className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/70 transition-colors hover:text-white">
+                Guides
+              </button>
+              <AnimatePresence>
+                {guidesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute left-0 top-full pt-3"
+                  >
+                    <div className="w-72 rounded-2xl border border-white/10 bg-ink p-2 shadow-xl">
+                      {guides.map((g) => (
+                        <Link
+                          key={g.href}
+                          href={g.href}
+                          className="block rounded-xl px-4 py-3 text-sm font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                        >
+                          {g.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             {links.map((l) => (
               <Link
                 key={l.href}
@@ -94,6 +134,21 @@ export default function Navbar() {
               </button>
             </div>
             <nav className="container-x mt-10 flex flex-col gap-4">
+              <div className="border-b border-white/10 py-5">
+                <span className="text-xs font-bold uppercase tracking-widest text-white/40">Guides</span>
+                <div className="mt-3 flex flex-col gap-3">
+                  {guides.map((g) => (
+                    <Link
+                      key={g.href}
+                      href={g.href}
+                      onClick={() => setOpen(false)}
+                      className="text-lg font-bold tracking-tight text-white/90"
+                    >
+                      {g.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
               {links.map((l) => (
                 <Link
                   key={l.href}

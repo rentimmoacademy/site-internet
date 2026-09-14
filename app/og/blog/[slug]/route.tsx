@@ -1,7 +1,10 @@
 import { ImageResponse } from "next/og";
-import { getPost } from "@/lib/mdx";
+import { getAllPosts, getPost } from "@/lib/mdx";
 
-export const runtime = "edge";
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((p) => ({ slug: p.slug }));
+}
 
 const categoryColors: Record<string, string> = {
   "sous-location": "#2DB84B",

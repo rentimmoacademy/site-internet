@@ -1,0 +1,6 @@
+# Redirects 301 depuis l'ancien site WordPress (migré vers Next.js mai 2026)
+# Ces URLs sont encore indexées par Google mais renvoient un 404 sans ce fichier
+/conciergerie-academy/ /devenir-conciergerie-airbnb/ 301
+/atteignez-la-liberte-grace-a-la-formation-en-sous-location-professionnelle-et-conciergerie-airbnb/ /sous-location-professionnelle/ 301
+/automatiser-son-activite-de-lcd/ /blog/automatiser-airbnb-outils-2026/ 301
+/2023/02/13/ / 301
