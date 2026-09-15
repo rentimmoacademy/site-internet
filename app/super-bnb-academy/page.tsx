@@ -19,6 +19,7 @@ import {
   Clock,
   ShieldCheck,
   CalendarCheck,
+  Flame,
 } from "lucide-react";
 import SuperBnbHero from "@/components/sections/SuperBnbHero";
 import SuperBnbWeeks from "@/components/sections/SuperBnbWeeks";
@@ -573,6 +574,34 @@ export default function SuperBnbAcademyPage() {
             <div className="mt-2 rounded-2xl border border-auto-mint/20 bg-auto-mint/5 px-6 py-4 text-sm text-white/70 text-center max-w-lg">
               <span className="font-bold text-auto-mint">Notre objectif de transformation :</span> +30% de chiffre d'affaires comparé à l'année précédente, et une gestion quotidienne ramenée à 15 minutes par jour. C'est ce qu'on vise avec toi, pas une garantie sur les revenus générés.
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Urgence / places limitées */}
+      <section className="relative bg-auto-navy py-20">
+        <div className="container-x">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border border-auto-mint/30 bg-gradient-to-br from-auto-mint/15 via-auto-mint/5 to-transparent p-10 text-center md:p-14">
+            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-auto-mint/15 text-auto-mint ring-1 ring-auto-mint/40">
+              <Flame size={26} strokeWidth={2.2} />
+            </span>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+              Places limitées ce mois-ci
+            </p>
+            <h3 className="max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
+              Il reste{" "}
+              <span className="bg-auto-mint bg-clip-text text-transparent">2 à 3 places</span>{" "}
+              disponibles ce mois.
+            </h3>
+            <p className="max-w-xl text-sm text-white/65">
+              Chaque coach accompagne un nombre volontairement restreint d&apos;hôtes en simultané sur les 30 jours du programme — pour garantir un suivi réellement personnalisé, pas une formation de masse. Une fois les places du mois prises, il faut attendre la session suivante.
+            </p>
+            <CallGate
+              href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
+              className="mt-2 inline-flex items-center gap-2 rounded-full bg-auto-mint px-7 py-4 font-bold text-auto-navy transition-all hover:scale-[1.03] hover:shadow-glow-mint"
+            >
+              <CalendarCheck size={16} /> Réserver ma place ce mois
+            </CallGate>
           </div>
         </div>
       </section>

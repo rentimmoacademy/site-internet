@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   Star,
   MapPin,
+  Flame,
 } from "lucide-react";
 import type { Formation } from "@/lib/formations";
 import { formations } from "@/lib/formations";
@@ -268,6 +269,26 @@ export default function FormationDetail({ formation }: { formation: Formation })
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Urgence / places limitées */}
+      <section className="bg-ink py-16">
+        <div className="container-x">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 rounded-3xl border border-brand-green/30 bg-brand-green/5 p-8 text-center md:p-10">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/15 text-brand-green ring-1 ring-brand-green/40">
+              <Flame size={22} strokeWidth={2.2} />
+            </span>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-green">
+              Places de coaching limitées
+            </p>
+            <h3 className="text-xl font-extrabold leading-snug tracking-tight text-white md:text-2xl">
+              Nos coachs n&apos;accompagnent qu&apos;un nombre restreint d&apos;apprenants en 1-to-1 chaque mois.
+            </h3>
+            <p className="text-sm text-white/65">
+              Pour garantir un vrai suivi personnalisé sur les formules Platinum et Gold, le nombre de sessions coaching est volontairement limité. Une fois les places du mois prises, il faut attendre la session suivante.
+            </p>
           </div>
         </div>
       </section>
