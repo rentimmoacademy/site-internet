@@ -8,6 +8,7 @@ import WhyRentimmo from "@/components/sections/WhyRentimmo";
 import MoroccoSpotlight from "@/components/sections/MoroccoSpotlight";
 import AboutPreview from "@/components/sections/AboutPreview";
 import BlogPreview from "@/components/sections/BlogPreview";
+import RecentContent from "@/components/sections/RecentContent";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { AGGREGATE_RATING } from "@/lib/testimonials";
 
@@ -24,6 +25,7 @@ export default function HomePage() {
       <MoroccoSpotlight />
       <AboutPreview />
       <BlogPreview />
+      <RecentContent />
       <FinalCTA />
       <script
         type="application/ld+json"
