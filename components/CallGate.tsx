@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, X, PlayCircle } from "lucide-react";
 import { isMasterclassWatched } from "@/lib/masterclass";
+import { trackEvent } from "@/lib/gtag";
 
 type Variant = "primary" | "ghost" | "mint";
 
@@ -37,6 +38,7 @@ export function CallGateDialog({
   useEffect(() => {
     if (!open) return;
     if (isMasterclassWatched()) {
+      trackEvent("cal_booking_click", { href });
       window.open(href, "_blank", "noopener,noreferrer");
       onClose();
     }
@@ -104,8 +106,8 @@ interface CallGateProps {
 export default function CallGate({ href, children, className, variant = "primary" }: CallGateProps) {
   const [open, setOpen] = useState(false);
 
-  // Gate only the strategic call (formations funnel). SuperBNB audit is a
-  // separate funnel for existing Airbnb hosts — direct booking, no gate.
+  // Gate only the strategic call (formations funnel). Super BnB Academy audit is a
+  // separate funnel for existing Airbnb hosts: direct booking, no gate.
   const shouldGate = href.includes("appel-strategique");
 
   if (!shouldGate) {
@@ -114,6 +116,7 @@ export default function CallGate({ href, children, className, variant = "primary
         href={href}
         target="_blank"
         rel="noreferrer"
+        onClick={() => trackEvent("cal_booking_click", { href })}
         className={className ?? variantClasses[variant]}
       >
         {children}
@@ -128,6 +131,7 @@ export default function CallGate({ href, children, className, variant = "primary
         onClick={(e) => {
           e.preventDefault();
           if (isMasterclassWatched()) {
+            trackEvent("cal_booking_click", { href });
             window.open(href, "_blank", "noopener,noreferrer");
           } else {
             setOpen(true);

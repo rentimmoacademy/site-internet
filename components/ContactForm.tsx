@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Loader2, CheckCircle2 } from "lucide-react";
+import { trackEvent } from "@/lib/gtag";
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -26,6 +27,7 @@ export default function ContactForm() {
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error("submit_failed");
+      trackEvent("contact_form_submit", { formation: form.formation });
       setSent(true);
     } catch {
       setError(true);

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Logo from "@/components/layout/Logo";
+import { trackEvent } from "@/lib/gtag";
 
 const BULLETS = [
   "La méthode pour trouver et négocier un bail commercial en moins de 14 jours",
@@ -72,6 +73,7 @@ export default function MasterclassPage() {
       }
       sessionStorage.setItem("rentimmo_lead_email", email);
       sessionStorage.setItem("rentimmo_lead_firstName", firstName);
+      trackEvent("masterclass_optin", { source });
       setStep("video");
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {
