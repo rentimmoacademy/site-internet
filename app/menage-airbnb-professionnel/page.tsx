@@ -10,12 +10,12 @@ const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/menage-airbnb-professionnel`;
 
 export const metadata: Metadata = {
-  title: "Ménage Airbnb professionnel : devenir cleaner BnB en 2026 — Cleaning BnB Academy",
+  title: "Nettoyage Airbnb professionnel : devenir cleaner BnB en 2026 — Cleaning BnB Academy",
   description:
-    "Comment devenir cleaner Airbnb professionnel : standards hôteliers, tarification au m², premiers clients conciergeries. Guide 2026 par la Cleaning BnB Academy — Rentimmo Academy.",
+    "Nettoyage Airbnb professionnel (ménage BnB cleaning) : standards hôteliers, tarification au m², premiers clients conciergeries. Guide 2026 par la Cleaning BnB Academy — Rentimmo Academy.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Ménage Airbnb professionnel 2026 — Cleaning BnB Academy",
+    title: "Nettoyage Airbnb professionnel 2026 — Cleaning BnB Academy",
     description:
       "Standards hôteliers, tarification, premiers clients. Le guide de la Cleaning BnB Academy (Rentimmo Academy) pour lancer ton activité en 2026.",
     url: URL,
@@ -105,18 +105,18 @@ export default function MenageAirbnbProfessionnelPage() {
     <>
       <LandingHero
         kicker="Métier rentable, peu connu"
-        h1="Ménage Airbnb pro : devenir cleaner BnB en 2026"
-        intro="Le ménage Airbnb professionnel est un des métiers les plus rentables et stables du secteur LCD : tarif fixe par rotation, demande croissante, faible barrière à l'entrée. Voici comment lancer ton activité de cleaner BnB en 2026."
+        h1="Nettoyage Airbnb professionnel : devenir cleaner BnB en 2026"
+        intro="Le nettoyage Airbnb professionnel (ménage BnB / cleaning) est un des métiers les plus rentables et stables du secteur LCD : tarif fixe par rotation, demande croissante, faible barrière à l'entrée. Voici comment lancer ton activité de cleaner BnB en 2026."
         primaryCta={{ href: "/formations/cleaning-bnb", label: "Voir la formation" }}
         secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
-        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Ménage Airbnb professionnel" }]}
+        breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Nettoyage Airbnb professionnel" }]}
       />
 
       <LandingSection kicker="Le métier" title="Cleaner Airbnb pro : c'est quoi exactement ?" bg="cream">
         <div className="grid gap-8 md:grid-cols-2">
           <div>
             <p className="text-lg leading-relaxed text-ink">
-              Un <strong>cleaner Airbnb professionnel</strong> (ou prestataire de cleaning BnB) prend en charge le ménage de rotation entre voyageurs sur les locations courte durée. Il travaille avec les <strong>conciergeries Airbnb</strong>, les <strong>hôtes propriétaires actifs</strong> et les <strong>sous-locataires professionnels</strong>.
+              Un <strong>cleaner Airbnb professionnel</strong> (ou prestataire de nettoyage Airbnb / cleaning BnB) prend en charge le nettoyage de rotation entre voyageurs sur les locations courte durée. Il travaille avec les <strong>conciergeries Airbnb</strong>, les <strong>hôtes propriétaires actifs</strong> et les <strong>sous-locataires professionnels</strong>.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink">
               C'est un métier <strong>récurrent</strong> (mêmes biens à nettoyer chaque semaine), <strong>scalable</strong> (tu peux recruter une équipe), et avec une <strong>marge attractive</strong> (60-70% net après charges).
