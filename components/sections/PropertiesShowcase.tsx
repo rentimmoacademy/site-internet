@@ -23,7 +23,7 @@ const properties: Property[] = [
     occupancy: "92%",
     rating: "4,9★",
     highlight: "Décor jaune moutarde, parquet point de Hongrie",
-    image: "/properties/property-1.jpg",
+    image: "/properties/property-1.webp",
   },
   {
     name: "Le Cosy",
@@ -32,7 +32,7 @@ const properties: Property[] = [
     occupancy: "88%",
     rating: "4,9★",
     highlight: "Décor scandinave, écrin pour couples",
-    image: "/properties/property-2.PNG",
+    image: "/properties/property-2.webp",
   },
   {
     name: "Le Skyloft",
@@ -41,7 +41,7 @@ const properties: Property[] = [
     occupancy: "94%",
     rating: "5,0★",
     highlight: "Lumière zénithale, déco bois & céladon",
-    image: "/properties/property-3.JPG",
+    image: "/properties/property-3.webp",
   },
   {
     name: "Le New York",
@@ -50,7 +50,7 @@ const properties: Property[] = [
     occupancy: "90%",
     rating: "4,9★",
     highlight: "Bleu cobalt, ambiance Brooklyn",
-    image: "/properties/property-4.jpg",
+    image: "/properties/property-4.webp",
   },
   {
     name: "Le Latino",
@@ -59,7 +59,7 @@ const properties: Property[] = [
     occupancy: "89%",
     rating: "4,9★",
     highlight: "Parquet, voilage et coussins coraux",
-    image: "/properties/property-5.jpg",
+    image: "/properties/property-5.webp",
   },
   {
     name: "Le Pacha",
@@ -68,7 +68,7 @@ const properties: Property[] = [
     occupancy: "87%",
     rating: "4,9★",
     highlight: "Inspiration zellige, +25% vs marché local",
-    image: "/properties/property-6.JPG",
+    image: "/properties/property-6.webp",
   },
 ];
 
@@ -107,6 +107,9 @@ export default function PropertiesShowcase() {
                   <img
                     src={p.image}
                     alt={p.name}
+                    loading="lazy"
+                    width="900"
+                    height="600"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                 ) : (

@@ -225,7 +225,7 @@ export default function FormationDetail({ formation }: { formation: Formation })
             <div className="flex items-center gap-5">
               <div
                 className="h-20 w-20 flex-shrink-0 rounded-full bg-brand-green bg-cover bg-center ring-2 ring-brand-green/40"
-                style={{ backgroundImage: "url(/marwan.jpg)" }}
+                style={{ backgroundImage: "url(/marwan.webp)" }}
                 aria-label="Marwan Afassi"
               />
               <div>

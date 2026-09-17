@@ -150,7 +150,7 @@ export default function AboutPage() {
         <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-center">
           <div
             className="mx-auto aspect-square w-full max-w-[260px] overflow-hidden rounded-full bg-brand-green bg-cover bg-center ring-4 ring-white/5 lg:mx-0"
-            style={{ backgroundImage: "url(/marwan.jpg)" }}
+            style={{ backgroundImage: "url(/marwan.webp)" }}
             aria-label="Portrait de Marwan Afassi"
           />
           <div>

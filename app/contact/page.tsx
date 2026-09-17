@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mail, Instagram, Youtube, MapPin, CalendarClock } from "lucide-react";
 import { SITE } from "@/lib/utils";
 import CallGate from "@/components/CallGate";
+import ContactForm from "@/components/ContactForm";
 
 function TikTokIcon({ size = 16 }: { size?: number }) {
   return (
@@ -100,85 +101,8 @@ export default function ContactPage() {
         </div>
 
         {/* Right — form */}
-        <form
-          action={`mailto:${SITE.email}`}
-          method="post"
-          encType="text/plain"
-          className="rounded-3xl border border-white/10 bg-[#1f1f1f] p-8 md:p-10"
-        >
-          <div className="grid gap-5">
-            <div className="grid gap-5 md:grid-cols-2">
-              <Field label="Nom" name="name" required placeholder="Ton nom" />
-              <Field label="Email" name="email" type="email" required placeholder="toi@email.com" />
-            </div>
-            <Field label="Téléphone" name="phone" type="tel" placeholder="+33…" />
-            <div>
-              <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-white/70">
-                Formation intéressée
-              </label>
-              <select
-                name="formation"
-                className="w-full rounded-xl border border-white/10 bg-[#141414] px-4 py-3.5 text-sm text-white outline-none focus:border-brand-green"
-              >
-                <option>Sous-Location Academy</option>
-                <option>Conciergerie BnB Academy</option>
-                <option>Cleaning BnB Academy</option>
-                <option>Je ne sais pas encore</option>
-              </select>
-            </div>
-            <div>
-              <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-white/70">
-                Message
-              </label>
-              <textarea
-                name="message"
-                rows={6}
-                placeholder="Parle-nous de ton projet et de tes objectifs…"
-                className="w-full resize-none rounded-xl border border-white/10 bg-[#141414] px-4 py-3.5 text-sm text-white outline-none focus:border-brand-green"
-              />
-            </div>
-            <button type="submit" className="btn-primary mt-2 justify-center">
-              Envoyer ma demande
-            </button>
-            <p className="text-xs text-white/50">
-              En envoyant ce formulaire, j'accepte la{" "}
-              <a href="/politique-confidentialite" className="underline">
-                politique de confidentialité
-              </a>
-              .
-            </p>
-          </div>
-        </form>
+        <ContactForm />
       </div>
     </section>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required,
-  placeholder,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  placeholder?: string;
-}) {
-  return (
-    <div>
-      <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-white/70">
-        {label} {required && <span className="text-brand-green">*</span>}
-      </label>
-      <input
-        name={name}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        className="w-full rounded-xl border border-white/10 bg-[#141414] px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-brand-green"
-      />
-    </div>
   );
 }

@@ -23,7 +23,7 @@ export default function AboutPreview() {
               <div className="relative flex-shrink-0">
                 <div
                   className="h-20 w-20 rounded-full bg-brand-green bg-cover bg-center ring-2 ring-brand-green/40"
-                  style={{ backgroundImage: "url(/marwan.jpg)" }}
+                  style={{ backgroundImage: "url(/marwan.webp)" }}
                   aria-label="Portrait de Marwan Afassi"
                 />
                 <span className="absolute -bottom-1 -right-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-green text-ink text-[12px] font-bold">

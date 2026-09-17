@@ -11,15 +11,18 @@ function doPost(e) {
   output.setMimeType(ContentService.MimeType.JSON);
 
   try {
-    const { firstName, email, phone, source } = JSON.parse(e.postData.contents);
+    const { firstName, email, phone, source, formation, message } = JSON.parse(e.postData.contents);
 
     const ss = SpreadsheetApp.openById(SHEET_ID);
     const sheet = ss.getSheets()[0];
 
     const date = Utilities.formatDate(new Date(), 'Europe/Paris', 'yyyy-MM-dd HH:mm:ss');
-    const tag = source ? 'optin masterclass (' + source + ')' : 'optin masterclass';
+    const isContactForm = source === 'contact-form';
+    const tag = isContactForm
+      ? 'contact form'
+      : (source ? 'optin masterclass (' + source + ')' : 'optin masterclass');
 
-    sheet.appendRow([date, firstName, '', email, phone, tag, '', '', '', '', '', '', '']);
+    sheet.appendRow([date, firstName, '', email, phone, tag, formation || '', message || '', '', '', '', '', '']);
 
     output.setContent(JSON.stringify({ ok: true }));
   } catch (err) {
