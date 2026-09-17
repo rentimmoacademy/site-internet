@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 
@@ -165,6 +166,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-ink text-cream antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WY1G6J0NTL"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WY1G6J0NTL');
+          `}
+        </Script>
 
         <SiteShell>{children}</SiteShell>
 
