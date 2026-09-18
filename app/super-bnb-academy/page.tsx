@@ -42,11 +42,11 @@ const notForYou = [
 
 const bonuses = [
   { icon: Box, title: "Plan 3D du logement", desc: "Vue isométrique de ton logement, intégrée à ton annonce." },
-  { icon: Lock, title: "Kit domotique complet", desc: "Serrure connectée, détecteur fumée, détecteur nuisance sonore et kit radiateur économie énergie. Offert, installé et paramétré avec toi." },
-  { icon: Globe, title: "Site de réservation directe", desc: "Domaine, design, paiement Stripe — 0% de commission, contrairement aux plateformes." },
+  { icon: Lock, title: "Kit Autonomie (serrure TTLock)", desc: "Serrure connectée TTLock et kit domotique complémentaire, offerts, installés et paramétrés avec toi." },
+  { icon: Globe, title: "Site de réservation directe", desc: "Domaine, design, paiement Stripe. 0% de commission, contrairement aux plateformes." },
   { icon: Brain, title: "GPTs personnalisés", desc: "Assistants IA pour répondre, traduire, screener les voyageurs." },
   { icon: LayoutGrid, title: "Cockpit personnalisé", desc: "Dashboard Notion + Make connecté à toutes tes plateformes." },
-  { icon: Lightbulb, title: "Kit SmartLife", desc: "Capteurs bruit, thermostat, ampoules connectées paramétrés." },
+  { icon: Lightbulb, title: "Kit domotique additionnel", desc: "Capteurs de nuisance sonore, thermostat connecté et ampoules intelligentes, paramétrés avec toi." },
 ];
 
 const compareRows: [string, string, string][] = [
@@ -58,48 +58,16 @@ const compareRows: [string, string, string][] = [
   ["Garantie installation", "yes", "no"],
 ];
 
-// ⚠️ À remplacer par de vrais témoignages clients
-const testimonials = [
-  {
-    name: "Karim B.",
-    city: "Lyon",
-    result: "+41% de revenus",
-    quote: "En 4 semaines, mon Airbnb tourne tout seul. Je passais mes soirées à répondre aux voyageurs — maintenant la messagerie tourne, les check-ins sont autonomes, et je vois mes revenus monter.",
-    avatar: "KB",
-  },
-  {
-    name: "Sarah M.",
-    city: "Paris 11e",
-    result: "4,97 / 5 de note",
-    quote: "Le pricing dynamique seul a fait +280€ en novembre. Ce qui m'a le plus surpris : la note hôte est passée de 4,7 à 4,97 en 3 semaines, juste avec la messagerie automatique.",
-    avatar: "SM",
-  },
-  {
-    name: "Thomas R.",
-    city: "Bordeaux",
-    result: "15 min / jour",
-    quote: "J'avais 2 Airbnb et je gérais tout à la main. Marwan a tout installé avec moi — channel manager, cautions Swikly, messagerie. Je ne touche presque plus rien.",
-    avatar: "TR",
-  },
-  {
-    name: "Amina K.",
-    city: "Nice",
-    result: "+2 logements en 3 mois",
-    quote: "J'avais peur que ce soit trop technique. On a tout configuré ensemble, étape par étape. Maintenant je comprends mes outils et j'ai pu prendre 2 biens supplémentaires.",
-    avatar: "AK",
-  },
-];
-
 const stats = [
-  { icon: TrendingUp, value: "+38%", label: "de revenus en 30 jours", sub: "moyenne de nos clients ayant complété le programme" },
-  { icon: Clock, value: "15 min", label: "par jour de gestion", sub: "temps moyen de gestion quotidienne une fois le système installé" },
-  { icon: ShieldCheck, value: "4,93 / 5", label: "note hôte moyenne atteinte", sub: "en partant d'une note inférieure à 4,8 avant le programme" },
+  { icon: TrendingUp, value: "+30%", label: "de chiffre d'affaires visé", sub: "objectif visé, comparé à l'année précédente" },
+  { icon: Clock, value: "15 min", label: "de gestion quotidienne visée", sub: "objectif visé, une fois le système installé" },
+  { icon: ShieldCheck, value: "38 pts", label: "checklist de réception", sub: "vérifiée avec toi à la fin du programme" },
 ];
 
 const faq = [
   {
     q: "Quelle est la différence avec une formation Rentimmo Academy ?",
-    a: "Rentimmo Academy te forme à un métier (sous-loc, conciergerie, cleaning) avec des modules vidéo et templates. SuperBNB Academy est un programme d'accompagnement : on configure les outils avec toi, sur ton compte Airbnb, en 30 jours.",
+    a: "Rentimmo Academy te forme à un métier (sous-loc, conciergerie, cleaning) avec des modules vidéo et templates. Super BnB Academy est un programme d'accompagnement : on configure les outils avec toi, sur ton compte Airbnb, en 30 jours.",
   },
   {
     q: "Combien de temps je dois y consacrer chaque semaine ?",
@@ -107,7 +75,7 @@ const faq = [
   },
   {
     q: "Quels outils sont utilisés ?",
-    a: "Superhote, PriceLabs, Stripe, Notion, Make, OpenAI (GPTs), SmartLife. Tous les abonnements (sauf SmartLife inclus) restent à ta charge.",
+    a: "Superhote, PriceLabs, Stripe, Notion, Make, OpenAI (GPTs), serrure connectée TTLock. Tous les abonnements (sauf le Kit Autonomie inclus) restent à ta charge.",
   },
   {
     q: "Y a-t-il une garantie ?",
@@ -115,11 +83,11 @@ const faq = [
   },
   {
     q: "Comment optimiser une annonce Airbnb pour avoir plus de réservations ?",
-    a: "Les leviers qui comptent le plus : un titre qui répond à une recherche précise, des photos professionnelles dans le bon ordre, une description structurée par bénéfices, un prix ajusté en dynamique (pas fixe) et une note hôte au-dessus de 4,8. C'est exactement ce qu'on reprend avec toi dans SuperBNB Academy.",
+    a: "Les leviers qui comptent le plus : un titre qui répond à une recherche précise, des photos professionnelles dans le bon ordre, une description structurée par bénéfices, un prix ajusté en dynamique (pas fixe) et une note hôte au-dessus de 4,8. C'est exactement ce qu'on reprend avec toi dans Super BnB Academy.",
   },
   {
     q: "Faut-il passer par une conciergerie Airbnb ou automatiser soi-même sa gestion ?",
-    a: "Une conciergerie délègue tout mais coûte 15 à 25% de commission à vie. SuperBNB Academy t'apprend à automatiser ta propre gestion (messages, pricing, check-in) en 30 jours : tu gardes 100% de tes revenus et tu restes autonome sur le long terme.",
+    a: "Une conciergerie délègue tout mais coûte 15 à 25% de commission à vie. Super BnB Academy t'apprend à automatiser ta propre gestion (messages, pricing, check-in) en 30 jours : tu gardes 100% de tes revenus et tu restes autonome sur le long terme.",
   },
   {
     q: "Comment augmenter son taux d'occupation sur Airbnb ?",
@@ -127,7 +95,7 @@ const faq = [
   },
   {
     q: "Quel est le meilleur outil pour gérer plusieurs logements Airbnb en même temps ?",
-    a: "Un channel manager (comme Superhote) centralise calendriers et messages sur tous tes logements et toutes tes plateformes. C'est l'outil qu'on configure en priorité dans SuperBNB Academy dès que tu gères 2 biens ou plus.",
+    a: "Un channel manager (comme Superhote) centralise calendriers et messages sur tous tes logements et toutes tes plateformes. C'est l'outil qu'on configure en priorité dans Super BnB Academy dès que tu gères 2 biens ou plus.",
   },
 ];
 
@@ -139,7 +107,7 @@ export default function SuperBnbAcademyPage() {
     <div className="font-poppins bg-auto-navy text-white">
       <SuperBnbHero />
 
-      {/* Journée type — narratif douleur */}
+      {/* Journée type - narratif douleur */}
       <section className="relative bg-auto-navy-soft py-20">
         <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
         <div className="container-x relative mx-auto max-w-3xl">
@@ -184,15 +152,15 @@ export default function SuperBnbAcademyPage() {
           <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
-                Résultats de nos clients
+                Objectifs du programme
               </p>
               <h2 className="mt-4 max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-                Ce que nos clients ont obtenu.{" "}
+                Ce qu'on vise avec toi.{" "}
                 <span className="bg-auto-mint bg-clip-text text-transparent">En 30 jours.</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/60">
-              Chiffres moyens des clients ayant complété le programme SuperBNB Academy.
+              Objectifs visés avec toi pendant le programme Super BnB Academy.
             </p>
           </div>
 
@@ -214,72 +182,6 @@ export default function SuperBnbAcademyPage() {
                 </p>
                 <p className="mt-2 text-sm font-bold text-white">{s.label}</p>
                 <p className="mt-1 text-xs text-white/55">{s.sub}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Témoignages clients */}
-      <section className="relative bg-auto-navy py-24">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
-        <div className="container-x relative">
-          <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
-                Témoignages
-              </p>
-              <h2 className="mt-4 max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-                Ce que nos clients disent.{" "}
-                <span className="bg-auto-mint bg-clip-text text-transparent">Sans filtre.</span>
-              </h2>
-            </div>
-            <div className="flex items-center gap-3 rounded-2xl border border-auto-mint/20 bg-auto-mint/5 px-5 py-3">
-              <div className="flex -space-x-2">
-                {["KB", "SM", "TR", "AK"].map((i) => (
-                  <div key={i} className="flex h-8 w-8 items-center justify-center rounded-full bg-auto-mint/20 text-xs font-bold text-auto-mint ring-2 ring-auto-navy">
-                    {i}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <p className="text-sm font-extrabold text-white">4,93 / 5</p>
-                <p className="text-xs text-white/50">satisfaction programme</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="rounded-3xl border border-white/10 bg-auto-navy-soft/60 p-7 backdrop-blur"
-              >
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-auto-mint/15 text-sm font-extrabold text-auto-mint ring-1 ring-auto-mint/30">
-                      {t.avatar}
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-white">{t.name}</p>
-                      <p className="text-xs text-white/50">{t.city}</p>
-                    </div>
-                  </div>
-                  <span className="rounded-full bg-auto-mint/10 px-3 py-1 text-xs font-extrabold text-auto-mint ring-1 ring-auto-mint/30">
-                    {t.result}
-                  </span>
-                </div>
-                <div className="h-px bg-white/5 mb-5" />
-                <p className="text-sm leading-relaxed text-white/75 italic">&ldquo;{t.quote}&rdquo;</p>
-                <div className="mt-4 flex items-center gap-0.5">
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <span key={s} className="text-auto-mint text-sm">★</span>
-                  ))}
-                </div>
               </motion.div>
             ))}
           </div>
@@ -388,7 +290,7 @@ export default function SuperBnbAcademyPage() {
         </div>
       </section>
 
-      {/* Audit hook — modal trigger */}
+      {/* Audit hook - modal trigger */}
       <section className="relative bg-auto-navy border-y border-white/5 py-16">
         <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-auto-mint/8 blur-[100px]" />
@@ -439,7 +341,7 @@ export default function SuperBnbAcademyPage() {
                   {[
                     "Un regard extérieur expert sur ton annonce",
                     "3 axes concrets d'amélioration identifiés",
-                    "La réponse claire : SuperBNB Academy est-il fait pour toi ?",
+                    "La réponse claire : Super BnB Academy est-il fait pour toi ?",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-white/70">
                       <Check size={14} className="mt-0.5 shrink-0 text-auto-mint" />
@@ -500,7 +402,7 @@ export default function SuperBnbAcademyPage() {
             La différence
           </p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            SuperBNB Academy vs <span className="text-white/40">formation classique</span>
+            Super BnB Academy vs <span className="text-white/40">formation classique</span>
           </h2>
 
           <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-auto-navy/50 backdrop-blur">
@@ -512,7 +414,7 @@ export default function SuperBnbAcademyPage() {
                   </th>
                   <th className="p-5 text-left">
                     <p className="text-[10px] uppercase tracking-widest text-auto-mint">
-                      SuperBNB Academy
+                      Super BnB Academy
                     </p>
                   </th>
                   <th className="p-5 text-left">
@@ -594,7 +496,7 @@ export default function SuperBnbAcademyPage() {
               disponibles ce mois.
             </h3>
             <p className="max-w-xl text-sm text-white/65">
-              Chaque coach accompagne un nombre volontairement restreint d&apos;hôtes en simultané sur les 30 jours du programme — pour garantir un suivi réellement personnalisé, pas une formation de masse. Une fois les places du mois prises, il faut attendre la session suivante.
+              Chaque coach accompagne un nombre volontairement restreint d&apos;hôtes en simultané sur les 30 jours du programme, pour garantir un suivi réellement personnalisé, pas une formation de masse. Une fois les places du mois prises, il faut attendre la session suivante.
             </p>
             <CallGate
               href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
@@ -676,7 +578,7 @@ export default function SuperBnbAcademyPage() {
               {
                 "@type": "Course",
                 "@id": "https://www.rentimmoacademy.fr/super-bnb-academy#course",
-                name: "SuperBNB Academy",
+                name: "Super BnB Academy",
                 description:
                   "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On automatise ton logement avec toi : annonce, messages, pricing, réservation directe.",
                 url: "https://www.rentimmoacademy.fr/super-bnb-academy",

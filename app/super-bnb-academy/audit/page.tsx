@@ -220,12 +220,12 @@ export default function AuditPublicPage() {
           ))}
         </div>
 
-        {/* Résultats prouvés */}
+        {/* Objectifs du programme */}
         <div className="mt-14 grid grid-cols-3 gap-3 text-center">
           {[
-            { value: "+38%", label: "de revenus en 30 jours" },
-            { value: "15 min", label: "de gestion / jour" },
-            { value: "4,93/5", label: "note hôte moyenne" },
+            { value: "+30%", label: "de CA visé" },
+            { value: "15 min", label: "de gestion / jour visées" },
+            { value: "38 pts", label: "checklist de réception" },
           ].map((s) => (
             <div key={s.label}>
               <p className="text-2xl font-extrabold text-brand-green tracking-tight">{s.value}</p>
@@ -233,7 +233,7 @@ export default function AuditPublicPage() {
             </div>
           ))}
         </div>
-        <p className="text-white/15 text-[11px] text-center mt-3">Moyenne des hôtes accompagnés en SuperBNB Academy</p>
+        <p className="text-white/15 text-[11px] text-center mt-3">Objectifs visés avec les hôtes accompagnés en Super BnB Academy</p>
 
         {/* FAQ */}
         <div className="mt-14 text-left">
@@ -243,7 +243,7 @@ export default function AuditPublicPage() {
               { q: "Comment fonctionne cet audit gratuit ?", a: "Notre IA analyse les données publiques de ton annonce (titre, photos, description, prix, avis) et les compare aux standards et aux annonces concurrentes de ta zone. Tu obtiens un score par catégorie et un plan d'action en 90 secondes." },
               { q: "Est-ce vraiment gratuit et sans engagement ?", a: "Oui. Aucune carte bancaire, aucun abonnement. Tu renseignes juste tes coordonnées pour recevoir le rapport complet." },
               { q: "Que deviennent mes données ?", a: "Elles servent uniquement à générer ton rapport et, si tu le souhaites, à te recontacter pour un audit stratégique gratuit. Aucune revente à des tiers." },
-              { q: "Et après l'audit ?", a: "Tu peux réserver un appel stratégique gratuit de 30 minutes avec un coach SuperBNB Academy pour aller plus loin sur ton annonce." },
+              { q: "Et après l'audit ?", a: "Tu peux réserver un appel stratégique gratuit de 30 minutes avec un coach Super BnB Academy pour aller plus loin sur ton annonce." },
             ].map((item) => (
               <details key={item.q} className="group p-4">
                 <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-semibold text-white/80">
@@ -495,15 +495,15 @@ export default function AuditPublicPage() {
           )}
         </div>
 
-        {/* CTA SuperBNB Academy */}
+        {/* CTA Super BnB Academy */}
         <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1A6B33 0%, #2DB84B 60%, #5FD87A 100%)" }}>
           <div className="px-6 py-8 text-center">
             <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1.5 mb-5">
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">SuperBNB Academy</span>
+              <span className="text-[10px] font-bold text-white uppercase tracking-widest">Super BnB Academy</span>
             </div>
             <h3 className="text-white font-extrabold text-xl mb-2 tracking-tight">
               {audit.globalScore < 70
-                ? `Ton annonce score ${audit.globalScore}/100 — on peut largement faire mieux`
+                ? `Ton annonce score ${audit.globalScore}/100, on peut largement faire mieux`
                 : `Bonne base ! Passe de ${audit.globalScore} → 90+ /100`}
             </h3>
             <p className="text-white/75 text-sm mb-6 leading-relaxed max-w-sm mx-auto">

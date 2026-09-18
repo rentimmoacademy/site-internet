@@ -89,7 +89,7 @@ export default function SuperBnbAuditPopup() {
 
         {/* Label */}
         <p className="mt-4 text-[10px] font-black uppercase tracking-[0.25em] text-brand-green">
-          Audit gratuit — 30 min
+          Audit gratuit, 30 min
         </p>
 
         {/* Headline */}

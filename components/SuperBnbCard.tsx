@@ -27,7 +27,7 @@ export default function SuperBnbCard() {
           className="mx-auto max-w-3xl text-center"
         >
           <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
-            Programme accompagnement — 30 jours
+            Programme accompagnement, 30 jours
           </p>
           <h2 className="mx-auto mt-6 max-w-2xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
             Tu as déjà un bien Airbnb ?{" "}
@@ -53,7 +53,7 @@ export default function SuperBnbCard() {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.25em] text-auto-mint">
-                    SuperBNB Academy
+                    Super BnB Academy
                   </p>
                   <p className="text-2xl font-extrabold tracking-tight">On le fait avec toi.</p>
                 </div>
@@ -98,23 +98,23 @@ export default function SuperBnbCard() {
               {/* Floating cockpit-style cards */}
               <div className="rounded-2xl border border-auto-mint/30 bg-auto-mint/10 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-widest text-auto-mint">Pricing live</span>
+                  <span className="text-[10px] uppercase tracking-widest text-auto-mint">Objectif visé</span>
                   <Zap size={12} className="text-auto-mint" />
                 </div>
-                <p className="mt-2 text-3xl font-extrabold tracking-tight">+38%</p>
-                <p className="text-xs text-white/60">de revenus moyens / nuit</p>
+                <p className="mt-2 text-3xl font-extrabold tracking-tight">+30%</p>
+                <p className="text-xs text-white/60">de chiffre d'affaires visé</p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <span className="text-[10px] uppercase tracking-widest text-white/60">Messages auto</span>
-                <p className="mt-2 text-3xl font-extrabold tracking-tight">98%</p>
-                <p className="text-xs text-white/60">des messages sans intervention</p>
+                <p className="mt-2 text-3xl font-extrabold tracking-tight">24/7</p>
+                <p className="text-xs text-white/60">réponses automatiques aux voyageurs</p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                <span className="text-[10px] uppercase tracking-widest text-white/60">Temps gagné</span>
-                <p className="mt-2 text-3xl font-extrabold tracking-tight">8h / sem</p>
-                <p className="text-xs text-white/60">en moyenne sur la gestion</p>
+                <span className="text-[10px] uppercase tracking-widest text-white/60">Temps visé</span>
+                <p className="mt-2 text-3xl font-extrabold tracking-tight">15 min</p>
+                <p className="text-xs text-white/60">de gestion quotidienne visée</p>
               </div>
             </div>
           </div>

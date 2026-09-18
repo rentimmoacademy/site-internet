@@ -4,28 +4,46 @@ import { motion } from "framer-motion";
 
 const weeks = [
   {
-    n: "01",
-    title: "Diagnostic & Annonces",
-    desc: "On reprend ton annonce de zéro : titre, photos, description, équipements, règles, prix de base. Bilan complet de ta situation réelle avant toute action. Objectif : taux de conversion x2.",
-    deliverable: "Annonce refondue + checklist photo pro",
+    n: "S1",
+    week: "Semaine 1",
+    title: "Restitution du diagnostic",
+    desc: "Diagnostic complet de ta situation réelle : annonce, positionnement, protocole photo professionnel, refonte de ton annonce Airbnb de zéro. Bilan avant toute action.",
+    deliverable: "Diagnostic 360 + annonce Airbnb refondue",
   },
   {
-    n: "02",
-    title: "Automatisation",
-    desc: "Setup Superhote, séquences de messages voyageurs, intégration Stripe pour les acomptes et cautions, calendrier multi-plateformes. Ton Airbnb tourne sans toi.",
-    deliverable: "PMS configuré + 12 messages auto activés",
+    n: "S2",
+    week: "Semaine 1",
+    title: "Stratégie annonces",
+    desc: "Création de ta fiche Booking, plan 3D de ton logement, ajustements de ton positionnement pour maximiser ta visibilité.",
+    deliverable: "Fiche Booking créée + plan 3D",
   },
   {
-    n: "03",
-    title: "Revenus & Indépendance",
-    desc: "Mise en place de PriceLabs, règles de pricing dynamique, site de réservation directe (0% de commission), tableau de bord de pilotage. On suit la rentabilité semaine par semaine.",
-    deliverable: "PriceLabs paramétré + site direct live",
+    n: "S3",
+    week: "Semaine 2",
+    title: "Architecture de l'automatisation",
+    desc: "Setup Superhote, séquences de messages voyageurs, mode autopilote, cautions automatiques et Kit Autonomie (serrure connectée TTLock).",
+    deliverable: "PMS configuré + Kit Autonomie installé",
   },
   {
-    n: "04",
-    title: "Domotique, Pilotage & Scale",
-    desc: "Kit domotique offert et installé : serrure connectée, détecteur fumée, détecteur nuisance sonore, kit radiateur économie énergie. GPTs personnalisés, cockpit Notion et outils IA pour piloter plusieurs biens.",
-    deliverable: "Kit domotique livré + GPTs + cockpit perso",
+    n: "S4",
+    week: "Semaine 3",
+    title: "Revenue management",
+    desc: "Mise en place de PriceLabs, stratégie tarifaire dynamique et cockpit de pilotage personnalisé pour suivre ta rentabilité semaine par semaine.",
+    deliverable: "Stratégie tarifaire + Cockpit personnalisé",
+  },
+  {
+    n: "S5",
+    week: "Semaine 4",
+    title: "Indépendance et acquisition",
+    desc: "Site de réservation directe avec paiement Stripe intégré, fiche Google optimisée pour renforcer ta visibilité locale.",
+    deliverable: "Site de réservation directe live",
+  },
+  {
+    n: "S6",
+    week: "Semaine 4",
+    title: "Pilotage et plan 12 mois",
+    desc: "Accès à la bibliothèque de ressources et construction de ton plan d'action sur 12 mois pour piloter ton activité en autonomie.",
+    deliverable: "Bibliothèque + plan 12 mois",
   },
 ];
 
@@ -59,7 +77,7 @@ export default function SuperBnbWeeks() {
                 <span className="text-5xl font-extrabold tracking-tight text-auto-mint">{w.n}</span>
                 <div className="flex-1">
                   <p className="text-[10px] uppercase tracking-widest text-auto-mint/80">
-                    Semaine {parseInt(w.n)}
+                    {w.week}
                   </p>
                   <h3 className="mt-1 text-2xl font-extrabold tracking-tight">{w.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/70">{w.desc}</p>

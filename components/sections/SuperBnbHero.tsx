@@ -28,7 +28,7 @@ export default function SuperBnbHero() {
           animate="show"
           className="inline-flex items-center gap-2 rounded-full border border-auto-mint/40 bg-auto-mint/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-auto-mint"
         >
-          <Sparkles size={12} /> Programme — Pas une formation
+          <Sparkles size={12} /> Programme, pas une formation
         </motion.div>
 
         <motion.h1
@@ -88,9 +88,9 @@ export default function SuperBnbHero() {
             <ShieldCheck size={18} />
           </div>
           <div>
-            <p className="text-xs uppercase tracking-widest text-white/60">Propulsé par SuperHote</p>
+            <p className="text-xs uppercase tracking-widest text-white/60">Propulsé par Superhote</p>
             <p className="text-sm font-bold">
-              Le channel manager qui rend <span className="text-auto-mint">92% de taux d'occupation</span> atteignable
+              Le channel manager qui centralise <span className="text-auto-mint">tous tes calendriers et messages</span>
             </p>
           </div>
         </motion.div>

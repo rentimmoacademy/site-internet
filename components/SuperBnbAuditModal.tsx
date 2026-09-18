@@ -226,7 +226,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
               <div className="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full mb-5"
                 style={{ backgroundColor: audit.gradeColor + "20", color: audit.gradeColor, border: `1px solid ${audit.gradeColor}30` }}>
                 <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: audit.gradeColor }} />
-                {audit.gradeFr.toUpperCase()} — {audit.globalScore}/100
+                {audit.gradeFr.toUpperCase()} · {audit.globalScore}/100
               </div>
 
               {/* Top actions */}
@@ -262,7 +262,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
                 onClick={() => setStep("booking")}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-auto-mint px-6 py-4 font-bold text-auto-navy hover:brightness-110 transition-all hover:shadow-glow-mint text-sm"
               >
-                <CalendarCheck size={16} /> Réserve ton audit gratuit — on corrige ça ensemble
+                <CalendarCheck size={16} /> Réserve ton audit gratuit, on corrige ça ensemble
               </button>
               <p className="text-white/30 text-xs text-center mt-3">30 min · Sans engagement · avec ton coach dédié</p>
             </div>
@@ -280,7 +280,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
                 src="https://cal.com/rentimmoacademy/superbnbacademy?embed=true"
                 className="w-full rounded-2xl border border-white/10 bg-white/5"
                 style={{ height: "520px" }}
-                title="Réserver un audit SuperBNB Academy"
+                title="Réserver un audit Super BnB Academy"
               />
             </div>
           )}
