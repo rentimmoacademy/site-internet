@@ -10,14 +10,14 @@ const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/sous-location-professionnelle`;
 
 export const metadata: Metadata = {
-  title: "Sous-location professionnelle : guide complet 2026 — Sous-Location Academy",
+  title: "Sous-location professionnelle & sous-loueur pro 2026 : guide + bail — Sous-Location Academy",
   description:
-    "Tout sur la sous-location professionnelle en France et au Maroc : cadre légal, rentabilité, comment se lancer sans apport. Guide de référence 2026 par la Sous-Location Academy — Rentimmo Academy.",
+    "Devenir sous-loueur professionnel en courte durée : cadre légal, modèle de bail de sous-location professionnelle Airbnb, rentabilité, comment se lancer sans apport. Guide de référence 2026 par la Sous-Location Academy — Rentimmo Academy.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Sous-location professionnelle 2026 — Sous-Location Academy",
+    title: "Sous-location professionnelle & sous-loueur pro 2026 — Sous-Location Academy",
     description:
-      "Cadre légal, rentabilité, comment se lancer. Le guide de la Sous-Location Academy (Rentimmo Academy) pour démarrer en 2026.",
+      "Cadre légal, bail de sous-location professionnelle Airbnb, rentabilité, comment se lancer. Le guide de la Sous-Location Academy (Rentimmo Academy) pour démarrer en 2026.",
     url: URL,
     type: "article",
   },
@@ -114,8 +114,8 @@ export default function SousLocationProfessionnellePage() {
     <>
       <LandingHero
         kicker="Guide complet 2026"
-        h1="Sous-location professionnelle : démarrer en 2026 sans banque, sans apport"
-        intro="La sous-location professionnelle est le moyen le plus rapide pour générer des revenus locatifs sans crédit immobilier. Tu loues un bien, tu le sous-loues sur Airbnb avec accord du propriétaire, tu gardes la marge. Voici comment ça marche concrètement."
+        h1="Sous-location professionnelle : devenir sous-loueur pro en 2026 sans banque, sans apport"
+        intro="La sous-location professionnelle (le métier de sous-loueur professionnel) est le moyen le plus rapide pour générer des revenus locatifs en courte durée sans crédit immobilier. Tu signes un bail de sous-location professionnelle Airbnb avec le propriétaire, tu sous-loues sur Airbnb, tu gardes la marge. Voici comment ça marche concrètement."
         primaryCta={{ href: "/formations/sous-location", label: "Voir la formation" }}
         secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Sous-location professionnelle" }]}
@@ -130,14 +130,14 @@ export default function SousLocationProfessionnellePage() {
         <div className="grid gap-8 md:grid-cols-2">
           <div>
             <p className="text-lg leading-relaxed text-ink">
-              La <strong>sous-location professionnelle</strong> consiste à louer un bien à un propriétaire (ton bailleur), puis à le re-louer en courte durée sur Airbnb / Booking / Vrbo avec son accord écrit. Tu encaisses la différence entre le loyer que tu paies au propriétaire et les revenus Airbnb générés.
+              La <strong>sous-location professionnelle</strong> (on parle aussi de <strong>sous-loueur professionnel</strong> ou <strong>sous-loueur pro</strong>) consiste à louer un bien à un propriétaire (ton bailleur), puis à le re-louer en courte durée sur Airbnb / Booking / Vrbo avec son accord écrit. Tu encaisses la différence entre le loyer que tu paies au propriétaire et les revenus Airbnb générés.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink">
-              C'est un modèle <strong>100% légal en France</strong> à condition de respecter 3 règles : accord écrit du bailleur, plafond de loyer fixé par le Code civil, et déclaration fiscale en LMNP.
+              C'est un modèle <strong>100% légal en France</strong> à condition de respecter 3 règles dans ton <strong>bail de sous-location professionnelle Airbnb</strong> : accord écrit du bailleur, plafond de loyer fixé par le Code civil, et déclaration fiscale en LMNP.
             </p>
           </div>
           <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
-            <h3 className="text-xl font-bold text-ink">Les 3 clauses légales obligatoires</h3>
+            <h3 className="text-xl font-bold text-ink">Les 3 clauses légales obligatoires du bail</h3>
             <ul className="mt-4 space-y-3">
               {[
                 "Accord ÉCRIT du propriétaire (jamais oral)",
