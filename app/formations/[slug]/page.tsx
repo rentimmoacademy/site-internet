@@ -52,7 +52,6 @@ export default function FormationPage({ params }: { params: { slug: string } }) 
   if (!formation) notFound();
 
   const url = `${SITE}/formations/${formation.slug}`;
-  const priceNumeric = formation.price.replace(/[^\d]/g, "");
 
   // Course schema enrichi (Google rich results pour les formations + signaux d'autorité IA)
   const courseSchema = {
@@ -74,15 +73,6 @@ export default function FormationPage({ params }: { params: { slug: string } }) 
     timeRequired: formation.duration,
     courseCode: formation.slug,
     numberOfCredits: formation.modules,
-    offers: {
-      "@type": "Offer",
-      price: priceNumeric,
-      priceCurrency: "EUR",
-      availability: "https://schema.org/InStock",
-      url,
-      validFrom: "2026-01-01",
-      category: "Formation professionnelle",
-    },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: AGGREGATE_RATING.ratingValue,

@@ -70,10 +70,9 @@ export default function FormationCard({ formation, index = 0 }: { formation: For
       {/* Price + CTA */}
       <div className="mt-8 flex items-end justify-between">
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-white/40">À partir de</p>
+          <p className="text-[10px] uppercase tracking-widest text-white/40">Tarif</p>
           <p className="text-2xl font-extrabold tracking-tight text-white">
-            {formation.price}
-            <span className="text-brand-green">*</span>
+            Sur demande<span className="text-brand-green">*</span>
           </p>
         </div>
         <Link

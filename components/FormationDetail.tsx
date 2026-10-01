@@ -318,8 +318,8 @@ export default function FormationDetail({ formation }: { formation: Formation })
                   </div>
                 )}
                 <p className="text-sm font-bold text-ink/50">{tier.badge}</p>
-                <p className="mt-3 text-4xl font-extrabold tracking-tight">{tier.price}</p>
-                <p className="mt-1 text-xs text-ink/50">{tier.priceNote}</p>
+                <p className="mt-3 text-2xl font-extrabold tracking-tight">Tarif personnalisé*</p>
+                <p className="mt-1 text-xs text-ink/50">Communiqué lors de ton appel stratégique offert</p>
                 {tier.guarantee && (
                   <div className="mt-4 rounded-xl bg-brand-green/10 px-3 py-2 text-xs font-semibold text-brand-dark">
                     ✓ {tier.guarantee}
