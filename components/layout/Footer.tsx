@@ -8,7 +8,7 @@ const cols = [
     title: "Formations",
     links: [
       { href: "/formations/sous-location", label: "Sous-Location Academy" },
-      { href: "/formations/conciergerie-bnb", label: "Conciergerie BnB Academy" },
+      { href: "/formations/conciergerie-bnb", label: "Formation Conciergerie Airbnb" },
       { href: "/formations/cleaning-bnb", label: "Cleaning BnB Academy" },
       { href: "/super-bnb-academy", label: "Super BnB Academy" },
       { href: "/formations", label: "Voir toutes les formations" },
