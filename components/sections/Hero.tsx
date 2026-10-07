@@ -39,17 +39,11 @@ export default function Hero() {
           Formation disponible en France & Maroc
         </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          variants={fadeUp}
-          custom={1}
-          initial="hidden"
-          animate="show"
-          className="max-w-5xl text-[clamp(2.5rem,6.5vw,5.25rem)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
-        >
+        {/* Headline — no entrance animation: this is the LCP element, must paint immediately */}
+        <h1 className="max-w-5xl text-[clamp(2.5rem,6.5vw,5.25rem)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white">
           Formation <span className="bg-brand-gradient bg-clip-text text-transparent">sous-location & conciergerie Airbnb</span>{" "}
           — génère +700 €/mois sans crédit, sans apport.
-        </motion.h1>
+        </h1>
 
         {/* Subtitle */}
         <motion.p
