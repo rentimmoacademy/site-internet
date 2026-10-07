@@ -116,7 +116,7 @@ export default function MenageAirbnbProfessionnelPage() {
         <div className="grid gap-8 md:grid-cols-2">
           <div>
             <p className="text-lg leading-relaxed text-ink">
-              Un <strong>cleaner Airbnb professionnel</strong> (ou prestataire de nettoyage Airbnb / cleaning BnB) prend en charge le nettoyage de rotation entre voyageurs sur les locations courte durée. Il travaille avec les <strong>conciergeries Airbnb</strong>, les <strong>hôtes propriétaires actifs</strong> et les <strong>sous-locataires professionnels</strong>.
+              Un <strong>cleaner Airbnb professionnel</strong> (ou prestataire de nettoyage Airbnb / cleaning BnB) prend en charge le nettoyage de rotation entre voyageurs sur les locations courte durée. Il travaille avec les <strong>conciergeries Airbnb</strong>, les <strong>hôtes propriétaires actifs</strong> et les <strong>sous-locataires professionnels</strong>. Pour une vue d'ensemble complète (tarifs, statut, FAQ), consulte notre <Link href="/blog/menage-airbnb-tout-savoir-2026" className="font-semibold text-brand-green underline">guide ménage Airbnb 2026</Link>.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink">
               C'est un métier <strong>récurrent</strong> (mêmes biens à nettoyer chaque semaine), <strong>scalable</strong> (tu peux recruter une équipe), et avec une <strong>marge attractive</strong> (60-70% net après charges).
