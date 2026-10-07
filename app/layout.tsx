@@ -121,6 +121,16 @@ const organizationSchema = {
     { "@type": "Country", name: "Suisse" },
   ],
   knowsLanguage: ["fr"],
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    name: "Certification Qualiopi — N° REN7232025001",
+    credentialCategory: "certification",
+    recognizedBy: {
+      "@type": "Organization",
+      name: "evolve (accréditation Cofrac n° 5-0670)",
+    },
+    url: `${SITE}/certificat-qualiopi.pdf`,
+  },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Catalogue des formations Rentimmo Academy",
