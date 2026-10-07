@@ -134,9 +134,9 @@ export default function Footer() {
         {/* Bottom strip */}
         <div className="flex flex-col gap-6 border-t border-white/10 pt-8 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
           <p>© 2026 Rentimmo Academy — Tous droits réservés</p>
-          <p className="flex items-center gap-2">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-green" />
-            Organisme de formation — Qualiopi en cours de référencement
+          <p className="flex items-center gap-3">
+            <img src="/qualiopi-logo.jpg" alt="Certification Qualiopi" className="h-8 w-auto rounded bg-white p-0.5" />
+            Organisme de formation certifié Qualiopi — N° REN7232025001
           </p>
         </div>
       </div>

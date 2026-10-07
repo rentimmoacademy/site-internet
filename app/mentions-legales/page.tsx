@@ -16,7 +16,7 @@ export default function MentionsLegalesPage() {
         <br />
         Siège social : [Adresse à compléter], France
         <br />
-        SIREN : [à compléter]
+        SIREN : 979190071
         <br />
         Numéro de TVA intracommunautaire : [à compléter]
         <br />
@@ -51,9 +51,10 @@ export default function MentionsLegalesPage() {
 
       <h2>Organisme de formation</h2>
       <p>
-        Rentimmo Academy est en cours de référencement Qualiopi pour la formation professionnelle
-        continue. Le numéro de déclaration d'activité sera publié ici dès obtention. Certaines formations
-        pourront être finançables via le CPF (EDOF), OPCO ou Pôle Emploi après validation Qualiopi.
+        Rentimmo Academy est certifiée Qualiopi au titre des actions de formation (catégorie L.
+        6313-1-1°). Certificat n° REN7232025001, délivré par l'organisme certificateur evolve
+        (accréditation Cofrac n° 5-0670), valable du 01/08/2025 au 31/07/2028. Numéro de déclaration
+        d'activité (NDA) : 27210458221.
       </p>
 
       <h2>Crédits</h2>
