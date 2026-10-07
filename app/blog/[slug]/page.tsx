@@ -35,13 +35,13 @@ const ctaByCategory: Record<string, { headline: string; sub: string; cta: string
     headline: "Tu lis ça mais tu n'as pas encore ton premier logement ?",
     sub: "Chaque semaine sans action, c'est 700 à 1 500 € de revenus qui ne rentrent pas. La formation Sous-Location Professionnelle te donne le système complet — de la prospection au premier virement.",
     cta: "Voir la formation sous-location",
-    href: "/formations/sous-location-professionnelle",
+    href: "/formations/sous-location",
   },
   conciergerie: {
     headline: "Tu veux gérer des logements sans les posséder ?",
     sub: "La conciergerie Airbnb te permet de toucher 15 à 30 % de commission sur chaque réservation — sans investissement immobilier. La formation te donne le modèle contractuel, les outils et l'acquisition client.",
     cta: "Voir la formation conciergerie",
-    href: "/formations/conciergerie-airbnb",
+    href: "/formations/conciergerie-bnb",
   },
   cleaning: {
     headline: "La prestation ménage, c'est le service le plus demandé en LCD",
