@@ -14,7 +14,7 @@ export default function MentionsLegalesPage() {
         <br />
         Capital social : 1 000 €
         <br />
-        Siège social : [Adresse à compléter], France
+        Siège social : 9 rue Clément Marillier, 21000 Dijon, France
         <br />
         SIREN : 979190071
         <br />

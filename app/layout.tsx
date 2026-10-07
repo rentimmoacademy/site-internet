@@ -93,6 +93,13 @@ const organizationSchema = {
   url: SITE,
   logo: `${SITE}/icon.svg`,
   image: `${SITE}/og-image.jpg`,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "9 rue Clément Marillier",
+    postalCode: "21000",
+    addressLocality: "Dijon",
+    addressCountry: "FR",
+  },
   description:
     "Académie de formation professionnelle aux métiers de la location courte durée : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BnB). Formations terrain en France et au Maroc, sans banque, sans crédit, sans apport.",
   founder: {
