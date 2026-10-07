@@ -174,7 +174,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: "video-toulouse",
-    firstName: "Étudiant Rentimmo",
+    firstName: "Étudiant Rentimmo Academy",
     city: "Toulouse",
     formation: "sous-location",
     result: "Reconversion totale et lancement à Toulouse",

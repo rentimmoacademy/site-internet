@@ -16,7 +16,7 @@ export default async function BlogPage() {
       <section className="relative bg-ink pt-40 pb-24">
         <div className="dot-grid pointer-events-none absolute inset-0 opacity-50" />
         <div className="container-x relative">
-          <p className="tag mb-5 text-brand-green">Blog Rentimmo</p>
+          <p className="tag mb-5 text-brand-green">Blog Rentimmo Academy</p>
           <h1 className="max-w-4xl text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-white">
             Du contenu terrain.{" "}
             <span className="bg-brand-gradient bg-clip-text text-transparent">Zéro blabla.</span>

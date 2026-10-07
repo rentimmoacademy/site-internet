@@ -33,7 +33,7 @@ export default function WhyRentimmo() {
       <div className="dot-grid pointer-events-none absolute inset-0 opacity-60" />
       <div className="container-x relative">
         <SectionHeader
-          tag="Pourquoi Rentimmo"
+          tag="Pourquoi Rentimmo Academy"
           title={
             <>
               On forme des pros,{" "}
