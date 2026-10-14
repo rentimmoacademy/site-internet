@@ -30,8 +30,8 @@ export default async function BlogPreview() {
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {posts.map((p) => (
-            <BlogCard key={p.slug} post={p} />
+          {posts.map((p, i) => (
+            <BlogCard key={p.slug} post={p} index={i} />
           ))}
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Clock } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/mdx";
@@ -47,16 +48,22 @@ export default function BlogCard({ post, index = 0 }: { post: BlogPostMeta; inde
         className="group flex h-full flex-col overflow-hidden rounded-3xl border border-ink/10 bg-white transition-all hover:-translate-y-1 hover:shadow-xl"
       >
         {/* Cover */}
-        <div className={cn("relative h-56 overflow-hidden p-6", color)}>
-          <div className="dot-grid absolute inset-0 opacity-30" />
-          <div className="relative flex h-full flex-col justify-between">
-            <span className="inline-flex w-fit items-center rounded-full bg-black/20 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
-              {categoryLabel[post.category] ?? post.category}
-            </span>
-            <p className="line-clamp-3 text-2xl font-extrabold leading-tight tracking-tight">
-              {post.title}
-            </p>
-          </div>
+        <div className="relative h-56 overflow-hidden">
+          <Image
+            src={`/og/blog/${post.slug}`}
+            alt={post.title}
+            fill
+            unoptimized
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <span
+            className={cn(
+              "absolute left-4 top-4 inline-flex w-fit items-center rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest",
+              color
+            )}
+          >
+            {categoryLabel[post.category] ?? post.category}
+          </span>
         </div>
 
         <div className="flex flex-1 flex-col p-6">
