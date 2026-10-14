@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MousePointer2 } from "lucide-react";
 import StatCounter from "@/components/StatCounter";
 import CallGate from "@/components/CallGate";
+import Highlight from "@/components/ui/Highlight";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -32,6 +33,10 @@ export default function Hero() {
           animate="show"
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/80 backdrop-blur"
         >
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-green" />
+          </span>
           <span className="flex items-center gap-1">
             <span>🇫🇷</span>
             <span>🇲🇦</span>
@@ -54,7 +59,10 @@ export default function Hero() {
           className="mt-8 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl"
         >
           La formation terrain pour lancer ta sous-location, ta conciergerie Airbnb ou ton activité
-          de ménage pro. <span className="text-white">Sans banque, sans crédit, sans apport.</span>
+          de ménage pro.{" "}
+          <Highlight>
+            <span className="text-white">Sans banque, sans crédit, sans apport.</span>
+          </Highlight>
         </motion.p>
 
         {/* CTAs */}
