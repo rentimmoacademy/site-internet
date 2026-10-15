@@ -302,6 +302,16 @@ export default function FormationDetail({ formation }: { formation: Formation })
               Choisis ta formule. Démarre aujourd&apos;hui.
             </h2>
             <p className="mt-4 text-ink/60">Paiement sécurisé Stripe · Apple Pay · virement IBAN · paiement en plusieurs fois sans frais</p>
+
+            <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-brand-green/30 bg-brand-green/5 px-6 py-4">
+              <p className="flex items-center justify-center gap-2 text-sm font-bold text-brand-dark">
+                <ShieldCheck size={16} className="flex-shrink-0 text-brand-green" />
+                Éligible au CPF (Compte Personnel de Formation) via notre organisme partenaire
+              </p>
+              <p className="mt-1 text-xs text-ink/60">
+                Vérifie ton éligibilité et le montant pris en charge lors de ton appel stratégique offert.
+              </p>
+            </div>
           </div>
 
           <div className="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-3">
