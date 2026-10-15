@@ -134,8 +134,10 @@ export default function AuditPublicPage() {
   const toggleDefi = (v: string) =>
     setDefi((p) => p.includes(v) ? p.filter((x) => x !== v) : [...p, v]);
 
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
   const submitOptin = async () => {
-    if (!email || !firstName) return;
+    if (!email || !firstName || !emailValid) return;
     setOptinLoading(true);
     const a = pendingAudit.current!;
     try {
@@ -197,7 +199,7 @@ export default function AuditPublicPage() {
               className="flex-1 bg-transparent text-white text-sm placeholder-white/20 px-3 py-2 focus:outline-none min-w-0"
             />
             <button onClick={launch} disabled={!url.trim()}
-              className="bg-brand-green hover:bg-brand-light disabled:opacity-40 text-white font-bold text-sm px-5 py-2.5 rounded-lg transition-colors shrink-0">
+              className="bg-brand-green hover:bg-brand-light disabled:opacity-40 disabled:hover:-translate-y-0 text-white font-bold text-sm px-5 py-2.5 rounded-lg transition-all hover:-translate-y-0.5 shrink-0">
               Analyser →
             </button>
           </div>
@@ -343,8 +345,13 @@ export default function AuditPublicPage() {
               <input type="text" placeholder="Prénom *" value={firstName} onChange={(e) => setFirstName(e.target.value)}
                 className="bg-white/5 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-green/50 transition-colors" />
               <input type="email" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)}
-                className="bg-white/5 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-green/50 transition-colors" />
+                className={`bg-white/5 border text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none transition-colors ${
+                  email && !emailValid ? "border-red-500/50 focus:border-red-500/50" : "border-white/10 focus:border-brand-green/50"
+                }`} />
             </div>
+            {email && !emailValid && (
+              <p className="text-red-400 text-xs mb-3">Format invalide. Vérifie ex : prenom@email.com</p>
+            )}
             <input type="tel" placeholder="WhatsApp (recommandé)" value={phone} onChange={(e) => setPhone(e.target.value)}
               className="w-full bg-white/5 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm mb-4 focus:outline-none focus:border-brand-green/50 transition-colors" />
 
@@ -374,8 +381,8 @@ export default function AuditPublicPage() {
               </div>
             </div>
 
-            <button onClick={submitOptin} disabled={!email || !firstName || optinLoading}
-              className="w-full bg-brand-green hover:bg-brand-light disabled:opacity-40 text-white font-extrabold py-3.5 rounded-xl text-base transition-colors">
+            <button onClick={submitOptin} disabled={!email || !firstName || !emailValid || optinLoading}
+              className="w-full bg-brand-green hover:bg-brand-light disabled:opacity-40 disabled:hover:-translate-y-0 text-white font-extrabold py-3.5 rounded-xl text-base transition-all hover:-translate-y-0.5">
               {optinLoading ? "Chargement…" : "Voir mon rapport complet →"}
             </button>
             <p className="text-white/15 text-xs text-center mt-3">Pas de spam · Données confidentielles</p>
@@ -510,10 +517,10 @@ export default function AuditPublicPage() {
               Réserve ton audit stratégique gratuit. On analyse ton portfolio complet et tu repars avec le plan exact pour maximiser tes revenus LCD.
             </p>
             <a href={CAL_URL} target="_blank" rel="noopener noreferrer"
-              className="inline-block bg-white text-brand-dark font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-cream transition-colors shadow-glow">
+              className="inline-block bg-white text-brand-dark font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-cream hover:-translate-y-0.5 transition-all animate-pulse-soft shadow-glow">
               Réserver mon audit gratuit →
             </a>
-            <p className="text-white/40 text-xs mt-4">30 min · Gratuit · Places limitées</p>
+            <p className="text-white/40 text-xs mt-4">30 min · Gratuit · Sans engagement</p>
           </div>
         </div>
       </div>
