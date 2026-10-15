@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const API_BASE = "/api";
 const POLL_MS = 4000;
@@ -63,6 +63,40 @@ function BarScore({ score, color }: { score: number; color: string }) {
   return (
     <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
       <div className="h-full rounded-full" style={{ width: `${score}%`, backgroundColor: color }} />
+    </div>
+  );
+}
+
+function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setVisible(true); obs.disconnect(); }
+    }, { threshold: 0.15 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        transitionProperty: "opacity, transform",
+        transitionDuration: "700ms",
+        transitionTimingFunction: "cubic-bezier(.23,1,.32,1)",
+        transitionDelay: `${delay}ms`,
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(18px)",
+      }}
+    >
+      {children}
     </div>
   );
 }
@@ -157,32 +191,37 @@ export default function AuditPublicPage() {
 
   /* ── FORM ── */
   if (step === "form") return (
-    <div className="min-h-screen bg-ink" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+    <div className="min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+      <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
+
       <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
         <span className="text-white font-extrabold text-base tracking-tight">Rentimmo Academy</span>
         <span className="text-white/30 text-sm font-semibold">Audit Annonce LCD</span>
       </header>
 
       <div className="max-w-xl mx-auto px-4 pt-16 pb-20 text-center">
-        <div className="inline-flex items-center gap-2 bg-brand-green/10 border border-brand-green/20 rounded-full px-4 py-2 mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse-soft" />
-          <span className="text-xs text-brand-green font-bold">Gratuit · Résultat en 90 secondes</span>
-        </div>
+        <Reveal>
+          <div className="inline-flex items-center gap-2 bg-brand-green/10 border border-brand-green/20 rounded-full px-4 py-2 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse-soft" />
+            <span className="text-xs text-brand-green font-bold">Gratuit · Résultat en 90 secondes</span>
+          </div>
 
-        <h1 className="text-h1 text-white mb-4 tracking-tight">
-          Ton annonce est-elle{" "}
-          <span className="bg-brand-gradient bg-clip-text text-transparent">optimisée ?</span>
-        </h1>
-        <p className="text-white/45 text-base mb-6 leading-relaxed">
-          Analyse IA de ton annonce Airbnb ou Booking.com · Score /100 · Benchmark concurrents · Plan d&apos;action personnalisé
-        </p>
+          <h1 className="text-h1 text-white mb-4 tracking-tight">
+            Ton annonce est-elle{" "}
+            <span className="bg-brand-gradient bg-clip-text text-transparent">optimisée ?</span>
+          </h1>
+          <p className="text-white/45 text-base mb-6 leading-relaxed">
+            Analyse IA de ton annonce Airbnb ou Booking.com · Score /100 · Benchmark concurrents · Plan d&apos;action personnalisé
+          </p>
 
-        <p className="flex items-center justify-center gap-2 text-white/30 text-xs font-semibold mb-10">
-          <span>7 ans d&apos;expérience</span>
-          <span className="text-white/15">·</span>
-          <span>+600K€ générés sur Airbnb</span>
-        </p>
+          <p className="flex items-center justify-center gap-2 text-white/30 text-xs font-semibold mb-10">
+            <span>7 ans d&apos;expérience</span>
+            <span className="text-white/15">·</span>
+            <span>+600K€ générés sur Airbnb</span>
+          </p>
+        </Reveal>
 
+        <Reveal delay={120}>
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
           <div className="flex gap-3 mb-5">
             {(["airbnb", "booking"] as Platform[]).map((p) => (
@@ -212,6 +251,7 @@ export default function AuditPublicPage() {
 
           <p className="text-white/20 text-xs text-center">Gratuit · Sans inscription · Sans engagement</p>
         </div>
+        </Reveal>
 
         {/* Proof */}
         <div className="mt-10 grid grid-cols-3 gap-3 text-center">
@@ -219,12 +259,14 @@ export default function AuditPublicPage() {
             { icon: "📊", label: "Score /100", sub: "par catégorie" },
             { icon: "🏆", label: "Benchmark", sub: "5 concurrents" },
             { icon: "✨", label: "Contenu IA", sub: "titre + description" },
-          ].map((f) => (
-            <div key={f.label} className="bg-white/5 border border-white/8 rounded-xl p-4">
-              <div className="text-2xl mb-2">{f.icon}</div>
-              <div className="text-white/75 text-xs font-bold">{f.label}</div>
-              <div className="text-white/25 text-xs">{f.sub}</div>
-            </div>
+          ].map((f, i) => (
+            <Reveal key={f.label} delay={i * 80}>
+              <div className="bg-white/5 border border-white/8 rounded-xl p-4 h-full">
+                <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-brand-green/10 border border-brand-green/20 flex items-center justify-center text-lg">{f.icon}</div>
+                <div className="text-white/75 text-xs font-bold">{f.label}</div>
+                <div className="text-white/25 text-xs">{f.sub}</div>
+              </div>
+            </Reveal>
           ))}
         </div>
 
@@ -234,17 +276,19 @@ export default function AuditPublicPage() {
             { value: "+30%", label: "de CA visé" },
             { value: "15 min", label: "de gestion / jour visées" },
             { value: "38 pts", label: "checklist de réception" },
-          ].map((s) => (
-            <div key={s.label}>
-              <p className="text-2xl font-extrabold text-brand-green tracking-tight">{s.value}</p>
-              <p className="text-white/30 text-[11px] mt-1 leading-snug">{s.label}</p>
-            </div>
+          ].map((s, i) => (
+            <Reveal key={s.label} delay={i * 80}>
+              <div className="bg-white/5 border border-white/8 rounded-xl p-4 h-full">
+                <p className="text-2xl font-extrabold text-brand-green tracking-tight">{s.value}</p>
+                <p className="text-white/30 text-[11px] mt-1 leading-snug">{s.label}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
         <p className="text-white/15 text-[11px] text-center mt-3">Objectifs visés avec les hôtes accompagnés en Super BnB Academy</p>
 
         {/* FAQ */}
-        <div className="mt-14 text-left">
+        <Reveal className="mt-14 text-left">
           <p className="text-white/40 text-xs font-bold uppercase tracking-widest text-center mb-5">Questions fréquentes</p>
           <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/5">
             {[
@@ -262,7 +306,7 @@ export default function AuditPublicPage() {
               </details>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </div>
   );
