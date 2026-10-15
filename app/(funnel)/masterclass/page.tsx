@@ -7,9 +7,9 @@ import { trackEvent } from "@/lib/gtag";
 const BULLETS = [
   "La méthode pour trouver et négocier un bail commercial en moins de 14 jours",
   "Le calcul de rentabilité que j'utilise en 90 secondes pour valider un appart",
-  "Le modèle 100% halal qui démarre avec moins de 4 000€ — zéro crédit conventionnel",
+  "Le modèle 100% halal que j'applique depuis 7 ans — zéro riba",
   "Ma stack tech pour gérer plusieurs logements sans répondre aux clients à 3h du matin",
-  "Pas encore le budget pour la sous-location ? On te montre comment démarrer en conciergerie, 0€ d'apport, dès ton premier client",
+  "Tu hésites entre sous-location et conciergerie ? On fait le point ensemble lors de ton appel stratégique",
 ];
 
 const TESTIMONIALS = [
@@ -21,7 +21,7 @@ const TESTIMONIALS = [
 const FAQ = [
   { q: "C'est vraiment gratuit ?", a: "Oui, 100%. Aucune carte bancaire demandée. Tu accèdes à la masterclass immédiatement après ton inscription." },
   { q: "Pourquoi tu me demandes mon WhatsApp ?", a: "Pour t'envoyer la masterclass et les bonus directement en privé, et répondre à tes questions si tu en as pendant le visionnage." },
-  { q: "C'est fait pour moi si je n'ai pas d'expérience ou de budget ?", a: "Oui. La méthode démarre avec moins de 4 000€ en sous-location — et avec 0€ d'apport en conciergerie si le budget n'est pas encore là." },
+  { q: "C'est fait pour moi si je n'ai pas d'expérience ?", a: "Oui. Beaucoup de nos apprenants partent de zéro. On évalue ta situation précisément lors de l'appel stratégique pour te recommander le modèle le plus adapté — sous-location ou conciergerie." },
 ];
 
 const G = "#2DB84B";
@@ -210,7 +210,7 @@ export default function MasterclassPage() {
             ▶ Accès débloqué — Masterclass offerte
           </div>
           <h1 style={{ color: "#fff", fontSize: "clamp(26px,4vw,44px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-.025em", marginBottom: 12 }}>
-            Génère tes premiers revenus Airbnb <span style={{ color: G }}>sans crédit, sans apport.</span>
+            Génère tes premiers revenus Airbnb <span style={{ color: G }}>avec une méthode qui a fait ses preuves.</span>
           </h1>
           <p style={{ color: "rgba(255,255,255,.6)", fontSize: 17, marginBottom: 32 }}>Lance la vidéo et prends des notes — chaque minute compte.</p>
         </div>
@@ -285,7 +285,7 @@ export default function MasterclassPage() {
               </span>
             </h1>
             <p style={{ fontSize: "clamp(15px,1.5vw,17px)", color: MUTED, marginBottom: 26, lineHeight: 1.6 }}>
-              Sans crédit conventionnel · sans apport · halal-friendly · testée sur +600K€ générés sur Airbnb, en France et à l'étranger.
+              Une méthode terrain, halal-friendly, testée sur +600K€ générés sur Airbnb, en France et à l'étranger.
             </p>
             <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: 11 }}>
               {BULLETS.map((b) => (
