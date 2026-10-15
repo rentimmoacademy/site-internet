@@ -210,7 +210,7 @@ export default function MasterclassPage() {
             ▶ Accès débloqué — Masterclass offerte
           </div>
           <h1 style={{ color: "#fff", fontSize: "clamp(26px,4vw,44px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-.025em", marginBottom: 12 }}>
-            Génère tes premiers revenus Airbnb <span style={{ color: G }}>avec une méthode qui a fait ses preuves.</span>
+            Génère tes premiers revenus Airbnb <span style={{ color: G }}>avec la méthode qui a généré +600K€ sur Airbnb.</span>
           </h1>
           <p style={{ color: "rgba(255,255,255,.6)", fontSize: 17, marginBottom: 32 }}>Lance la vidéo et prends des notes — chaque minute compte.</p>
         </div>
