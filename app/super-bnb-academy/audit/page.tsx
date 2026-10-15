@@ -173,8 +173,14 @@ export default function AuditPublicPage() {
           Ton annonce est-elle{" "}
           <span className="bg-brand-gradient bg-clip-text text-transparent">optimisée ?</span>
         </h1>
-        <p className="text-white/45 text-base mb-12 leading-relaxed">
+        <p className="text-white/45 text-base mb-6 leading-relaxed">
           Analyse IA de ton annonce Airbnb ou Booking.com · Score /100 · Benchmark concurrents · Plan d&apos;action personnalisé
+        </p>
+
+        <p className="flex items-center justify-center gap-2 text-white/30 text-xs font-semibold mb-10">
+          <span>7 ans d&apos;expérience</span>
+          <span className="text-white/15">·</span>
+          <span>+600K€ générés sur Airbnb</span>
         </p>
 
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
