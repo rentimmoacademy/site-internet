@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Calculateur Commission Airbnb</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:opsz,wght@9..40,400..700&display=swap">
+<style>
+/* Concept : tableau de bord d'hôte. Les chiffres à gauche, le résultat en direct à droite, vert Rentimmo Academy sur fond sombre. */
+:root {
+  --bg: #151815;
+  --surface: #1d211d;
+  --surface-2: #252a25;
+  --line: #323832;
+  --fg: #f1f4f0;
+  --muted: #9aa399;
+  --accent: #2db84b;
+  --accent-ink: #0b170d;
+  --loss: #ee6b58;
+  --focus: #7be08f;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f4f6f2;
+    --surface: #ffffff;
+    --surface-2: #eaede6;
+    --line: #d5dacf;
+    --fg: #151815;
+    --muted: #596257;
+    --accent: #177a30;
+    --accent-ink: #ffffff;
+    --loss: #b83a29;
+    --focus: #177a30;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f4f6f2;
+  --surface: #ffffff;
+  --surface-2: #eaede6;
+  --line: #d5dacf;
+  --fg: #151815;
+  --muted: #596257;
+  --accent: #177a30;
+  --accent-ink: #ffffff;
+  --loss: #b83a29;
+  --focus: #177a30;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-inline: clamp(16px, 4vw, 32px);
+  padding-block: 28px 56px;
+}
+.wrap { max-width: 1080px; margin-inline: auto; display: flex; flex-direction: column; gap: 28px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.08; }
+p { margin: 0; }
+.num { font-variant-numeric: tabular-nums; }
+
+.top { display: flex; flex-direction: column; gap: 14px; max-width: 720px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+h1 { font-size: clamp(32px, 6vw, 54px); font-weight: 800; letter-spacing: -0.02em; }
+.lede { color: var(--muted); max-width: 62ch; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.panel h2 { font-size: 22px; font-weight: 700; }
+.note { color: var(--muted); font-size: 14px; }
+
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 520px) { .fields { grid-template-columns: minmax(0, 1fr); } }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field label { font-size: 14px; font-weight: 600; }
+.field .hint { font-size: 12px; color: var(--muted); }
+.inp { display: flex; align-items: center; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; }
+.inp:focus-within { outline: 2px solid var(--focus); outline-offset: 1px; }
+.inp input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--fg); font: inherit; font-size: 16px; font-variant-numeric: tabular-nums; padding: 12px 0 12px 14px; outline: none; }
+.inp span { padding-right: 14px; color: var(--muted); }
+
+details.rates { border-top: 1px solid var(--line); padding-top: 14px; }
+details.rates summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+details.rates summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+details.rates .fields { margin-top: 14px; }
+
+.results { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.hero { background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+.label { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.big { font-family: var(--font-display); font-weight: 800; font-size: clamp(46px, 10vw, 76px); line-height: 1; letter-spacing: -0.03em; color: var(--accent); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.chip.up { color: var(--accent); }
+.explain { color: var(--muted); font-size: 14px; max-width: 60ch; }
+
+dl.rows { margin: 0; display: flex; flex-direction: column; }
+dl.rows > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+dl.rows > div:last-child { border-bottom: 0; }
+dl.rows dt { color: var(--muted); font-size: 14px; }
+dl.rows dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+dd.loss { color: var(--loss); }
+dd.gain { color: var(--accent); }
+
+.section-title { display: flex; flex-direction: column; gap: 6px; }
+.section-title h2 { font-size: 24px; font-weight: 700; }
+
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 14px; vertical-align: middle; }
+th { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+td .inp { max-width: 130px; }
+td .inp input { padding: 8px 0 8px 10px; }
+td .inp span { padding-right: 10px; }
+
+.seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { font: inherit; font-size: 14px; font-weight: 600; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.tabpanel ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; max-width: 70ch; }
+
+.trap { background: var(--surface-2); border-radius: 10px; padding: 14px 16px; font-size: 14px; color: var(--muted); }
+.trap strong { color: var(--fg); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { font: inherit; font-size: 15px; font-weight: 700; border-radius: 10px; padding: 12px 18px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.foot { color: var(--muted); font-size: 13px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--line); padding-top: 18px; }
+.foot strong { color: var(--fg); }
+@media (prefers-reduced-motion: no-preference) { .btn, .tab { transition: background 0.15s, border-color 0.15s; } }
+</style>
+<style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="top">
+    <p class="eyebrow">Rentimmo Academy</p>
+    <h1>Calculateur commission Airbnb</h1>
+    <p class="lede">En France, Airbnb passe à une commission unique de 15,5 % prélevée sur toi seul, et le voyageur ne paie plus de frais de service séparés. Entre tes chiffres : tu vois ce que tu perds si tu ne changes rien, et le prix à afficher pour garder le même net.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel" aria-labelledby="h-in">
+      <div>
+        <h2 id="h-in">Tes chiffres</h2>
+        <p class="note">Les valeurs affichées sont des exemples. Remplace-les par les tiens, les résultats se mettent à jour tout de suite.</p>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label for="price">Prix affiché par nuit</label>
+          <div class="inp"><input id="price" type="text" inputmode="decimal" autocomplete="off" value="100"><span>€</span></div>
+        </div>
+        <div class="field">
+          <label for="nights">Nuits réservées par mois</label>
+          <div class="inp"><input id="nights" type="text" inputmode="decimal" autocomplete="off" value="20"><span>nuits</span></div>
+        </div>
+        <div class="field">
+          <label for="cleanShown">Frais de ménage affichés</label>
+          <div class="inp"><input id="cleanShown" type="text" inputmode="decimal" autocomplete="off" value="50"><span>€</span></div>
+        </div>
+        <div class="field">
+          <label for="cleanCost">Ménage payé à ton prestataire</label>
+          <div class="inp"><input id="cleanCost" type="text" inputmode="decimal" autocomplete="off" value="50"><span>€</span></div>
+        </div>
+        <div class="field">
+          <label for="stays">Séjours par mois</label>
+          <div class="inp"><input id="stays" type="text" inputmode="decimal" autocomplete="off" value="20"><span>séjours</span></div>
+        </div>
+      </div>
+      <details class="rates">
+        <summary>Taux utilisés dans le calcul</summary>
+        <div class="fields">
+          <div class="field">
+            <label for="oldHost">Ancienne commission hôte</label>
+            <div class="inp"><input id="oldHost" type="text" inputmode="decimal" autocomplete="off" value="3"><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="newFee">Nouvelle commission hôte</label>
+            <div class="inp"><input id="newFee" type="text" inputmode="decimal" autocomplete="off" value="15,5"><span>%</span></div>
+          </div>
+          <div class="field">
+            <label for="guestFee">Ancien frais voyageur</label>
+            <div class="inp"><input id="guestFee" type="text" inputmode="decimal" autocomplete="off" value="15"><span>%</span></div>
+            <span class="hint">Il variait d'environ 14 % à 16,5 % selon les annonces.</span>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <div class="results">
+      <section class="hero" aria-labelledby="h-price">
+        <p class="label" id="h-price">Prix à afficher pour garder le même net</p>
+        <p class="big" id="newPrice" aria-live="polite">0</p>
+        <div class="chips">
+          <span class="chip up" id="rise"></span>
+          <span class="chip" id="roundPrice"></span>
+        </div>
+        <p class="explain" id="guestLine"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="h-loss">
+        <h2 id="h-loss">Si tu ne changes rien</h2>
+        <dl class="rows">
+          <div><dt>Tu touchais par nuit</dt><dd id="netBefore"></dd></div>
+          <div><dt>Tu touches par nuit</dt><dd id="netAfter"></dd></div>
+          <div><dt>Perte par nuit</dt><dd class="loss" id="lossNight"></dd></div>
+          <div><dt>Perte par mois sur tes nuits</dt><dd class="loss" id="lossMonth"></dd></div>
+        </dl>
+      </section>
+
+      <section class="panel" aria-labelledby="h-clean">
+        <h2 id="h-clean">Tes frais de ménage</h2>
+        <p class="note">La commission s'applique aussi sur les frais de ménage.</p>
+        <dl class="rows">
+          <div><dt>Tu touches sur les frais affichés</dt><dd id="cleanNet"></dd></div>
+          <div><dt>Écart avec ton prestataire, par séjour</dt><dd id="cleanGap"></dd></div>
+          <div><dt>Écart par mois</dt><dd id="cleanGapMonth"></dd></div>
+          <div><dt>Frais à afficher pour couvrir ton prestataire</dt><dd class="gain" id="cleanNeed"></dd></div>
+        </dl>
+      </section>
+    </div>
+  </main>
+
+  <section class="panel" aria-labelledby="h-want">
+    <div class="section-title">
+      <h2 id="h-want">Tu pars de ton net voulu ?</h2>
+      <p class="note">Indique ce que tu veux toucher par nuit. Le calcul est une division, pas une addition.</p>
+    </div>
+    <div class="fields">
+      <div class="field">
+        <label for="wantNet">Net voulu par nuit</label>
+        <div class="inp"><input id="wantNet" type="text" inputmode="decimal" autocomplete="off" value="60"><span>€</span></div>
+      </div>
+    </div>
+    <dl class="rows">
+      <div><dt>Prix à afficher (net voulu ÷ 0,845 avec 15,5 %)</dt><dd class="gain" id="wantPrice"></dd></div>
+    </dl>
+    <p class="trap" id="trap"></p>
+  </section>
+
+  <section class="panel" aria-labelledby="h-plat">
+    <div class="section-title">
+      <h2 id="h-plat">Tu es sur plusieurs plateformes ?</h2>
+      <p class="note" id="platNote">Compare ton net, pas ton prix affiché. Renseigne ta commission sur Booking ou Vrbo, tu la trouves dans ton extranet.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Plateforme</th><th>Commission</th><th>Net au même prix affiché</th><th>Prix pour égaler Airbnb</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Airbnb</td><td id="pfAirbnbFee"></td><td id="pfAirbnbNet"></td><td id="pfAirbnbEq"></td></tr>
+          <tr>
+            <td>Booking</td>
+            <td><div class="inp"><input id="booking" type="text" inputmode="decimal" autocomplete="off" placeholder="ex : ta commission" aria-label="Commission Booking en pourcentage"><span>%</span></div></td>
+            <td id="pfBookingNet"></td><td id="pfBookingEq"></td>
+          </tr>
+          <tr>
+            <td>Vrbo</td>
+            <td><div class="inp"><input id="vrbo" type="text" inputmode="decimal" autocomplete="off" placeholder="ex : ta commission" aria-label="Commission Vrbo en pourcentage"><span>%</span></div></td>
+            <td id="pfVrboNet"></td><td id="pfVrboEq"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-prof">
+    <div class="section-title">
+      <h2 id="h-prof">Quoi faire selon ta façon de gérer</h2>
+      <p class="note">Choisis ton profil.</p>
+    </div>
+    <div class="seg" role="tablist" aria-label="Ton profil">
+      <button class="tab" role="tab" id="t1" aria-selected="true" aria-controls="p1" type="button">PMS ou channel manager</button>
+      <button class="tab" role="tab" id="t2" aria-selected="false" aria-controls="p2" type="button">Airbnb seul, sans logiciel</button>
+      <button class="tab" role="tab" id="t3" aria-selected="false" aria-controls="p3" type="button">Plusieurs plateformes</button>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p1" aria-labelledby="t1">
+      <ul>
+        <li>Beaucoup d'hôtes connectés à un logiciel ont déjà été basculés vers les 15,5 %. Les sources divergent sur la date exacte, vérifie ton cas.</li>
+        <li>Fais une réservation test et regarde la commission prélevée dans tes revenus Airbnb.</li>
+        <li>Vérifie que ton outil de prix prend bien la nouvelle commission en compte, sinon tes prix ne compensent rien.</li>
+      </ul>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <ul>
+        <li>C'est le profil le plus touché par la bascule du 13 octobre.</li>
+        <li>Monte ton prix du pourcentage indiqué en haut de la page, calculé sur tes chiffres.</li>
+        <li>Les réservations déjà prises gardent l'ancien système, seules les nouvelles passent à 15,5 %.</li>
+        <li>Après la hausse, compare-toi à 10 annonces similaires dans ta zone. Dans la médiane, ne baisse pas.</li>
+      </ul>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <ul>
+        <li>Compare ton net sur chaque plateforme, pas ton prix affiché.</li>
+        <li>Renseigne ta commission Booking et Vrbo dans le tableau plus haut.</li>
+        <li>Si Airbnb devient ta plus petite marge, ajuste les prix plateforme par plateforme depuis ton channel manager.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="actions">
+    <button class="btn primary" id="copy" type="button">Copier mon résumé</button>
+    <a class="btn" href="https://rentimmoacademy.fr/masterclass/" target="_blank" rel="noopener">Voir la masterclass</a>
+    <a class="btn" href="https://cal.com/rentimmoacademy/superbnbacademy" target="_blank" rel="noopener">Réserver un appel</a>
+  </div>
+  <p class="note" id="copyMsg" aria-live="polite"></p>
+
+  <footer class="foot">
+    <p><strong>Rentimmo Academy</strong>, par Marwan Afassi. Instagram : @rentimmo_academy</p>
+    <p>Calcul indicatif basé sur les taux saisis. Les montants d'exemple ne sont pas des résultats garantis. Vérifie la commission réellement appliquée sur une réservation test.</p>
+  </footer>
+</div>
+
+<script>
+/*CALC_START*/
+function calc(i) {
+  var old = i.oldHost / 100, nw = i.newFee / 100, g = i.guestFee / 100;
+  var netBefore = i.price * (1 - old);
+  var netAfter = i.price * (1 - nw);
+  var newPrice = netBefore / (1 - nw);
+  var refPrice = Math.ceil(newPrice - 1e-9);
+  var cleanNet = i.cleanShown * (1 - nw);
+  var cleanGap = i.cleanCost - cleanNet;
+  return {
+    netBefore: netBefore,
+    netAfter: netAfter,
+    lossNight: netBefore - netAfter,
+    lossMonth: (netBefore - netAfter) * i.nights,
+    newPrice: newPrice,
+    refPrice: refPrice,
+    rise: newPrice / i.price - 1,
+    guestBefore: i.price * (1 + g),
+    cleanNet: cleanNet,
+    cleanGap: cleanGap,
+    cleanGapMonth: cleanGap * i.stays,
+    cleanNeed: i.cleanCost / (1 - nw),
+    wantPrice: i.wantNet / (1 - nw),
+    wantNaive: i.wantNet * (1 + nw),
+    wantNaiveNet: i.wantNet * (1 + nw) * (1 - nw)
+  };
+}
+function platform(refPrice, airbnbFee, fee) {
+  return { net: refPrice * (1 - fee / 100), eq: refPrice * (1 - airbnbFee / 100) / (1 - fee / 100) };
+}
+/*CALC_END*/
+
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var eur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" });
+  var pctf = new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  var pending = "à saisir";
+
+  function read(id, max) {
+    var raw = $(id).value.replace(/\s/g, "").replace(",", ".");
+    if (raw === "") return NaN;
+    var n = Number(raw);
+    if (!isFinite(n) || n < 0) return NaN;
+    if (max !== undefined && n >= max) return NaN;
+    return n;
+  }
+  function money(n) { return isFinite(n) ? eur.format(n) : pending; }
+  function put(id, text) { $(id).textContent = text; }
+
+  var last = "";
+
+  function render() {
+    var input = {
+      price: read("price"), nights: read("nights"), cleanShown: read("cleanShown"),
+      cleanCost: read("cleanCost"), stays: read("stays"),
+      oldHost: read("oldHost", 100), newFee: read("newFee", 100), guestFee: read("guestFee"),
+      wantNet: read("wantNet")
+    };
+    var r = calc(input);
+
+    put("newPrice", money(r.newPrice));
+    put("rise", isFinite(r.rise) ? "+" + pctf.format(r.rise * 100) + " %" : pending);
+    put("roundPrice", isFinite(r.refPrice) ? "Arrondi : " + r.refPrice + " €" : pending);
+    put("guestLine", isFinite(r.guestBefore) && isFinite(r.newPrice)
+      ? "Pour le voyageur : avant, environ " + money(r.guestBefore) + " au total. Après, " + money(r.newPrice) + ". Le prix total reste quasiment le même."
+      : "");
+
+    put("netBefore", money(r.netBefore));
+    put("netAfter", money(r.netAfter));
+    put("lossNight", isFinite(r.lossNight) ? "-" + money(r.lossNight) : pending);
+    put("lossMonth", isFinite(r.lossMonth) ? "-" + money(r.lossMonth) : pending);
+
+    put("cleanNet", money(r.cleanNet));
+    if (isFinite(r.cleanGap)) {
+      put("cleanGap", r.cleanGap > 0.005 ? "-" + money(r.cleanGap) : "Couvert");
+      put("cleanGapMonth", r.cleanGap > 0.005 && isFinite(r.cleanGapMonth) ? "-" + money(r.cleanGapMonth) : "Couvert");
+    } else { put("cleanGap", pending); put("cleanGapMonth", pending); }
+    put("cleanNeed", money(r.cleanNeed));
+
+    put("wantPrice", money(r.wantPrice));
+    put("trap", isFinite(r.wantPrice)
+      ? "Si tu multiplies ton net par 1,155, tu affiches " + money(r.wantNaive) + " et tu touches " + money(r.wantNaiveNet) + ". Il te manque " + money(input.wantNet - r.wantNaiveNet) + " par nuit. Divise par 0,845."
+      : "");
+
+    var ref = r.refPrice;
+    put("pfAirbnbFee", isFinite(input.newFee) ? pctf.format(input.newFee) + " %" : pending);
+    put("pfAirbnbNet", money(ref * (1 - input.newFee / 100)));
+    put("pfAirbnbEq", isFinite(ref) ? money(ref) : pending);
+    var plats = [["booking", "pfBookingNet", "pfBookingEq"], ["vrbo", "pfVrboNet", "pfVrboEq"]];
+    for (var k = 0; k < plats.length; k++) {
+      var fee = read(plats[k][0], 100);
+      if (isFinite(fee) && isFinite(ref) && isFinite(input.newFee)) {
+        var p = platform(ref, input.newFee, fee);
+        put(plats[k][1], money(p.net));
+        put(plats[k][2], money(p.eq));
+      } else {
+        put(plats[k][1], "à renseigner");
+        put(plats[k][2], "à renseigner");
+      }
+    }
+    put("platNote", "Calculé à partir du prix Airbnb conseillé (" + (isFinite(ref) ? ref + " €" : pending) + "). Compare ton net, pas ton prix affiché. Ta commission Booking ou Vrbo est dans ton extranet.");
+
+    last = [
+      "Calcul commission Airbnb (Rentimmo Academy)",
+      "Prix affiché actuel : " + money(input.price),
+      "Net par nuit avant : " + money(r.netBefore),
+      "Net par nuit si je ne change rien : " + money(r.netAfter) + " (perte " + money(r.lossNight) + " par nuit, " + money(r.lossMonth) + " par mois)",
+      "Prix à afficher pour garder le même net : " + money(r.newPrice) + " (arrondi " + r.refPrice + " €, +" + pctf.format(r.rise * 100) + " %)",
+      "Frais de ménage à afficher pour couvrir mon prestataire : " + money(r.cleanNeed)
+    ].join("\n");
+  }
+
+  var ids = ["price", "nights", "cleanShown", "cleanCost", "stays", "oldHost", "newFee", "guestFee", "wantNet", "booking", "vrbo"];
+  for (var n = 0; n < ids.length; n++) $(ids[n]).addEventListener("input", render);
+
+  var tabs = [["t1", "p1"], ["t2", "p2"], ["t3", "p3"]];
+  function select(index) {
+    for (var t = 0; t < tabs.length; t++) {
+      var on = t === index;
+      $(tabs[t][0]).setAttribute("aria-selected", on ? "true" : "false");
+      $(tabs[t][1]).hidden = !on;
+    }
+  }
+  for (var m = 0; m < tabs.length; m++) {
+    (function (idx) { $(tabs[idx][0]).addEventListener("click", function () { select(idx); }); })(m);
+  }
+
+  $("copy").addEventListener("click", function () {
+    var done = function () { put("copyMsg", "Résumé copié."); };
+    var fallback = function () {
+      var area = document.createElement("textarea");
+      area.value = last; area.setAttribute("readonly", ""); area.style.position = "fixed"; area.style.opacity = "0";
+      document.body.appendChild(area); area.select();
+      try { document.execCommand("copy"); done(); } catch (e) { put("copyMsg", "Copie impossible ici. Sélectionne les chiffres à la main."); }
+      document.body.removeChild(area);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(last).then(done, fallback);
+    } else { fallback(); }
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
