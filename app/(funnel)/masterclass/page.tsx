@@ -177,10 +177,10 @@ export default function MasterclassPage() {
 
   /* ── shared topbar ── */
   const Topbar = () => (
-    <header style={{ background: "#fff", borderBottom: "1px solid rgba(26,26,26,.07)", padding: "13px 24px", position: "sticky", top: 0, zIndex: 50 }}>
+    <header style={{ background: "rgba(26,26,26,.92)", backdropFilter: "blur(8px)", borderBottom: "1px solid rgba(255,255,255,.08)", padding: "13px 24px", position: "sticky", top: 0, zIndex: 50 }}>
       <div style={{ maxWidth: 1180, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Logo dark />
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: CREAM, padding: "6px 12px", borderRadius: 999, fontSize: 12, fontWeight: 700, border: `1px solid rgba(26,107,51,.12)`, color: "#2D2D2D" }}>
+        <Logo />
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,.08)", padding: "6px 12px", borderRadius: 999, fontSize: 12, fontWeight: 700, border: "1px solid rgba(255,255,255,.14)", color: "rgba(255,255,255,.8)" }}>
           <span style={{ color: G }}>✓</span> Organisme QUALIOPI
         </div>
       </div>
@@ -269,27 +269,38 @@ export default function MasterclassPage() {
       <Topbar />
 
       {/* HERO + FORM */}
-      <section className="mc-hero-section hero-in" style={{ padding: "56px 24px 72px", background: `linear-gradient(180deg,${CREAM} 0%,#fff 100%)` }}>
-        <div className="mc-hero-grid" style={{ maxWidth: 1140, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center" }}>
+      <section
+        className="mc-hero-section hero-in"
+        style={{
+          padding: "56px 24px 72px",
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: INK,
+          backgroundImage: "radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      >
+        <div style={{ pointerEvents: "none", position: "absolute", left: "50%", top: -140, transform: "translateX(-50%)", width: 640, height: 640, borderRadius: "50%", background: "rgba(45,184,75,.15)", filter: "blur(140px)" }} />
+        <div className="mc-hero-grid" style={{ maxWidth: 1140, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center", position: "relative" }}>
 
           {/* LEFT */}
           <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(45,184,75,.1)", color: GD, padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 700, marginBottom: 22 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(45,184,75,.14)", color: G, padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 700, marginBottom: 22 }}>
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: G, boxShadow: `0 0 0 4px rgba(45,184,75,.2)`, display: "inline-block" }} />
               Masterclass offerte · accès immédiat
             </div>
-            <h1 style={{ fontSize: "clamp(28px,4.2vw,48px)", lineHeight: 1.06, letterSpacing: "-.025em", fontWeight: 800, marginBottom: 18 }}>
+            <h1 style={{ fontSize: "clamp(28px,4.2vw,48px)", lineHeight: 1.06, letterSpacing: "-.025em", fontWeight: 800, marginBottom: 18, color: "#fff" }}>
               Sous-location &amp; conciergerie Airbnb :{" "}
-              <span style={{ background: "linear-gradient(180deg,transparent 58%,rgba(95,216,122,.42) 58%)", padding: "0 4px" }}>
+              <span style={{ background: "linear-gradient(180deg,transparent 58%,rgba(45,184,75,.5) 58%)", padding: "0 4px" }}>
                 la méthode que j'applique depuis 7 ans
               </span>
             </h1>
-            <p style={{ fontSize: "clamp(15px,1.5vw,17px)", color: MUTED, marginBottom: 26, lineHeight: 1.6 }}>
+            <p style={{ fontSize: "clamp(15px,1.5vw,17px)", color: "rgba(255,255,255,.65)", marginBottom: 26, lineHeight: 1.6 }}>
               Une méthode terrain, halal-friendly, testée sur +600K€ générés sur Airbnb, en France et à l'étranger.
             </p>
             <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: 11 }}>
               {BULLETS.map((b) => (
-                <li key={b} style={{ display: "flex", gap: 11, alignItems: "flex-start", fontSize: 15, color: "#2D2D2D", fontWeight: 500 }}>
+                <li key={b} style={{ display: "flex", gap: 11, alignItems: "flex-start", fontSize: 15, color: "rgba(255,255,255,.85)", fontWeight: 500 }}>
                   <span style={{ flexShrink: 0, width: 22, height: 22, background: G, color: "#fff", borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 900, marginTop: 1 }}>✓</span>
                   {b}
                 </li>
@@ -297,18 +308,18 @@ export default function MasterclassPage() {
             </ul>
 
             {/* Social proof mini */}
-            <div style={{ display: "flex", gap: 20, marginTop: 28, padding: "18px 0", borderTop: "1px solid rgba(26,26,26,.08)", flexWrap: "wrap" as const }}>
+            <div style={{ display: "flex", gap: 20, marginTop: 28, padding: "18px 0", borderTop: "1px solid rgba(255,255,255,.12)", flexWrap: "wrap" as const }}>
               <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 800, color: GD }}><CountUp to={7} prefix="+" suffix=" ans" /></div>
-                <div style={{ fontSize: 11, color: MUTED, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>d'expérience</div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: G }}><CountUp to={7} prefix="+" suffix=" ans" /></div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>d'expérience</div>
               </div>
               <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 800, color: GD }}><CountUp to={600} prefix="+" suffix="K€" /></div>
-                <div style={{ fontSize: 11, color: MUTED, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>générés sur Airbnb</div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: G }}><CountUp to={600} prefix="+" suffix="K€" /></div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>générés sur Airbnb</div>
               </div>
               <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 800, color: GD }}>QUALIOPI</div>
-                <div style={{ fontSize: 11, color: MUTED, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>certifié</div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: G }}>QUALIOPI</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>certifié</div>
               </div>
             </div>
           </div>
