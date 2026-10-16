@@ -33,7 +33,7 @@ const personSchema = {
     "Investissement locatif sans apport",
     "Marché Airbnb au Maroc",
     "Gestion locative pour MRE",
-    "Cleaning BnB",
+    "Cleaning BNB",
   ],
   worksFor: [
     {

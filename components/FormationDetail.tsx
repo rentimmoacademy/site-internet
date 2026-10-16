@@ -237,12 +237,12 @@ export default function FormationDetail({ formation }: { formation: Formation })
               </div>
             </div>
             <p className="mt-6 text-white/70">
-              Lancé avec <span className="text-white">1 000 € de budget</span>, j'ai fait +500K€ de CA sans
+              Lancé avec <span className="text-white">1 000 € de budget</span>, j'ai fait +600 000€ de CA sans
               jamais être propriétaire. Dizaines de biens gérés entre la France et le Maroc. Expertise de
               consultant mise à ta disposition — la mienne et celle de nos équipes.
             </p>
             <div className="mt-8 grid grid-cols-3 gap-6 border-t border-white/10 pt-6">
-              {[["+500K€", "générés"], ["6 ans", "terrain"], ["2 pays", "FR & MA"]].map(([v, l]) => (
+              {[["+600K€", "générés"], ["7 ans", "terrain"], ["2 pays", "FR & MA"]].map(([v, l]) => (
                 <div key={l}>
                   <p className="text-2xl font-extrabold text-white md:text-3xl">{v}</p>
                   <p className="mt-1 text-xs uppercase tracking-widest text-white/50">{l}</p>

@@ -169,7 +169,7 @@ export default function SeFormerAirbnbMarocPage() {
             <span className="rounded-full bg-brand-green/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-dark">
               Cash récurrent
             </span>
-            <h3 className="mt-4 text-xl font-bold text-ink">Cleaning BnB</h3>
+            <h3 className="mt-4 text-xl font-bold text-ink">Cleaning BNB</h3>
             <p className="mt-2 text-ink-muted">
               Tu deviens prestataire de ménage pour les conciergeries marocaines. Récurrent, scalable, marges saines. Très peu de pros sur ce créneau au Maroc.
             </p>

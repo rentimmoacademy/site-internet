@@ -67,7 +67,7 @@ const stats = [
 const faq = [
   {
     q: "Quelle est la différence avec une formation Rentimmo Academy ?",
-    a: "Rentimmo Academy te forme à un métier (sous-loc, conciergerie, cleaning) avec des modules vidéo et templates. Super BnB Academy est un programme d'accompagnement : on configure les outils avec toi, sur ton compte Airbnb, en 30 jours.",
+    a: "Rentimmo Academy te forme à un métier (sous-loc, conciergerie, cleaning) avec des modules vidéo et templates. Super BNB Academy est un programme d'accompagnement : on configure les outils avec toi, sur ton compte Airbnb, en 30 jours.",
   },
   {
     q: "Combien de temps je dois y consacrer chaque semaine ?",
@@ -83,11 +83,11 @@ const faq = [
   },
   {
     q: "Comment optimiser une annonce Airbnb pour avoir plus de réservations ?",
-    a: "Les leviers qui comptent le plus : un titre qui répond à une recherche précise, des photos professionnelles dans le bon ordre, une description structurée par bénéfices, un prix ajusté en dynamique (pas fixe) et une note hôte au-dessus de 4,8. C'est exactement ce qu'on reprend avec toi dans Super BnB Academy.",
+    a: "Les leviers qui comptent le plus : un titre qui répond à une recherche précise, des photos professionnelles dans le bon ordre, une description structurée par bénéfices, un prix ajusté en dynamique (pas fixe) et une note hôte au-dessus de 4,8. C'est exactement ce qu'on reprend avec toi dans Super BNB Academy.",
   },
   {
     q: "Faut-il passer par une conciergerie Airbnb ou automatiser soi-même sa gestion ?",
-    a: "Une conciergerie délègue tout mais coûte 15 à 25% de commission à vie. Super BnB Academy t'apprend à automatiser ta propre gestion (messages, pricing, check-in) en 30 jours : tu gardes 100% de tes revenus et tu restes autonome sur le long terme.",
+    a: "Une conciergerie délègue tout mais coûte 15 à 25% de commission à vie. Super BNB Academy t'apprend à automatiser ta propre gestion (messages, pricing, check-in) en 30 jours : tu gardes 100% de tes revenus et tu restes autonome sur le long terme.",
   },
   {
     q: "Comment augmenter son taux d'occupation sur Airbnb ?",
@@ -95,7 +95,7 @@ const faq = [
   },
   {
     q: "Quel est le meilleur outil pour gérer plusieurs logements Airbnb en même temps ?",
-    a: "Un channel manager (comme Superhote) centralise calendriers et messages sur tous tes logements et toutes tes plateformes. C'est l'outil qu'on configure en priorité dans Super BnB Academy dès que tu gères 2 biens ou plus.",
+    a: "Un channel manager (comme Superhote) centralise calendriers et messages sur tous tes logements et toutes tes plateformes. C'est l'outil qu'on configure en priorité dans Super BNB Academy dès que tu gères 2 biens ou plus.",
   },
 ];
 
@@ -160,7 +160,7 @@ export default function SuperBnbAcademyPage() {
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/60">
-              Objectifs visés avec toi pendant le programme Super BnB Academy.
+              Objectifs visés avec toi pendant le programme Super BNB Academy.
             </p>
           </div>
 
@@ -341,7 +341,7 @@ export default function SuperBnbAcademyPage() {
                   {[
                     "Un regard extérieur expert sur ton annonce",
                     "3 axes concrets d'amélioration identifiés",
-                    "La réponse claire : Super BnB Academy est-il fait pour toi ?",
+                    "La réponse claire : Super BNB Academy est-il fait pour toi ?",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-white/70">
                       <Check size={14} className="mt-0.5 shrink-0 text-auto-mint" />
@@ -402,7 +402,7 @@ export default function SuperBnbAcademyPage() {
             La différence
           </p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            Super BnB Academy vs <span className="text-white/40">formation classique</span>
+            Super BNB Academy vs <span className="text-white/40">formation classique</span>
           </h2>
 
           <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-auto-navy/50 backdrop-blur">
@@ -414,7 +414,7 @@ export default function SuperBnbAcademyPage() {
                   </th>
                   <th className="p-5 text-left">
                     <p className="text-[10px] uppercase tracking-widest text-auto-mint">
-                      Super BnB Academy
+                      Super BNB Academy
                     </p>
                   </th>
                   <th className="p-5 text-left">
@@ -578,7 +578,7 @@ export default function SuperBnbAcademyPage() {
               {
                 "@type": "Course",
                 "@id": "https://www.rentimmoacademy.fr/super-bnb-academy#course",
-                name: "Super BnB Academy",
+                name: "Super BNB Academy",
                 description:
                   "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On automatise ton logement avec toi : annonce, messages, pricing, réservation directe.",
                 url: "https://www.rentimmoacademy.fr/super-bnb-academy",

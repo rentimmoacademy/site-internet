@@ -45,14 +45,14 @@ const ctaByCategory: Record<string, { headline: string; sub: string; cta: string
   },
   cleaning: {
     headline: "La prestation ménage, c'est le service le plus demandé en LCD",
-    sub: "Un cleaner professionnel tourne entre 1 500 et 3 500 €/mois avec 3-4 clients réguliers. La formation Cleaning BnB te donne les protocoles, les tarifs et comment trouver tes premiers clients.",
+    sub: "Un cleaner professionnel tourne entre 1 500 et 3 500 €/mois avec 3-4 clients réguliers. La formation Cleaning BNB te donne les protocoles, les tarifs et comment trouver tes premiers clients.",
     cta: "Voir la formation cleaning",
     href: "/formations/cleaning-bnb",
   },
   outils: {
     headline: "Les outils seuls ne suffisent pas — il faut le bon système",
-    sub: "Dans SuperBNB Academy, on configure pricing dynamique, messagerie automatisée, domotique et channel manager avec toi en 4 semaines. Résultat moyen : +38 % de revenus, 15 min/jour de gestion.",
-    cta: "Voir SuperBNB Academy",
+    sub: "Dans Super BNB Academy, on configure pricing dynamique, messagerie automatisée, domotique et channel manager avec toi en 4 semaines. Résultat moyen : +38 % de revenus, 15 min/jour de gestion.",
+    cta: "Voir Super BNB Academy",
     href: "/super-bnb-academy",
   },
 };

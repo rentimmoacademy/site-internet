@@ -8,9 +8,9 @@ import { AGGREGATE_RATING } from "@/lib/testimonials";
 import { Check, X, ArrowRight, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Formations — Sous-Location Academy · Conciergerie BnB Academy · Cleaning BnB Academy",
+  title: "Formations — Sous-Location Academy · Conciergerie BNB Academy · Cleaning BNB Academy",
   description:
-    "Sous-Location Academy, Conciergerie BnB Academy, Cleaning BnB Academy — 3 formations terrain pour lancer ton activité de location courte durée en France et au Maroc. Sans banque, sans crédit.",
+    "Sous-Location Academy, Conciergerie BNB Academy, Cleaning BNB Academy — 3 formations terrain pour lancer ton activité de location courte durée en France et au Maroc. Sans banque, sans crédit.",
 };
 
 const compareRows = [
@@ -127,7 +127,7 @@ export default function FormationsPage() {
         </div>
       </section>
 
-      {/* SuperBNB Academy banner */}
+      {/* Super BNB Academy banner */}
       <section className="relative overflow-hidden bg-auto-navy py-16 font-poppins">
         <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
         <div className="pointer-events-none absolute -right-20 top-0 h-[300px] w-[300px] rounded-full bg-auto-mint/20 blur-[100px]" />
@@ -145,7 +145,7 @@ export default function FormationsPage() {
                   Tu as déjà un logement Airbnb actif ?
                 </p>
                 <p className="mt-1 text-sm text-white/65">
-                  Découvre <span className="text-white">SuperBNB Academy</span> — le programme
+                  Découvre <span className="text-white">Super BNB Academy</span> — le programme
                   30 jours pour automatiser ton Airbnb.
                 </p>
               </div>
@@ -186,7 +186,7 @@ export default function FormationsPage() {
             "@context": "https://schema.org",
             "@type": "ItemList",
             name: "Formations Rentimmo Academy",
-            description: "Sous-Location Academy, Conciergerie BnB Academy, Cleaning BnB Academy",
+            description: "Sous-Location Academy, Conciergerie BNB Academy, Cleaning BNB Academy",
             itemListElement: formations.map((f, i) => ({
               "@type": "ListItem",
               position: i + 1,

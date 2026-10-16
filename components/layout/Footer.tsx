@@ -9,8 +9,8 @@ const cols = [
     links: [
       { href: "/formations/sous-location", label: "Sous-Location Academy" },
       { href: "/formations/conciergerie-bnb", label: "Formation Conciergerie Airbnb" },
-      { href: "/formations/cleaning-bnb", label: "Cleaning BnB Academy" },
-      { href: "/super-bnb-academy", label: "Super BnB Academy" },
+      { href: "/formations/cleaning-bnb", label: "Cleaning BNB Academy" },
+      { href: "/super-bnb-academy", label: "Super BNB Academy" },
       { href: "/formations", label: "Voir toutes les formations" },
     ],
   },
@@ -19,7 +19,7 @@ const cols = [
     links: [
       { href: "/sous-location-professionnelle", label: "Sous-location pro" },
       { href: "/devenir-conciergerie-airbnb", label: "Devenir conciergerie" },
-      { href: "/menage-airbnb-professionnel", label: "Devenir cleaner BnB" },
+      { href: "/menage-airbnb-professionnel", label: "Devenir cleaner BNB" },
       { href: "/se-former-airbnb-maroc", label: "Airbnb au Maroc 🇲🇦" },
     ],
   },

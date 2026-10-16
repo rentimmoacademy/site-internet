@@ -10,14 +10,14 @@ const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/devenir-conciergerie-airbnb`;
 
 export const metadata: Metadata = {
-  title: "Devenir conciergerie Airbnb : guide pour se lancer en 2026 — Conciergerie BnB Academy",
+  title: "Devenir conciergerie Airbnb : guide pour se lancer en 2026 — Conciergerie BNB Academy",
   description:
-    "Comment lancer ta conciergerie Airbnb sans capital ni diplôme : statut juridique, tarification, premiers clients, contrats. Guide pratique 2026 par la Conciergerie BnB Academy — Rentimmo Academy.",
+    "Comment lancer ta conciergerie Airbnb sans capital ni diplôme : statut juridique, tarification, premiers clients, contrats. Guide pratique 2026 par la Conciergerie BNB Academy — Rentimmo Academy.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Devenir conciergerie Airbnb 2026 — Conciergerie BnB Academy",
+    title: "Devenir conciergerie Airbnb 2026 — Conciergerie BNB Academy",
     description:
-      "Statut juridique, tarification, premiers clients. Le guide pratique de la Conciergerie BnB Academy (Rentimmo Academy) pour lancer en 2026.",
+      "Statut juridique, tarification, premiers clients. Le guide pratique de la Conciergerie BNB Academy (Rentimmo Academy) pour lancer en 2026.",
     url: URL,
     type: "article",
   },
@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: "Quel statut juridique choisir pour démarrer ?",
-    a: "Pour les premiers mois : auto-entrepreneur (régime micro-entreprise) — simple, rapide à créer, charges allégées (~22% de cotisations). Dès que le CA dépasse 35-40K€/an : passage en EURL ou SASU avec choix IR ou IS selon optimisation fiscale. La formation Conciergerie BnB Academy détaille les 3 scenarios.",
+    a: "Pour les premiers mois : auto-entrepreneur (régime micro-entreprise) — simple, rapide à créer, charges allégées (~22% de cotisations). Dès que le CA dépasse 35-40K€/an : passage en EURL ou SASU avec choix IR ou IS selon optimisation fiscale. La formation Conciergerie BNB Academy détaille les 3 scenarios.",
   },
   {
     q: "Quelle commission prendre aux propriétaires ?",
@@ -38,7 +38,7 @@ const FAQS = [
   },
   {
     q: "Combien de temps pour signer mon premier client ?",
-    a: "Avec une bonne méthode de prospection (LinkedIn, Facebook groupes propriétaires, partenariats agences immo locales) et un argumentaire structuré : 2 à 6 semaines pour signer le premier mandat. La majorité de nos étudiants Conciergerie BnB Academy signent leur 1er client en moins de 30 jours.",
+    a: "Avec une bonne méthode de prospection (LinkedIn, Facebook groupes propriétaires, partenariats agences immo locales) et un argumentaire structuré : 2 à 6 semaines pour signer le premier mandat. La majorité de nos étudiants Conciergerie BNB Academy signent leur 1er client en moins de 30 jours.",
   },
   {
     q: "Combien rapporte une conciergerie Airbnb avec 5 logements ?",
@@ -276,7 +276,7 @@ export default function DevenirConciergerieAirbnbPage() {
             <span className="rounded-full bg-brand-green/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-light">
               Recommandé
             </span>
-            <h3 className="mt-4 text-2xl font-extrabold">Conciergerie BnB Academy</h3>
+            <h3 className="mt-4 text-2xl font-extrabold">Conciergerie BNB Academy</h3>
             <p className="mt-2 text-cream/80">
               Formation complète : statut, prospection, contrats, outils, automation. Tu lances ta conciergerie et tu signes ton 1er proprio en 30-45 jours. Bonus Maroc inclus.
             </p>

@@ -10,7 +10,7 @@ const URL = `${SITE}/temoignages`;
 export const metadata: Metadata = {
   title: "Témoignages — Avis clients Rentimmo Academy",
   description:
-    "Avis et témoignages des étudiants Rentimmo Academy : sous-location professionnelle, conciergerie Airbnb, cleaning BnB. Sources : Trustpilot, vidéos YouTube, avis vérifiés.",
+    "Avis et témoignages des étudiants Rentimmo Academy : sous-location professionnelle, conciergerie Airbnb, cleaning BNB. Sources : Trustpilot, vidéos YouTube, avis vérifiés.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Témoignages — Avis clients Rentimmo Academy",

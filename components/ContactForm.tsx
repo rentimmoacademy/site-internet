@@ -86,8 +86,8 @@ export default function ContactForm() {
             className="w-full rounded-xl border border-white/10 bg-[#141414] px-4 py-3.5 text-sm text-white outline-none focus:border-brand-green"
           >
             <option>Sous-Location Academy</option>
-            <option>Conciergerie BnB Academy</option>
-            <option>Cleaning BnB Academy</option>
+            <option>Conciergerie BNB Academy</option>
+            <option>Cleaning BNB Academy</option>
             <option>Je ne sais pas encore</option>
           </select>
         </div>

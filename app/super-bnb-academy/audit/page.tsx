@@ -285,7 +285,7 @@ export default function AuditPublicPage() {
             </Reveal>
           ))}
         </div>
-        <p className="text-white/15 text-[11px] text-center mt-3">Objectifs visés avec les hôtes accompagnés en Super BnB Academy</p>
+        <p className="text-white/15 text-[11px] text-center mt-3">Objectifs visés avec les hôtes accompagnés en Super BNB Academy</p>
 
         {/* FAQ */}
         <Reveal className="mt-14 text-left">
@@ -295,7 +295,7 @@ export default function AuditPublicPage() {
               { q: "Comment fonctionne cet audit gratuit ?", a: "Notre IA analyse les données publiques de ton annonce (titre, photos, description, prix, avis) et les compare aux standards et aux annonces concurrentes de ta zone. Tu obtiens un score par catégorie et un plan d'action en 90 secondes." },
               { q: "Est-ce vraiment gratuit et sans engagement ?", a: "Oui. Aucune carte bancaire, aucun abonnement. Tu renseignes juste tes coordonnées pour recevoir le rapport complet." },
               { q: "Que deviennent mes données ?", a: "Elles servent uniquement à générer ton rapport et, si tu le souhaites, à te recontacter pour un audit stratégique gratuit. Aucune revente à des tiers." },
-              { q: "Et après l'audit ?", a: "Tu peux réserver un appel stratégique gratuit de 30 minutes avec un coach Super BnB Academy pour aller plus loin sur ton annonce." },
+              { q: "Et après l'audit ?", a: "Tu peux réserver un appel stratégique gratuit de 30 minutes avec un coach Super BNB Academy pour aller plus loin sur ton annonce." },
             ].map((item) => (
               <details key={item.q} className="group p-4">
                 <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-semibold text-white/80">
@@ -552,11 +552,11 @@ export default function AuditPublicPage() {
           )}
         </div>
 
-        {/* CTA Super BnB Academy */}
+        {/* CTA Super BNB Academy */}
         <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1A6B33 0%, #2DB84B 60%, #5FD87A 100%)" }}>
           <div className="px-6 py-8 text-center">
             <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1.5 mb-5">
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">Super BnB Academy</span>
+              <span className="text-[10px] font-bold text-white uppercase tracking-widest">Super BNB Academy</span>
             </div>
             <h3 className="text-white font-extrabold text-xl mb-2 tracking-tight">
               {audit.globalScore < 70

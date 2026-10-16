@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BNB Cleaning : devenir cleaner Airbnb pro en 2026",
     description:
-      "Tarifs, statut, standards hôteliers, premiers clients. Le guide de la Cleaning BnB Academy (Rentimmo Academy) pour lancer ton activité en 2026.",
+      "Tarifs, statut, standards hôteliers, premiers clients. Le guide de la Cleaning BNB Academy (Rentimmo Academy) pour lancer ton activité en 2026.",
     url: URL,
     type: "article",
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "C'est quoi exactement un cleaner Airbnb pro ?",
-    a: "Un cleaner Airbnb professionnel (ou 'cleaning BnB') est un prestataire de ménage spécialisé dans les rotations courtes Airbnb. Il intervient entre chaque check-out et check-in pour remettre le logement aux standards hôteliers : draps changés, salle de bain impeccable, consommables remplacés, photos avant/après. Tarification fixe par rotation (35 à 80€ selon taille).",
+    a: "Un cleaner Airbnb professionnel (ou 'cleaning BNB') est un prestataire de ménage spécialisé dans les rotations courtes Airbnb. Il intervient entre chaque check-out et check-in pour remettre le logement aux standards hôteliers : draps changés, salle de bain impeccable, consommables remplacés, photos avant/après. Tarification fixe par rotation (35 à 80€ selon taille).",
   },
   {
     q: "Quel statut juridique pour un cleaner Airbnb ?",
@@ -73,7 +73,7 @@ export default function MenageAirbnbProfessionnelPage() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Ménage Airbnb professionnel : devenir cleaner BnB en 2026",
+    headline: "Ménage Airbnb professionnel : devenir cleaner BNB en 2026",
     description: metadata.description,
     author: { "@type": "Person", "@id": `${SITE}/#marwan`, name: "Marwan Afassi" },
     publisher: { "@id": `${SITE}/#organization` },
@@ -105,8 +105,8 @@ export default function MenageAirbnbProfessionnelPage() {
     <>
       <LandingHero
         kicker="Métier rentable, peu connu"
-        h1="Nettoyage Airbnb professionnel : devenir cleaner BnB en 2026"
-        intro="Le nettoyage Airbnb professionnel (ménage BnB / cleaning) est un des métiers les plus rentables et stables du secteur LCD : tarif fixe par rotation, demande croissante, faible barrière à l'entrée. Voici comment lancer ton activité de cleaner BnB en 2026."
+        h1="Nettoyage Airbnb professionnel : devenir cleaner BNB en 2026"
+        intro="Le nettoyage Airbnb professionnel (ménage BNB / cleaning) est un des métiers les plus rentables et stables du secteur LCD : tarif fixe par rotation, demande croissante, faible barrière à l'entrée. Voici comment lancer ton activité de cleaner BNB en 2026."
         primaryCta={{ href: "/formations/cleaning-bnb", label: "Voir la formation" }}
         secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Nettoyage Airbnb professionnel" }]}
@@ -116,7 +116,7 @@ export default function MenageAirbnbProfessionnelPage() {
         <div className="grid gap-8 md:grid-cols-2">
           <div>
             <p className="text-lg leading-relaxed text-ink">
-              Un <strong>cleaner Airbnb professionnel</strong> (ou prestataire de nettoyage Airbnb / cleaning BnB) prend en charge le nettoyage de rotation entre voyageurs sur les locations courte durée. Il travaille avec les <strong>conciergeries Airbnb</strong>, les <strong>hôtes propriétaires actifs</strong> et les <strong>sous-locataires professionnels</strong>. Pour une vue d'ensemble complète (tarifs, statut, FAQ), consulte notre <Link href="/blog/menage-airbnb-tout-savoir-2026" className="font-semibold text-brand-green underline">guide ménage Airbnb 2026</Link>.
+              Un <strong>cleaner Airbnb professionnel</strong> (ou prestataire de nettoyage Airbnb / cleaning BNB) prend en charge le nettoyage de rotation entre voyageurs sur les locations courte durée. Il travaille avec les <strong>conciergeries Airbnb</strong>, les <strong>hôtes propriétaires actifs</strong> et les <strong>sous-locataires professionnels</strong>. Pour une vue d'ensemble complète (tarifs, statut, FAQ), consulte notre <Link href="/blog/menage-airbnb-tout-savoir-2026" className="font-semibold text-brand-green underline">guide ménage Airbnb 2026</Link>.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink">
               C'est un métier <strong>récurrent</strong> (mêmes biens à nettoyer chaque semaine), <strong>scalable</strong> (tu peux recruter une équipe), et avec une <strong>marge attractive</strong> (60-70% net après charges).
@@ -148,7 +148,7 @@ export default function MenageAirbnbProfessionnelPage() {
 
       <LandingSection
         kicker="Pourquoi ça paie autant"
-        title="3 raisons pour lesquelles le cleaner BnB est rentable"
+        title="3 raisons pour lesquelles le cleaner BNB est rentable"
         bg="white"
       >
         <div className="grid gap-6 md:grid-cols-3">
@@ -221,7 +221,7 @@ export default function MenageAirbnbProfessionnelPage() {
         </p>
       </LandingSection>
 
-      <LandingSection kicker="Plan d'action" title="Lancer ton activité cleaner BnB en 30 jours" bg="white">
+      <LandingSection kicker="Plan d'action" title="Lancer ton activité cleaner BNB en 30 jours" bg="white">
         <ol className="space-y-6">
           {[
             { num: "01", t: "Statut auto-entrepreneur", d: "Création en ligne (24h, gratuit) sur autoentrepreneur.urssaf.fr. Code APE 8121Z. Souscription assurance RC pro (~25€/mois). Achat du matériel de base (800-1 500€)." },
@@ -269,7 +269,7 @@ export default function MenageAirbnbProfessionnelPage() {
             <span className="rounded-full bg-brand-green/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-light">
               Recommandé
             </span>
-            <h3 className="mt-4 text-2xl font-extrabold">Cleaning BnB Academy</h3>
+            <h3 className="mt-4 text-2xl font-extrabold">Cleaning BNB Academy</h3>
             <p className="mt-2 text-cream/80">
               Formation complète : statut, standards hôteliers, tarification, prospection conciergeries, gestion d'équipe. Tu signes tes premiers contrats en 30 jours.
             </p>

@@ -87,7 +87,7 @@ export default function LexiquePage() {
             courte durée.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-cream/80 md:text-xl">
-            {LEXIQUE.length} termes essentiels de la sous-location professionnelle, conciergerie Airbnb et cleaning BnB — définis clairement, sans jargon. France et Maroc.
+            {LEXIQUE.length} termes essentiels de la sous-location professionnelle, conciergerie Airbnb et cleaning BNB — définis clairement, sans jargon. France et Maroc.
           </p>
 
           {/* Categories anchors */}

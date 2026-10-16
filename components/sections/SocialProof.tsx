@@ -1,7 +1,7 @@
 const items = [
   "Sous-Location",
   "Conciergerie Airbnb",
-  "Cleaning BnB",
+  "Cleaning BNB",
   "Sans crédit",
   "Sans apport",
   "🇲🇦 Disponible au Maroc",

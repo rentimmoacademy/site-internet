@@ -114,7 +114,7 @@ export const formations: Formation[] = [
   },
   {
     slug: "conciergerie-bnb",
-    name: "Conciergerie BnB Academy",
+    name: "Conciergerie BNB Academy",
     tagline: "Lance ta conciergerie Airbnb, signe tes premiers mandats",
     description:
       "Gère les logements des autres et encaisse 15-20% de commission par réservation. Formation 100% terrain : prospection, mandats, automatisation, scaling. Bonus Maroc inclus — le seul marché inexploité par tes concurrents.",
@@ -199,8 +199,8 @@ export const formations: Formation[] = [
   },
   {
     slug: "cleaning-bnb",
-    name: "Cleaning BnB Academy",
-    tagline: "La 1ère formation française dédiée au cleaner BnB pro",
+    name: "Cleaning BNB Academy",
+    tagline: "La 1ère formation française dédiée au cleaner BNB pro",
     description:
       "La seule formation française 100% dédiée au métier de prestataire ménage Airbnb. Lance ton activité avec les standards hôteliers, signe tes premiers contrats récurrents et bâtis ton équipe — sans capital de départ.",
     keyPoints: [
@@ -220,15 +220,15 @@ export const formations: Formation[] = [
       { title: "Étudiant / complément de revenu", desc: "Tu veux générer 1 500 à 3 000 €/mois en temps partiel." },
     ],
     program: [
-      { title: "Module 0 — Bienvenue & orientation", items: ["Le modèle économique cleaner BnB : 1 800-15 000€/mois", "Roadmap 60 jours → 1er contrat régulier", "Mindset prestataire professionnel vs femme de ménage", "Rejoindre la communauté Discord"] },
-      { title: "Module 1 — Le marché ménage BnB 2025", items: ["158 000 logements Airbnb FR = opportunité massive", "Modèles : prestataire indépendant, agence, micro-franchise", "Ce que cherchent vraiment conciergeries et hôtes", "Benchmark tarifs et positionnement"] },
+      { title: "Module 0 — Bienvenue & orientation", items: ["Le modèle économique cleaner BNB : 1 800-15 000€/mois", "Roadmap 60 jours → 1er contrat régulier", "Mindset prestataire professionnel vs femme de ménage", "Rejoindre la communauté Discord"] },
+      { title: "Module 1 — Le marché ménage BNB 2025", items: ["158 000 logements Airbnb FR = opportunité massive", "Modèles : prestataire indépendant, agence, micro-franchise", "Ce que cherchent vraiment conciergeries et hôtes", "Benchmark tarifs et positionnement"] },
       { title: "Module 2 — Créer ton offre", items: ["Statut juridique adapté (auto-entrepreneur, SASU)", "Packages de prestations et grille tarifaire 2026", "Devis professionnel et CGV prestataire", "Assurance RC Pro obligatoire"] },
       { title: "Module 3 — Acquérir tes premiers clients", items: ["Cibler conciergeries et gestionnaires locaux", "Script DM/email de prospection qui convertit", "Pitch en 3 minutes : les 5 arguments décisifs", "Checklist onboarding d'un nouveau client"] },
       { title: "Module 4 — Protocoles & qualité", items: ["Protocole ménage rotation 60-90 min aux standards hôteliers", "Checklist 47 points par type de bien", "Produits pro + éco, gestion linge et rotation", "Gestion incidents : casse, tache, oubli voyageur"] },
       { title: "Module 5 — Organisation & planning", items: ["Gérer son planning de rotations multi-logements", "Synchronisation avec conciergeries et outils 2026", "Recruter et former ses premiers prestataires", "Planning rotation équipe"] },
-      { title: "Module 6 — Facturation & développement", items: ["Facturer correctement : horaire, forfait, prestation", "Automatiser relances et suivi comptable", "Passer de prestataire solo à agence de ménage BnB", "Construire sa réputation et ses avis"] },
-      { title: "Module 7 — Protection juridique & scaling", items: ["Assurances obligatoires et recommandées", "RC Pro : couverture, montants, assureurs", "KIT anti-arnaques : mauvais clients, impayés", "Créer sa micro-franchise ménage BnB"] },
-      { title: "🇲🇦 Bonus Maroc", items: ["Tarifs ménage BnB au Maroc par ville", "Trouver des hôtes et conciergeries locaux", "Structurer une micro-entreprise au Maroc", "Marrakech, Tanger, Agadir : où se positionner"] },
+      { title: "Module 6 — Facturation & développement", items: ["Facturer correctement : horaire, forfait, prestation", "Automatiser relances et suivi comptable", "Passer de prestataire solo à agence de ménage BNB", "Construire sa réputation et ses avis"] },
+      { title: "Module 7 — Protection juridique & scaling", items: ["Assurances obligatoires et recommandées", "RC Pro : couverture, montants, assureurs", "KIT anti-arnaques : mauvais clients, impayés", "Créer sa micro-franchise ménage BNB"] },
+      { title: "🇲🇦 Bonus Maroc", items: ["Tarifs ménage BNB au Maroc par ville", "Trouver des hôtes et conciergeries locaux", "Structurer une micro-entreprise au Maroc", "Marrakech, Tanger, Agadir : où se positionner"] },
     ],
     outcomes: [
       "Signer ton premier contrat ménage",
@@ -239,10 +239,10 @@ export const formations: Formation[] = [
       "Lancer au Maroc avec un capital minimal",
     ],
     moroccoText:
-      "Le ménage BnB est l'activité la plus simple à lancer au Maroc sans capital. Ce module couvre les tarifs adaptés au marché marocain, comment trouver des clients parmi les hôtes Airbnb locaux, et comment structurer une micro-entreprise de ménage au Maroc.",
+      "Le ménage BNB est l'activité la plus simple à lancer au Maroc sans capital. Ce module couvre les tarifs adaptés au marché marocain, comment trouver des clients parmi les hôtes Airbnb locaux, et comment structurer une micro-entreprise de ménage au Maroc.",
     faq: [
       { q: "Faut-il un diplôme pour faire du ménage pro ?", a: "Non. Une bonne organisation et le protocole de la formation suffisent pour être reconnu comme pro." },
-      { q: "Combien gagne un prestataire ménage BnB ?", a: "Entre 1 500 € et 6 000 € / mois selon le volume et si tu as une équipe." },
+      { q: "Combien gagne un prestataire ménage BNB ?", a: "Entre 1 500 € et 6 000 € / mois selon le volume et si tu as une équipe." },
       { q: "Quel matériel faut-il au départ ?", a: "Moins de 500 € d'équipement pro. Le module 3 détaille la liste exacte." },
       { q: "Le modèle fonctionne-t-il au Maroc ?", a: "Oui, c'est même l'activité la plus accessible au Maroc avec un capital très faible." },
     ],

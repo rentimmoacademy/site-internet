@@ -217,7 +217,7 @@ export const LEXIQUE: LexiqueTerm[] = [
     short:
       "Régime simplifié de micro-entreprise avec plafond CA 77 700 €/an pour les services.",
     full:
-      "Le statut d'auto-entrepreneur (micro-entreprise) permet de créer une activité en 24h en ligne, sans capital, avec une comptabilité simplifiée. Plafond de chiffre d'affaires : 77 700 €/an pour les prestations de services (gestion, conciergerie, ménage, formation). Cotisations sociales ~22% du CA. Idéal pour démarrer une conciergerie Airbnb ou un cleaning BnB avant de basculer en EURL/SASU.",
+      "Le statut d'auto-entrepreneur (micro-entreprise) permet de créer une activité en 24h en ligne, sans capital, avec une comptabilité simplifiée. Plafond de chiffre d'affaires : 77 700 €/an pour les prestations de services (gestion, conciergerie, ménage, formation). Cotisations sociales ~22% du CA. Idéal pour démarrer une conciergerie Airbnb ou un cleaning BNB avant de basculer en EURL/SASU.",
     related: ["sasu", "kbis"],
     category: "fiscal",
   },
@@ -285,11 +285,11 @@ export const LEXIQUE: LexiqueTerm[] = [
   },
   {
     slug: "cleaning-bnb",
-    term: "Cleaning BnB",
+    term: "Cleaning BNB",
     short:
       "Service de ménage hôtelier spécialisé pour les rotations Airbnb / locations courte durée.",
     full:
-      "Le cleaning BnB est un métier de prestataire de ménage spécialisé dans les rotations courte durée (Airbnb, Booking). Diffère du ménage classique par : standards hôteliers (pliage hôtelier, présentation), tarification fixe par rotation (vs taux horaire), récurrence (mêmes biens chaque semaine), photos avant/après. CA possible 4 à 18 K€/mois selon le scaling.",
+      "Le cleaning BNB est un métier de prestataire de ménage spécialisé dans les rotations courte durée (Airbnb, Booking). Diffère du ménage classique par : standards hôteliers (pliage hôtelier, présentation), tarification fixe par rotation (vs taux horaire), récurrence (mêmes biens chaque semaine), photos avant/après. CA possible 4 à 18 K€/mois selon le scaling.",
     related: ["rotation", "conciergerie-airbnb"],
     category: "metiers",
   },

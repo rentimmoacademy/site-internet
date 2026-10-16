@@ -101,7 +101,7 @@ const organizationSchema = {
     addressCountry: "FR",
   },
   description:
-    "Académie de formation professionnelle aux métiers de la location courte durée : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BnB). Formations terrain en France et au Maroc, sans banque, sans crédit, sans apport.",
+    "Académie de formation professionnelle aux métiers de la location courte durée : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BNB). Formations terrain en France et au Maroc, sans banque, sans crédit, sans apport.",
   founder: {
     "@type": "Person",
     "@id": `${SITE}/#marwan`,

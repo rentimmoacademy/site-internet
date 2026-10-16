@@ -15,8 +15,8 @@ export default function CGVPage() {
 
       <h2>Article 2 — Formations proposées</h2>
       <p>
-        L'Organisme propose trois formations : Sous-Location Academy, Conciergerie BnB Academy et
-        Cleaning BnB Academy. Chaque formation fait l'objet d'une description détaillée sur le site.
+        L'Organisme propose trois formations : Sous-Location Academy, Conciergerie BNB Academy et
+        Cleaning BNB Academy. Chaque formation fait l'objet d'une description détaillée sur le site.
         L'Apprenant reconnaît avoir pris connaissance du programme et des conditions d'accès avant toute
         souscription.
       </p>

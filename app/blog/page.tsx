@@ -5,7 +5,7 @@ import BlogGrid from "@/components/blog/BlogGrid";
 export const metadata: Metadata = {
   title: "Blog — Ressources LCD, sous-location & conciergerie",
   description:
-    "Guides terrain, études de cas et retours d'expérience sur la sous-location, la conciergerie Airbnb et le cleaning BnB, en France et au Maroc.",
+    "Guides terrain, études de cas et retours d'expérience sur la sous-location, la conciergerie Airbnb et le cleaning BNB, en France et au Maroc.",
 };
 
 export default async function BlogPage() {

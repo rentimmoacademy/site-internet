@@ -93,8 +93,8 @@ export default function Hero() {
           className="mt-20 grid gap-10 border-t border-white/10 pt-10 md:grid-cols-4"
         >
           {[
-            { label: "ans d'expérience terrain", value: 6 },
-            { label: "€ générés sans être propriétaire", value: 500, prefix: "+", suffix: "K" },
+            { label: "ans d'expérience terrain", value: 7 },
+            { label: "€ générés sans être propriétaire", value: 600, prefix: "+", suffix: "K" },
             { label: "formations complètes", value: 3 },
             { label: "marchés couverts", value: 2, labelExtra: "France & Maroc" },
           ].map((s) => (

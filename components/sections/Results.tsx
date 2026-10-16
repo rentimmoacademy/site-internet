@@ -17,7 +17,7 @@ const results = [
   {
     name: "Sophie L.",
     city: "Lyon",
-    formation: "Conciergerie BnB Academy",
+    formation: "Conciergerie BNB Academy",
     result: "8 mandats signés, 3 200 €/mois de commissions",
     quote:
       "J'ai lancé ma conciergerie en sortant de la formation. 3 mandats le premier mois, 8 au 6e. Et pas un euro d'emprunt.",

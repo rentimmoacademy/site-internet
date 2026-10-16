@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const TITLE = "Super BnB Academy - Automatise ton Airbnb en 30 jours avec un coach dédié";
+const TITLE = "Super BNB Academy - Automatise ton Airbnb en 30 jours avec un coach dédié";
 const DESC =
   "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On configure avec toi : annonce optimisée, messages automatiques, PriceLabs, site de réservation directe. +30% de chiffre d'affaires visé.";
 const URL = "https://www.rentimmoacademy.fr/super-bnb-academy";
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     canonical: URL,
   },
   openGraph: {
-    title: "Super BnB Academy - On automatise ton Airbnb avec toi en 30 jours",
+    title: "Super BNB Academy - On automatise ton Airbnb avec toi en 30 jours",
     description: DESC,
     url: URL,
     images: [{ url: "https://www.rentimmoacademy.fr/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Super BnB Academy - +30% de chiffre d'affaires visé en 30 jours",
+    title: "Super BNB Academy - +30% de chiffre d'affaires visé en 30 jours",
     description: "Programme d'accompagnement individuel pour hôtes Airbnb actifs. On configure tout avec toi.",
     images: ["https://www.rentimmoacademy.fr/og-image.jpg"],
   },
