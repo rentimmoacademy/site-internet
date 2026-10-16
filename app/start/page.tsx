@@ -103,7 +103,18 @@ const PATHS: Path[] = [
 
 export default function StartPage() {
   return (
-    <div style={{ background: INK, minHeight: "100vh", fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)" }}>
+    <div
+      style={{
+        background: `
+          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+          ${INK}
+        `,
+        backgroundSize: "40px 40px, 40px 40px, auto",
+        minHeight: "100vh",
+        fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)",
+      }}
+    >
       <style>{`
         .hub-card { transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1), border-color .35s; }
         .hub-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(45,184,75,.22); border-color: rgba(45,184,75,.5) !important; }
@@ -131,13 +142,16 @@ export default function StartPage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: 36,
-                fontWeight: 800,
-                color: "#fff",
+                overflow: "hidden",
                 border: "3px solid rgba(255,255,255,.12)",
               }}
             >
-              RA
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/marwan.jpg"
+                alt="Marwan AFASSI"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
             <h1 style={{ color: "#fff", fontSize: 22, fontWeight: 800, lineHeight: 1.35, letterSpacing: "-0.01em", margin: "0 0 10px" }}>
               Leader francophone de la sous-location professionnelle et de la conciergerie Airbnb depuis plus de 7 ans
