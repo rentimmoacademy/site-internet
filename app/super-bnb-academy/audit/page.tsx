@@ -222,21 +222,21 @@ export default function AuditPublicPage() {
         </Reveal>
 
         <Reveal delay={120}>
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
+        <div className="bg-white/8 border border-white/10 rounded-2xl p-6 text-left">
           <div className="flex gap-3 mb-5">
             {(["airbnb", "booking"] as Platform[]).map((p) => (
               <button key={p} onClick={() => setPlatform(p)}
                 className={`flex-1 py-3 rounded-xl font-semibold text-sm border transition-all ${
                   platform === p
                     ? "border-brand-green bg-brand-green/10 text-brand-green"
-                    : "border-white/10 bg-white/5 text-white/35 hover:border-white/20"
+                    : "border-white/10 bg-white/8 text-white/35 hover:border-white/20"
                 }`}>
                 {p === "airbnb" ? "🏠 Airbnb" : "🌐 Booking.com"}
               </button>
             ))}
           </div>
 
-          <div className="flex gap-2 bg-white/5 border border-white/10 rounded-xl p-1.5 focus-within:border-brand-green/40 transition-colors mb-4">
+          <div className="flex gap-2 bg-white/8 border border-white/10 rounded-xl p-1.5 focus-within:border-brand-green/40 transition-colors mb-4">
             <input
               type="url" value={url} onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && launch()}
@@ -261,7 +261,7 @@ export default function AuditPublicPage() {
             { icon: "✨", label: "Contenu IA", sub: "titre + description" },
           ].map((f, i) => (
             <Reveal key={f.label} delay={i * 80}>
-              <div className="bg-white/5 border border-white/8 rounded-xl p-4 h-full">
+              <div className="bg-white/8 border border-white/14 rounded-xl p-4 h-full">
                 <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-brand-green/10 border border-brand-green/20 flex items-center justify-center text-lg">{f.icon}</div>
                 <div className="text-white/75 text-xs font-bold">{f.label}</div>
                 <div className="text-white/25 text-xs">{f.sub}</div>
@@ -278,7 +278,7 @@ export default function AuditPublicPage() {
             { value: "38 pts", label: "checklist de réception" },
           ].map((s, i) => (
             <Reveal key={s.label} delay={i * 80}>
-              <div className="bg-white/5 border border-white/8 rounded-xl p-4 h-full">
+              <div className="bg-white/8 border border-white/14 rounded-xl p-4 h-full">
                 <p className="text-2xl font-extrabold text-brand-green tracking-tight">{s.value}</p>
                 <p className="text-white/30 text-[11px] mt-1 leading-snug">{s.label}</p>
               </div>
@@ -290,7 +290,7 @@ export default function AuditPublicPage() {
         {/* FAQ */}
         <Reveal className="mt-14 text-left">
           <p className="text-white/40 text-xs font-bold uppercase tracking-widest text-center mb-5">Questions fréquentes</p>
-          <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/5">
+          <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/8">
             {[
               { q: "Comment fonctionne cet audit gratuit ?", a: "Notre IA analyse les données publiques de ton annonce (titre, photos, description, prix, avis) et les compare aux standards et aux annonces concurrentes de ta zone. Tu obtiens un score par catégorie et un plan d'action en 90 secondes." },
               { q: "Est-ce vraiment gratuit et sans engagement ?", a: "Oui. Aucune carte bancaire, aucun abonnement. Tu renseignes juste tes coordonnées pour recevoir le rapport complet." },
@@ -333,7 +333,7 @@ export default function AuditPublicPage() {
               <span className={`text-xs font-bold px-3 py-1.5 rounded-full transition-all ${
                 s.done ? "bg-brand-green/20 text-brand-green" :
                 s.active ? "bg-brand-green/15 text-brand-green border border-brand-green/30" :
-                "bg-white/5 text-white/20"
+                "bg-white/8 text-white/20"
               }`}>
                 {s.done ? "✓ " : ""}{s.label}
               </span>
@@ -351,7 +351,7 @@ export default function AuditPublicPage() {
       <div className="min-h-screen bg-ink py-10 px-4">
         <div className="max-w-lg mx-auto">
           {/* Preview floutée */}
-          <div className="relative bg-white/5 border border-white/10 rounded-2xl p-5 mb-4 overflow-hidden">
+          <div className="relative bg-white/8 border border-white/10 rounded-2xl p-5 mb-4 overflow-hidden">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-1">Analyse terminée</p>
@@ -370,7 +370,7 @@ export default function AuditPublicPage() {
             {/* Barres floutées */}
             <div className="mt-4 grid grid-cols-4 gap-2 filter blur-sm opacity-40 pointer-events-none">
               {a.categories.slice(0, 4).map((c) => (
-                <div key={c.id} className="bg-white/5 rounded-lg p-2 text-center">
+                <div key={c.id} className="bg-white/8 rounded-lg p-2 text-center">
                   <div className="text-sm">{c.icon}</div>
                   <div className="h-1 bg-white/20 rounded-full mt-1">
                     <div className="h-full rounded-full" style={{ width: `${c.score}%`, backgroundColor: c.gradeColor }} />
@@ -387,15 +387,15 @@ export default function AuditPublicPage() {
           </div>
 
           {/* Formulaire */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+          <div className="bg-white/8 border border-white/10 rounded-2xl p-6">
             <h2 className="text-white font-extrabold text-xl mb-1">Voir mon rapport complet</h2>
             <p className="text-white/30 text-sm mb-6">Score /100 · Benchmark · Plan d&apos;action · Contenu optimisé</p>
 
             <div className="grid grid-cols-2 gap-3 mb-3">
               <input type="text" placeholder="Prénom *" value={firstName} onChange={(e) => setFirstName(e.target.value)}
-                className="bg-white/5 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-green/50 transition-colors" />
+                className="bg-white/8 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-brand-green/50 transition-colors" />
               <input type="email" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)}
-                className={`bg-white/5 border text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none transition-colors ${
+                className={`bg-white/8 border text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm focus:outline-none transition-colors ${
                   email && !emailValid ? "border-red-500/50 focus:border-red-500/50" : "border-white/10 focus:border-brand-green/50"
                 }`} />
             </div>
@@ -403,7 +403,7 @@ export default function AuditPublicPage() {
               <p className="text-red-400 text-xs mb-3">Format invalide. Vérifie ex : prenom@email.com</p>
             )}
             <input type="tel" placeholder="WhatsApp (recommandé)" value={phone} onChange={(e) => setPhone(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm mb-4 focus:outline-none focus:border-brand-green/50 transition-colors" />
+              className="w-full bg-white/8 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm mb-4 focus:outline-none focus:border-brand-green/50 transition-colors" />
 
             <div className="mb-4">
               <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-2">Logements gérés</p>
@@ -411,7 +411,7 @@ export default function AuditPublicPage() {
                 {["1", "2–5", "6–15", "15+"].map((v) => (
                   <button key={v} onClick={() => setGestion(v)}
                     className={`py-2 rounded-lg text-sm font-bold border transition-all ${
-                      gestion === v ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/5 text-white/35 hover:border-white/20"
+                      gestion === v ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/35 hover:border-white/20"
                     }`}>{v}</button>
                 ))}
               </div>
@@ -423,7 +423,7 @@ export default function AuditPublicPage() {
                 {["Taux d'occupation trop bas", "Annonce peu visible", "Prix non optimisé", "Mauvaises reviews"].map((v) => (
                   <button key={v} onClick={() => toggleDefi(v)}
                     className={`py-2 px-3 rounded-lg text-xs font-semibold border text-left transition-all ${
-                      defi.includes(v) ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/5 text-white/35 hover:border-white/20"
+                      defi.includes(v) ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/35 hover:border-white/20"
                     }`}>
                     {defi.includes(v) ? "✓ " : ""}{v}
                   </button>
@@ -452,7 +452,7 @@ export default function AuditPublicPage() {
 
       <div className="max-w-2xl mx-auto px-4 py-8 space-y-4">
         {/* Score hero */}
-        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+        <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <div className="flex items-start gap-4">
             {audit.listing.coverPhotoUrl && (
               // eslint-disable-next-line @next/next/no-img-element
@@ -479,7 +479,7 @@ export default function AuditPublicPage() {
         </div>
 
         {/* Category scores */}
-        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+        <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-4">Scores par catégorie</h3>
           <div className="space-y-3">
             {audit.categories.map((c) => (
@@ -498,7 +498,7 @@ export default function AuditPublicPage() {
         </div>
 
         {/* Top actions */}
-        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+        <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-4">Actions prioritaires</h3>
           <div className="space-y-2.5">
             {audit.topActions.map((a, i) => (
@@ -519,7 +519,7 @@ export default function AuditPublicPage() {
         </div>
 
         {/* Optimized title preview */}
-        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+        <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-3">Titre optimisé suggéré</h3>
           <div className="bg-brand-green/10 border border-brand-green/20 rounded-xl p-4 text-sm font-semibold text-brand-green leading-relaxed">
             &ldquo;{audit.generatedContent.optimizedTitle}&rdquo;
@@ -528,7 +528,7 @@ export default function AuditPublicPage() {
         </div>
 
         {/* Revenue */}
-        <div className="bg-white/5 border border-white/8 rounded-2xl p-5">
+        <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-4">Potentiel de revenus</h3>
           <div className="grid grid-cols-2 gap-3 mb-3">
             {[
@@ -537,7 +537,7 @@ export default function AuditPublicPage() {
               { label: "Occupation actuelle", value: `${audit.revenueProjection.currentOccupancy||0} %`, accent: false },
               { label: "Objectif réaliste", value: `${audit.revenueProjection.targetOccupancy||0} %`, accent: true },
             ].map((s) => (
-              <div key={s.label} className={`rounded-xl p-3.5 text-center border ${s.accent ? "bg-brand-green/10 border-brand-green/20" : "bg-white/5 border-white/8"}`}>
+              <div key={s.label} className={`rounded-xl p-3.5 text-center border ${s.accent ? "bg-brand-green/10 border-brand-green/20" : "bg-white/8 border-white/14"}`}>
                 <div className="font-extrabold text-lg mb-0.5" style={{ color: s.accent ? "#2DB84B" : "rgba(255,255,255,0.65)" }}>{s.value}</div>
                 <div className="text-[10px] text-white/25 font-semibold">{s.label}</div>
               </div>
