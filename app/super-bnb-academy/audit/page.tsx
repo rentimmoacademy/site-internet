@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Logo from "@/components/layout/Logo";
 
 const API_BASE = "/api";
 const POLL_MS = 4000;
@@ -195,8 +196,8 @@ export default function AuditPublicPage() {
       <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
 
       <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
-        <span className="text-white font-extrabold text-base tracking-tight">Rentimmo Academy</span>
-        <span className="text-white/30 text-sm font-semibold">Audit Annonce LCD</span>
+        <Logo className="scale-90 origin-left" />
+        <span className="text-white/50 text-sm font-semibold">Audit Annonce LCD</span>
       </header>
 
       <div className="max-w-xl mx-auto px-4 pt-16 pb-20 text-center">
@@ -214,9 +215,9 @@ export default function AuditPublicPage() {
             Analyse IA de ton annonce Airbnb ou Booking.com · Score /100 · Benchmark concurrents · Plan d&apos;action personnalisé
           </p>
 
-          <p className="flex items-center justify-center gap-2 text-white/30 text-xs font-semibold mb-10">
+          <p className="flex items-center justify-center gap-2 text-white/50 text-xs font-semibold mb-10">
             <span>7 ans d&apos;expérience</span>
-            <span className="text-white/15">·</span>
+            <span className="text-white/35">·</span>
             <span>+600K€ générés sur Airbnb</span>
           </p>
         </Reveal>
@@ -229,7 +230,7 @@ export default function AuditPublicPage() {
                 className={`flex-1 py-3 rounded-xl font-semibold text-sm border transition-all ${
                   platform === p
                     ? "border-brand-green bg-brand-green/10 text-brand-green"
-                    : "border-white/10 bg-white/8 text-white/35 hover:border-white/20"
+                    : "border-white/10 bg-white/8 text-white/50 hover:border-white/20"
                 }`}>
                 {p === "airbnb" ? "🏠 Airbnb" : "🌐 Booking.com"}
               </button>
@@ -249,7 +250,7 @@ export default function AuditPublicPage() {
             </button>
           </div>
 
-          <p className="text-white/20 text-xs text-center">Gratuit · Sans inscription · Sans engagement</p>
+          <p className="text-white/40 text-xs text-center">Gratuit · Sans inscription · Sans engagement</p>
         </div>
         </Reveal>
 
@@ -264,7 +265,7 @@ export default function AuditPublicPage() {
               <div className="bg-white/8 border border-white/14 rounded-xl p-4 h-full">
                 <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-brand-green/10 border border-brand-green/20 flex items-center justify-center text-lg">{f.icon}</div>
                 <div className="text-white/75 text-xs font-bold">{f.label}</div>
-                <div className="text-white/25 text-xs">{f.sub}</div>
+                <div className="text-white/45 text-xs">{f.sub}</div>
               </div>
             </Reveal>
           ))}
@@ -280,12 +281,12 @@ export default function AuditPublicPage() {
             <Reveal key={s.label} delay={i * 80}>
               <div className="bg-white/8 border border-white/14 rounded-xl p-4 h-full">
                 <p className="text-2xl font-extrabold text-brand-green tracking-tight">{s.value}</p>
-                <p className="text-white/30 text-[11px] mt-1 leading-snug">{s.label}</p>
+                <p className="text-white/50 text-[11px] mt-1 leading-snug">{s.label}</p>
               </div>
             </Reveal>
           ))}
         </div>
-        <p className="text-white/15 text-[11px] text-center mt-3">Objectifs visés avec les hôtes accompagnés en Super BNB Academy</p>
+        <p className="text-white/35 text-[11px] text-center mt-3">Objectifs visés avec les hôtes accompagnés en Super BNB Academy</p>
 
         {/* FAQ */}
         <Reveal className="mt-14 text-left">
@@ -300,7 +301,7 @@ export default function AuditPublicPage() {
               <details key={item.q} className="group p-4">
                 <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-semibold text-white/80">
                   {item.q}
-                  <span className="text-white/30 group-open:rotate-45 transition-transform ml-3">+</span>
+                  <span className="text-white/50 group-open:rotate-45 transition-transform ml-3">+</span>
                 </summary>
                 <p className="text-white/40 text-sm mt-2 leading-relaxed">{item.a}</p>
               </details>
@@ -319,27 +320,34 @@ export default function AuditPublicPage() {
       { label: "Analyse IA", done: false, active: msg.includes("IA") || msg.includes("nal") },
     ];
     return (
-      <div className="min-h-screen bg-ink flex flex-col items-center justify-center px-4 text-center">
-        <div className="relative w-20 h-20 mb-8">
-          <div className="absolute inset-0 rounded-full border-4 border-white/5" />
-          <div className="absolute inset-0 rounded-full border-4 border-t-brand-green border-r-transparent border-b-transparent border-l-transparent animate-spin" />
-        </div>
-        <p className="text-white font-extrabold text-xl mb-2">{msg}</p>
-        <p className="text-white/25 text-sm mb-10">Ne ferme pas cette page · ~90 secondes</p>
-        <div className="flex items-center gap-2">
-          {steps.map((s, i) => (
-            <div key={i} className="flex items-center gap-2">
-              {i > 0 && <div className="w-5 h-px bg-white/10" />}
-              <span className={`text-xs font-bold px-3 py-1.5 rounded-full transition-all ${
-                s.done ? "bg-brand-green/20 text-brand-green" :
-                s.active ? "bg-brand-green/15 text-brand-green border border-brand-green/30" :
-                "bg-white/8 text-white/20"
-              }`}>
-                {s.done ? "✓ " : ""}{s.label}
-              </span>
-            </div>
-          ))}
-        </div>
+      <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+        <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
+        <Reveal>
+          <div className="relative w-20 h-20 mb-8">
+            <div className="absolute inset-0 rounded-full border-4 border-white/5" />
+            <div className="absolute inset-0 rounded-full border-4 border-t-brand-green border-r-transparent border-b-transparent border-l-transparent animate-spin" />
+          </div>
+        </Reveal>
+        <Reveal delay={100}>
+          <p className="text-white font-extrabold text-xl mb-2">{msg}</p>
+          <p className="text-white/45 text-sm mb-10">Ne ferme pas cette page · ~90 secondes</p>
+        </Reveal>
+        <Reveal delay={200}>
+          <div className="flex items-center gap-2">
+            {steps.map((s, i) => (
+              <div key={i} className="flex items-center gap-2">
+                {i > 0 && <div className="w-5 h-px bg-white/10" />}
+                <span className={`text-xs font-bold px-3 py-1.5 rounded-full transition-all ${
+                  s.done ? "bg-brand-green/20 text-brand-green" :
+                  s.active ? "bg-brand-green/15 text-brand-green border border-brand-green/30" :
+                  "bg-white/8 text-white/40"
+                }`}>
+                  {s.done ? "✓ " : ""}{s.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     );
   }
@@ -348,15 +356,17 @@ export default function AuditPublicPage() {
   if (step === "optin" && pendingAudit.current) {
     const a = pendingAudit.current;
     return (
-      <div className="min-h-screen bg-ink py-10 px-4">
+      <div className="min-h-screen bg-ink relative overflow-hidden py-10 px-4" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+        <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
         <div className="max-w-lg mx-auto">
           {/* Preview floutée */}
+          <Reveal>
           <div className="relative bg-white/8 border border-white/10 rounded-2xl p-5 mb-4 overflow-hidden">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-1">Analyse terminée</p>
+                <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">Analyse terminée</p>
                 <p className="text-white font-extrabold text-base leading-tight">{a.listing.title || "Ton annonce"}</p>
-                <p className="text-white/30 text-xs mt-0.5">{a.listing.location}</p>
+                <p className="text-white/50 text-xs mt-0.5">{a.listing.location}</p>
               </div>
               <div className="relative">
                 <div className="filter blur-sm pointer-events-none opacity-60">
@@ -385,11 +395,13 @@ export default function AuditPublicPage() {
               </p>
             </div>
           </div>
+          </Reveal>
 
           {/* Formulaire */}
+          <Reveal delay={120}>
           <div className="bg-white/8 border border-white/10 rounded-2xl p-6">
             <h2 className="text-white font-extrabold text-xl mb-1">Voir mon rapport complet</h2>
-            <p className="text-white/30 text-sm mb-6">Score /100 · Benchmark · Plan d&apos;action · Contenu optimisé</p>
+            <p className="text-white/50 text-sm mb-6">Score /100 · Benchmark · Plan d&apos;action · Contenu optimisé</p>
 
             <div className="grid grid-cols-2 gap-3 mb-3">
               <input type="text" placeholder="Prénom *" value={firstName} onChange={(e) => setFirstName(e.target.value)}
@@ -406,24 +418,24 @@ export default function AuditPublicPage() {
               className="w-full bg-white/8 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm mb-4 focus:outline-none focus:border-brand-green/50 transition-colors" />
 
             <div className="mb-4">
-              <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-2">Logements gérés</p>
+              <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-2">Logements gérés</p>
               <div className="grid grid-cols-4 gap-2">
                 {["1", "2–5", "6–15", "15+"].map((v) => (
                   <button key={v} onClick={() => setGestion(v)}
                     className={`py-2 rounded-lg text-sm font-bold border transition-all ${
-                      gestion === v ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/35 hover:border-white/20"
+                      gestion === v ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/50 hover:border-white/20"
                     }`}>{v}</button>
                 ))}
               </div>
             </div>
 
             <div className="mb-5">
-              <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-2">Ton défi principal</p>
+              <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-2">Ton défi principal</p>
               <div className="grid grid-cols-2 gap-2">
                 {["Taux d'occupation trop bas", "Annonce peu visible", "Prix non optimisé", "Mauvaises reviews"].map((v) => (
                   <button key={v} onClick={() => toggleDefi(v)}
                     className={`py-2 px-3 rounded-lg text-xs font-semibold border text-left transition-all ${
-                      defi.includes(v) ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/35 hover:border-white/20"
+                      defi.includes(v) ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/50 hover:border-white/20"
                     }`}>
                     {defi.includes(v) ? "✓ " : ""}{v}
                   </button>
@@ -435,8 +447,9 @@ export default function AuditPublicPage() {
               className="w-full bg-brand-green hover:bg-brand-light disabled:opacity-40 disabled:hover:-translate-y-0 text-white font-extrabold py-3.5 rounded-xl text-base transition-all hover:-translate-y-0.5">
               {optinLoading ? "Chargement…" : "Voir mon rapport complet →"}
             </button>
-            <p className="text-white/15 text-xs text-center mt-3">Pas de spam · Données confidentielles</p>
+            <p className="text-white/35 text-xs text-center mt-3">Pas de spam · Données confidentielles</p>
           </div>
+          </Reveal>
         </div>
       </div>
     );
@@ -444,14 +457,16 @@ export default function AuditPublicPage() {
 
   /* ── RESULT ── */
   if (step === "result" && audit) return (
-    <div className="min-h-screen bg-ink">
+    <div className="min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+      <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
       <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
-        <span className="text-white font-extrabold text-base tracking-tight">Rentimmo Academy</span>
-        <button onClick={reset} className="text-white/30 hover:text-white text-sm font-semibold transition-colors">← Nouvelle analyse</button>
+        <Logo className="scale-90 origin-left" />
+        <button onClick={reset} className="text-white/50 hover:text-white text-sm font-semibold transition-colors">← Nouvelle analyse</button>
       </header>
 
       <div className="max-w-2xl mx-auto px-4 py-8 space-y-4">
         {/* Score hero */}
+        <Reveal>
         <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <div className="flex items-start gap-4">
             {audit.listing.coverPhotoUrl && (
@@ -461,11 +476,11 @@ export default function AuditPublicPage() {
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
             )}
             <div className="flex-1 min-w-0">
-              <p className="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-1">
+              <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">
                 {platform === "airbnb" ? "Airbnb" : "Booking.com"}
               </p>
               <h2 className="text-white font-extrabold text-base leading-tight mb-0.5 truncate">{audit.listing.title}</h2>
-              <p className="text-white/30 text-xs mb-2">{audit.listing.location}</p>
+              <p className="text-white/50 text-xs mb-2">{audit.listing.location}</p>
               <p className="text-white/55 text-sm leading-relaxed line-clamp-2">{audit.summary}</p>
             </div>
             <div className="shrink-0 text-center">
@@ -477,8 +492,10 @@ export default function AuditPublicPage() {
             </div>
           </div>
         </div>
+        </Reveal>
 
         {/* Category scores */}
+        <Reveal delay={60}>
         <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-4">Scores par catégorie</h3>
           <div className="space-y-3">
@@ -491,13 +508,15 @@ export default function AuditPublicPage() {
                   <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ backgroundColor: c.gradeColor + "20", color: c.gradeColor }}>{c.gradeLabel}</span>
                 </div>
                 <BarScore score={c.score} color={c.gradeColor} />
-                <p className="text-white/30 text-xs mt-1 ml-6 leading-tight">{c.recommendation.action}</p>
+                <p className="text-white/50 text-xs mt-1 ml-6 leading-tight">{c.recommendation.action}</p>
               </div>
             ))}
           </div>
         </div>
+        </Reveal>
 
         {/* Top actions */}
+        <Reveal delay={120}>
         <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-4">Actions prioritaires</h3>
           <div className="space-y-2.5">
@@ -509,7 +528,7 @@ export default function AuditPublicPage() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <ImpactPill impact={a.impact} />
-                    <span className="text-[10px] text-white/20 uppercase tracking-wider font-bold">{a.category}</span>
+                    <span className="text-[10px] text-white/40 uppercase tracking-wider font-bold">{a.category}</span>
                   </div>
                   <p className="text-white/75 text-sm leading-snug">{a.action}</p>
                 </div>
@@ -517,17 +536,21 @@ export default function AuditPublicPage() {
             ))}
           </div>
         </div>
+        </Reveal>
 
         {/* Optimized title preview */}
+        <Reveal delay={180}>
         <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-3">Titre optimisé suggéré</h3>
           <div className="bg-brand-green/10 border border-brand-green/20 rounded-xl p-4 text-sm font-semibold text-brand-green leading-relaxed">
             &ldquo;{audit.generatedContent.optimizedTitle}&rdquo;
           </div>
-          <p className="text-white/20 text-xs mt-2">Conçu pour l&apos;algorithme 2026 · données concrètes, zéro marketing flou</p>
+          <p className="text-white/40 text-xs mt-2">Conçu pour l&apos;algorithme 2026 · données concrètes, zéro marketing flou</p>
         </div>
+        </Reveal>
 
         {/* Revenue */}
+        <Reveal delay={240}>
         <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
           <h3 className="text-white font-extrabold text-sm mb-4">Potentiel de revenus</h3>
           <div className="grid grid-cols-2 gap-3 mb-3">
@@ -539,7 +562,7 @@ export default function AuditPublicPage() {
             ].map((s) => (
               <div key={s.label} className={`rounded-xl p-3.5 text-center border ${s.accent ? "bg-brand-green/10 border-brand-green/20" : "bg-white/8 border-white/14"}`}>
                 <div className="font-extrabold text-lg mb-0.5" style={{ color: s.accent ? "#2DB84B" : "rgba(255,255,255,0.65)" }}>{s.value}</div>
-                <div className="text-[10px] text-white/25 font-semibold">{s.label}</div>
+                <div className="text-[10px] text-white/45 font-semibold">{s.label}</div>
               </div>
             ))}
           </div>
@@ -548,11 +571,13 @@ export default function AuditPublicPage() {
             <span className="text-brand-green font-extrabold text-base">+{(audit.revenueProjection.annualGain||0).toLocaleString("fr-FR")} €</span>
           </div>
           {audit.revenueProjection.insight && (
-            <p className="text-white/25 text-xs mt-2">{audit.revenueProjection.insight} · {audit.revenueProjection.occupancySource === "calendar_data" ? "Données calendrier" : "Estimation marché"}</p>
+            <p className="text-white/45 text-xs mt-2">{audit.revenueProjection.insight} · {audit.revenueProjection.occupancySource === "calendar_data" ? "Données calendrier" : "Estimation marché"}</p>
           )}
         </div>
+        </Reveal>
 
         {/* CTA Super BNB Academy */}
+        <Reveal delay={300}>
         <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1A6B33 0%, #2DB84B 60%, #5FD87A 100%)" }}>
           <div className="px-6 py-8 text-center">
             <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1.5 mb-5">
@@ -573,19 +598,27 @@ export default function AuditPublicPage() {
             <p className="text-white/40 text-xs mt-4">30 min · Gratuit · Sans engagement</p>
           </div>
         </div>
+        </Reveal>
       </div>
     </div>
   );
 
   /* ── ERROR ── */
   if (step === "error") return (
-    <div className="min-h-screen bg-ink flex flex-col items-center justify-center px-4 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5 text-3xl">⚠️</div>
-      <p className="text-white font-extrabold text-xl mb-2">Analyse échouée</p>
-      <p className="text-white/35 text-sm mb-7 max-w-sm">{errMsg}</p>
-      <button onClick={reset} className="bg-white/10 hover:bg-white/15 text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors">
-        ← Réessayer
-      </button>
+    <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+      <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
+      <Reveal>
+        <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5 text-3xl mx-auto">⚠️</div>
+      </Reveal>
+      <Reveal delay={100}>
+        <p className="text-white font-extrabold text-xl mb-2">Analyse échouée</p>
+        <p className="text-white/50 text-sm mb-7 max-w-sm">{errMsg}</p>
+      </Reveal>
+      <Reveal delay={200}>
+        <button onClick={reset} className="bg-white/10 hover:bg-white/15 text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors">
+          ← Réessayer
+        </button>
+      </Reveal>
     </div>
   );
 
