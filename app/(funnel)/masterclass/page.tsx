@@ -188,7 +188,18 @@ export default function MasterclassPage() {
   );
 
   if (step === "video") return (
-    <div style={{ background: INK, minHeight: "100vh", fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)" }}>
+    <div
+      style={{
+        background: `
+          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+          ${INK}
+        `,
+        backgroundSize: "40px 40px, 40px 40px, auto",
+        minHeight: "100vh",
+        fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)",
+      }}
+    >
       <style>{`
         @keyframes ctaPulse { 0%,100% { box-shadow: 0 12px 28px rgba(45,184,75,.35); } 50% { box-shadow: 0 12px 28px rgba(45,184,75,.35), 0 0 0 10px rgba(45,184,75,.14); } }
         .cta-pulse { animation: ctaPulse 2.6s ease-in-out infinite; }
@@ -276,8 +287,8 @@ export default function MasterclassPage() {
           position: "relative",
           overflow: "hidden",
           backgroundColor: INK,
-          backgroundImage: "radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
+          backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)",
+          backgroundSize: "40px 40px, 40px 40px",
         }}
       >
         <div style={{ pointerEvents: "none", position: "absolute", left: "50%", top: -140, transform: "translateX(-50%)", width: 640, height: 640, borderRadius: "50%", background: "rgba(45,184,75,.15)", filter: "blur(140px)" }} />

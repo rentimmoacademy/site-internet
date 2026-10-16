@@ -192,7 +192,7 @@ export default function AuditPublicPage() {
 
   /* ── FORM ── */
   if (step === "form") return (
-    <div className="min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+    <div className="min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
       <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
 
       <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
@@ -320,7 +320,7 @@ export default function AuditPublicPage() {
       { label: "Analyse IA", done: false, active: msg.includes("IA") || msg.includes("nal") },
     ];
     return (
-      <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+      <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
         <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
         <Reveal>
           <div className="relative w-20 h-20 mb-8">
@@ -356,7 +356,7 @@ export default function AuditPublicPage() {
   if (step === "optin" && pendingAudit.current) {
     const a = pendingAudit.current;
     return (
-      <div className="min-h-screen bg-ink relative overflow-hidden py-10 px-4" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+      <div className="min-h-screen bg-ink relative overflow-hidden py-10 px-4" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
         <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
         <div className="max-w-lg mx-auto">
           {/* Preview floutée */}
@@ -457,7 +457,7 @@ export default function AuditPublicPage() {
 
   /* ── RESULT ── */
   if (step === "result" && audit) return (
-    <div className="min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+    <div className="min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
       <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
       <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
         <Logo className="scale-90 origin-left" />
@@ -605,7 +605,7 @@ export default function AuditPublicPage() {
 
   /* ── ERROR ── */
   if (step === "error") return (
-    <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
+    <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
       <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
       <Reveal>
         <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5 text-3xl mx-auto">⚠️</div>
