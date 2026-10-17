@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { ArrowLeft, ArrowRight, Clock, Calendar, Youtube, Instagram, BookOpen, Scale, Wrench, Globe } from "lucide-react";
@@ -10,6 +11,7 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import BlogIllustration from "@/components/blog/BlogIllustration";
 import BlogCTA from "@/components/blog/BlogCTA";
 import MasterclassPopup from "@/components/blog/MasterclassPopup";
+import ContactBanner from "@/components/sections/ContactBanner";
 
 function TikTokIcon({ size = 16 }: { size?: number }) {
   return (
@@ -135,6 +137,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <article>
         {/* ─── Hero visuel catégorie ─── */}
         <div className={cn("relative overflow-hidden pt-32 pb-16 text-white", cat.bg)}>
+          {post.coverImage && (
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              priority
+              className="object-cover opacity-30"
+            />
+          )}
+          <div className={cn("pointer-events-none absolute inset-0", cat.bg, "opacity-70")} />
           <div className="dot-grid pointer-events-none absolute inset-0 opacity-20" />
           <div className="pointer-events-none absolute -top-32 right-0 h-[400px] w-[400px] rounded-full bg-white/10 blur-[100px]" />
 
@@ -247,6 +259,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
       <BlogFinalCTA category={post.category} />
       <FinalCTA />
+      <ContactBanner />
 
       {/* Popup masterclass — sous-location articles uniquement */}
       {post.category === "sous-location" && <MasterclassPopup />}

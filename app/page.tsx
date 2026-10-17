@@ -10,6 +10,7 @@ import AboutPreview from "@/components/sections/AboutPreview";
 import BlogPreview from "@/components/sections/BlogPreview";
 import RecentContent from "@/components/sections/RecentContent";
 import FinalCTA from "@/components/sections/FinalCTA";
+import ContactBanner from "@/components/sections/ContactBanner";
 import { AGGREGATE_RATING } from "@/lib/testimonials";
 
 export default function HomePage() {
@@ -27,6 +28,7 @@ export default function HomePage() {
       <BlogPreview />
       <RecentContent />
       <FinalCTA />
+      <ContactBanner />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

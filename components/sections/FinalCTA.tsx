@@ -37,7 +37,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="mx-auto mt-6 max-w-xl text-lg text-white/85"
         >
-          Choisis ta formation, applique dès le premier module. Les premiers revenus arrivent dans les 30 jours — ou on te rembourse.
+          Choisis ta formation, applique dès le premier module. Les premiers revenus arrivent dans les 60 jours — ou on te rembourse.
         </motion.p>
 
         <motion.div
