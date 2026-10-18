@@ -38,7 +38,7 @@ export async function onRequestPost({ request, env }) {
   let body;
   try { body = await request.json(); } catch { return json({ error: 'bad_json' }, 400); }
 
-  const { firstName, email, phone, gestion, portfolio, defi, listingUrl, listingScore, platform } = body;
+  const { firstName, email, phone, gestion, portfolio, defi, caMensuel, heuresOp, perteEstimee, scalabilityScore, listingUrl, listingScore, platform } = body;
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: 'invalid_email' }, 400);
   if (!firstName?.trim()) return json({ error: 'missing_first_name' }, 400);
@@ -72,6 +72,10 @@ export async function onRequestPost({ request, env }) {
     `Gestion : ${gestion || 'Non renseigné'}`,
     `Portfolio : ${portfolio || 'Non renseigné'}`,
     `Défi principal : ${defiStr}`,
+    `CA mensuel du parc : ${caMensuel || 'Non renseigné'}`,
+    `Heures/semaine opérationnel : ${heuresOp || 'Non renseigné'}`,
+    `Perte estimée/mois : ${perteEstimee || 'Non renseigné'}`,
+    `Score de scalabilité (Scorecard) : ${scalabilityScore != null ? scalabilityScore + '/100' : 'N/A'}`,
   ].join('\n');
 
   await sio(`/contacts/${contact.id}/notes`, 'POST', { content: note }, key).catch(() => {});

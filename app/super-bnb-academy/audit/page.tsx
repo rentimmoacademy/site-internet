@@ -8,7 +8,37 @@ const POLL_MS = 4000;
 const CAL_URL = "https://cal.com/rentimmoacademy/superbnbacademy";
 
 type Platform = "airbnb" | "booking";
-type Step = "form" | "loading" | "optin" | "result" | "error";
+type Step = "form" | "quiz" | "loading" | "optin" | "result" | "error";
+
+interface QuizQuestion {
+  key: "gestion" | "caMensuel" | "heuresOp" | "defi" | "perteEstimee";
+  title: string;
+  options: string[];
+  multi?: boolean;
+}
+
+const QUIZ_QUESTIONS: QuizQuestion[] = [
+  { key: "gestion", title: "Combien de logements gères-tu actuellement ?", options: ["1", "2–5", "6–15", "15+"] },
+  { key: "caMensuel", title: "Quel est le chiffre d'affaires mensuel moyen de ton parc ?", options: ["< 3 000 €", "3 000 € – 8 000 €", "8 000 € – 25 000 €", "25 000 €+"] },
+  { key: "heuresOp", title: "Combien d'heures par semaine passes-tu sur l'opérationnel (ménage, messages, urgences) ?", options: ["20h+", "10–20h", "< 10h"] },
+  { key: "defi", title: "Quel est ton plus gros frein pour doubler ton activité d'ici 6 mois ?", options: ["Taux d'occupation trop bas", "Annonce peu visible", "Prix non optimisé", "Je n'ai pas le temps de tout gérer"], multi: true },
+  { key: "perteEstimee", title: "Combien penses-tu perdre chaque mois à cause de ce frein ?", options: ["< 1 000 €", "1 000 € – 3 000 €", "3 000 € – 10 000 €", "10 000 €+"] },
+];
+
+interface ScalabilityResult { score: number; stageLabel: string; stageColor: string }
+
+function computeScalabilityScore(a: { gestion: string; caMensuel: string; heuresOp: string; defi: string[]; perteEstimee: string }): ScalabilityResult {
+  const logementsPts: Record<string, number> = { "1": 3, "2–5": 8, "6–15": 12, "15+": 15 };
+  const caPts: Record<string, number> = { "< 3 000 €": 2, "3 000 € – 8 000 €": 5, "8 000 € – 25 000 €": 8, "25 000 €+": 10 };
+  const heuresPts: Record<string, number> = { "20h+": 5, "10–20h": 15, "< 10h": 25 };
+  const pertePts: Record<string, number> = { "< 1 000 €": 25, "1 000 € – 3 000 €": 18, "3 000 € – 10 000 €": 10, "10 000 €+": 5 };
+  const defiCount = a.defi.length;
+  const defiPts = defiCount === 0 ? 25 : defiCount === 1 ? 18 : defiCount === 2 ? 10 : 5;
+  const score = (logementsPts[a.gestion] ?? 0) + (caPts[a.caMensuel] ?? 0) + (heuresPts[a.heuresOp] ?? 0) + defiPts + (pertePts[a.perteEstimee] ?? 0);
+  if (score < 40) return { score, stageLabel: "Artisan dépendant", stageColor: "#EF4444" };
+  if (score < 70) return { score, stageLabel: "Gestionnaire débordé", stageColor: "#F59E0B" };
+  return { score, stageLabel: "CEO scalable", stageColor: "#2DB84B" };
+}
 
 interface Category {
   id: string; label: string; icon: string; score: number;
@@ -128,13 +158,38 @@ export default function AuditPublicPage() {
   const [defi, setDefi] = useState<string[]>([]);
   const [optinLoading, setOptinLoading] = useState(false);
 
+  // Scorecard (quiz)
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [caMensuel, setCaMensuel] = useState("");
+  const [heuresOp, setHeuresOp] = useState("");
+  const [perteEstimee, setPerteEstimee] = useState("");
+  const quizCompletedRef = useRef(false);
+
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const run = useRef({ listing: "", competitor: "" });
   const pendingAudit = useRef<Audit | null>(null);
 
+  const quizValues: Record<QuizQuestion["key"], string | string[]> = { gestion, caMensuel, heuresOp, defi, perteEstimee };
+  const quizSetters: Record<QuizQuestion["key"], (v: string) => void> = {
+    gestion: setGestion, caMensuel: setCaMensuel, heuresOp: setHeuresOp, perteEstimee: setPerteEstimee,
+    defi: (v: string) => setDefi((p) => (p.includes(v) ? p.filter((x) => x !== v) : [...p, v])),
+  };
+  const isQuizAnswered = (key: QuizQuestion["key"]) => {
+    const v = quizValues[key];
+    return Array.isArray(v) ? v.length > 0 : v !== "";
+  };
+  const scalability = computeScalabilityScore({ gestion, caMensuel, heuresOp, defi, perteEstimee });
+  const qualifiesHighValue = gestion !== "" && gestion !== "1";
+
+  const advanceQuiz = () => {
+    if (quizIndex < QUIZ_QUESTIONS.length - 1) { setQuizIndex((i) => i + 1); return; }
+    quizCompletedRef.current = true;
+    setStep(pendingAudit.current ? "optin" : "loading");
+  };
+
   const launch = async () => {
     if (!url.trim()) return;
-    setStep("loading"); setMsg("Lancement de l'analyse…");
+    setStep("quiz"); setQuizIndex(0); quizCompletedRef.current = false; setMsg("Lancement de l'analyse…");
     try {
       const r = await fetch(`${API_BASE}/start-audit`, {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -159,15 +214,12 @@ export default function AuditPublicPage() {
       if (d.status === "DONE") {
         clearInterval(pollRef.current!);
         pendingAudit.current = d.audit;
-        setStep("optin");
+        if (quizCompletedRef.current) setStep("optin");
         return;
       }
       if (d.status === "ERROR") { clearInterval(pollRef.current!); setErrMsg(d.message || "Erreur"); setStep("error"); }
     } catch { /* continue */ }
   };
-
-  const toggleDefi = (v: string) =>
-    setDefi((p) => p.includes(v) ? p.filter((x) => x !== v) : [...p, v]);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
@@ -178,7 +230,10 @@ export default function AuditPublicPage() {
     try {
       await fetch(`${API_BASE}/audit-optin`, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, email, phone, gestion, defi, listingUrl: url, listingScore: a.globalScore, platform }),
+        body: JSON.stringify({
+          firstName, email, phone, gestion, defi, caMensuel, heuresOp, perteEstimee,
+          scalabilityScore: scalability.score, listingUrl: url, listingScore: a.globalScore, platform,
+        }),
       });
     } catch { /* silently pass */ }
     setAudit(a); setStep("result"); setOptinLoading(false);
@@ -187,6 +242,8 @@ export default function AuditPublicPage() {
   const reset = () => {
     if (pollRef.current) clearInterval(pollRef.current);
     setStep("form"); setUrl(""); setAudit(null); setErrMsg("");
+    setGestion(""); setDefi([]); setCaMensuel(""); setHeuresOp(""); setPerteEstimee(""); setQuizIndex(0);
+    quizCompletedRef.current = false;
     run.current = { listing: "", competitor: "" };
   };
 
@@ -312,6 +369,50 @@ export default function AuditPublicPage() {
     </div>
   );
 
+  /* ── QUIZ (Scorecard) ── */
+  if (step === "quiz") {
+    const q = QUIZ_QUESTIONS[quizIndex];
+    const current = quizValues[q.key];
+    const answered = isQuizAnswered(q.key);
+    return (
+      <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
+        <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-brand-green/15 blur-[140px]" />
+        <div className="max-w-md w-full">
+          <Reveal>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-white/40 text-xs font-bold uppercase tracking-widest">Diagnostic de ton activité</span>
+              <span className="text-white/40 text-xs font-bold">{quizIndex + 1}/{QUIZ_QUESTIONS.length}</span>
+            </div>
+            <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden mb-8">
+              <div className="h-full bg-brand-green rounded-full transition-all duration-500" style={{ width: `${((quizIndex + 1) / QUIZ_QUESTIONS.length) * 100}%` }} />
+            </div>
+          </Reveal>
+          <Reveal key={q.key} delay={60}>
+            <h2 className="text-white font-extrabold text-xl mb-6 leading-snug">{q.title}</h2>
+            <div className="space-y-2.5 mb-8">
+              {q.options.map((opt) => {
+                const selected = q.multi ? (current as string[]).includes(opt) : current === opt;
+                return (
+                  <button key={opt} onClick={() => quizSetters[q.key](opt)}
+                    className={`w-full text-left py-3.5 px-4 rounded-xl text-sm font-semibold border transition-all ${
+                      selected ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/70 hover:border-white/20"
+                    }`}>
+                    {selected ? "✓ " : ""}{opt}
+                  </button>
+                );
+              })}
+            </div>
+            <button onClick={advanceQuiz} disabled={!answered}
+              className="w-full bg-brand-green hover:bg-brand-light disabled:opacity-40 disabled:hover:-translate-y-0 text-white font-extrabold py-3.5 rounded-xl text-base transition-all hover:-translate-y-0.5">
+              {quizIndex < QUIZ_QUESTIONS.length - 1 ? "Suivant →" : "Voir mon diagnostic →"}
+            </button>
+          </Reveal>
+          <p className="text-white/35 text-xs text-center mt-4">Ton annonce est analysée en parallèle · ~90 secondes</p>
+        </div>
+      </div>
+    );
+  }
+
   /* ── LOADING ── */
   if (step === "loading") {
     const steps = [
@@ -368,15 +469,26 @@ export default function AuditPublicPage() {
                 <p className="text-white font-extrabold text-base leading-tight">{a.listing.title || "Ton annonce"}</p>
                 <p className="text-white/50 text-xs mt-0.5">{a.listing.location}</p>
               </div>
-              <div className="relative">
-                <div className="filter blur-sm pointer-events-none opacity-60">
-                  <GaugeScore score={a.globalScore} color={a.gradeColor} size="sm" />
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <div className="filter blur-sm pointer-events-none opacity-60">
+                    <GaugeScore score={a.globalScore} color={a.gradeColor} size="sm" />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-xl">🔒</span>
+                  </div>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-xl">🔒</span>
+                <div className="relative">
+                  <div className="filter blur-sm pointer-events-none opacity-60">
+                    <GaugeScore score={scalability.score} color={scalability.stageColor} size="sm" />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-xl">🔒</span>
+                  </div>
                 </div>
               </div>
             </div>
+            <p className="text-white/40 text-[10px] text-center mt-3">Score annonce + Score de scalabilité business</p>
             {/* Barres floutées */}
             <div className="mt-4 grid grid-cols-4 gap-2 filter blur-sm opacity-40 pointer-events-none">
               {a.categories.slice(0, 4).map((c) => (
@@ -417,31 +529,7 @@ export default function AuditPublicPage() {
             <input type="tel" placeholder="WhatsApp (recommandé)" value={phone} onChange={(e) => setPhone(e.target.value)}
               className="w-full bg-white/8 border border-white/10 text-white placeholder-white/25 rounded-xl px-3 py-2.5 text-sm mb-4 focus:outline-none focus:border-brand-green/50 transition-colors" />
 
-            <div className="mb-4">
-              <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-2">Logements gérés</p>
-              <div className="grid grid-cols-4 gap-2">
-                {["1", "2–5", "6–15", "15+"].map((v) => (
-                  <button key={v} onClick={() => setGestion(v)}
-                    className={`py-2 rounded-lg text-sm font-bold border transition-all ${
-                      gestion === v ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/50 hover:border-white/20"
-                    }`}>{v}</button>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-5">
-              <p className="text-white/50 text-xs font-semibold uppercase tracking-wider mb-2">Ton défi principal</p>
-              <div className="grid grid-cols-2 gap-2">
-                {["Taux d'occupation trop bas", "Annonce peu visible", "Prix non optimisé", "Mauvaises reviews"].map((v) => (
-                  <button key={v} onClick={() => toggleDefi(v)}
-                    className={`py-2 px-3 rounded-lg text-xs font-semibold border text-left transition-all ${
-                      defi.includes(v) ? "border-brand-green bg-brand-green/10 text-brand-green" : "border-white/10 bg-white/8 text-white/50 hover:border-white/20"
-                    }`}>
-                    {defi.includes(v) ? "✓ " : ""}{v}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <p className="text-white/40 text-xs text-center mb-5">Ton diagnostic d&apos;activité (Scorecard) est déjà enregistré ✓</p>
 
             <button onClick={submitOptin} disabled={!email || !firstName || !emailValid || optinLoading}
               className="w-full bg-brand-green hover:bg-brand-light disabled:opacity-40 disabled:hover:-translate-y-0 text-white font-extrabold py-3.5 rounded-xl text-base transition-all hover:-translate-y-0.5">
@@ -489,6 +577,25 @@ export default function AuditPublicPage() {
                 style={{ backgroundColor: audit.gradeColor + "20", color: audit.gradeColor }}>
                 {audit.gradeFr.toUpperCase()}
               </div>
+            </div>
+          </div>
+        </div>
+        </Reveal>
+
+        {/* Diagnostic Business (Scorecard) */}
+        <Reveal delay={30}>
+        <div className="bg-white/8 border border-white/14 rounded-2xl p-5">
+          <div className="flex items-start gap-4">
+            <div className="shrink-0">
+              <GaugeScore score={scalability.score} color={scalability.stageColor} size="sm" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">Score de scalabilité business</p>
+              <h3 className="text-white font-extrabold text-base leading-tight mb-1" style={{ color: scalability.stageColor }}>{scalability.stageLabel}</h3>
+              <p className="text-white/55 text-sm leading-relaxed">
+                {defi.length > 0 ? `Frein principal : ${defi.join(", ")}.` : ""}{" "}
+                {perteEstimee && `Perte estimée : ${perteEstimee} / mois à cause de ce frein.`}
+              </p>
             </div>
           </div>
         </div>
@@ -576,28 +683,49 @@ export default function AuditPublicPage() {
         </div>
         </Reveal>
 
-        {/* CTA Super BNB Academy */}
+        {/* CTA — routage selon le Scorecard */}
         <Reveal delay={300}>
-        <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1A6B33 0%, #2DB84B 60%, #5FD87A 100%)" }}>
-          <div className="px-6 py-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1.5 mb-5">
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">Super BNB Academy</span>
+        {qualifiesHighValue ? (
+          <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1A6B33 0%, #2DB84B 60%, #5FD87A 100%)" }}>
+            <div className="px-6 py-8 text-center">
+              <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1.5 mb-5">
+                <span className="text-[10px] font-bold text-white uppercase tracking-widest">Super BNB Academy</span>
+              </div>
+              <h3 className="text-white font-extrabold text-xl mb-2 tracking-tight">
+                {perteEstimee
+                  ? `Tu perds environ ${perteEstimee} par mois`
+                  : `Ton annonce score ${audit.globalScore}/100, on peut largement faire mieux`}
+              </h3>
+              <p className="text-white/75 text-sm mb-6 leading-relaxed max-w-sm mx-auto">
+                Tu gères déjà {gestion} logement{gestion === "1" ? "" : "s"} mais tu es freiné dans ta croissance. Réserve ton audit stratégique gratuit : on analyse ton parc complet et tu repars avec le plan exact pour débloquer la suite.
+              </p>
+              <a href={CAL_URL} target="_blank" rel="noopener noreferrer"
+                className="inline-block bg-white text-brand-dark font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-cream hover:-translate-y-0.5 transition-all animate-pulse-soft shadow-glow">
+                Réserver mon audit gratuit →
+              </a>
+              <p className="text-white/40 text-xs mt-4">30 min · Gratuit · Sans engagement</p>
             </div>
-            <h3 className="text-white font-extrabold text-xl mb-2 tracking-tight">
-              {audit.globalScore < 70
-                ? `Ton annonce score ${audit.globalScore}/100, on peut largement faire mieux`
-                : `Bonne base ! Passe de ${audit.globalScore} → 90+ /100`}
-            </h3>
-            <p className="text-white/75 text-sm mb-6 leading-relaxed max-w-sm mx-auto">
-              Réserve ton audit stratégique gratuit. On analyse ton portfolio complet et tu repars avec le plan exact pour maximiser tes revenus LCD.
-            </p>
-            <a href={CAL_URL} target="_blank" rel="noopener noreferrer"
-              className="inline-block bg-white text-brand-dark font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-cream hover:-translate-y-0.5 transition-all animate-pulse-soft shadow-glow">
-              Réserver mon audit gratuit →
-            </a>
-            <p className="text-white/40 text-xs mt-4">30 min · Gratuit · Sans engagement</p>
           </div>
-        </div>
+        ) : (
+          <div className="rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1A6B33 0%, #2DB84B 60%, #5FD87A 100%)" }}>
+            <div className="px-6 py-8 text-center">
+              <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-3 py-1.5 mb-5">
+                <span className="text-[10px] font-bold text-white uppercase tracking-widest">Rentimmo Academy</span>
+              </div>
+              <h3 className="text-white font-extrabold text-xl mb-2 tracking-tight">Tu démarres avec ton 1er logement ?</h3>
+              <p className="text-white/75 text-sm mb-6 leading-relaxed max-w-sm mx-auto">
+                Pose les bonnes bases dès ton premier bien pour scaler 2x plus vite ensuite. Nos formations Sous-Location &amp; Conciergerie t&apos;emmènent de 0 à ton 1er logement rentable.
+              </p>
+              <a href="/formations/" className="inline-block bg-white text-brand-dark font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-cream hover:-translate-y-0.5 transition-all">
+                Choisir ma formation de démarrage →
+              </a>
+              <p className="text-white/40 text-xs mt-4">
+                Tu gères déjà plusieurs biens ?{" "}
+                <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Réserve quand même un audit</a>
+              </p>
+            </div>
+          </div>
+        )}
         </Reveal>
       </div>
     </div>
