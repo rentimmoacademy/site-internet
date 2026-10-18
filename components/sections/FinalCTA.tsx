@@ -6,7 +6,7 @@ import { ArrowRight, Shield, Clock, Users } from "lucide-react";
 import CallGate from "@/components/CallGate";
 
 const badges = [
-  { icon: Shield, label: "Garantie 14 jours" },
+  { icon: Shield, label: "Garantie 60 jours" },
   { icon: Clock, label: "Accès à vie" },
   { icon: Users, label: "Experts terrain dédiés" },
 ];
