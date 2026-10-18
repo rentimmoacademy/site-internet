@@ -82,7 +82,7 @@ async function main() {
 
     const slug = file.replace("content/blog/", "").replace(/\.mdx$/, "");
     const url = `${SITE_URL}/blog/${slug}/`;
-    const subject = `📬 Nouvel article : ${meta.title}`;
+    const subject = meta.title;
     const previewText = (meta.excerpt || "").slice(0, 140);
 
     const create = await sio("/mailing/newsletters", "POST", {

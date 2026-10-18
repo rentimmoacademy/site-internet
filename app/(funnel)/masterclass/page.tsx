@@ -221,7 +221,7 @@ export default function MasterclassPage() {
             ▶ Accès débloqué — Masterclass offerte
           </div>
           <h1 style={{ color: "#fff", fontSize: "clamp(26px,4vw,44px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-.025em", marginBottom: 12 }}>
-            Génère tes premiers revenus Airbnb <span style={{ color: G }}>avec la méthode qui a généré +600K€ sur Airbnb.</span>
+            Génère tes premiers revenus Airbnb <span style={{ color: G }}>avec la méthode qui a généré +697K€ sur Airbnb.</span>
           </h1>
           <p style={{ color: "rgba(255,255,255,.6)", fontSize: 17, marginBottom: 32 }}>Lance la vidéo et prends des notes — chaque minute compte.</p>
         </div>
@@ -307,7 +307,7 @@ export default function MasterclassPage() {
               </span>
             </h1>
             <p style={{ fontSize: "clamp(15px,1.5vw,17px)", color: "rgba(255,255,255,.65)", marginBottom: 26, lineHeight: 1.6 }}>
-              Une méthode terrain, halal-friendly, testée sur +600K€ générés sur Airbnb, en France et à l'étranger.
+              Une méthode terrain, halal-friendly, testée sur +697K€ générés sur Airbnb, en France et à l'étranger.
             </p>
             <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: 11 }}>
               {BULLETS.map((b) => (
@@ -325,7 +325,7 @@ export default function MasterclassPage() {
                 <div style={{ fontSize: 11, color: "rgba(255,255,255,.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>d'expérience</div>
               </div>
               <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 800, color: G }}><CountUp to={600} prefix="+" suffix="K€" /></div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: G }}><CountUp to={697} prefix="+" suffix="K€" /></div>
                 <div style={{ fontSize: 11, color: "rgba(255,255,255,.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>générés sur Airbnb</div>
               </div>
               <div style={{ textAlign: "center" }}>
@@ -404,7 +404,7 @@ export default function MasterclassPage() {
               <div style={{ fontSize: 11, color: MUTED, textTransform: "uppercase", letterSpacing: ".05em", fontWeight: 600, marginTop: 2 }}>d'expérience terrain</div>
             </div>
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 24, fontWeight: 800, color: GD, letterSpacing: "-.02em" }}><CountUp to={600} prefix="+" suffix="K€" /></div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: GD, letterSpacing: "-.02em" }}><CountUp to={697} prefix="+" suffix="K€" /></div>
               <div style={{ fontSize: 11, color: MUTED, textTransform: "uppercase", letterSpacing: ".05em", fontWeight: 600, marginTop: 2 }}>générés sur Airbnb</div>
             </div>
             <div style={{ textAlign: "center" }}>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const TITLE = "Rentimmo Academy — Choisis ton programme";
 const DESC =
-  "Sous-location professionnelle, conciergerie Airbnb, ménage BNB ou Super BNB Academy : trouve en 10 secondes le programme fait pour toi. +7 ans d'expérience, +600 000€ générés.";
+  "Sous-location professionnelle, conciergerie Airbnb, ménage BNB ou Super BNB Academy : trouve en 10 secondes le programme fait pour toi. +7 ans d'expérience, +697 000€ générés.";
 const URL = "https://www.rentimmoacademy.fr/start";
 
 export const metadata: Metadata = {

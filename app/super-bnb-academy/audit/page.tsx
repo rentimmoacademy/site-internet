@@ -275,7 +275,7 @@ export default function AuditPublicPage() {
           <p className="flex items-center justify-center gap-2 text-white/50 text-xs font-semibold mb-10">
             <span>7 ans d&apos;expérience</span>
             <span className="text-white/35">·</span>
-            <span>+600K€ générés sur Airbnb</span>
+            <span>+697K€ générés sur Airbnb</span>
           </p>
         </Reveal>
 

@@ -157,7 +157,7 @@ export default function StartPage() {
               Leader francophone de la sous-location professionnelle et de la conciergerie Airbnb depuis plus de 7 ans
             </h1>
             <p style={{ color: "rgba(255,255,255,.65)", fontSize: 15, lineHeight: 1.6, margin: "0 0 14px" }}>
-              +600 000€ générés en partant de zéro. Sans riba, sans crédit, sans apport. 🇫🇷 🇲🇦
+              +697 000€ générés en partant de zéro. Sans riba, sans crédit, sans apport. 🇫🇷 🇲🇦
             </p>
             <p style={{ color: "rgba(255,255,255,.45)", fontSize: 12.5, lineHeight: 1.6, margin: 0 }}>
               Ingénieur de formation, aujourd&apos;hui coach Airbnb · Biens en gestion en France et au Maroc
@@ -279,7 +279,7 @@ export default function StartPage() {
               <p style={{ color: "rgba(255,255,255,.45)", fontSize: 11, margin: 0 }}>d&apos;expérience</p>
             </div>
             <div>
-              <p style={{ color: "#fff", fontSize: 18, fontWeight: 800, margin: "0 0 2px" }}>+600K€</p>
+              <p style={{ color: "#fff", fontSize: 18, fontWeight: 800, margin: "0 0 2px" }}>+697K€</p>
               <p style={{ color: "rgba(255,255,255,.45)", fontSize: 11, margin: 0 }}>générés</p>
             </div>
             <div>

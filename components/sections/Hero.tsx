@@ -94,7 +94,7 @@ export default function Hero() {
         >
           {[
             { label: "ans d'expérience terrain", value: 7 },
-            { label: "€ générés sans être propriétaire", value: 600, prefix: "+", suffix: "K" },
+            { label: "€ générés sans être propriétaire", value: 697, prefix: "+", suffix: "K" },
             { label: "formations complètes", value: 3 },
             { label: "marchés couverts", value: 2, labelExtra: "France & Maroc" },
           ].map((s) => (
