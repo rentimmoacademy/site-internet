@@ -4,15 +4,15 @@
  *
  * Reçoit webhook Cal.com BOOKING_CREATED :
  *   1. Tague le contact "CALL CLOSING BOOKED" dans Systeme.io
- *   2. Upsert contact + crée deal "Call booké" dans HubSpot
  *
  * Variables d'environnement (CF Pages dashboard → Settings → Environment variables) :
  *   SYSTEMEIO_API_KEY  — clé API Systeme.io
- *   HUBSPOT_KEY        — Private App token HubSpot (eu1-xxx)
+ *
+ * ⚠️ HubSpot abandonné (sept 2026, plan Free limité) — intégration retirée oct 2026
+ * pour arrêter les appels morts à chaque booking. Ne pas réintroduire sans decision explicite.
  */
 
 const SIO_BASE = 'https://api.systeme.io/api';
-const HS_BASE  = 'https://api.hubapi.com';
 
 const TAG_CALL_BOOKED = 985114;
 const SOURCE_TAGS = {
@@ -67,55 +67,10 @@ async function sioCall(path, method = 'GET', body, sioKey) {
   return { ok: r.ok, status: r.status, data };
 }
 
-async function hsCall(path, method = 'GET', body, hsKey) {
-  const r = await fetch(HS_BASE + path, {
-    method,
-    headers: { 'Authorization': `Bearer ${hsKey}`, 'Content-Type': 'application/json' },
-    ...(body ? { body: JSON.stringify(body) } : {}),
-  });
-  const data = await r.json().catch(() => ({}));
-  return { ok: r.ok, status: r.status, data };
-}
-
-async function hsUpsertContact(email, props, hsKey) {
-  const search = await hsCall('/crm/v3/objects/contacts/search', 'POST', {
-    filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: email }] }],
-    properties: ['email'],
-  }, hsKey);
-  if (search.ok && search.data?.results?.length > 0) {
-    const id = search.data.results[0].id;
-    await hsCall(`/crm/v3/objects/contacts/${id}`, 'PATCH', { properties: props }, hsKey);
-    return id;
-  }
-  const create = await hsCall('/crm/v3/objects/contacts', 'POST', { properties: { email, ...props } }, hsKey);
-  return create.data?.id || null;
-}
-
-async function hsCreateDeal(contactId, name, hsKey) {
-  // Trouver le pipeline "Closing Rentimmo Academy"
-  const pipelines = await hsCall('/crm/v3/pipelines/deals', 'GET', null, hsKey);
-  const pipeline  = pipelines.data?.results?.find(p => p.label === 'Closing Rentimmo Academy');
-  const stage     = pipeline?.stages?.find(s => s.label === 'Call booké') || pipeline?.stages?.[3];
-  if (!pipeline || !stage) return null;
-
-  const deal = await hsCall('/crm/v3/objects/deals', 'POST', {
-    properties: { dealname: name, pipeline: pipeline.id, dealstage: stage.id },
-  }, hsKey);
-  if (!deal.ok || !deal.data?.id) return null;
-
-  // Associer deal → contact
-  await hsCall(
-    `/crm/v4/objects/deals/${deal.data.id}/associations/default/contacts/${contactId}`,
-    'PUT', null, hsKey
-  );
-  return deal.data.id;
-}
-
 // ─── Handler ─────────────────────────────────────────────────────────────────
 export async function onRequestPost(context) {
   const { request, env } = context;
   const SIO_KEY = env.SYSTEMEIO_API_KEY;
-  const HS_KEY  = env.HUBSPOT_KEY;
 
   let payload;
   try { payload = await request.json(); }
@@ -141,8 +96,6 @@ export async function onRequestPost(context) {
   const source     = extractSource(data);
   const tagsAdded  = [];
   let sioContactId = null;
-  let hsContactId  = null;
-  let hsDealId     = null;
 
   // ── 1. Systeme.io : find or create contact + tag ──────────────────────────
   if (SIO_KEY) {
@@ -168,31 +121,11 @@ export async function onRequestPost(context) {
     }
   }
 
-  // ── 2. HubSpot : upsert contact + deal ───────────────────────────────────
-  if (HS_KEY) {
-    try {
-      const firstName = name.split(' ')[0] || '';
-      const lastName  = name.split(' ').slice(1).join(' ') || '';
-      const hsProps   = {
-        firstname: firstName, lastname: lastName,
-        statut_setting: 'call_booké',   // valeur interne HubSpot
-        lifecyclestage: 'lead',
-        ...(source ? { source_rentimmo: source } : {}),
-      };
-      hsContactId = await hsUpsertContact(email, hsProps, HS_KEY);
-      if (hsContactId) {
-        const dealName = `Call — ${name || email} · ${new Date().toLocaleDateString('fr-FR')}`;
-        hsDealId = await hsCreateDeal(hsContactId, dealName, HS_KEY);
-      }
-    } catch { /* HubSpot non-bloquant */ }
-  }
-
   return new Response(JSON.stringify({
     ok: true,
     sioContactId,
     tagsAdded,
     source,
-    hubspot: { contactId: hsContactId, dealId: hsDealId },
   }), { headers: { 'Content-Type': 'application/json' } });
 }
 

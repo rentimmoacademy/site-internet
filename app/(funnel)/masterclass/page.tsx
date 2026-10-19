@@ -9,7 +9,7 @@ const BULLETS = [
   "Le calcul de rentabilité que j'utilise en 90 secondes pour valider un appart",
   "Le modèle 100% halal que j'applique depuis 7 ans — zéro riba",
   "Ma stack tech pour gérer plusieurs logements sans répondre aux clients à 3h du matin",
-  "Tu hésites entre sous-location et conciergerie ? On fait le point ensemble lors de ton appel stratégique",
+  "Pas le budget pour te lancer en sous-location ? La conciergerie permet de démarrer à 0€ d'apport, avec un objectif réaliste d'un SMIC/mois dès ton 1er client",
 ];
 
 const TESTIMONIALS = [

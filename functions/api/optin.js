@@ -1,6 +1,6 @@
 /**
  * Cloudflare Pages Function — POST /api/optin
- * Double pipeline : Systeme.io (CRM) + SetSmart (WA)
+ * Double pipeline : Google Sheet (via APPS_SCRIPT_URL) + Systeme.io (CRM)
  */
 
 const SIO = 'https://api.systeme.io/api';

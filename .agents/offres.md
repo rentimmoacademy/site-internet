@@ -1,53 +1,97 @@
-# Offres & pricing Rentimmo Academy — draft stratégique (oct 2026)
+# Offres & pricing Rentimmo Academy — synthèse post-retour Faissal (oct 2026)
 
 ⚠️ Document de travail. Pas de prix modifié sur le site/Stripe tant que Marwan ne valide pas.
 
-## ⚠️ Point bloquant
-Je n'ai pas eu accès au contenu réel du retour de Faissal (pas d'accès WhatsApp/audio dans cet environnement).
-Tout ce qui suit = benchmark + lecture perso, **pas** une analyse de ses propos. Colle-moi le texte ou un résumé
-de ce qu'il a dit (points précis) et j'affine direct dessus.
+## Contexte important
+Le retour de Faissal porte sur la **nouvelle grille de prix déjà co-conçue avec Marwan mais pas encore déployée**
+sur le site public ni sur Stripe (voir memory) : Sous-Location 997/2497/3797€ (vs l'ancienne grille encore live
+dans `lib/formations.ts` : 997/1497/2497€, garantie 12 mois Platinum / 6 mois Gold, 2/4 sessions coaching 1-to-1).
+Les montants cités par Faissal ("2500€", "3800€", "90 jours") matchent la nouvelle grille, pas celle en ligne
+aujourd'hui.
 
-## État actuel réel (vérifié dans `lib/formations.ts`, live)
-3 formations (Sous-Location / Conciergerie BNB / Cleaning BNB), **tiers identiques sur les 3** :
+## Retour Faissal (résumé fidèle, échange vocal retranscrit)
 
-| Tier | Prix | Coaching 1-to-1 | Garantie | Autre |
-|---|---|---|---|---|
-| Bronze | 997 € (ou 2×500€) | Groupe hebdo uniquement | Aucune | Discord 1 an |
-| Platinum | 1 497 € (ou 2×750€) | 2 sessions | 12 mois ou remboursé | Suivi perso |
-| Gold | 2 497 € (ou 3×850€) | 4 sessions | **6 mois** ou remboursé | Société + site web + identité visuelle offerts |
+**1. Tier ~2500€ (Platinum) — pas assez concurrentiel**
+- Coaching de groupe uniquement, zéro coaching privé à ce prix = pas compétitif
+- Deux profils de prospects : ceux qui comparent n'importe comment (vs commerce, cinéma...) et ceux qui comparent
+  sérieusement avec les vrais concurrents du marché — à 2500€ sans 1-to-1, Rentimmo perd face à ces derniers
 
-Prix masqués sur les pages publiques (`FormationDetail.tsx` affiche "Tarif personnalisé* — communiqué lors de
-l'appel stratégique"), montants réels seulement dans Stripe checkout. CPF mentionné de façon générique ("via
-notre organisme partenaire"), pas de montant.
+**2. Gold ~3800€ — bonne valeur/garantie, mais durée de garantie trop courte**
+- "Valeur de fou, garantie de fou" sur le fond
+- Mais garantie 90 jours vs concurrents qui annoncent 6 mois (2x plus) = argument de comparaison facile à démonter
+- Point clé : l'engagement réel d'accompagnement n'a pas besoin de durer 6 mois, mais **l'effet psychologique de
+  la promesse** ("je suis là pendant 6 mois" vs "90 jours") est bien plus puissant commercialement
 
-## Benchmark concurrent (recherche oct 2026, sourcé)
+**3. Contexte marché 2026 — plus dur qu'il y a 3-4 ans**
+- Besoin de faire du chiffre / monter en trésorerie rapidement
+- Les prospects d'aujourd'hui ont déjà vu une masterclass/challenge et déjà parlé à un closer ailleurs —
+  marché plus mature/sceptique, scripts de vente classiques moins efficaces
 
-**Sébastien More — Airbnb Business Academy / Le Sous Loueur**
-- Communauté Skool : 47€/mois (800 membres), lives quotidiens — produit d'entrée/récurrent, pas une formation one-shot
-- Formations one-off à 5 paliers : Starter 1 497€ / Premium 1 997€ / Marketing 2 997€ / Business 3 497€ / Gold 3 997€
-- Conciergerie Formula 35h sans prérequis ; Micro-Conciergerie 8h visant 1 500€/mois
-- Sources : [Sebastien More avis — ImmoCompare](https://immocompare.org/home/formations-investissement-immobilier/sebastien-more-avis-formation-sous-location/), [Airbnb Business Academy — Skool](https://www.skool.com/airbnb-business-academy/about), [lesousloueur.fr](https://lesousloueur.fr/nos-formations/)
+**4. Structure d'offre proposée par Faissal**
+- Une offre groupe plus accessible / légère en friction (ex. ~1h/semaine), pour l'entrée de gamme
+- Une offre 1-to-1 à un prix qui "donne envie" (pas forcément premium très cher, mais psychologiquement attractif)
+- Faire varier les prix selon le canal/lancement (organique YouTube vs trafic payant) pour ne pas perdre d'argent
+  sur l'acquisition payante
+- Marwan doit se concentrer sur contenu/communication ; laisser le closer gérer la conversion
 
-**EasyLoc Immo Éthique — Khalid Ramdani**
-- Offre mono-produit, 3 jours de formation, Qualiopi + CPF actifs
-- Prix normal 2 500€, promo été descendue à 1 500€, code promo -100€ dispo
-- Pas de tiering visible (contrairement à Rentimmo)
-- Sources : [EasyLoc Immo](https://www.easylocimmo.com/), [easylocimmo.com/offre-ete](https://easylocimmo.com/offre-ete)
+**5. Setting — scepticisme + question stratégique non résolue**
+- Faissal ne connaît aucun infopreneur avec un setting externalisé vraiment efficace (les vendeurs de ce service
+  vantent toujours leur méthode, en pratique jamais aussi bon qu'annoncé)
+- Si Marwan fait tout lui-même (contenu + setting + reste) : épuisement, pas de scale
+- Les bons closers déjà expérimentés et rentables ne veulent pas faire de setting (prise de rdv), seulement closer ;
+  les profils encore en formation acceptent de faire les deux mais sont moins aguerris
+- Faissal a un contact closer expérimenté intéressé par l'offre Rentimmo, dispo partiellement (pas temps plein)
+- Question posée directement à Marwan, pas encore tranchée : **quelle est la stratégie pour augmenter le volume
+  de rdv au-delà du seul organique ?**
 
-## Lecture perso (à challenger avec le retour de Faissal une fois dispo)
-- **Rentimmo est le seul des 3 à avoir une vraie tarification par paliers** avec du coaching 1-to-1 qui scale et une
-  garantie qui scale (0 → 12 mois → 6 mois). C'est un vrai atout de structure face à EasyLoc (mono-offre) — mais
-  pas assez mis en avant dans le copywriting actuel (la diff Bronze/Gold en 1-to-1 + garantie mérite d'être
-  martelée comme argument face à un concurrent mono-tarif).
-- **Le plafond Gold (2 497€) est bas** comparé au haut de gamme Sébastien More (3 497-3 997€), alors que Rentimmo
-  a un proof point plus fort (+600K€ générés, 7 ans terrain vs positionnement communauté/lives). Il y a de la marge
-  pour monter le Gold sans sortir du marché.
-- **EasyLoc est repositionné pile sur le milieu de gamme Rentimmo** (Platinum/Gold) avec un seul prix — donc
-  Rentimmo n'est pas sous-pricé face à ce concurrent direct, le problème serait plutôt un manque de différenciation
-  perçue (mono-offre vs 3-tiers) plutôt qu'un problème de prix absolu.
-- Rentimmo surclasse EasyLoc sur le papier (sans-riba commun aux deux, mais Rentimmo propose le Maroc en bonus +
-  3 verticales au lieu d'une) — argument à pousser davantage dans le pricing/copy.
+## Recoupement avec le benchmark concurrent (déjà en base)
+- **Sébastien More** (Airbnb Business Academy) : 5 paliers Starter 1497 / Premium 1997 / Marketing 2997 /
+  Business 3497 / Gold 3997€
+- **EasyLoc Immo Éthique** : mono-offre, prix normal 2500€ (descendu à 1500€ en promo), pas de tiering —
+  c'est probablement LE point de comparaison implicite derrière le "2500€" de Faissal : à prix identique à EasyLoc,
+  Rentimmo doit proposer au moins autant de valeur perçue (du 1-to-1, pas juste du groupe)
+- Le nouveau Gold Rentimmo à 3797€ se positionne bien dans la fourchette haute de Sébastien More (3497-3997€) —
+  cohérent, pas de souci de positionnement sur ce palier selon le benchmark pur prix
+
+## Recommandations concrètes (à valider par Marwan avant tout déploiement)
+
+1. **Platinum (~2497€) : ajouter un minimum de coaching 1-to-1** (même 1-2 sessions) plutôt que 100% groupe.
+   Faissal a raison : zéro 1-to-1 à ce prix face à des concurrents qui en proposent = objection facile pour le
+   prospect sérieux. Pas besoin d'aligner sur le niveau Gold, juste sortir du zéro.
+
+2. **Gold : passer la promesse de garantie de "90 jours" à "6 mois"** dans le copy/marketing, sans nécessairement
+   changer le volume réel d'accompagnement actif (qui se concentre naturellement sur les premières semaines).
+   Coût quasi nul, gain psychologique élevé selon Faissal — à trancher avec Marwan si le risque remboursement sur
+   6 mois reste acceptable vs 90 jours.
+
+3. **Créer une offre groupe d'entrée plus légère** (friction basse, ~1h/semaine) en dessous ou à la place du
+   Bronze actuel, pour absorber le trafic organique froid sans le pousser directement sur un tier élevé.
+
+4. **Pricing différencié par canal** : garder un prix "standard" pour l'organique (YouTube/contenu), et un prix
+   ajusté pour les lancements/trafic payant, pour protéger la marge sur le CAC payant. Implémentation : nécessite
+   un système de prix dynamique par source (`src` déjà trackée sur `/masterclass`, réutilisable).
+
+5. **Setting/volume de rdv — décision structurante à trancher avec Marwan**, 3 options non exclusives :
+   - Tester le contact closer expérimenté de Faissal en partiel (quelques rdv/semaine), sans engagement plein temps
+   - Construire un funnel payant (ads) en parallèle de l'organique pour ne pas dépendre uniquement du contenu
+   - Accepter un setter/closer junior en formation pour couvrir plus de créneaux, en complément du closer senior actuel
+   Pas de recommandation tranchée de ma part ici — c'est un choix business/capacité qui appartient à Marwan.
+
+## Décisions tranchées par Marwan (oct 2026, suite au retour Faissal)
+1. **Platinum (~2497€)** : ajouter un minimum de coaching 1-to-1 (1-2 sessions), fini le 100% groupe à ce prix.
+2. **Gold (~3797€)** : passer la garantie affichée de "90 jours" à "6 mois" dans le copy — accompagnement réel
+   inchangé, pure reformulation psychologique validée par Marwan suite à l'argument de Faissal.
+3. **Volume de rdv (réponse à la question de Faissal)** :
+   - Court terme, 100% organique : réactivation de la base de leads historiques (milliers de contacts déjà
+     en base, cf. pool de réveil `memory/calendly-pool-reveil.md`) avec une offre dédiée
+   - En parallèle : poussée forte réseaux + YouTube depuis plusieurs semaines, stratégie long terme 100% valeur
+   - Ensuite : système d'automatisation type ManyChat **en soutien/complément du setting humain** (pas un
+     remplacement) — optin → séquence setting automatisée → offre spécifique pour les anciens leads réactivés.
+     **Changement de position** : Marwan refusait ce type d'outil jusqu'ici (cf. memory), maintenant jugé
+     "hyper important" en appui du setting humain qui reste la base
+   - Test en parallèle du contact closer expérimenté de Faissal, en partiel (pas temps plein)
 
 ## Prochaine étape
-Dès que j'ai le retour réel de Faissal (texte), je recoupe avec ce benchmark et je sors une proposition de
-pricing + structure d'offre concrète (sans toucher Stripe tant que ce n'est pas validé).
+Implémenter les points 1-2 dans `lib/formations.ts` + pages `/formations/*` + Stripe une fois le wording/montant
+exact validé avec Marwan (pas de déploiement sans validation explicite). Point 3 = roadmap setting/acquisition à
+construire (ManyChat + séquence optin→setting + segmentation anciens leads).

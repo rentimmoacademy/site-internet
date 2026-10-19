@@ -50,7 +50,7 @@ export default function BlogCard({ post, index = 0 }: { post: BlogPostMeta; inde
         {/* Cover */}
         <div className="relative h-56 overflow-hidden">
           <Image
-            src={`/og/blog/${post.slug}`}
+            src={post.coverImage || `/og/blog/${post.slug}`}
             alt={post.title}
             fill
             unoptimized

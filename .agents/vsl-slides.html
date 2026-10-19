@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VSL Rentimmo Academy — Support slides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --green: #2DB84B; --green-l: #5FD87A; --green-d: #1A6B33;
+    --ink: #1A1A1A; --ink-s: #232323; --cream: #F7F6F2;
+    --gradient: linear-gradient(165deg, #1A6B33 0%, #2DB84B 50%, #5FD87A 100%);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    overflow: hidden;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .slide-deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+  @media (min-width: 769px) {
+    .slide-deck {
+      max-width: calc(100vh * 16 / 9);
+      max-height: calc(100vw * 9 / 16);
+      margin: auto;
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .slide {
+    position: absolute;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 64px 90px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease;
+    overflow: hidden;
+  }
+  .slide.active { opacity: 1; visibility: visible; }
+
+  /* decorative glow blobs for visual depth */
+  .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.35; pointer-events: none; z-index: 0; }
+  .glow.g1 { width: 420px; height: 420px; background: var(--green-d); top: -140px; right: -140px; }
+  .glow.g2 { width: 320px; height: 320px; background: var(--green); bottom: -120px; left: -100px; opacity: 0.22; }
+
+  .slide-content { position: relative; z-index: 1; width: 100%; max-width: 960px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+  .tag {
+    font-size: 13px; font-weight: 800; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--green-l);
+  }
+
+  h1 {
+    font-size: clamp(34px, 5vw, 60px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08;
+  }
+  h1.gradient-text {
+    background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  p.lead { font-size: clamp(17px, 2.2vw, 24px); line-height: 1.5; color: rgba(247,246,242,0.82); font-weight: 400; max-width: 740px; }
+  p.small { font-size: clamp(13px, 1.4vw, 15px); line-height: 1.5; color: rgba(247,246,242,0.5); max-width: 680px; }
+
+  .big-number {
+    font-size: clamp(80px, 11.5vw, 150px); font-weight: 800; letter-spacing: -0.04em; line-height: 1;
+    background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+  }
+
+  .disclaimer {
+    margin-top: 4px;
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 13px;
+    color: rgba(247,246,242,0.65);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  /* ICON BADGE */
+  .icon-badge {
+    width: 68px; height: 68px;
+    border-radius: 20px;
+    background: rgba(45,184,75,0.12);
+    border: 1px solid rgba(45,184,75,0.32);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--green-l);
+    flex-shrink: 0;
+  }
+  .icon-badge svg { width: 30px; height: 30px; stroke: var(--green-l); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-badge.sm { width: 48px; height: 48px; border-radius: 14px; }
+  .icon-badge.sm svg { width: 22px; height: 22px; }
+
+  /* FLOW DIAGRAM (3-step mechanism) */
+  .flow { display: flex; align-items: center; justify-content: center; gap: 18px; width: 100%; margin-top: 8px; }
+  .flow-step { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 190px; }
+  .flow-step .icon-badge { width: 76px; height: 76px; border-radius: 22px; }
+  .flow-step .icon-badge svg { width: 32px; height: 32px; }
+  .flow-step .flow-label { font-size: 15px; font-weight: 700; line-height: 1.4; color: rgba(247,246,242,0.9); }
+  .flow-arrow { color: var(--green); flex-shrink: 0; }
+  .flow-arrow svg { width: 28px; height: 28px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+  /* FLOW compact (5-step roadmap) */
+  .flow.flow-compact { gap: 10px; }
+  .flow.flow-compact .flow-step { width: 122px; gap: 8px; }
+  .flow.flow-compact .icon-badge { width: 54px; height: 54px; border-radius: 16px; }
+  .flow.flow-compact .icon-badge svg { width: 22px; height: 22px; }
+  .flow.flow-compact .flow-label { font-size: 12px; }
+  .flow.flow-compact .flow-num { font-size: 11px; font-weight: 800; color: var(--green-l); letter-spacing: 0.1em; }
+  .flow.flow-compact .flow-arrow svg { width: 18px; height: 18px; }
+
+  @media (max-width: 768px) {
+    .flow { flex-direction: column; }
+    .flow-arrow svg { transform: rotate(90deg); }
+  }
+
+  /* MINDMAP (root → 2 branches) */
+  .mindmap { display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 6px; }
+  .mindmap-root {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 26px; border-radius: 16px;
+    background: rgba(45,184,75,0.1); border: 1px solid rgba(45,184,75,0.3);
+    font-size: 16px; font-weight: 800; color: var(--cream);
+  }
+  .mindmap-root .icon-badge.sm { background: transparent; border: none; width: 26px; height: 26px; }
+  .mindmap-root .icon-badge.sm svg { width: 20px; height: 20px; }
+  .mindmap-stem { width: 2px; height: 22px; background: rgba(255,255,255,0.18); }
+  .mindmap-spread { width: 480px; max-width: 86%; }
+  .mindmap-bar { width: 100%; height: 2px; background: rgba(255,255,255,0.18); }
+  .mindmap-branches { display: flex; justify-content: space-between; width: 100%; }
+  .mindmap-branch { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 210px; }
+  .mindmap-branch-stem { width: 2px; height: 22px; background: rgba(255,255,255,0.18); }
+  .mindmap-branch .branch-label { font-size: 16px; font-weight: 800; line-height: 1.3; }
+  .mindmap-branch .branch-sub { font-size: 13px; color: rgba(247,246,242,0.55); font-weight: 600; max-width: 190px; }
+
+  /* VS CARDS (comparatif) */
+  .vs-cards { display: flex; gap: 22px; width: 100%; max-width: 920px; }
+  .vs-card { flex: 1; background: var(--ink-s); border: 1px solid rgba(255,255,255,0.08); border-radius: 22px; padding: 24px 22px; text-align: left; }
+  .vs-card.highlight { border-color: rgba(45,184,75,0.4); box-shadow: 0 0 0 1px rgba(45,184,75,0.12); }
+  .vs-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .vs-head h3 { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+  .vs-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 13.5px; color: rgba(247,246,242,0.78); line-height: 1.4; }
+  .vs-row:last-of-type { border-bottom: none; }
+  .vs-row svg { width: 15px; height: 15px; stroke: var(--green-l); fill: none; stroke-width: 2.2; flex-shrink: 0; margin-top: 2px; }
+  .vs-row.risk svg { stroke: #FF8A8A; }
+  .vs-row b { color: rgba(247,246,242,0.95); font-weight: 700; }
+  .vs-ideal { margin-top: 14px; padding: 10px 14px; border-radius: 12px; background: rgba(45,184,75,0.08); font-size: 12.5px; font-weight: 700; color: var(--green-l); line-height: 1.4; }
+
+  .card {
+    background: var(--ink-s);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 28px;
+    padding: 34px 38px;
+    box-shadow: 0 0 0 1px rgba(45,184,75,0.12), 0 30px 80px -30px rgba(45,184,75,0.3);
+  }
+
+  /* STEP PROGRESS DOTS */
+  .step-progress { display: flex; gap: 10px; align-items: center; margin-bottom: 4px; }
+  .step-progress .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+  .step-progress .dot.done { background: var(--green); }
+  .step-progress .dot.now { background: var(--green-l); box-shadow: 0 0 0 4px rgba(95,216,122,0.2); }
+
+  .step-num {
+    font-size: clamp(50px, 7vw, 86px); font-weight: 800; letter-spacing: -0.03em;
+    background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    line-height: 1;
+  }
+
+  /* TESTIMONIAL (real YouTube thumbnail) */
+  .testimonial-card { text-align: left; max-width: 720px; display: flex; gap: 26px; align-items: center; }
+  .thumb { width: 160px; height: 160px; border-radius: 22px; overflow: hidden; position: relative; flex-shrink: 0; background: #000; border: 1px solid rgba(255,255,255,0.1); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb .play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%); }
+  .thumb .play svg { width: 40px; height: 40px; fill: #fff; filter: drop-shadow(0 2px 10px rgba(0,0,0,0.6)); }
+  .testimonial-body .quote-icon svg { width: 22px; height: 22px; stroke: var(--green-l); fill: none; stroke-width: 2; margin-bottom: 8px; }
+  .testimonial-body .name { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-l); margin-bottom: 4px; }
+  .testimonial-body .situation { font-size: clamp(20px, 2.8vw, 28px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .testimonial-body .quote { font-size: clamp(15px, 1.8vw, 19px); color: rgba(247,246,242,0.78); line-height: 1.55; }
+  .stars { display: flex; gap: 4px; margin-top: 12px; }
+  .stars svg { width: 16px; height: 16px; fill: var(--green-l); stroke: none; }
+
+  .amende-box {
+    background: rgba(255,80,80,0.08);
+    border: 1px solid rgba(255,80,80,0.3);
+    border-radius: 20px;
+    padding: 18px 26px;
+    font-weight: 800;
+    font-size: clamp(16px, 2.2vw, 24px);
+    color: #FF8A8A;
+  }
+
+  .chart-wrap { width: min(520px, 80%); height: clamp(220px, 32vh, 300px); }
+
+  .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--gradient); transition: width 0.3s; z-index: 1000; }
+  .nav-controls { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 18px; z-index: 1000; }
+  .nav-btn { background: rgba(255,255,255,0.08); border: none; color: var(--cream); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 16px; }
+  .nav-btn:hover { background: rgba(255,255,255,0.18); }
+  .slide-counter { color: rgba(247,246,242,0.45); font-size: 13px; font-weight: 700; letter-spacing: 0.05em; }
+
+  @media (max-width: 768px) {
+    .slide { padding: 32px 24px; }
+    .testimonial-card { flex-direction: column; align-items: center; text-align: center; }
+    .vs-cards { flex-direction: column; }
+    .mindmap-branches { flex-direction: column; align-items: center; gap: 24px; }
+    .mindmap-branch-stem { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Icon library (hidden defs, referenced via <use>) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="i-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></g>
+    <g id="i-key"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></g>
+    <g id="i-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></g>
+    <g id="i-euro"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></g>
+    <g id="i-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g>
+    <g id="i-alert"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></g>
+    <g id="i-file"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></g>
+    <g id="i-settings"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></g>
+    <g id="i-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></g>
+    <g id="i-trending"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></g>
+    <g id="i-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></g>
+    <g id="i-quote"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></g>
+    <g id="i-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></g>
+    <g id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></g>
+    <g id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></g>
+  </defs>
+</svg>
+
+<div class="slide-deck">
+
+  <!-- 1 — Marché : nuitées France -->
+  <div class="slide active">
+    <div class="glow g1"></div>
+    <div class="slide-content">
+      <div class="icon-badge"><svg><use href="#i-trending"/></svg></div>
+      <span class="tag">Le marché</span>
+      <div class="big-number">213M</div>
+      <p class="lead">nuitées réservées en France en 2025 — source Insee.</p>
+    </div>
+  </div>
+
+  <!-- 2 — Marché : chart croissance UE -->
+  <div class="slide">
+    <div class="glow g2"></div>
+    <div class="slide-content">
+      <span class="tag">Et ça continue de grandir</span>
+      <h1 style="font-size: clamp(26px,3.6vw,38px);">+11% de nuitées en 1 an à l'échelle de l'UE</h1>
+      <div class="chart-wrap"><canvas id="euChart"></canvas></div>
+      <p class="small">Estimation basée sur Eurostat — 952 millions de nuitées en 2025 (+11% vs 2024)</p>
+    </div>
+  </div>
+
+  <!-- 3 — Problème propriétaire -->
+  <div class="slide">
+    <div class="glow g1"></div>
+    <div class="slide-content">
+      <div class="icon-badge"><svg><use href="#i-users"/></svg></div>
+      <span class="tag">De l'autre côté</span>
+      <h1>Des milliers de propriétaires<br><span class="gradient-text">débordés ou absents.</span></h1>
+      <p class="lead">Un logement vide, ou une gestion courte durée qui prend un temps qu'ils n'ont pas — et qu'ils ne veulent pas apprendre.</p>
+    </div>
+  </div>
+
+  <!-- 4 — Cadre plus strict -->
+  <div class="slide">
+    <div class="glow g2"></div>
+    <div class="slide-content">
+      <div class="icon-badge"><svg><use href="#i-alert"/></svg></div>
+      <span class="tag">Depuis novembre 2024</span>
+      <h1>Un cadre légal<br><span class="gradient-text">plus strict.</span></h1>
+      <p class="lead">Numéro d'enregistrement, plafonds de nuitées, règles de copropriété. Les amateurs se font piéger — ceux qui travaillent dans les règles prennent la place.</p>
+    </div>
+  </div>
+
+  <!-- 5 — Règle d'or : accord écrit -->
+  <div class="slide">
+    <div class="glow g1"></div>
+    <div class="slide-content">
+      <div class="icon-badge"><svg><use href="#i-shield"/></svg></div>
+      <span class="tag">Ce que la plupart ignorent</span>
+      <h1>Toujours un<br><span class="gradient-text">accord écrit.</span></h1>
+      <p class="lead">Contrat de sous-location ou mandat de gestion — jamais à l'oral. Et toujours dans le respect des règles LCD de la commune.</p>
+      <div class="amende-box">Sans ça : jusqu'à 100 000 € d'amende / logement</div>
+    </div>
+  </div>
+
+  <!-- 6 — Les deux voies : vue d'ensemble (mindmap) -->
+  <div class="slide">
+    <div class="slide-content">
+      <span class="tag">Deux chemins possibles</span>
+      <h1 style="font-size: clamp(26px,3.6vw,38px);">Un revenu immobilier, sans acheter</h1>
+      <div class="mindmap">
+        <div class="mindmap-root"><div class="icon-badge sm"><svg><use href="#i-euro"/></svg></div> Un revenu immobilier sans achat</div>
+        <div class="mindmap-stem"></div>
+        <div class="mindmap-spread">
+          <div class="mindmap-bar"></div>
+          <div class="mindmap-branches">
+            <div class="mindmap-branch">
+              <div class="mindmap-branch-stem"></div>
+              <div class="icon-badge"><svg><use href="#i-home"/></svg></div>
+              <div class="branch-label">Sous-location professionnelle</div>
+              <div class="branch-sub">Tu loues, tu sous-loues, marge max</div>
+            </div>
+            <div class="mindmap-branch">
+              <div class="mindmap-branch-stem"></div>
+              <div class="icon-badge"><svg><use href="#i-check"/></svg></div>
+              <div class="branch-label">Conciergerie Airbnb</div>
+              <div class="branch-sub">Tu gères pour un proprio, 0€ d'apport</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 — Sous-location définition -->
+  <div class="slide">
+    <div class="glow g2"></div>
+    <div class="slide-content">
+      <div class="icon-badge"><svg><use href="#i-home"/></svg></div>
+      <span class="tag">Activité n°1</span>
+      <h1 class="gradient-text">La sous-location professionnelle</h1>
+      <p class="lead">Tu loues un appartement en ton nom, avec l'accord écrit du propriétaire. Tu l'équipes, tu le publies sur Airbnb et Booking, tu gères les réservations.</p>
+    </div>
+  </div>
+
+  <!-- 8 — Mécanisme sous-location (flow diagram) -->
+  <div class="slide">
+    <div class="slide-content">
+      <span class="tag">Comment ça marche</span>
+      <h1 style="font-size: clamp(24px,3.2vw,34px);">3 étapes, en résumé</h1>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="icon-badge"><svg><use href="#i-key"/></svg></div>
+          <div class="flow-label">Tu loues avec accord écrit</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></div>
+        <div class="flow-step">
+          <div class="icon-badge"><svg><use href="#i-calendar"/></svg></div>
+          <div class="flow-label">Tu équipes & publies</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></div>
+        <div class="flow-step">
+          <div class="icon-badge"><svg><use href="#i-euro"/></svg></div>
+          <div class="flow-label">Tu encaisses la différence</div>
+        </div>
+      </div>
+      <p class="small">Loyer fixe payé au propriétaire chaque mois ; la différence avec les nuitées, c'est ta marge.</p>
+    </div>
+  </div>
+
+  <!-- 9 — Exemple illustratif sous-location -->
+  <div class="slide">
+    <div class="glow g1"></div>
+    <div class="slide-content">
+      <div class="icon-badge"><svg><use href="#i-euro"/></svg></div>
+      <span class="tag">Exemple illustratif</span>
+      <div class="big-number">~680€</div>
+      <p class="lead">marge nette mensuelle estimée, sur un studio en ville moyenne (CA ~1 600€, charges + loyer ~900€)</p>
+      <div class="disclaimer">Exemple parmi d'autres — pas une garantie de résultat</div>
+    </div>
+  </div>
+
+  <!-- 10 — Conciergerie définition -->
+  <div class="slide">
+    <div class="glow g2"></div>
+    <div class="slide-content">
+      <div class="icon-badge"><svg><use href="#i-check"/></svg></div>
+      <span class="tag">Activité n°2</span>
+      <h1 class="gradient-text">La conciergerie Airbnb</h1>
+      <p class="lead">Tu ne loues rien, tu n'avances aucun loyer. Tu gères l'Airbnb d'un propriétaire déjà existant, avec un mandat de gestion écrit.</p>
+    </div>
+  </div>
+
+  <!-- 11 — Mécanisme conciergerie (flow diagram) -->
+  <div class="slide">
+    <div class="slide-content">
+      <span class="tag">Comment ça marche</span>
+      <h1 style="font-size: clamp(24px,3.2vw,34px);">3 étapes, en résumé</h1>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="icon-badge"><svg><use href="#i-file"/></svg></div>
+          <div class="flow-label">Tu signes un mandat de gestion</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></div>
+        <div class="flow-step">
+          <div class="icon-badge"><svg><use href="#i-calendar"/></svg></div>
+          <div class="flow-label">Tu gères annonce & voyageurs</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></div>
+        <div class="flow-step">
+          <div class="icon-badge"><svg><use href="#i-euro"/></svg></div>
+          <div class="flow-label">Tu touches ta commission</div>
+        </div>
+      </div>
+      <p class="small">Commission sur le chiffre d'affaires généré, en général entre 15 et 25%.</p>
+    </div>
+  </div>
+
+  <!-- 12 — Exemple illustratif conciergerie -->
+  <div class="slide">
+    <div class="glow g1"></div>
+    <div class="slide-content">
+      <div class="icon-badge"><svg><use href="#i-euro"/></svg></div>
+      <span class="tag">Exemple illustratif</span>
+      <div class="big-number">200-300€</div>
+      <p class="lead">commission mensuelle estimée, par logement géré en conciergerie</p>
+      <div class="disclaimer">Exemple parmi d'autres — pas une garantie de résultat</div>
+    </div>
+  </div>
+
+  <!-- 13 — Comparatif (vs cards) -->
+  <div class="slide">
+    <div class="slide-content">
+      <span class="tag">Comparatif</span>
+      <h1 style="font-size: clamp(24px,3.4vw,34px);">Deux voies, deux logiques</h1>
+      <div class="vs-cards">
+        <div class="vs-card">
+          <div class="vs-head"><div class="icon-badge sm"><svg><use href="#i-home"/></svg></div><h3>Sous-location</h3></div>
+          <div class="vs-row"><svg><use href="#i-check"/></svg> Capital de départ : <b>dépôt + 1er loyer</b></div>
+          <div class="vs-row"><svg><use href="#i-check"/></svg> Revenu par logement : <b>plus élevé</b></div>
+          <div class="vs-row risk"><svg><use href="#i-alert"/></svg> Risque : <b>loyer fixe dû chaque mois</b></div>
+          <div class="vs-ideal">Idéal si tu as un peu de budget et vises la marge max</div>
+        </div>
+        <div class="vs-card highlight">
+          <div class="vs-head"><div class="icon-badge sm"><svg><use href="#i-check"/></svg></div><h3>Conciergerie</h3></div>
+          <div class="vs-row"><svg><use href="#i-check"/></svg> Capital de départ : <b>quasi nul</b></div>
+          <div class="vs-row"><svg><use href="#i-check"/></svg> Revenu par logement : <b>plus faible</b></div>
+          <div class="vs-row"><svg><use href="#i-check"/></svg> Risque : <b>très réduit</b></div>
+          <div class="vs-ideal">Idéal si tu veux démarrer sans apport</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 — Comment choisir (decision mindmap) -->
+  <div class="slide">
+    <div class="glow g2"></div>
+    <div class="slide-content">
+      <span class="tag">La vraie question à te poser</span>
+      <div class="mindmap">
+        <div class="mindmap-root">Quel est ton budget de départ ?</div>
+        <div class="mindmap-stem"></div>
+        <div class="mindmap-spread">
+          <div class="mindmap-bar"></div>
+          <div class="mindmap-branches">
+            <div class="mindmap-branch">
+              <div class="mindmap-branch-stem"></div>
+              <div class="icon-badge"><svg><use href="#i-check"/></svg></div>
+              <div class="branch-label">Peu ou pas d'apport</div>
+              <div class="branch-sub">→ Conciergerie</div>
+            </div>
+            <div class="mindmap-branch">
+              <div class="mindmap-branch-stem"></div>
+              <div class="icon-badge"><svg><use href="#i-home"/></svg></div>
+              <div class="branch-label">Un peu de budget</div>
+              <div class="branch-sub">→ Sous-location</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="small">Ton temps disponible et ta ville affinent ensuite le choix — c'est ce qu'on détermine ensemble pendant l'appel.</p>
+    </div>
+  </div>
+
+  <!-- 15 — Roadmap 5 étapes (overview) -->
+  <div class="slide">
+    <div class="slide-content">
+      <span class="tag">La feuille de route</span>
+      <h1 style="font-size: clamp(24px,3.2vw,34px);">5 étapes, du choix à l'automatisation</h1>
+      <div class="flow flow-compact">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <div class="icon-badge"><svg><use href="#i-pin"/></svg></div>
+          <div class="flow-label">Choisir sa ville</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <div class="icon-badge"><svg><use href="#i-euro"/></svg></div>
+          <div class="flow-label">Calculer</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <div class="icon-badge"><svg><use href="#i-users"/></svg></div>
+          <div class="flow-label">Convaincre</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <div class="icon-badge"><svg><use href="#i-file"/></svg></div>
+          <div class="flow-label">Sécuriser</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></div>
+        <div class="flow-step">
+          <div class="flow-num">05</div>
+          <div class="icon-badge"><svg><use href="#i-settings"/></svg></div>
+          <div class="flow-label">Automatiser</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16 — Etape 1 -->
+  <div class="slide">
+    <div class="slide-content">
+      <div class="step-progress">
+        <span class="dot now"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="icon-badge"><svg><use href="#i-pin"/></svg></div>
+      <div class="step-num">01</div>
+      <h1 style="font-size: clamp(24px,3.4vw,36px);">Choisir sa ville</h1>
+      <p class="lead">Vérifier la demande touristique et les règles locales : numéro d'enregistrement, changement d'usage, quotas.</p>
+    </div>
+  </div>
+
+  <!-- 17 — Etape 2 -->
+  <div class="slide">
+    <div class="slide-content">
+      <div class="step-progress">
+        <span class="dot done"></span><span class="dot now"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="icon-badge"><svg><use href="#i-euro"/></svg></div>
+      <div class="step-num">02</div>
+      <h1 style="font-size: clamp(24px,3.4vw,36px);">Calculer avant de signer</h1>
+      <p class="lead">Sur un scénario prudent, pas sur le meilleur cas. Un logement joli n'est pas forcément rentable.</p>
+    </div>
+  </div>
+
+  <!-- 18 — Etape 3 -->
+  <div class="slide">
+    <div class="slide-content">
+      <div class="step-progress">
+        <span class="dot done"></span><span class="dot done"></span><span class="dot now"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="icon-badge"><svg><use href="#i-users"/></svg></div>
+      <div class="step-num">03</div>
+      <h1 style="font-size: clamp(24px,3.4vw,36px);">Convaincre le propriétaire</h1>
+      <p class="lead">Proposer ce qu'il cherche : des loyers sûrs en sous-location, ou une gestion sans souci en conciergerie.</p>
+    </div>
+  </div>
+
+  <!-- 19 — Etape 4 -->
+  <div class="slide">
+    <div class="slide-content">
+      <div class="step-progress">
+        <span class="dot done"></span><span class="dot done"></span><span class="dot done"></span><span class="dot now"></span><span class="dot"></span>
+      </div>
+      <div class="icon-badge"><svg><use href="#i-file"/></svg></div>
+      <div class="step-num">04</div>
+      <h1 style="font-size: clamp(24px,3.4vw,36px);">Sécuriser par écrit</h1>
+      <p class="lead">Contrat de sous-location ou mandat de gestion — toujours écrit, jamais à l'oral.</p>
+    </div>
+  </div>
+
+  <!-- 20 — Etape 5 -->
+  <div class="slide">
+    <div class="slide-content">
+      <div class="step-progress">
+        <span class="dot done"></span><span class="dot done"></span><span class="dot done"></span><span class="dot done"></span><span class="dot now"></span>
+      </div>
+      <div class="icon-badge"><svg><use href="#i-settings"/></svg></div>
+      <div class="step-num">05</div>
+      <h1 style="font-size: clamp(24px,3.4vw,36px);">Mettre en ligne et automatiser</h1>
+      <p class="lead">Annonce, outils de gestion, ménage, entrées et sorties — pour que l'activité ne dévore pas ton temps.</p>
+    </div>
+  </div>
+
+  <!-- 21 — Preuves intro -->
+  <div class="slide">
+    <div class="glow g1"></div>
+    <div class="slide-content">
+      <span class="tag">Ils l'ont fait</span>
+      <h1>Ce n'est pas une théorie.<br><span class="gradient-text">C'est déjà le quotidien de plusieurs élèves.</span></h1>
+    </div>
+  </div>
+
+  <!-- 22 — Khadija -->
+  <div class="slide">
+    <div class="slide-content testimonial-card">
+      <div class="thumb">
+        <img src="https://img.youtube.com/vi/7Dz1QpJ1Cvg/hqdefault.jpg" alt="Khadija — témoignage">
+        <div class="play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></div>
+      </div>
+      <div class="testimonial-body">
+        <div class="quote-icon"><svg><use href="#i-quote"/></svg></div>
+        <div class="name">Khadija</div>
+        <div class="situation">Maman de 7 enfants</div>
+        <p class="quote">Cherchait une activité compatible avec sa vie de famille. Aujourd'hui elle gère ses propres sous-locations.</p>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 23 — Yassine -->
+  <div class="slide">
+    <div class="slide-content testimonial-card">
+      <div class="thumb">
+        <img src="https://img.youtube.com/vi/GhY7Sna98l4/hqdefault.jpg" alt="Yassine — témoignage">
+        <div class="play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></div>
+      </div>
+      <div class="testimonial-body">
+        <div class="quote-icon"><svg><use href="#i-quote"/></svg></div>
+        <div class="name">Yassine</div>
+        <div class="situation">Salarié en reconversion</div>
+        <p class="quote">A signé son premier logement en 30 jours.</p>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 24 — Aïcha -->
+  <div class="slide">
+    <div class="slide-content testimonial-card">
+      <div class="thumb">
+        <img src="https://img.youtube.com/vi/2zvz4WngAtU/hqdefault.jpg" alt="Aïcha — témoignage">
+        <div class="play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></div>
+      </div>
+      <div class="testimonial-body">
+        <div class="quote-icon"><svg><use href="#i-quote"/></svg></div>
+        <div class="name">Aïcha</div>
+        <div class="situation">Reconversion e-commerce</div>
+        <p class="quote">Passée de l'e-commerce à la sous-location, pour une activité plus alignée avec ses valeurs.</p>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg><svg viewBox="0 0 24 24"><use href="#i-star"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /.slide-deck -->
+
+<div class="nav-controls">
+  <button class="nav-btn" onclick="prevSlide()">←</button>
+  <span class="slide-counter"><span id="current">1</span> / <span id="total">24</span></span>
+  <button class="nav-btn" onclick="nextSlide()">→</button>
+</div>
+
+<script>
+  let current = 1;
+  const total = document.querySelectorAll('.slide').length;
+  document.getElementById('total').textContent = total;
+
+  function showSlide(n) {
+    if (n < 1) n = 1;
+    if (n > total) n = total;
+    current = n;
+    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === n - 1));
+    document.getElementById('current').textContent = n;
+    document.getElementById('progressBar').style.width = (n / total * 100) + '%';
+  }
+  function nextSlide() { showSlide(current + 1); }
+  function prevSlide() { showSlide(current - 1); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+  });
+  document.addEventListener('click', (e) => { if (!e.target.closest('.nav-controls')) nextSlide(); });
+
+  showSlide(1);
+
+  new Chart(document.getElementById('euChart'), {
+    type: 'bar',
+    data: {
+      labels: ['2024 (est.)', '2025'],
+      datasets: [{
+        data: [858, 952],
+        backgroundColor: ['rgba(95,216,122,0.35)', '#2DB84B'],
+        borderRadius: 10,
+        barThickness: 90
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: '#F7F6F2', font: { family: 'Plus Jakarta Sans', weight: 700, size: 13 } } },
+        y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: 'rgba(247,246,242,0.5)' }, title: { display: true, text: 'Millions de nuitées (UE)', color: 'rgba(247,246,242,0.5)' } }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
