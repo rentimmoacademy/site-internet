@@ -13,16 +13,18 @@ const SITE = "https://www.rentimmoacademy.fr";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800"],
+  weight: ["400", "600", "700", "800"],
   variable: "--font-jakarta",
   display: "swap",
 });
 
+// Poppins n'est utilisée que sur /formations et /super-bnb-academy : pas de preload global.
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-poppins",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -185,9 +187,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-ink text-cream antialiased">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WY1G6J0NTL"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="ga4-init" strategy="afterInteractive">
+        <Script id="ga4-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

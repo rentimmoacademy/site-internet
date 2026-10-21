@@ -140,7 +140,7 @@ export default function Footer() {
             rel="noreferrer"
             className="flex items-center gap-3 transition-opacity hover:opacity-80"
           >
-            <img src="/qualiopi-logo.jpg" alt="Certification Qualiopi" className="h-14 w-auto rounded bg-white p-1" />
+            <img src="/qualiopi-logo.jpg" alt="Certification Qualiopi" width={465} height={248} loading="lazy" className="h-14 w-auto rounded bg-white p-1" />
             <span>
               Organisme de formation certifié Qualiopi — N° REN7232025001
               <br />

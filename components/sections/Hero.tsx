@@ -22,8 +22,9 @@ export default function Hero() {
       {/* Dot grid */}
       <div className="dot-grid pointer-events-none absolute inset-0 opacity-80" />
       {/* Green glow */}
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-brand-green/20 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-brand-dark/30 blur-[120px]" />
+      {/* Radial gradients au lieu de blur-[120px] : même rendu, sans filtre coûteux au premier paint mobile */}
+      <div className="pointer-events-none absolute -top-64 left-1/2 h-[900px] w-[900px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(45,184,75,0.22),transparent)]" />
+      <div className="pointer-events-none absolute -bottom-72 -right-24 h-[800px] w-[800px] bg-[radial-gradient(closest-side,rgba(26,107,51,0.32),transparent)]" />
 
       <div className="container-x relative z-10 py-20">
         {/* Floating badge */}
