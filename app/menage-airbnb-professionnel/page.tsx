@@ -4,6 +4,7 @@ import { Check, ArrowRight, Sparkles, Clock, TrendingUp, Star } from "lucide-rea
 import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import PillarLinks from "@/components/sections/PillarLinks";
 import ActivityCallPopup from "@/components/ActivityCallPopup";
 
 const SITE = "https://www.rentimmoacademy.fr";
@@ -295,6 +296,8 @@ export default function MenageAirbnbProfessionnelPage() {
           </Link>
         </div>
       </LandingSection>
+
+      <PillarLinks offer="cleaning" categories={["cleaning", "cleaning-bnb"]} title="Nos guides sur le ménage Airbnb" />
 
       <FinalCTA />
 

@@ -4,6 +4,7 @@ import { Check, ArrowRight, ShieldCheck, TrendingUp, MapPin, Wallet } from "luci
 import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import PillarLinks from "@/components/sections/PillarLinks";
 import ActivityCallPopup from "@/components/ActivityCallPopup";
 
 const SITE = "https://www.rentimmoacademy.fr";
@@ -383,6 +384,8 @@ export default function SousLocationProfessionnellePage() {
           </div>
         </div>
       </section>
+
+      <PillarLinks offer="sous-location" categories={["sous-location"]} title="Nos guides sur la sous-location professionnelle" />
 
       <FinalCTA />
 

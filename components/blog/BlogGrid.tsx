@@ -9,6 +9,7 @@ const categories = [
   { slug: "sous-location", label: "Sous-location" },
   { slug: "conciergerie", label: "Conciergerie" },
   { slug: "cleaning", label: "Cleaning" },
+  { slug: "scale", label: "Scaler & optimiser" },
   { slug: "legal", label: "Réglementation" },
   { slug: "maroc", label: "Maroc" },
 ];

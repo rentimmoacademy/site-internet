@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PillarLinks from "@/components/sections/PillarLinks";
 
 const TITLE = "Super BNB Academy - Automatise ton Airbnb en 30 jours avec un coach dédié";
 const DESC =
@@ -46,5 +47,10 @@ export const metadata: Metadata = {
 };
 
 export default function SuperBnbAcademyLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <PillarLinks offer="scale" categories={["scale"]} title="Nos guides pour scaler et optimiser ton Airbnb" />
+    </>
+  );
 }

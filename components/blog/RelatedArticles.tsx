@@ -9,6 +9,7 @@ const categoryLabel: Record<string, string> = {
   "cleaning-bnb": "Cleaning",
   legal: "Réglementation",
   maroc: "Maroc",
+  scale: "Scaler & optimiser",
   outils: "Outils",
   formation: "Formation",
   actualite: "Actualité",

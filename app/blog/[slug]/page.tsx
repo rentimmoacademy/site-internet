@@ -26,6 +26,7 @@ const categoryConfig: Record<string, { bg: string; label: string; icon: React.El
   conciergerie:    { bg: "bg-brand-dark",  label: "Conciergerie",  icon: Wrench },
   cleaning:        { bg: "bg-brand-light", label: "Cleaning",      icon: Wrench },
   maroc:           { bg: "bg-morocco",     label: "Maroc",         icon: Globe },
+  scale:           { bg: "bg-info",        label: "Scaler & optimiser", icon: Wrench },
   outils:          { bg: "bg-info",        label: "Outils",        icon: Wrench },
   legal:           { bg: "bg-amber-600",   label: "Réglementation",icon: Scale },
 };
@@ -52,6 +53,12 @@ const ctaByCategory: Record<string, { headline: string; sub: string; cta: string
     href: "/formations/cleaning-bnb",
   },
   outils: {
+    headline: "Les outils seuls ne suffisent pas — il faut le bon système",
+    sub: "Dans Super BNB Academy, on configure pricing dynamique, messagerie automatisée, domotique et channel manager avec toi en 4 semaines. Résultat moyen : +38 % de revenus, 15 min/jour de gestion.",
+    cta: "Voir Super BNB Academy",
+    href: "/super-bnb-academy",
+  },
+  scale: {
     headline: "Les outils seuls ne suffisent pas — il faut le bon système",
     sub: "Dans Super BNB Academy, on configure pricing dynamique, messagerie automatisée, domotique et channel manager avec toi en 4 semaines. Résultat moyen : +38 % de revenus, 15 min/jour de gestion.",
     cta: "Voir Super BNB Academy",
@@ -262,7 +269,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <ContactBanner />
 
       {/* Popup masterclass — sous-location articles uniquement */}
-      {post.category === "sous-location" && <MasterclassPopup />}
+      {(post.category === "sous-location" || post.category === "scale") && <MasterclassPopup />}
 
       {/* BlogPosting JSON-LD */}
       {/* BreadcrumbList schema */}

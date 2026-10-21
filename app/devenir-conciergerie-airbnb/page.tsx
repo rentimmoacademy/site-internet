@@ -4,6 +4,7 @@ import { Check, ArrowRight, Briefcase, Users, BarChart3, ShieldCheck } from "luc
 import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import PillarLinks from "@/components/sections/PillarLinks";
 import ActivityCallPopup from "@/components/ActivityCallPopup";
 
 const SITE = "https://www.rentimmoacademy.fr";
@@ -322,6 +323,8 @@ export default function DevenirConciergerieAirbnbPage() {
           </div>
         </div>
       </section>
+
+      <PillarLinks offer="conciergerie" categories={["conciergerie"]} title="Nos guides sur la conciergerie Airbnb" />
 
       <FinalCTA />
 
