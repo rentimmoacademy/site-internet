@@ -2,7 +2,7 @@
 
 > Académie de formation professionnelle à la location courte durée (LCD) en France et au Maroc : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BnB). Index court : https://www.rentimmoacademy.fr/llms.txt
 
-Ce fichier regroupe le texte intégral des 67 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
+Ce fichier regroupe le texte intégral des 74 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
 
 ---
 
@@ -223,6 +223,174 @@ Tu veux qu'on travaille ensemble ta stratégie de prospection propriétaires ? [
 
 ---
 
+# Audit de performance d'un logement Airbnb : la checklist en 7 points (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/audit-performance-logement-airbnb-checklist-2026/
+Publié le : 2026-10-21
+Catégorie : scale
+
+**Un logement qui sous-performe a presque toujours une cause identifiable.** Il suffit de la chercher méthodiquement. Voici une checklist d'audit en 7 points, de l'annonce aux coûts, à appliquer à chacun de tes logements.
+
+## Avant de commencer : les chiffres
+
+Calcule ces indicateurs sur les 3 à 6 derniers mois :
+
+- **Taux d'occupation** : nuits réservées / nuits disponibles
+- **Prix moyen par nuit** vendue
+- **Revenu par nuit disponible** : prix moyen × taux d'occupation
+- **Note moyenne** et note par critère
+- **Taux de conversion** : visites de l'annonce qui deviennent des réservations
+
+Compare avec 5 à 10 logements comparables du secteur. Les outils décrits dans [notre guide d'analytics](/blog/meilleurs-outils-analytics-airbnb-2026/) aident à obtenir ces données.
+
+## 1. L'annonce
+
+- Le **titre** décrit-il le vrai atout (vue, emplacement, équipement) ?
+- La **description** répond-elle aux questions des voyageurs ?
+- Les **équipements** sont-ils tous cochés ?
+- Les **règles** et conditions sont-elles claires ?
+
+Voir [comment optimiser son annonce](/blog/optimiser-annonce-airbnb-titre-description-photos/).
+
+## 2. Les photos
+
+- La **première photo** donne-t-elle envie de cliquer ?
+- Le logement est-il montré **pièce par pièce**, avec une lumière correcte ?
+- Les photos sont-elles **récentes** ?
+
+Voir [l'impact des photos professionnelles](/blog/photos-pro-airbnb-impact-revenus/).
+
+## 3. Le prix
+
+- Le prix est-il **cohérent** avec les logements comparables ?
+- Y a-t-il une **variation** selon la saison, le jour et les événements ?
+- Un taux d'occupation très élevé signale un prix trop bas ; un taux faible peut signaler un prix trop haut ou une annonce faible.
+
+Voir [le revenue management Airbnb](/blog/revenue-management-airbnb-prix-optimiser-2026/).
+
+## 4. Le calendrier
+
+- Les **séjours minimum** sont-ils adaptés ?
+- Y a-t-il des **trous** de 1 ou 2 nuits qui restent vides ?
+- Les **délais** entre réservations sont-ils adaptés au ménage ?
+- Le calendrier est-il **ouvert assez loin** à l'avance ?
+
+## 5. Les avis
+
+- Quelle est la **note globale**, et par critère (propreté, communication, arrivée, exactitude) ?
+- Quels **thèmes reviennent** dans les commentaires négatifs ?
+- Tes **réponses** aux avis sont-elles professionnelles ?
+
+Le critère le plus faible est le premier à corriger. Voir [le guide Superhost](/blog/superhost-airbnb-2026-guide-complet/).
+
+## 6. La messagerie et l'arrivée
+
+- Le **temps de réponse** est-il bon ?
+- Les **informations d'arrivée** sont-elles claires ?
+- L'**accès au logement** est-il simple et fiable ?
+
+Une séquence automatisée règle beaucoup de problèmes : voir [la messagerie automatisée Airbnb](/blog/messagerie-automatisee-airbnb-sequence-complete/).
+
+## 7. Les coûts et la marge
+
+- Combien coûtent le **ménage**, le linge et les consommables par séjour ?
+- Quelles sont les **commissions** des plateformes ?
+- Quel est le **temps de gestion** par séjour ?
+- Quelle est la **marge** réelle par logement ?
+
+Un logement qui remplit bien mais rapporte peu a souvent un problème de coûts, pas de revenus.
+
+## Comment prioriser
+
+Classe les problèmes selon deux critères : l'**impact** sur le revenu et la **facilité** de correction. Lance d'abord ce qui est simple et à fort impact (titre, première photo, grille de prix), puis ce qui demande plus de travail.
+
+## Après l'audit
+
+1. Écris une **liste de 3 à 5 actions**.
+2. Fais-les **une à une**, pour savoir ce qui fonctionne.
+3. Mesure les indicateurs **4 à 6 semaines** plus tard.
+4. Programme le prochain audit.
+
+Pour la vue d'ensemble des leviers, lis [augmenter ses revenus Airbnb](/blog/augmenter-revenus-airbnb-guide-2026/).
+
+## Un regard extérieur
+
+Pour aller plus vite sur la partie annonce, l'audit gratuit de Super BNB Academy analyse les données publiques de ton annonce (titre, photos, description, prix, avis), les compare aux annonces concurrentes de ta zone et te donne un score par catégorie avec un plan d'action. Un court diagnostic de ton activité (Scorecard) permet ensuite d'orienter la suite.
+
+<BlogCTA
+  title="Lance l'audit gratuit de ton annonce Airbnb"
+  description="Score par catégorie et plan d'action sur ton annonce, comparée aux annonces de ta zone. Gratuit, avec Super BNB Academy de Rentimmo Academy."
+  href="/super-bnb-academy/audit"
+  cta="Lancer mon audit gratuit"
+  variant="dark"
+/>
+
+---
+
+# Augmenter ses revenus Airbnb en 2026 : les 6 leviers qui comptent vraiment
+
+URL : https://www.rentimmoacademy.fr/blog/augmenter-revenus-airbnb-guide-2026/
+Publié le : 2026-10-21
+Catégorie : scale
+
+**Les revenus d'un logement Airbnb dépendent de trois choses : le prix par nuit, le nombre de nuits réservées et ce que tu dépenses pour les obtenir.** Presque tous les leviers d'optimisation agissent sur l'un de ces trois points. Voici les six qui comptent, dans l'ordre où les actionner.
+
+## Le calcul de base
+
+Revenu mensuel = prix moyen par nuit × nuits réservées. Un exemple illustratif :
+
+- 100 € par nuit × 18 nuits réservées (60 % d'occupation) = **1 800 €**
+- 110 € par nuit × 21 nuits réservées (70 % d'occupation) = **2 310 €**, soit environ 28 % de plus
+
+Ce n'est pas une promesse, juste une illustration : une amélioration modérée sur le prix **et** le remplissage pèse beaucoup plus que ce qu'on imagine. C'est pourquoi on travaille les deux ensemble, plutôt que de baisser le prix pour remplir.
+
+## Levier 1 : l'annonce
+
+Si ton annonce ne convertit pas, tout le reste est vain. Le titre, la première photo, la description et les équipements mis en avant déterminent combien de visiteurs réservent. Commence par là : voir [comment optimiser son annonce Airbnb](/blog/optimiser-annonce-airbnb-titre-description-photos/) et [l'impact des photos professionnelles](/blog/photos-pro-airbnb-impact-revenus/).
+
+## Levier 2 : le prix
+
+Un prix fixe laisse de l'argent sur la table : la demande varie selon le jour, la saison et les événements. Une grille dynamique, des séjours minimum adaptés et des règles pour les jours creux font la différence. Le détail est dans notre article sur [le revenue management Airbnb](/blog/revenue-management-airbnb-prix-optimiser-2026/) et sur [PriceLabs](/blog/pricelabs-guide-complet-airbnb-2026/).
+
+## Levier 3 : le taux d'occupation
+
+Le remplissage se travaille sur les périodes creuses, les trous entre deux réservations et la visibilité. Voir [comment améliorer son taux d'occupation](/blog/taux-occupation-airbnb-ameliorer-2026/) et [remplir son Airbnb hors saison](/blog/remplir-airbnb-hors-saison-2026/).
+
+## Levier 4 : les avis et la visibilité
+
+Les avis nourrissent ta conversion et ton classement. Les deux sources d'avis négatifs les plus fréquentes sont le ménage et la communication. Pour comprendre ce que l'algorithme regarde, lis [les facteurs de l'algorithme Airbnb](/blog/algorithme-airbnb-2026-remonter-annonce/) et [le guide du Superhost](/blog/superhost-airbnb-2026-guide-complet/).
+
+## Levier 5 : les canaux de réservation
+
+Dépendre d'une seule plateforme t'expose aux commissions et aux changements d'algorithme. Un [channel manager](/blog/channel-manager-airbnb-comparatif-2026/) et un [site de réservation directe](/blog/site-reservation-directe-airbnb-2026/) élargissent ton audience et améliorent ta marge.
+
+## Levier 6 : le temps et les coûts
+
+Un logement rentable qui t'occupe toute la journée ne passe pas à l'échelle. Automatiser la messagerie, l'arrivée autonome et la planification du ménage réduit le temps de gestion et le risque d'erreur. Voir [comment automatiser son Airbnb](/blog/automatiser-airbnb-outils-2026/) et [automatiser la gestion de 10 logements](/blog/automatiser-gestion-10-logements-airbnb-2026/).
+
+## Par où commencer
+
+1. **Fais un audit** de ton logement : annonce, prix, calendrier, avis, coûts. Notre [checklist d'audit](/blog/audit-performance-logement-airbnb-checklist-2026/) te guide.
+2. **Corrige le point le plus faible** avant d'en ajouter un autre.
+3. **Mesure** l'effet sur quelques semaines, puis passe au levier suivant.
+4. **Automatise** ce qui se répète, pour garder du temps.
+
+Une optimisation à la fois permet de savoir ce qui fonctionne vraiment.
+
+## Aller plus loin
+
+Super BNB Academy de Rentimmo Academy s'adresse aux hôtes qui ont déjà un logement actif : on configure avec toi le pricing, la messagerie, la domotique et le channel manager. Tu peux commencer par [l'audit de ton logement](/super-bnb-academy/audit).
+
+<BlogCTA
+  title="Augmente tes revenus avec Super BNB Academy"
+  description="Pricing dynamique, messagerie automatisée, domotique, channel manager : on installe le système avec toi, pour gagner plus en y passant moins de temps."
+  href="/super-bnb-academy"
+  cta="Découvrir Super BNB Academy"
+  variant="dark"
+/>
+
+---
+
 # Devenir auto-entrepreneur dans le nettoyage : statut, tarifs et premiers clients (2026)
 
 URL : https://www.rentimmoacademy.fr/blog/auto-entrepreneur-nettoyage-menage-airbnb-2026/
@@ -297,6 +465,82 @@ Quand tu es à l'aise avec 3 ou 4 clients, tu peux recruter des cleaners, ajoute
   href="/formations/cleaning-bnb"
   cta="Découvrir la formation Cleaning BNB"
   variant="green"
+/>
+
+---
+
+# Automatiser la gestion de 10 logements Airbnb : le système complet (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/automatiser-gestion-10-logements-airbnb-2026/
+Publié le : 2026-10-21
+Catégorie : scale
+
+**À 10 logements, ce n'est plus le nombre de tâches qui pose problème, c'est leur répétition.** Un exemple illustratif : si chaque logement demande 20 minutes de gestion par jour (messages, coordination, vérifications), 10 logements représentent 3 h 20 par jour. L'automatisation vise à ramener ce temps à ce qui demande vraiment un humain.
+
+## Le principe : un système, pas des outils
+
+Beaucoup d'hôtes empilent des outils sans logique. Le bon réflexe est de partir des **flux** :
+
+1. une réservation arrive
+2. le voyageur reçoit les bonnes informations
+3. il accède au logement
+4. le ménage est planifié
+5. le prix s'ajuste
+6. un incident est signalé et traité
+
+Chaque flux a un outil et une règle. Le détail des outils est dans [notre comparatif des outils d'automatisation](/blog/automatiser-airbnb-outils-2026/).
+
+## 1. Une source de vérité pour les calendriers
+
+Un **channel manager** synchronise les réservations entre plateformes et évite les doubles réservations. À 10 logements, c'est la base. Voir le [comparatif des channel managers](/blog/channel-manager-airbnb-comparatif-2026/).
+
+## 2. La messagerie automatisée
+
+Une séquence de messages couvre 80 % des échanges : confirmation, informations d'arrivée, rappel avant le départ, demande d'avis. Chaque message doit être personnalisé avec les infos du logement. Notre [séquence de 5 messages](/blog/messagerie-automatisee-airbnb-sequence-complete/) te donne le modèle. Pour la rédaction et le tri des réponses, voir [ChatGPT pour hôtes Airbnb](/blog/chatgpt-airbnb-prompts-hotes-2026/).
+
+## 3. L'arrivée autonome
+
+Une serrure connectée, avec un code propre à chaque séjour, supprime la remise des clés. Elle évite aussi les problèmes de clés perdues. Voir [la domotique Airbnb](/blog/domotique-airbnb-2026-equipements-connectes/). Prévois toujours une solution de secours en cas de panne (code alternatif, boîte à clés).
+
+## 4. Le ménage planifié automatiquement
+
+Chaque départ génère une intervention. Le planning se construit à partir des calendriers : l'équipe voit les créneaux, confirme et envoie un rapport photo. Une checklist unique garantit un résultat constant, comme dans [notre modèle de checklist](/blog/checklist-menage-airbnb-modele-2026/).
+
+## 5. Le pricing dynamique
+
+À 10 logements, ajuster les prix à la main chaque semaine n'est pas réaliste. Un outil de pricing applique les règles à tout le parc. Voir [le revenue management Airbnb](/blog/revenue-management-airbnb-prix-optimiser-2026/).
+
+## 6. Le tri des incidents
+
+Définis trois niveaux :
+
+- **Urgent** (serrure, fuite, voyageur bloqué) : alerte immédiate, intervention sous quelques heures.
+- **Important** (équipement en panne) : traité dans la journée.
+- **Normal** (question, demande) : réponse automatique ou différée.
+
+Un canal unique pour les alertes évite de passer d'une application à l'autre.
+
+## 7. Un tableau de bord
+
+Suis, pour chaque logement, l'occupation, le prix moyen, les avis et les incidents. Un simple tableur ou un outil comme ceux de [notre guide d'analytics](/blog/meilleurs-outils-analytics-airbnb-2026/) suffit. Le but est de repérer vite le logement qui décroche.
+
+## Les pièges à éviter
+
+- **Automatiser avant de standardiser** : si les logements sont tous différents, les messages et les ménages aussi. Harmonise d'abord.
+- **Perdre le contact humain** : un voyageur en difficulté doit joindre quelqu'un.
+- **Multiplier les outils** : chaque outil ajouté est une panne possible.
+- **Ne rien tester** : valide chaque scénario sur un logement.
+
+## Et si tu veux passer à 20 ou 30 ?
+
+Au-delà de 10, l'automatisation ne suffit plus : il faut une équipe et des processus écrits. Lis [scaler de 10 à 30 logements](/blog/scaler-10-a-30-logements-airbnb-equipe-process-2026/) et [comment créer des SOP de gestion locative](/blog/sop-processus-gestion-locative-courte-duree-2026/).
+
+<BlogCTA
+  title="Mets en place ton système avec Super BNB Academy"
+  description="Pricing, messagerie, domotique, channel manager : on installe et on paramètre l'ensemble avec toi, pour gérer plus de logements en y passant moins de temps."
+  href="/super-bnb-academy"
+  cta="Découvrir Super BNB Academy"
+  variant="dark"
 />
 
 ---
@@ -912,6 +1156,247 @@ Pour les bases du métier, la page [ménage Airbnb professionnel](/menage-airbnb
   href="/formations/cleaning-bnb"
   cta="Découvrir la formation Cleaning BNB"
   variant="green"
+/>
+
+---
+
+# Revenue management Airbnb : comment optimiser ses prix nuit par nuit (méthode 2026)
+
+URL : https://www.rentimmoacademy.fr/blog/revenue-management-airbnb-prix-optimiser-2026/
+Publié le : 2026-10-21
+Catégorie : scale
+
+**Le revenue management consiste à vendre chaque nuit au meilleur prix possible selon la demande, plutôt qu'au même prix toute l'année.** Un tarif fixe te fait vendre trop bas les jours de forte demande et trop haut les jours creux. Voici une méthode simple pour construire ta stratégie de prix.
+
+## Étape 1 : connaître ton prix plancher
+
+Avant de parler de prix de marché, calcule le prix en dessous duquel tu perds de l'argent. Il se compose de :
+
+- la **commission** de la plateforme
+- le **ménage** et le linge par séjour
+- les **charges** (électricité, internet, consommables)
+- ta **marge minimale**
+
+Ce plancher te protège. Aucune règle de baisse ne doit le franchir.
+
+## Étape 2 : définir le prix de base
+
+Le prix de base est celui que tu pratiques une nuit « normale ». Pour le fixer :
+
+1. Repère 5 à 10 logements **vraiment comparables** (taille, équipements, note, localisation).
+2. Regarde leurs prix sur **des dates précises**, y compris les dates déjà réservées.
+3. Ajuste selon tes atouts : photos, note, équipements.
+
+Un prix de base trop élevé fait chuter le taux de conversion ; trop bas, tu perds de la marge. C'est un point de départ, pas un prix final.
+
+## Étape 3 : les variations qui comptent
+
+Les variations suivantes ont généralement le plus d'effet :
+
+- **Jour de la semaine** : les nuits de week-end et de semaine ne valent pas le même prix.
+- **Saison** : haute, moyenne, basse, avec des grilles distinctes.
+- **Événements** : salons, concerts, compétitions, vacances scolaires, ponts.
+- **Délai de réservation** : une date proche non vendue se baisse, une date lointaine peut se tenir.
+
+C'est exactement ce que fait un outil comme PriceLabs. Pour le configurer, lis [notre guide PriceLabs](/blog/pricelabs-guide-complet-airbnb-2026/).
+
+## Étape 4 : les règles de séjour minimum
+
+Le prix n'est pas le seul levier. Les restrictions comptent aussi :
+
+- **Séjour minimum plus long** sur les dates très demandées, pour éviter de bloquer 7 nuits avec 3 séjours d'une nuit.
+- **Séjour minimum plus court** sur les trous du calendrier (ces « nuits orphelines » qui ne se vendraient pas autrement).
+- **Remises sur les longues durées** (semaine, mois), pour sécuriser des périodes creuses.
+
+## Étape 5 : traiter les jours creux
+
+Quand une date reste libre à l'approche, plusieurs options existent : baisser progressivement le prix, réduire le séjour minimum, ou proposer une promotion. Les stratégies détaillées sont dans [remplir son Airbnb hors saison](/blog/remplir-airbnb-hors-saison-2026/).
+
+## Étape 6 : lire les bons indicateurs
+
+Ne regarde pas uniquement le prix moyen ou l'occupation. Suis :
+
+- le **prix moyen par nuit** vendue
+- le **taux d'occupation**
+- le **revenu par nuit disponible** (prix moyen × occupation)
+- le **taux de conversion** de l'annonce
+
+Un taux d'occupation très élevé (95 % et plus) signale souvent un prix trop bas. Un taux faible avec un bon prix signale plutôt un problème d'annonce. Voir [les outils d'analytics Airbnb](/blog/meilleurs-outils-analytics-airbnb-2026/).
+
+## Les erreurs fréquentes
+
+- **Copier le prix du voisin** sans comparer les équipements et la note.
+- **Baisser le prix dès qu'une date ne se vend pas**, sans regarder l'annonce.
+- **Oublier le plancher** et vendre à perte sur le ménage.
+- **Ne jamais réviser** les règles après une saison.
+
+## Et ensuite
+
+Le prix agit en combinaison avec le reste : [l'algorithme Airbnb](/blog/algorithme-airbnb-2026-remonter-annonce/) récompense un bon taux de conversion, donc une annonce solide. Pour l'ensemble des leviers, lis [augmenter ses revenus Airbnb](/blog/augmenter-revenus-airbnb-guide-2026/).
+
+<BlogCTA
+  title="Configure ton pricing avec Super BNB Academy"
+  description="On installe et paramètre avec toi ton pricing dynamique, ta messagerie et ton channel manager. Un système qui travaille pendant que tu fais autre chose."
+  href="/super-bnb-academy"
+  cta="Découvrir Super BNB Academy"
+  variant="dark"
+/>
+
+---
+
+# Scaler de 10 à 30 logements Airbnb : équipe, process et indicateurs (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/scaler-10-a-30-logements-airbnb-equipe-process-2026/
+Publié le : 2026-10-21
+Catégorie : scale
+
+**Passer de 10 à 30 logements, ce n'est pas faire trois fois la même chose : c'est changer de métier.** À 10 logements, tu es un opérateur. À 30, tu deviens un dirigeant qui gère des équipes, des process et des chiffres. Voici comment aborder cette étape. Pour la phase précédente, lis d'abord [scaler de 1 à 10 logements](/blog/scaler-1-a-10-logements-airbnb-methode/).
+
+## Le changement de rôle
+
+À partir d'une certaine taille, ta valeur n'est plus dans l'exécution mais dans :
+
+- la **recherche de nouveaux logements** ou de nouveaux propriétaires
+- la **qualité** de ce qui est livré
+- la **santé financière** de l'activité
+- le **recrutement** et l'organisation de l'équipe
+
+Si tu continues à gérer toi-même les messages et les clés, tu bloques ta croissance.
+
+## Ce qu'il faut avoir avant de scaler
+
+1. **Une automatisation solide** : messagerie, arrivée autonome, pricing. Voir [automatiser la gestion de 10 logements](/blog/automatiser-gestion-10-logements-airbnb-2026/).
+2. **Des procédures écrites** pour chaque tâche récurrente : voir [créer ses SOP de gestion locative](/blog/sop-processus-gestion-locative-courte-duree-2026/).
+3. **Des indicateurs** par logement : occupation, revenu, note, incidents.
+4. **Une réserve de trésorerie**.
+
+Sans ces quatre éléments, chaque logement ajouté amplifie les problèmes.
+
+## Les rôles à créer, dans l'ordre
+
+1. **Le coordinateur opérationnel** : il traite les incidents, suit le planning de ménage et répond aux voyageurs sur les cas complexes.
+2. **L'équipe de ménage** : avec un référent qui contrôle les photos. Pour structurer cette équipe, voir [lancer et structurer un business de cleaning BNB](/blog/cleaning-bnb-lancer-structurer-business/).
+3. **Un support maintenance** : un ou deux artisans fiables pour les interventions rapides.
+4. **Un appui administratif ou comptable** quand la gestion devient lourde.
+
+Recrute sur un besoin réel, pas à l'avance, et écris la fiche de poste avec les tâches et les indicateurs attendus.
+
+## Les indicateurs à suivre chaque semaine
+
+- **Taux d'occupation** et **prix moyen** par logement
+- **Note moyenne** et avis récents
+- **Nombre d'incidents** et délai de résolution
+- **Coût de ménage et de maintenance** par séjour
+- **Marge** par logement
+
+Un logement qui sort de la moyenne mérite un audit. Voir [l'audit de performance d'un logement](/blog/audit-performance-logement-airbnb-checklist-2026/).
+
+## Les pièges de la croissance
+
+- **La trésorerie** : chaque logement coûte avant de rapporter. Ne lance pas plusieurs logements d'un coup sans visibilité.
+- **La qualité qui baisse** : sans checklist ni contrôle, les avis chutent.
+- **La concentration** : trop dépendre d'un seul propriétaire, d'une seule plateforme ou d'un seul prestataire.
+- **La dispersion** : des logements très différents rendent les process difficiles à standardiser.
+
+## Sous-location ou conciergerie pour grandir ?
+
+Les deux modèles se scalent différemment. En [sous-location professionnelle](/sous-location-professionnelle/), tu portes les loyers et le risque, mais tu gardes la marge. En [conciergerie](/devenir-conciergerie-airbnb/), tu gères pour des propriétaires contre une commission, avec moins de capital immobilisé. Beaucoup d'opérateurs combinent les deux.
+
+## En résumé
+
+Pour passer de 10 à 30 logements : automatiser, écrire les process, recruter dans le bon ordre, suivre des indicateurs et protéger la trésorerie. Pour l'ensemble des leviers de croissance des revenus, lis [augmenter ses revenus Airbnb](/blog/augmenter-revenus-airbnb-guide-2026/).
+
+<BlogCTA
+  title="Structure ton activité avec Super BNB Academy"
+  description="Automatisation, process, outils et accompagnement : Super BNB Academy t'aide à installer le système qui permet de gérer plus de logements sans y passer tes journées."
+  href="/super-bnb-academy"
+  cta="Découvrir Super BNB Academy"
+  variant="dark"
+/>
+
+---
+
+# SOP et processus en gestion locative courte durée : comment les écrire (modèles 2026)
+
+URL : https://www.rentimmoacademy.fr/blog/sop-processus-gestion-locative-courte-duree-2026/
+Publié le : 2026-10-21
+Catégorie : scale
+
+**Une SOP est une procédure écrite qui permet à quelqu'un d'autre de faire exactement ce que tu ferais.** En gestion locative courte durée, c'est ce qui sépare un emploi (tu es indispensable) d'une entreprise (le système fonctionne sans toi). Voici comment les écrire et lesquelles créer en premier.
+
+## Pourquoi écrire ses processus
+
+- **Qualité constante** : le résultat ne dépend plus de la personne.
+- **Délégation facilitée** : un nouveau collaborateur est opérationnel plus vite.
+- **Moins d'erreurs** : on ne compte plus sur la mémoire.
+- **Amélioration continue** : une procédure écrite peut être corrigée, une habitude non.
+
+C'est la condition pour [scaler au-delà de 10 logements](/blog/scaler-10-a-30-logements-airbnb-equipe-process-2026/).
+
+## La structure d'une SOP
+
+Garde toujours les mêmes rubriques :
+
+1. **Objectif** : à quoi sert cette procédure.
+2. **Déclencheur** : ce qui la lance (une réservation, un départ, un message).
+3. **Responsable** : qui l'exécute.
+4. **Étapes** : une liste numérotée, courte.
+5. **Délai** : dans quel temps.
+6. **Preuve** : ce qui montre qu'elle est faite (photo, message, coche).
+7. **Escalade** : à qui s'adresser en cas de problème.
+
+## Les 8 SOP à écrire en premier
+
+1. **Arrivée du voyageur** : informations envoyées, accès, vérification.
+2. **Ménage de rotation** : voir notre [modèle de checklist](/blog/checklist-menage-airbnb-modele-2026/).
+3. **Incident voyageur** : bruit, panne, accès impossible.
+4. **Gestion des avis** : demande, réponse, avis négatif.
+5. **Maintenance** : signalement, devis, intervention, validation.
+6. **Départ et contrôle** : état des lieux, objets oubliés, dégâts.
+7. **Mise en route d'un nouveau logement** : photos, annonce, équipements, tests.
+8. **Plainte ou litige** : qui répond, quoi proposer, quand.
+
+## Exemple : « Voyageur qui ne peut pas entrer »
+
+- **Objectif** : rétablir l'accès rapidement.
+- **Déclencheur** : message du voyageur ou alerte de la serrure.
+- **Responsable** : le coordinateur d'astreinte.
+- **Étapes** :
+  1. Appeler le voyageur dans les 5 minutes.
+  2. Vérifier le code dans l'outil et la batterie de la serrure.
+  3. Proposer le code de secours.
+  4. Si l'accès reste impossible, envoyer la personne la plus proche.
+  5. Noter l'incident dans le tableau de suivi.
+- **Délai** : accès rétabli en moins de 30 minutes.
+- **Preuve** : incident clos dans le tableau, message de confirmation au voyageur.
+- **Escalade** : le gérant, si le délai est dépassé.
+
+Cet exemple est illustratif : adapte les délais à ton organisation.
+
+## Comment les rédiger efficacement
+
+- **Écris pendant que tu fais** : note chaque étape la prochaine fois que tu réalises la tâche.
+- **Utilise des photos** : une photo de la boîte à clés vaut dix lignes.
+- **Fais-la tester** par quelqu'un qui n'a jamais fait la tâche.
+- **Reste court** : une page maximum, sinon personne ne lira.
+
+## Où les ranger
+
+Un seul espace partagé, accessible depuis un téléphone : Notion, Google Docs ou un outil de gestion de tâches. Classe-les par thème (voyageur, ménage, maintenance) et indique la date de dernière révision.
+
+## Les erreurs à éviter
+
+- **Écrire un manuel de 50 pages** que personne n'ouvre.
+- **Écrire une fois et ne plus toucher** : une procédure vit.
+- **Oublier l'escalade** : l'équipe doit savoir quand te prévenir.
+- **Automatiser sans comprendre** : décris le process à la main avant de l'automatiser, voir [automatiser la gestion de 10 logements](/blog/automatiser-gestion-10-logements-airbnb-2026/).
+
+<BlogCTA
+  title="Structure ton activité avec Super BNB Academy"
+  description="Process, automatisation et outils : Super BNB Academy t'aide à construire un système qui fonctionne sans que tu sois sur tous les fronts."
+  href="/super-bnb-academy"
+  cta="Découvrir Super BNB Academy"
+  variant="dark"
 />
 
 ---
@@ -2561,6 +3046,87 @@ La page [ménage Airbnb professionnel](/menage-airbnb-professionnel/) présente 
   href="/formations/cleaning-bnb"
   cta="Découvrir la formation Cleaning BNB"
   variant="green"
+/>
+
+---
+
+# Taux d'occupation Airbnb : comment l'améliorer sans casser ses prix (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/taux-occupation-airbnb-ameliorer-2026/
+Publié le : 2026-10-21
+Catégorie : scale
+
+**Le taux d'occupation mesure la part des nuits disponibles qui sont réservées.** C'est un indicateur important, mais pas un objectif en soi : l'objectif est de maximiser le revenu. Voici comment le diagnostiquer, puis l'améliorer sans brader tes prix.
+
+## Calculer et lire son taux d'occupation
+
+Taux d'occupation = nuits réservées / nuits disponibles × 100. Exemple illustratif : 21 nuits réservées sur 30 disponibles = 70 %.
+
+Pour l'interpréter, compare avec des logements **comparables dans ton secteur** sur les mêmes périodes. Puis croise avec ton prix :
+
+- **Occupation très élevée + prix bas par rapport au marché** : tu vends trop bon marché, relève les prix.
+- **Occupation faible + prix dans la moyenne** : le problème vient de l'annonce, de la visibilité ou des restrictions.
+- **Occupation faible + prix élevé** : ton prix est probablement trop haut pour ce que tu offres.
+
+Cette lecture est détaillée dans [le revenue management Airbnb](/blog/revenue-management-airbnb-prix-optimiser-2026/).
+
+## Levier 1 : la conversion de l'annonce
+
+Avant de baisser le prix, regarde si les visiteurs réservent. Si beaucoup consultent ton annonce sans réserver, le problème est le titre, la première photo ou la description. Voir [optimiser son annonce](/blog/optimiser-annonce-airbnb-titre-description-photos/) et [les photos professionnelles](/blog/photos-pro-airbnb-impact-revenus/).
+
+## Levier 2 : les restrictions du calendrier
+
+- **Séjour minimum** trop long : ajuste-le, surtout pour les dates éloignées ou les trous.
+- **Jours d'arrivée imposés** : assouplis si ton calendrier est vide.
+- **Préavis** : réduis le délai minimum de réservation pour les dernières minutes.
+- **Calendrier ouvert** : ouvre-le assez loin pour être visible tôt.
+
+## Levier 3 : les trous entre réservations
+
+Les nuits isolées sont les plus difficiles à vendre. Pour les combler :
+
+- réduire le séjour minimum sur ces dates
+- proposer une petite remise de dernière minute
+- autoriser un départ tardif ou une arrivée anticipée pour relier deux séjours
+
+## Levier 4 : les jours creux et la basse saison
+
+Les périodes creuses se travaillent avec des remises sur les longs séjours, des offres ciblées et une communication adaptée. Les stratégies sont détaillées dans [remplir son Airbnb hors saison](/blog/remplir-airbnb-hors-saison-2026/).
+
+## Levier 5 : la visibilité
+
+L'algorithme favorise les annonces qui convertissent, répondent vite et ont de bons avis. Voir [les facteurs de l'algorithme Airbnb](/blog/algorithme-airbnb-2026-remonter-annonce/) et [le badge Superhost](/blog/superhost-airbnb-2026-guide-complet/).
+
+## Levier 6 : les plateformes et les canaux directs
+
+Être présent sur plusieurs plateformes élargit l'audience. Compare-les avec [Airbnb vs Booking.com vs VRBO](/blog/airbnb-vs-booking-vrbo-comparatif-2026/) et synchronise-les avec un [channel manager](/blog/channel-manager-airbnb-comparatif-2026/). Un [site de réservation directe](/blog/site-reservation-directe-airbnb-2026/) capte aussi les voyageurs fidèles sans commission.
+
+## Levier 7 : les types de séjours
+
+Selon ton marché, d'autres publics peuvent remplir les creux : télétravailleurs, séjours professionnels, séjours moyenne durée. Adapter l'équipement (bureau, wifi, cuisine) ouvre de nouvelles réservations.
+
+## Ce qu'il ne faut pas faire
+
+- **Baisser tout le calendrier** d'un coup.
+- **Courir après 100 %** d'occupation : un logement plein tout le temps est presque toujours trop bon marché.
+- **Changer plusieurs choses à la fois**, sans savoir ce qui a fonctionné.
+- **Ignorer la qualité** : une occupation obtenue au détriment des avis se paie ensuite.
+
+## Méthode simple
+
+1. Calcule ton taux et compare-le.
+2. Identifie si le problème vient du prix, de l'annonce ou des restrictions.
+3. Corrige un levier à la fois.
+4. Mesure après 4 à 6 semaines.
+
+Pour une vue d'ensemble, lis [augmenter ses revenus Airbnb](/blog/augmenter-revenus-airbnb-guide-2026/) et utilise la [checklist d'audit](/blog/audit-performance-logement-airbnb-checklist-2026/).
+
+<BlogCTA
+  title="Remplis ton calendrier avec Super BNB Academy"
+  description="Pricing dynamique, annonce optimisée, messagerie automatisée et channel manager : on installe le système avec toi pour améliorer ton remplissage et ton revenu."
+  href="/super-bnb-academy"
+  cta="Découvrir Super BNB Academy"
+  variant="dark"
 />
 
 ---
