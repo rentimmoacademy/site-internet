@@ -2,7 +2,7 @@
 
 > Académie de formation professionnelle à la location courte durée (LCD) en France et au Maroc : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BnB). Index court : https://www.rentimmoacademy.fr/llms.txt
 
-Ce fichier regroupe le texte intégral des 74 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
+Ce fichier regroupe le texte intégral des 79 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
 
 ---
 
@@ -632,6 +632,246 @@ Imprime la checklist ou garde-la sur ton téléphone, et coche chaque ligne. Pou
   href="/formations/cleaning-bnb"
   cta="Découvrir la formation Cleaning BNB"
   variant="green"
+/>
+
+---
+
+# Conciergerie Airbnb à Paris, Lyon, Bordeaux ou Marseille : comment choisir sa ville (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/conciergerie-airbnb-grandes-villes-paris-lyon-bordeaux-marseille-2026/
+Publié le : 2026-10-21
+Catégorie : conciergerie
+
+**Choisir sa ville est l'une des premières décisions d'une conciergerie, et l'une des plus structurantes.** Elle détermine ta demande, tes propriétaires, tes règles et tes coûts. Voici une méthode pour décider, puis un regard qualitatif sur quatre grandes villes françaises.
+
+> Les règles locales et les chiffres de marché évoluent. Vérifie toujours auprès de la mairie et des sources officielles avant de t'engager.
+
+## Les 6 critères de choix
+
+1. **La demande** : touristes, voyageurs d'affaires, étudiants, événements. Est-elle régulière toute l'année ou concentrée sur quelques mois ?
+2. **Les règles locales** : déclaration, numéro d'enregistrement, plafond de nuitées sur les résidences principales, autorisation de changement d'usage, taxe de séjour.
+3. **La concurrence** : combien de conciergeries sont déjà installées, et sur quels segments ?
+4. **Les propriétaires** : y en a-t-il qui veulent déléguer ? Biens de quel type, à quel prix ?
+5. **Ta présence** : peux-tu intervenir rapidement (ménage, urgences, clés) ? C'est la contrainte opérationnelle principale.
+6. **Ta connaissance du terrain** : réseau, contacts, quartiers que tu maîtrises.
+
+Le dernier critère est souvent le plus déterminant : une ville où tu as un réseau vaut mieux qu'une « meilleure » ville où tu ne connais personne.
+
+## Un regard qualitatif sur quatre villes
+
+Ces tendances sont indicatives, à vérifier par ta propre étude.
+
+### Paris
+
+Demande touristique très forte et régulière, mais **règles strictes** et **concurrence importante**. Les propriétaires sont nombreux, avec des attentes élevées. Les règles locales (enregistrement, nombre de nuits, changement d'usage) sont déterminantes : maîtrise-les avant de démarcher. Voir aussi [la sous-location à Paris](/blog/sous-location-paris-rentabilite-2026/).
+
+### Lyon
+
+Mélange de **tourisme, d'affaires et d'événements**, qui lisse la saisonnalité. Ville dynamique pour les séjours professionnels et les week-ends. Voir [la sous-location à Lyon](/blog/sous-location-lyon-rentabilite-2026/).
+
+### Bordeaux
+
+Forte attractivité touristique et de week-end, avec une clientèle qui attend un haut niveau de service. La saisonnalité et les règles locales sont à étudier de près. Voir [la sous-location à Bordeaux](/blog/sous-location-bordeaux-rentabilite-2026/).
+
+### Marseille
+
+Ville en développement touristique, avec une forte saisonnalité estivale et une clientèle variée. Des opportunités existent sur plusieurs quartiers, avec des profils de biens très différents. Voir [la sous-location à Marseille](/blog/sous-location-marseille-rentabilite-2026/).
+
+## Comment faire ton étude de marché
+
+1. **Compte les annonces** de ta zone par quartier et par type de bien.
+2. **Analyse leurs prix et leurs calendriers** sur plusieurs dates pour estimer l'occupation.
+3. **Repère les conciergeries** déjà présentes : leur site, leurs services, leurs avis.
+4. **Identifie les propriétaires** mal servis : annonces peu soignées, mauvais avis, calendriers vides.
+5. **Rencontre des acteurs locaux** : agences, propriétaires, autres hôtes.
+
+## Commencer petit
+
+Concentre-toi sur **un quartier ou une zone** que tu peux couvrir facilement. Une opération compacte permet de réduire les trajets, de répondre plus vite et de bâtir une réputation locale. Étends-toi ensuite, quand tes process (voir [automatiser la gestion de 10 logements](/blog/automatiser-gestion-10-logements-airbnb-2026/)) et ton équipe tiennent.
+
+## Penser aussi aux villes moyennes
+
+Les villes touristiques moyennes, les zones côtières ou de montagne et les villes d'affaires ont moins de concurrence et des propriétaires moins sollicités. La saisonnalité y est plus marquée : prévois une trésorerie en conséquence.
+
+## Et la suite
+
+Une fois la ville choisie, passe à la mise en place : lis [comment ouvrir une conciergerie Airbnb](/blog/comment-ouvrir-conciergerie-airbnb-2026/), puis [comment trouver tes premiers propriétaires](/blog/trouver-proprietaires-conciergerie-airbnb-2026/). Pour comparer avec un autre modèle, voir [conciergerie ou sous-location](/blog/conciergerie-ou-sous-location-que-choisir-2026/).
+
+<BlogCTA
+  title="Lance ta conciergerie dans ta ville"
+  description="Étude de marché, prospection de propriétaires, contrat et organisation : la formation Conciergerie BNB de Rentimmo Academy te guide de la première étude au premier bien."
+  href="/formations/conciergerie-bnb"
+  cta="Découvrir la formation Conciergerie BNB"
+  variant="dark"
+/>
+
+---
+
+# Conciergerie Airbnb ou sous-location professionnelle : quel modèle choisir en 2026 ?
+
+URL : https://www.rentimmoacademy.fr/blog/conciergerie-ou-sous-location-que-choisir-2026/
+Publié le : 2026-10-21
+Catégorie : conciergerie
+
+**Conciergerie et sous-location sont deux façons de vivre de l'Airbnb sans acheter de bien, mais leur logique est très différente.** L'une est un métier de services, l'autre un métier d'opérateur qui porte un risque. Voici la comparaison point par point, puis comment choisir.
+
+## Le principe de chaque modèle
+
+- **Conciergerie** : tu gères un logement pour un propriétaire. Il garde les revenus et te paie une commission ou un forfait. Voir [comment ouvrir une conciergerie](/blog/comment-ouvrir-conciergerie-airbnb-2026/).
+- **Sous-location professionnelle** : tu loues un logement avec l'accord écrit du propriétaire, puis tu le sous-loues en courte durée. Tu encaisses les revenus, tu paies le loyer et tu gardes la différence. Voir [la sous-location professionnelle](/sous-location-professionnelle/).
+
+## La comparaison
+
+### Capital de départ
+
+- **Conciergerie** : faible. Pas de loyer ni d'ameublement à financer pour un bien dont tu n'es pas locataire.
+- **Sous-location** : plus élevé. Dépôt, ameublement, équipement, premiers loyers avant les premières réservations.
+
+### Risque
+
+- **Conciergerie** : limité. Si le bien se remplit mal, c'est surtout le propriétaire qui perd, et toi ta commission.
+- **Sous-location** : plus important. Tu paies le loyer même si les réservations ne suivent pas.
+
+### Revenus
+
+- **Conciergerie** : une commission par bien (voir [combien prendre](/blog/commission-conciergerie-2026/)), prévisible mais modeste par logement.
+- **Sous-location** : une marge potentiellement plus élevée, mais variable.
+
+### Contrôle
+
+- **Conciergerie** : tu dépends des décisions du propriétaire (prix, travaux, équipements).
+- **Sous-location** : tu décides du pricing, de l'aménagement et de la stratégie, dans le cadre de l'accord avec le propriétaire.
+
+### Démarrage
+
+- **Conciergerie** : il faut convaincre des propriétaires, voir [comment les trouver](/blog/trouver-proprietaires-conciergerie-airbnb-2026/).
+- **Sous-location** : il faut convaincre un propriétaire de louer son bien, voir [comment trouver un propriétaire](/blog/trouver-proprio-sous-location/) et le [modèle d'accord](/blog/accord-proprietaire-sous-location-modele-2026/).
+
+### Cadre légal
+
+- **Conciergerie** : attention à la frontière avec les activités réglementées (gestion de loyers). Voir [la conciergerie sans carte G](/blog/conciergerie-airbnb-sans-carte-g-legalite-2026/).
+- **Sous-location** : accord écrit du propriétaire, règles locales et de copropriété. Voir [le contrat de sous-location](/blog/contrat-sous-location-appartement-modele-2026/).
+
+### Évolutivité
+
+Les deux se scalent, mais différemment. En conciergerie, la croissance dépend du nombre de propriétaires convaincus ; en sous-location, de ta trésorerie et de ta capacité à garder un parc rentable. Pour la suite, lis [scaler de 10 à 30 logements](/blog/scaler-10-a-30-logements-airbnb-equipe-process-2026/).
+
+## Comment choisir
+
+Pose-toi trois questions :
+
+1. **Quel capital et quelle réserve de trésorerie ai-je ?** Peu de capital oriente vers la conciergerie.
+2. **Quel niveau de risque suis-je prêt à porter ?** Si tu veux limiter le risque, la conciergerie est plus sûre.
+3. **Qu'est-ce que je sais faire le mieux ?** Convaincre des propriétaires et rendre un service irréprochable (conciergerie), ou négocier, aménager et optimiser un bien (sous-location) ?
+
+## Les combiner
+
+Beaucoup d'opérateurs commencent par la conciergerie, pour apprendre le métier sans risque, puis ajoutent de la sous-location quand leur trésorerie le permet. Les process étant les mêmes, la transition est naturelle. Le sens inverse existe aussi : un sous-loueur qui prend des biens en gestion pour des propriétaires.
+
+## Les erreurs à éviter
+
+- **Choisir pour la marge seule** sans regarder le risque.
+- **Se lancer sans trésorerie** en sous-location.
+- **Ignorer le cadre légal** de l'un ou l'autre.
+- **Tout lancer en même temps** sans process solides.
+
+Pour comprendre les erreurs fréquentes en sous-location, lis [les erreurs de débutant](/blog/erreurs-debutant-sous-location-2026/).
+
+<BlogCTA
+  title="Choisis ton modèle avec Rentimmo Academy"
+  description="Conciergerie ou sous-location : Rentimmo Academy te forme aux deux modèles, avec les contrats, les process et la méthode pour décrocher tes premiers biens."
+  href="/formations/conciergerie-bnb"
+  cta="Découvrir la formation Conciergerie BNB"
+  variant="dark"
+/>
+
+---
+
+# Contrat de conciergerie Airbnb : le modèle de contrat de prestation et les clauses clés (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/contrat-conciergerie-airbnb-modele-2026/
+Publié le : 2026-10-21
+Catégorie : conciergerie
+
+> Cet article est une aide à la rédaction, pas un conseil juridique. Fais valider ton contrat par un avocat ou un juriste avant de l'utiliser.
+
+**Un contrat de conciergerie écrit protège les deux parties : il dit qui fait quoi, pour quel prix et ce qui se passe en cas de problème.** Sans lui, chaque désaccord (dégât, annulation, facture) se règle à l'amiable ou pas du tout. Voici la structure d'un contrat de prestation et les clauses à ne pas oublier.
+
+## D'abord : quel type de contrat ?
+
+La conciergerie Airbnb se situe entre deux régimes. Si tu assures des **prestations matérielles** (ménage, accueil des voyageurs, communication, petite maintenance), un **contrat de prestation de services** convient. Si tu encaisses les loyers pour les reverser, rédiges des baux ou recherches des locataires au nom du propriétaire, tu entres dans un cadre réglementé, qui peut exiger une carte professionnelle. Lis notre article sur la [conciergerie sans carte G](/blog/conciergerie-airbnb-sans-carte-g-legalite-2026/) avant de choisir ton modèle, et celui sur le [statut juridique](/blog/statut-juridique-conciergerie-airbnb-sasu-eurl-ae/).
+
+## Les clauses indispensables
+
+### 1. Les parties et le bien
+
+Identité du propriétaire et de la conciergerie, adresse du bien, nature du logement, durée de l'accord. Annexe : l'inventaire du mobilier et du linge.
+
+### 2. Les services inclus et exclus
+
+Liste précise de ce que tu fais :
+
+- création et gestion de l'annonce
+- communication avec les voyageurs
+- accueil et remise des clés (ou accès autonome)
+- ménage et linge à chaque rotation
+- maintenance courante et gestion des urgences
+
+Et ce qui est **exclu** : travaux, gros entretien, déclaration fiscale du propriétaire, litiges avec la copropriété. Ce qui n'est pas écrit sera demandé.
+
+### 3. La rémunération
+
+Commission en pourcentage, forfait ou modèle hybride : voir [combien prendre comme commission](/blog/commission-conciergerie-2026/). Précise :
+
+- la **base de calcul** (revenus bruts, nets de frais de plateforme ?)
+- la **date** et le **mode de paiement**
+- ce qui est **facturé en plus** (ménage, linge, consommables, interventions)
+
+### 4. La durée et la résiliation
+
+- période d'essai éventuelle
+- durée initiale et reconduction
+- **préavis** de résiliation pour chaque partie
+- sort des réservations déjà confirmées après la résiliation
+
+### 5. Les dégâts et les urgences
+
+Définis un **seuil de dépense** au-delà duquel tu dois demander l'accord du propriétaire, et la marche à suivre pour un dégât causé par un voyageur : photos, déclaration à la plateforme, délais. Prévois qui avance les frais.
+
+### 6. La responsabilité et les assurances
+
+Chaque partie doit indiquer ses assurances : responsabilité civile professionnelle de la conciergerie, assurance du propriétaire adaptée à la location courte durée. Précise les limites de ta responsabilité. Une assurance habitation classique ne couvre pas toujours la location touristique : le propriétaire doit vérifier.
+
+### 7. Les obligations réglementaires
+
+Rappelle qui s'occupe des démarches liées à la location (déclaration, numéro d'enregistrement, taxe de séjour, autorisation de la copropriété ou du bailleur, quand elles sont nécessaires). Ces règles varient selon la ville : vérifie auprès de la mairie.
+
+### 8. La confidentialité et les données
+
+Clauses sur l'usage des informations du propriétaire et des voyageurs, en respectant les règles de protection des données.
+
+### 9. Le règlement des litiges
+
+Médiation en premier, puis juridiction compétente. Garde cette clause simple.
+
+## Les pièges fréquents
+
+- **Un contrat trop vague** sur les services : le propriétaire attend plus que ce que tu fais.
+- **Pas de seuil de dépense** : désaccords sur les interventions.
+- **Aucune clause de sortie claire** : tu restes engagé sur un bien qui ne marche pas.
+- **Mélanger prestation et mandat** sans l'avoir vérifié.
+- **Oublier l'assurance** : un sinistre sans couverture peut te coûter cher.
+
+## Comment l'utiliser dans ta prospection
+
+Montre un exemple de contrat lors du premier rendez-vous avec un propriétaire. C'est un signe de professionnalisme, et il rassure. Pour savoir où trouver tes propriétaires, lis [comment trouver ses premiers propriétaires](/blog/trouver-proprietaires-conciergerie-airbnb-2026/), et pour la vue d'ensemble, [comment ouvrir une conciergerie Airbnb](/blog/comment-ouvrir-conciergerie-airbnb-2026/).
+
+<BlogCTA
+  title="Structure ta conciergerie avec Rentimmo Academy"
+  description="Contrat type, grille de commission, méthode de prospection de propriétaires et organisation opérationnelle : la formation Conciergerie BNB te donne le cadre complet."
+  href="/formations/conciergerie-bnb"
+  cta="Découvrir la formation Conciergerie BNB"
+  variant="dark"
 />
 
 ---
@@ -1311,6 +1551,87 @@ Pour passer de 10 à 30 logements : automatiser, écrire les process, recruter d
   description="Automatisation, process, outils et accompagnement : Super BNB Academy t'aide à installer le système qui permet de gérer plus de logements sans y passer tes journées."
   href="/super-bnb-academy"
   cta="Découvrir Super BNB Academy"
+  variant="dark"
+/>
+
+---
+
+# Estimer les revenus Airbnb d'un bien pour un propriétaire : la simulation à présenter (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/simulation-revenus-airbnb-proprietaire-conciergerie-2026/
+Publié le : 2026-10-21
+Catégorie : conciergerie
+
+**Une simulation de revenus bien faite vaut plus qu'une longue présentation.** Elle montre au propriétaire ce que son bien peut rapporter, comment tu l'as calculé et ce qui change avec toi. Voici la méthode, avec un exemple chiffré et les erreurs à éviter.
+
+## Pourquoi une simulation
+
+Un propriétaire qui hésite compare deux choses : ce qu'il gagne aujourd'hui (location longue durée ou bien vide) et ce qu'il pourrait gagner. Sans chiffres, tu parles dans le vide. Avec une simulation claire, la discussion porte sur des hypothèses concrètes. Elle sert aussi de base pour [trouver tes premiers propriétaires](/blog/trouver-proprietaires-conciergerie-airbnb-2026/).
+
+## Les 5 étapes
+
+### 1. Définir le bien
+
+Type (studio, T2, T3), quartier, capacité d'accueil, équipements, état, atouts (balcon, vue, parking, proximité transport).
+
+### 2. Estimer le prix par nuit
+
+Repère 5 à 10 logements **comparables** dans le secteur : même taille, mêmes équipements, notes similaires. Regarde leurs prix sur plusieurs dates (semaine, week-end, saison), pas seulement le prix affiché. Les outils d'analyse du [guide analytics](/blog/meilleurs-outils-analytics-airbnb-2026/) aident à objectiver.
+
+### 3. Estimer l'occupation
+
+Fixe trois hypothèses d'occupation (prudente, réaliste, favorable) selon la saisonnalité du secteur. Ne reprends pas un taux « moyen » sans le justifier.
+
+### 4. Déduire les coûts
+
+- commission de la **plateforme**
+- **ménage et linge** par séjour
+- **charges** : électricité, eau, internet, consommables
+- **ta commission**, voir [combien prendre comme commission](/blog/commission-conciergerie-2026/)
+- **taxe de séjour** et obligations locales, selon la ville
+
+### 5. Comparer avec l'alternative
+
+Compare avec le loyer qu'il percevrait en location longue durée, charges comprises. Précise que la courte durée varie selon la saison et demande une gestion active.
+
+## Exemple illustratif
+
+Un T2 en centre-ville. Hypothèses prudentes, volontairement simples :
+
+- prix moyen : 85 € par nuit
+- occupation : 55 %, soit environ 16 nuits par mois
+- revenu brut : 85 × 16 = **1 360 €**
+- frais de plateforme, ménage, charges et commission : à retirer selon les cas
+
+Avec une commission de 20 % (270 € environ), des frais de ménage et de charges, le revenu net du propriétaire se compare ensuite avec son loyer en location classique. C'est un exemple pour illustrer la méthode, pas une promesse : les chiffres réels dépendent du bien, de la ville et de la saison.
+
+## Présenter trois scénarios
+
+Trois cas à présenter côte à côte :
+
+- **Prudent** : occupation basse, prix modéré. Le revenu minimum raisonnable.
+- **Réaliste** : occupation moyenne du secteur.
+- **Favorable** : bonne saison, bons avis, pricing dynamique bien réglé.
+
+Mets en avant le scénario prudent : si le propriétaire est convaincu avec lui, il le sera toujours ensuite.
+
+## Les erreurs à éviter
+
+- **Promettre un revenu** : les revenus varient, tu ne peux pas les garantir.
+- **Oublier les coûts** : ménage, linge, consommables, taxe de séjour.
+- **Utiliser un taux d'occupation trop optimiste**.
+- **Négliger les règles locales** : certaines villes limitent le nombre de nuits ou exigent une déclaration. Vérifie auprès de la mairie.
+- **Ne pas citer tes sources** : un chiffre sans origine inspire la méfiance.
+
+## Ce que tu apportes en plus
+
+La simulation montre le revenu possible. Ton argument est ce qui le rend atteignable : annonce optimisée, [pricing dynamique](/blog/revenue-management-airbnb-prix-optimiser-2026/), messagerie réactive, ménage constant. Pour structurer le reste, lis [comment ouvrir une conciergerie Airbnb](/blog/comment-ouvrir-conciergerie-airbnb-2026/) et [combien gagne une conciergerie](/blog/combien-gagne-conciergerie-airbnb-chiffres-reels-2026/).
+
+<BlogCTA
+  title="Apprends à chiffrer et vendre ta conciergerie"
+  description="Modèle de simulation, grille de commission et scripts de rendez-vous propriétaires : la formation Conciergerie BNB de Rentimmo Academy te donne les outils."
+  href="/formations/conciergerie-bnb"
+  cta="Découvrir la formation Conciergerie BNB"
   variant="dark"
 />
 
@@ -3211,6 +3532,84 @@ Notre article [lancer et structurer un business de cleaning BNB](/blog/cleaning-
   href="/formations/cleaning-bnb"
   cta="Découvrir la formation Cleaning BNB"
   variant="green"
+/>
+
+---
+
+# Comment trouver ses premiers propriétaires pour une conciergerie Airbnb (méthode 2026)
+
+URL : https://www.rentimmoacademy.fr/blog/trouver-proprietaires-conciergerie-airbnb-2026/
+Publié le : 2026-10-21
+Catégorie : conciergerie
+
+**Trouver les propriétaires est le vrai travail d'une conciergerie.** La gestion peut s'apprendre, mais sans biens à gérer, il n'y a pas d'activité. Voici où chercher, quoi dire et comment transformer un premier contact en contrat.
+
+## Ce que cherche un propriétaire
+
+Un propriétaire n'achète pas « une conciergerie ». Il veut résoudre l'un de ces problèmes :
+
+- un bien **vide ou mal loué** qui rapporte moins que prévu
+- **pas de temps** pour gérer voyageurs, ménage, urgences
+- peur des **dégâts** ou des mauvaises surprises
+- **distance** : il n'habite pas sur place
+
+Ton message doit parler de l'un de ces points, pas de toi.
+
+## Où trouver tes premiers propriétaires
+
+1. **Ton réseau** : famille, amis, collègues, voisins. C'est le canal le plus rapide, car la confiance existe déjà.
+2. **Les agences immobilières** : beaucoup ont des propriétaires qui ne gèrent pas de location courte durée. Propose un partenariat avec une commission d'apport.
+3. **Les hôtes qui gèrent mal** : annonces avec peu de photos, mauvaises notes ou calendrier vide. Ce sont des propriétaires qui ont un besoin visible.
+4. **Les groupes locaux** : groupes Facebook de propriétaires, associations, clubs d'investisseurs, réseaux professionnels.
+5. **Le bouche-à-oreille** : chaque propriétaire satisfait peut t'en présenter un autre.
+6. **Un premier bien de démonstration** : gère ton propre logement ou celui d'un proche pour créer un dossier de résultats.
+
+Le premier canal est toujours ton réseau. Les autres arrivent quand tu as des références.
+
+## Préparer ton dossier avant de démarcher
+
+Avant de contacter qui que ce soit, prépare :
+
+- une **présentation courte** de tes services
+- une **simulation de revenus** pour un bien type (voir [estimer les revenus d'un bien pour un propriétaire](/blog/simulation-revenus-airbnb-proprietaire-conciergerie-2026/))
+- un **modèle de contrat** (voir [le contrat de conciergerie](/blog/contrat-conciergerie-airbnb-modele-2026/))
+- des **exemples** : photos, avis, rapports de ménage
+
+## Le message qui obtient un rendez-vous
+
+> Bonjour [prénom], je gère des logements en location courte durée à [ville]. J'ai vu que votre appartement à [quartier] pourrait être très demandé en location touristique. Je m'occupe de tout : annonce, voyageurs, ménage, urgences, et je vous envoie un point mensuel. Seriez-vous ouvert à un échange de 15 minutes pour que je vous présente une estimation de revenus ?
+
+Ce qui fonctionne : un bénéfice clair, une demande courte, une proposition concrète (estimation). Évite de parler de pourcentage dans le premier message.
+
+## Le rendez-vous : trois étapes
+
+1. **Écouter** : sa situation, ses craintes, ses objectifs.
+2. **Présenter** : une simulation de revenus adaptée à son bien, et ce que tu prends en charge.
+3. **Proposer** : une période d'essai ou un contrat avec préavis raisonnable.
+
+Le plus important est de montrer que tu as compris son problème avant de présenter ton offre.
+
+## Répondre aux objections
+
+- **« C'est trop cher. »** → Compare ce qu'il gagne avec et sans toi (temps, avis, occupation). Détaille ce qui est inclus. Voir [la commission d'une conciergerie](/blog/commission-conciergerie-2026/).
+- **« J'ai peur des dégâts. »** → Présente tes process : vérification des voyageurs, état des lieux, photos, assurance.
+- **« Je préfère gérer moi-même. »** → Propose-lui de t'appeler quand il sera saturé, et reste en contact.
+- **« Je ne connais pas votre entreprise. »** → Montre tes références, ton contrat et propose un essai.
+
+## Les points légaux à ne pas oublier
+
+Ce que tu as le droit de faire dépend de ton statut : prestations matérielles ou gestion de loyers. Avant de promettre quoi que ce soit, lis [la conciergerie sans carte G](/blog/conciergerie-airbnb-sans-carte-g-legalite-2026/) et vérifie les règles locales de la ville.
+
+## Après la signature
+
+Un propriétaire satisfait recommande. Envoie un **point mensuel** simple (revenus, taux d'occupation, avis, incidents) et réponds vite. Pour l'organisation générale, voir [comment ouvrir une conciergerie Airbnb](/blog/comment-ouvrir-conciergerie-airbnb-2026/) et [combien gagne une conciergerie](/blog/combien-gagne-conciergerie-airbnb-chiffres-reels-2026/).
+
+<BlogCTA
+  title="Signe tes premiers propriétaires avec Rentimmo Academy"
+  description="Scripts de prospection, simulation de revenus, contrat type et méthode de rendez-vous : la formation Conciergerie BNB te donne la méthode pour démarrer."
+  href="/formations/conciergerie-bnb"
+  cta="Découvrir la formation Conciergerie BNB"
+  variant="dark"
 />
 
 ---
