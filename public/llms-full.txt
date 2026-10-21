@@ -2,7 +2,7 @@
 
 > Académie de formation professionnelle à la location courte durée (LCD) en France et au Maroc : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BnB). Index court : https://www.rentimmoacademy.fr/llms.txt
 
-Ce fichier regroupe le texte intégral des 59 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
+Ce fichier regroupe le texte intégral des 62 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
 
 ---
 
@@ -223,6 +223,84 @@ Tu veux qu'on travaille ensemble ta stratégie de prospection propriétaires ? [
 
 ---
 
+# Devenir auto-entrepreneur dans le nettoyage : statut, tarifs et premiers clients (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/auto-entrepreneur-nettoyage-menage-airbnb-2026/
+Publié le : 2026-10-21
+Catégorie : cleaning
+
+**Devenir auto-entrepreneur dans le nettoyage prend quelques jours de démarches et peu d'argent.** Le vrai travail, c'est ensuite de fixer tes tarifs et de trouver des clients qui reviennent. Voici le parcours complet, avec l'exemple du ménage de logements Airbnb.
+
+> Les démarches, plafonds et taux évoluent. Vérifie-les sur les sites officiels (guichet unique, URSSAF) ou auprès d'un expert-comptable avant de te lancer.
+
+## 1. Créer ton statut de micro-entrepreneur
+
+La création se fait en ligne, sans frais. Tu déclares ton activité, tu choisis le régime micro-entreprise et un code d'activité correspondant au nettoyage de logements. Tu obtiens un numéro **SIRET** qui te permet de facturer.
+
+Le régime micro-entreprise te permet de payer des cotisations proportionnelles à ton chiffre d'affaires : si tu ne factures rien, tu ne paies rien. Il est soumis à un plafond de chiffre d'affaires et à des obligations simples (livre des recettes, déclaration régulière).
+
+Quand ton activité grandit, tu peux passer en société (EURL ou SASU), notamment si tu veux recruter une équipe.
+
+## 2. T'assurer
+
+Une **assurance responsabilité civile professionnelle** est vivement recommandée. Elle te couvre en cas de dommage chez un client (objet cassé, dégât des eaux). Beaucoup de conciergeries demandent une attestation avant de te confier leurs logements. C'est aussi un argument de crédibilité.
+
+## 3. Calculer tes tarifs
+
+Un tarif se construit, il ne se devine pas :
+
+1. **Mesure le temps réel** que prend un studio, un T2, un T3 (trajet compris).
+2. **Ajoute le coût des produits**, du linge si tu le fournis, et de ton véhicule.
+3. **Applique le revenu horaire** que tu vises après cotisations.
+4. **Fixe un tarif par logement**, pas à l'heure.
+
+Pour le ménage de rotation Airbnb, les ordres de grandeur en 2026 sont : studio 30 à 50 €, T2 50 à 70 €, T3 70 à 90 €, T4 et plus 90 à 120 €. Facturer par logement te récompense quand tu deviens plus rapide.
+
+Pour estimer ce que ça peut représenter par mois, lis [combien gagne un cleaner Airbnb](/blog/combien-gagne-cleaner-airbnb-2026/).
+
+## 4. Préparer tes documents
+
+Avant ton premier client, prépare :
+
+- un **modèle de devis** ou une grille tarifaire
+- des **conditions écrites** : délais, annulation, paiement, gestion des clés
+- une **checklist de ménage** par type de logement
+- des **photos avant et après** à envoyer à chaque intervention
+
+Ces documents rassurent les conciergeries et réduisent les litiges. Pour les standards à appliquer, vois notre guide [ménage Airbnb : tout savoir en 2026](/blog/menage-airbnb-tout-savoir-2026/).
+
+## 5. Décrocher tes premiers clients
+
+Cible d'abord les **conciergeries Airbnb** de ta ville : elles gèrent plusieurs logements et ont besoin d'un prestataire fiable toute l'année.
+
+- **LinkedIn** : un message court avec ton offre, ta zone et un exemple de rapport photo.
+- **Google Maps** : liste les conciergeries de ta zone et contacte-les par e-mail.
+- **Groupes Facebook d'hôtes** : réponds aux demandes de recommandation avec une offre claire.
+- **Un essai gratuit ou à tarif réduit** sur un logement : c'est le moyen le plus rapide de faire tomber les réticences.
+
+Avec une prospection régulière, 2 à 3 conciergeries signées en 6 semaines est un objectif réaliste. Notre article [lancer et structurer un business de cleaning BNB](/blog/cleaning-bnb-lancer-structurer-business/) détaille les scripts et la méthode.
+
+## 6. Éviter les pièges du démarrage
+
+- **Sous-estimer le temps de trajet** : il fait baisser ton revenu réel.
+- **Travailler sans conditions écrites** : un litige sur un paiement ou un dégât sans trace est difficile à gagner.
+- **Dépendre d'un seul client** : vise au moins 3 clients pour sécuriser ton chiffre d'affaires.
+- **Ne pas réviser tes tarifs** : tes coûts augmentent, tes prix aussi doivent suivre.
+
+## Et ensuite ?
+
+Quand tu es à l'aise avec 3 ou 4 clients, tu peux recruter des cleaners, ajouter des services (linge, remise en état) et structurer une vraie équipe. Le métier est présenté en détail sur la page [ménage Airbnb professionnel](/menage-airbnb-professionnel/).
+
+<BlogCTA
+  title="Passe de cleaner solo à chef d'équipe avec la Cleaning BNB Academy"
+  description="Tarifs, devis, protocoles qualité et prospection de conciergeries : la formation Cleaning BNB de Rentimmo Academy te donne la méthode complète pour lancer ton activité."
+  href="/formations/cleaning-bnb"
+  cta="Découvrir la formation Cleaning BNB"
+  variant="green"
+/>
+
+---
+
 # Contrat de sous-location : modèle et clauses à intégrer en 2026
 
 URL : https://www.rentimmoacademy.fr/blog/contrat-sous-location-appartement-modele-2026/
@@ -353,6 +431,81 @@ Un propriétaire rassuré signe plus vite. Présente-toi comme un professionnel 
 
 ---
 
+# Créer une entreprise de nettoyage en 2026 : par où commencer (et quel marché viser)
+
+URL : https://www.rentimmoacademy.fr/blog/creer-entreprise-nettoyage-menage-airbnb-2026/
+Publié le : 2026-10-21
+Catégorie : cleaning
+
+**Pour créer une entreprise de nettoyage, tu n'as pas besoin de diplôme, de local ni d'un gros budget.** Tu as besoin d'un statut, d'un kit de matériel et surtout d'un marché où les clients reviennent chaque semaine. Voici les étapes dans l'ordre, et le marché que je te conseille de viser en priorité.
+
+> Cet article est informatif. Pour le statut et la fiscalité, vérifie les chiffres en vigueur sur les sites officiels ou auprès d'un expert-comptable.
+
+## Étape 1 : choisir ton marché avant ton statut
+
+Beaucoup de débutants créent leur entreprise, puis cherchent des clients. L'ordre inverse est plus sûr. Il y a trois grands marchés pour le ménage :
+
+- **Les particuliers** (ménage à domicile) : demande régulière, mais clients volatils et prix tirés par les plateformes.
+- **Les entreprises** (bureaux, copropriétés) : contrats plus stables, mais appels d'offres, horaires décalés et matériel plus lourd.
+- **Les logements en location courte durée** : un ménage à chaque départ de voyageur, un tarif par rotation, et des clients concentrés (conciergeries et hôtes).
+
+Pour démarrer de zéro, le troisième est le plus simple : un seul client signé peut représenter plusieurs dizaines d'interventions par mois. Le détail du métier est dans notre guide [ménage Airbnb : tout savoir en 2026](/blog/menage-airbnb-tout-savoir-2026/).
+
+## Étape 2 : le statut
+
+Pour démarrer, la **micro-entreprise** est le choix le plus courant : création en ligne, gratuite, charges calculées sur ton chiffre d'affaires. Tu choisis un code d'activité cohérent avec ton métier (nettoyage courant des bâtiments, par exemple). Quand ton chiffre d'affaires grandit, tu peux passer en société (EURL, SASU).
+
+Les plafonds et les taux de cotisation changent régulièrement : vérifie-les à la source avant de te lancer.
+
+## Étape 3 : le matériel
+
+Un démarrage sérieux coûte entre **800 et 1 500 €** :
+
+- un aspirateur professionnel
+- serpillières, microfibres, raclette
+- un kit de produits adaptés (sols, sanitaires, vitres, dégraissant)
+- un jeu de linge de rechange (draps, serviettes) si tu fournis le linge
+- un véhicule avec un coffre assez grand
+
+Ces montants sont des ordres de grandeur, ils varient selon ton équipement de départ. Le matériel se rentabilise en quelques semaines d'activité régulière.
+
+## Étape 4 : fixer tes tarifs
+
+Pour le ménage de rotation Airbnb, tu factures **par logement et par passage**, pas à l'heure. Ordres de grandeur en 2026 : studio 30 à 50 €, T2 50 à 70 €, T3 70 à 90 €, T4 et plus 90 à 120 €. Le linge, le déplacement et le lavage éventuel se facturent en plus ou se négocient dans un forfait.
+
+Avec 4 interventions par jour ouvré à 60 € de moyenne, on arrive à environ 6 000 € de chiffre d'affaires mensuel brut. C'est un plafond pour une personne seule, détaillé dans notre article [combien gagne un cleaner Airbnb](/blog/combien-gagne-cleaner-airbnb-2026/).
+
+## Étape 5 : trouver tes premiers clients
+
+Tes meilleurs clients sont les **conciergeries Airbnb**. Elles gèrent entre 5 et 30 logements et ont besoin d'un prestataire fiable toute l'année. Trois canaux de prospection :
+
+1. **LinkedIn** : cherche « conciergerie Airbnb [ta ville] », envoie un message court avec ton offre.
+2. **Google Maps** : liste les conciergeries de ta zone et contacte-les par e-mail.
+3. **Groupes Facebook d'hôtes** de ta ville : réponds aux demandes de recommandation.
+
+Ton message doit être concret : zone couverte, tarif par rotation, photos avant et après, délai de réaction. Avec une offre claire, 2 à 3 conciergeries signées en 6 semaines est un objectif réaliste. Notre article [lancer et structurer un business de cleaning BNB](/blog/cleaning-bnb-lancer-structurer-business/) détaille la méthode pas à pas.
+
+## Les erreurs de débutant
+
+- **Facturer à l'heure** : tu te pénalises quand tu deviens rapide.
+- **Ne pas fixer de standards écrits** : sans checklist, la qualité varie et le client part.
+- **Accepter tous les clients** : une mauvaise zone ou un client qui paie en retard coûte plus qu'il ne rapporte.
+- **Rester seul trop longtemps** : au-delà d'un certain volume, recruter permet de croître sans y passer tes journées.
+
+## Passer de l'idée à une activité qui tourne
+
+Si tu veux un cadre complet (protocoles, tarifs, scripts de prospection, contrats), la page [ménage Airbnb professionnel](/menage-airbnb-professionnel/) présente le métier, et la formation Cleaning BNB Academy de Rentimmo Academy te donne la méthode pour trouver tes premiers clients.
+
+<BlogCTA
+  title="Lance ton activité de ménage Airbnb avec une méthode éprouvée"
+  description="La Cleaning BNB Academy de Rentimmo Academy te donne les protocoles, la grille de tarifs et la méthode de prospection pour signer tes premières conciergeries."
+  href="/formations/cleaning-bnb"
+  cta="Découvrir la Cleaning BNB Academy"
+  variant="green"
+/>
+
+---
+
 # Sous-location professionnelle : les 7 erreurs qui font perdre 80% des débutants
 
 URL : https://www.rentimmoacademy.fr/blog/erreurs-debutant-sous-location-2026/
@@ -462,6 +615,70 @@ Au démarrage, beaucoup se disent : "je fais les ménages moi-même pour garder 
 Tu veux éviter ces erreurs sur ton projet ? [Réserve un appel stratégique offert](https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true) — on regarde ensemble ton plan et on identifie les points de risque.
 
 *Basé sur l'expérience terrain de la communauté Rentimmo Academy et des retours d'apprenants.*
+
+---
+
+# Idée de business ménage rentable : pourquoi le ménage Airbnb bat le nettoyage classique
+
+URL : https://www.rentimmoacademy.fr/blog/idee-business-menage-rentable-menage-airbnb-2026/
+Publié le : 2026-10-21
+Catégorie : cleaning
+
+**Les business de nettoyage n'ont pas tous la même rentabilité.** La différence se joue sur un point : est-ce que tes clients reviennent ? Un nettoyage de voiture ou de canapé se vend une fois. Un ménage Airbnb se vend à chaque départ de voyageur. Voici le comparatif.
+
+## Les 4 idées de business de nettoyage les plus courantes
+
+**1. Le nettoyage de voiture (lavage à domicile, detailing).** Demande importante, mais ponctuelle : un client revient quelques fois par an. Tu dois donc trouver sans cesse de nouveaux clients, souvent via de la publicité locale. Le matériel et les produits professionnels coûtent cher.
+
+**2. Le nettoyage de canapés, tapis, matelas.** Même schéma : intervention technique, bien payée, mais peu fréquente. Le client n'a pas besoin de toi tous les mois.
+
+**3. Le ménage à domicile pour particuliers.** Demande régulière, mais clients exigeants, prix tirés par les plateformes et annulations fréquentes.
+
+**4. Le ménage de logements en location courte durée (Airbnb, Booking).** Un logement se loue plusieurs fois par mois, chaque départ déclenche un ménage. Un seul client (une conciergerie) peut te donner plusieurs dizaines d'interventions mensuelles.
+
+## Le critère qui change tout : la récurrence
+
+Quand tu lances une activité de services, ton coût principal n'est pas le matériel : c'est **le temps passé à trouver des clients**. Plus ton activité repose sur des clients qui reviennent, moins tu perds de temps en prospection.
+
+C'est ce qui rend le ménage Airbnb intéressant : tes clients sont des hôtes et des conciergeries qui ont **besoin de toi toute l'année**, à chaque rotation. Tu signes un client, tu as du travail pour des mois.
+
+## Ce que ça rapporte, en ordre de grandeur
+
+En 2026, les tarifs de rotation tournent autour de 30 à 50 € pour un studio, 50 à 70 € pour un T2, 70 à 90 € pour un T3. Avec 4 interventions par jour ouvré à 60 € de moyenne, on atteint environ 6 000 € de chiffre d'affaires mensuel brut pour une personne seule.
+
+Ce n'est pas un chiffre garanti : il dépend de ta zone, de ton nombre de clients et du temps de trajet. Le détail est dans notre article [combien gagne un cleaner Airbnb en 2026](/blog/combien-gagne-cleaner-airbnb-2026/).
+
+## Un marché porté par la demande
+
+Les conciergeries et les hôtes manquent de prestataires de ménage fiables. Un logement sale à l'arrivée d'un voyageur, c'est un avis négatif et une baisse de classement. Les hôtes sont donc prêts à payer pour un prestataire sérieux, qui respecte les horaires et envoie des photos de contrôle.
+
+C'est aussi un marché où **la qualité fidélise** : si tu es fiable, on ne te remplace pas pour 5 € de moins.
+
+## Comment faire monter ton revenu avec le même client
+
+Une fois un client signé, tu peux augmenter ton revenu sans chercher de nouveaux clients :
+
+- le **lavage et le repassage du linge**
+- le **nettoyage de fin de séjour** approfondi
+- la **remise en état** après un séjour difficile
+- le **nettoyage des vitres** et des extérieurs
+- le **réassort des consommables** (savon, papier, café)
+
+Tu peux ensuite recruter des cleaners pour traiter plus de logements, et passer de prestataire à responsable d'équipe. La structuration est détaillée dans [lancer et structurer un business de cleaning BNB](/blog/cleaning-bnb-lancer-structurer-business/).
+
+## Alors, quelle idée choisir ?
+
+Si tu veux un business de nettoyage ponctuel et à fort ticket, le nettoyage de voitures ou de canapés peut marcher, à condition d'avoir un budget de publicité. Si tu veux **un revenu récurrent avec peu de prospection**, le ménage de logements Airbnb est le plus solide, surtout si tu démarres sans capital.
+
+Pour voir le métier de l'intérieur, la page [ménage Airbnb professionnel](/menage-airbnb-professionnel/) donne les tarifs, le statut et la méthode.
+
+<BlogCTA
+  title="Transforme le ménage en vrai business avec la Cleaning BNB Academy"
+  description="Protocoles, tarifs, prospection de conciergeries et recrutement : la formation Cleaning BNB de Rentimmo Academy te donne la méthode complète."
+  href="/formations/cleaning-bnb"
+  cta="Découvrir la formation Cleaning BNB"
+  variant="green"
+/>
 
 ---
 
