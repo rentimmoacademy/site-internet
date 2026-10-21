@@ -2,7 +2,239 @@
 
 > Académie de formation professionnelle à la location courte durée (LCD) en France et au Maroc : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BnB). Index court : https://www.rentimmoacademy.fr/llms.txt
 
-Ce fichier regroupe le texte intégral des 58 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
+Ce fichier regroupe le texte intégral des 59 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
+
+---
+
+# Contrat de sous-location : modèle et clauses à intégrer en 2026
+
+URL : https://www.rentimmoacademy.fr/blog/contrat-sous-location-appartement-modele-2026/
+Publié le : 2026-10-21
+Catégorie : sous-location
+
+**Le contrat de sous-location n'est pas un seul document, ce sont trois.** Beaucoup de débutants en oublient un et se retrouvent sans protection le jour où un problème survient. Voici lesquels, dans quel ordre les signer, et un modèle de contrat de sous-location avec les clauses qui comptent vraiment.
+
+> Cet article est informatif. Il ne constitue pas un conseil juridique : fais valider tes documents par un professionnel du droit avant de les utiliser sur un montage important.
+
+## Les 3 documents d'une sous-location propre
+
+**1. L'accord écrit du propriétaire (toi ↔ propriétaire).** C'est le document n°1, celui sans lequel rien d'autre n'a de valeur. L'article 8 de la loi du 6 juillet 1989 impose l'accord écrit du bailleur pour toute sous-location d'un logement en résidence principale. Le modèle de clause, la lettre recommandée et l'e-mail type sont détaillés dans notre guide : [accord propriétaire sous-location, modèle 2026](/blog/accord-proprietaire-sous-location-modele-2026/).
+
+**2. Le contrat de sous-location (toi ↔ sous-locataire).** Il s'applique quand quelqu'un occupe le logement de manière durable : colocataire, salarié en mission, étudiant. C'est le modèle détaillé plus bas.
+
+**3. Les conditions de séjour (toi ↔ voyageur).** Si tu fais de la location courte durée, tes voyageurs ne signent pas de contrat de sous-location. Ils acceptent les conditions de la plateforme (Airbnb, Booking) ou un contrat de location saisonnière si tu prends des réservations en direct.
+
+La logique à retenir : **le document 1 doit toujours couvrir l'activité que tu fais dans les documents 2 et 3.** Si ton accord propriétaire parle de « sous-location » sans mentionner la location touristique, tu n'es pas couvert pour Airbnb.
+
+## Les clauses indispensables du contrat de sous-location
+
+Avant le modèle, les clauses à ne jamais oublier :
+
+- **Identité des parties** : toi (ou ta société) en tant que locataire principal, et le sous-locataire.
+- **Désignation précise du logement** : adresse, étage, surface, équipements fournis, annexes (cave, parking).
+- **Référence à l'accord du propriétaire** : date de l'accord, et mention que le sous-locataire a reçu une copie de l'autorisation et du bail principal, ce que la loi impose.
+- **Durée et conditions de renouvellement** : jamais plus longue que ton bail principal.
+- **Loyer et charges** : montant, date, mode de paiement, révision éventuelle. Pour une sous-location classique, le loyer au m² ne doit pas dépasser celui de ton bail.
+- **Dépôt de garantie** : montant et conditions de restitution.
+- **Usage des lieux** : résidence du sous-locataire, interdiction de re-sous-louer, respect du règlement de copropriété.
+- **Assurance** : le sous-locataire justifie d'une assurance habitation (responsabilité civile et dégâts des eaux).
+- **État des lieux** d'entrée et de sortie, signés par les deux parties.
+- **Résiliation** : cas de rupture, préavis, conséquence automatique si ton bail principal prend fin.
+
+## Modèle de contrat de sous-location
+
+À adapter à ta situation. Les éléments entre crochets sont à remplacer.
+
+```text
+CONTRAT DE SOUS-LOCATION D'UN LOGEMENT
+
+ENTRE LES SOUSSIGNÉS
+[Nom / dénomination sociale], demeurant / dont le siège est à [adresse],
+locataire principal, ci-après « le Sous-bailleur »,
+ET
+[Nom, prénom], né(e) le [date] à [lieu], demeurant à [adresse],
+ci-après « le Sous-locataire ».
+
+ARTICLE 1 - OBJET
+Le Sous-bailleur sous-loue au Sous-locataire le logement situé [adresse complète],
+d'une surface de [XX] m², comprenant [description : pièces, équipements, annexes].
+Ce logement est loué au Sous-bailleur par [Nom du propriétaire] en vertu d'un bail
+du [date].
+
+ARTICLE 2 - AUTORISATION DU PROPRIÉTAIRE
+Le Sous-bailleur déclare avoir obtenu l'accord écrit du propriétaire en date du
+[date], y compris sur le montant du loyer de sous-location. Une copie de cet accord
+et du bail principal est remise au Sous-locataire, qui le reconnaît.
+
+ARTICLE 3 - DURÉE
+Le présent contrat est conclu pour une durée de [X mois], à compter du [date] jusqu'au
+[date]. Il ne peut en aucun cas excéder la durée restante du bail principal.
+
+ARTICLE 4 - LOYER ET CHARGES
+Le loyer mensuel est fixé à [montant] euros, charges de [montant] euros incluses/en sus,
+payable le [jour] de chaque mois par [virement / prélèvement].
+
+ARTICLE 5 - DÉPÔT DE GARANTIE
+Un dépôt de garantie de [montant] euros est versé à la signature. Il est restitué dans
+un délai de [1 à 2] mois après la remise des clés, déduction faite des sommes justifiées
+dues au Sous-bailleur.
+
+ARTICLE 6 - USAGE DES LIEUX
+Le logement est destiné à l'usage d'habitation du Sous-locataire. Toute re-sous-location,
+toute activité professionnelle ou touristique et toute modification des lieux sont
+interdites sans accord écrit préalable. Le Sous-locataire respecte le règlement de
+copropriété et la tranquillité du voisinage.
+
+ARTICLE 7 - ASSURANCE
+Le Sous-locataire s'assure contre les risques locatifs et en justifie à la remise des
+clés, puis chaque année sur demande.
+
+ARTICLE 8 - ÉTAT DES LIEUX
+Un état des lieux contradictoire est établi à l'entrée et à la sortie.
+
+ARTICLE 9 - RÉSILIATION
+Le contrat prend fin de plein droit si le bail principal prend fin. Chaque partie peut le
+résilier avec un préavis de [X] mois, par lettre recommandée avec accusé de réception.
+Le défaut de paiement du loyer ou le non-respect des obligations ci-dessus, après mise
+en demeure restée sans effet, entraîne la résiliation.
+
+Fait à [ville], le [date], en deux exemplaires.
+Signature du Sous-bailleur            Signature du Sous-locataire
+```
+
+## Et si tu fais de la location courte durée ?
+
+Le contrat ci-dessus ne s'applique pas à tes voyageurs Airbnb. Pour la location courte durée, trois points comptent :
+
+- **Ton accord propriétaire doit viser expressément la location touristique.** Une autorisation de « sous-louer » ne suffit pas toujours. Précise l'activité, le caractère meublé, et le fait que tu reçois des voyageurs.
+- **Les conditions de séjour** sont celles de la plateforme. En réservation directe, utilise un contrat de location saisonnière : dates, prix, caution, règlement intérieur, conditions d'annulation.
+- **Les obligations réglementaires** (numéro d'enregistrement, déclaration en mairie, copropriété) restent à vérifier commune par commune. Nos guides sur [Declaloc et la sous-location professionnelle](/blog/declaloc-sous-location-professionnelle-guide-2026/) et sur [la sous-location en copropriété](/blog/sous-location-copropriete-conseil-constitutionnel-2026/) font le point.
+
+Tu veux la vue d'ensemble de ce métier ? Notre page [sous-location professionnelle](/sous-location-professionnelle/) pose le cadre complet.
+
+## Les erreurs qui font tomber une sous-location
+
+1. **Signer avec le sous-locataire avant d'avoir l'accord écrit du propriétaire.** Un accord oral ne protège de rien.
+2. **Un accord qui ne mentionne pas l'activité réelle.** Sous-location classique autorisée, mais Airbnb non mentionné : motif de contestation.
+3. **Un contrat plus long que le bail principal.** Ton sous-locataire ne peut pas avoir plus de droits que toi.
+4. **Oublier de remettre la copie de l'autorisation et du bail** au sous-locataire.
+5. **Pas d'état des lieux ni d'assurance.** Au premier sinistre, tu portes seul le risque.
+
+Retrouve les autres pièges classiques dans notre article sur les [erreurs de débutant en sous-location](/blog/erreurs-debutant-sous-location-2026/).
+
+## Comment faire accepter tout ça au propriétaire
+
+Un propriétaire rassuré signe plus vite. Présente-toi comme un professionnel : loyer garanti chaque mois même si le bien est vide, un seul interlocuteur, assurance, contrat écrit. Notre article sur [comment trouver un propriétaire qui accepte la sous-location](/blog/trouver-proprio-sous-location/) détaille la méthode d'approche, le pitch et les objections.
+
+<BlogCTA
+  title="Contrats, accord propriétaire, scripts : tout est dans la formation"
+  description="La Sous-Location Academy de Rentimmo Academy te donne les modèles d'accord propriétaire, de contrat et la méthode complète pour lancer ta première sous-location, sans banque ni apport."
+  href="/formations/sous-location"
+  cta="Découvrir la Sous-Location Academy"
+  variant="green"
+/>
+
+---
+
+# Comment trouver un proprio qui accepte la sous-location (méthode 2026)
+
+URL : https://www.rentimmoacademy.fr/blog/trouver-proprio-sous-location/
+Publié le : 2026-10-21
+Catégorie : sous-location
+
+La question numéro 1 que je reçois depuis 6 ans : **« Comment je fais pour convaincre un propriétaire d'accepter la sous-location ? »**
+
+La réponse courte : **tu n'as pas à convaincre, tu dois positionner.** Le propriétaire qui accepte n'est pas un propriétaire « trompé ». C'est un propriétaire qui comprend qu'il signe avec un professionnel, et qu'il obtient plus de garanties qu'avec un locataire classique.
+
+Dans ce guide : où trouver les propriétaires, quoi dire, comment répondre aux objections, et quoi signer.
+
+## Pourquoi un propriétaire dit non (et ce que ça t'apprend)
+
+Un refus n'est presque jamais un refus de principe. C'est une peur. Les quatre qui reviennent tout le temps :
+
+- **Le bruit et les voisins** : « Je ne veux pas de soirées, de syndic sur le dos. »
+- **Les dégradations** : « Qui paie si le logement est abîmé ? »
+- **L'impayé** : « Et si tu arrêtes de payer ? »
+- **La perte de contrôle** : « Je ne sais pas qui occupe mon bien. »
+
+Ton travail est de répondre à ces quatre peurs **avant** qu'elles soient exprimées. Un propriétaire rassuré signe.
+
+## 1. Le canal qui marche : les annonces déjà publiées
+
+Oublie les « bons plans entre particuliers » pendant 2 minutes. Le vivier n°1, ce sont les **annonces qui tournent depuis plus de 30 jours**. Le propriétaire commence à douter, son bien reste vide, il perd de l'argent chaque semaine.
+
+La méthode :
+
+1. Tu repères les annonces en ligne depuis plus de 30 jours (Leboncoin, SeLoger, PAP, Facebook Marketplace).
+2. Tu privilégies les **propriétaires particuliers** : tu appelles directement le propriétaire, pas l'agence, qui n'a aucune raison de bousculer son mandat.
+3. Tu cibles les **logements meublés** et les biens situés dans des zones touristiques ou à forte demande professionnelle.
+4. Tu appelles avec un cadrage clair : loyer ferme, locataire unique (toi ou ta structure), dépôt de garantie renforcé.
+
+Taux de conversion avec cette méthode : **1 signature pour 8 à 12 appels.** C'est un jeu de volume : bloque un créneau fixe chaque jour et appelle 15 à 20 annonces.
+
+Deux canaux secondaires fonctionnent aussi :
+
+- **Les propriétaires qui louent à distance** (expatriés, héritiers, propriétaires d'un second bien) : ils gèrent mal à distance et valorisent un interlocuteur fiable.
+- **Le bouche-à-oreille local** : une fois ta première sous-location bien tenue, ton premier propriétaire est ton meilleur argument pour le suivant.
+
+## 2. Le pitch qui transforme un NON en OUI
+
+Le problème de 90 % des débutants : ils parlent Airbnb dès la première phrase. Mauvaise idée. Le propriétaire entend « inconnus, bruit, voisins, syndic ».
+
+Le bon cadrage :
+
+> « Je loue le bien en mon nom via ma structure. Je vous paye le loyer tous les mois par virement, même si le bien est vide. Je gère toute la relation avec les occupants, je suis responsable des dégradations. En échange, vous me laissez héberger mes clients professionnels ou mes voyageurs validés. »
+
+C'est exactement le même produit, mais sans mot anxiogène. Et surtout : **tu ne caches rien.** Tu parles d'abord de ce que le propriétaire gagne (loyer garanti, zéro vacance, bien entretenu), puis de ce que tu fais du bien.
+
+### Le script d'appel en 4 temps
+
+1. **Accroche** : « Bonjour, je vous appelle au sujet de votre annonce pour [type de bien] à [ville]. Il est toujours disponible ? »
+2. **Positionnement** : « Je suis [prénom], j'ai une société qui loue des logements meublés à des professionnels et à des voyageurs, avec un loyer garanti au propriétaire. »
+3. **Bénéfices** : « Concrètement, vous recevez votre loyer chaque mois sans vacance, je m'occupe de tout, et le bien est entretenu et assuré. »
+4. **Next step** : « Si le principe vous intéresse, je peux passer visiter et vous présenter mes garanties. Vous êtes disponible [jour] ? »
+
+Ne cherche pas à conclure au téléphone. L'objectif de l'appel est d'obtenir **une visite**. La signature se joue en face à face, avec des documents sous les yeux.
+
+## 3. Répondre aux objections
+
+- **« Je ne veux pas d'Airbnb. »** → « Je comprends. Est-ce le bruit, les voisins, les dégradations ? » Tu identifies la peur réelle, puis tu proposes la garantie correspondante (règlement intérieur, assurance, capteurs de bruit, ménage pro).
+- **« Et si le bien est abîmé ? »** → Dépôt de garantie renforcé, assurance, état des lieux photo à l'entrée.
+- **« Et si vous arrêtez de payer ? »** → Virement automatique, clause de solidarité de ta structure et de toi en personne physique, éventuellement trois mois de loyer d'avance.
+- **« Le syndic va râler. »** → Tu proposes de vérifier le règlement de copropriété ensemble. Voir [la sous-location en copropriété](/blog/sous-location-copropriete-conseil-constitutionnel-2026/).
+- **« Je préfère réfléchir. »** → « Bien sûr. Je vous envoie un récapitulatif écrit de mes garanties et je vous rappelle jeudi ? » Tu fixes une date de relance.
+
+## 4. Les 3 clauses qui sécurisent tout
+
+Quand l'accord de principe est donné, le bail doit contenir :
+
+1. **Autorisation écrite de sous-location** (article 8 de la loi de 1989). L'accord doit être écrit, et mentionner l'activité réelle. Le modèle est détaillé dans notre guide sur l'[accord propriétaire en sous-location](/blog/accord-proprietaire-sous-location-modele-2026/).
+2. **Clause d'hébergement professionnel / touristique**, avec références aux plateformes utilisées.
+3. **Clause de solidarité financière** entre ta société et toi en personne physique, qui rassure le propriétaire sur l'impayé.
+
+Pour l'ensemble des documents (accord propriétaire, contrat de sous-location, conditions de séjour), lis notre guide du [contrat de sous-location, modèle et clauses 2026](/blog/contrat-sous-location-appartement-modele-2026/).
+
+## Les erreurs qui font perdre des propriétaires
+
+- **Parler Airbnb avant de parler garanties.**
+- **Appeler des annonces récentes** : le propriétaire n'a pas encore peur de la vacance.
+- **Appeler l'agence au lieu du propriétaire.**
+- **Arriver sans documents** : présentation de ta structure, preuve d'assurance, modèle d'accord.
+- **Se contenter d'un oui oral.**
+
+D'autres erreurs coûteuses sont listées dans [les erreurs de débutant en sous-location](/blog/erreurs-debutant-sous-location-2026/).
+
+## Pour aller plus loin
+
+Pour le cadre global du métier, lis notre page [sous-location professionnelle](/sous-location-professionnelle/).
+
+<BlogCTA
+  title="Les scripts, les bails et les templates sont dans la formation"
+  description="La Sous-Location Academy de Rentimmo Academy couvre les 6 modules du process complet : recherche de propriétaires, scripts d'appel, accord écrit, contrats et lancement de ta première sous-location."
+  href="/formations/sous-location"
+  cta="Découvrir la Sous-Location Academy"
+  variant="green"
+/>
 
 ---
 
@@ -8008,52 +8240,6 @@ Attention : la sous-location en France est soumise au **régime LMNP (BIC)**. Sa
 - [Devenir conciergerie Airbnb (alternative à la sous-loc)](/devenir-conciergerie-airbnb/)
 
 Tu hésites encore ? [Réserve un appel stratégique 30 min](https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true), on audite ta situation et on te dit quel modèle est le plus aligné avec ton profil et ton objectif.
-
----
-
-# Comment trouver un proprio qui accepte la sous-location
-
-URL : https://www.rentimmoacademy.fr/blog/trouver-proprio-sous-location/
-Publié le : 2026-04-01
-Catégorie : sous-location
-
-La question numéro 1 que je reçois depuis 6 ans : **« Comment je fais pour convaincre un propriétaire d'accepter la sous-location ? »**
-
-La réponse courte : **tu n'as pas à convaincre**. Tu dois **positionner**. Le propriétaire qui accepte la sous-location n'est pas un propriétaire « trompé » — c'est un propriétaire qui comprend qu'il signe avec un pro, et qu'il gagne plus de garanties qu'avec un locataire classique.
-
-## 1. Le canal qui marche : les annonces déjà publiées
-
-Oublie Leboncoin « entre particuliers » pendant 2 minutes. Le vivier n°1, ce sont les **annonces qui tournent depuis plus de 30 jours**. Le propriétaire commence à douter, son bien reste vide, il perd de l'argent chaque semaine.
-
-- Tu repères les annonces > 30 jours
-- Tu appelles directement le propriétaire (pas l'agence)
-- Tu proposes un loyer ferme, un locataire unique (toi / ta structure), un dépôt renforcé
-
-Taux de conversion avec cette méthode : **1 signature pour 8 à 12 appels**.
-
-## 2. Le pitch qui transforme un NON en OUI
-
-Le problème de 90% des débutants : ils parlent Airbnb. Mauvaise idée. Le propriétaire entend « inconnus, bruit, voisins, syndic ».
-
-Le bon cadrage :
-
-> « Je loue le bien en mon nom via ma structure. Je vous paye le loyer tous les mois par virement, même si le bien est vide. Je gère toute la relation avec les occupants, je suis responsable des dégradations. En échange, vous me laissez héberger mes clients professionnels ou mes voyageurs validés. »
-
-C'est exactement le même produit — mais zéro mot anxiogène.
-
-## 3. Les 3 clauses qui sécurisent tout
-
-Dans le bail, tu as besoin de :
-
-1. **Autorisation écrite de sous-location** (article 8, loi de 1989)
-2. **Clause d'hébergement professionnel / touristique** avec références plateformes
-3. **Clause de solidarité financière** entre ta société et toi en personne physique
-
-Ces 3 clauses sont détaillées ligne par ligne dans la Sous-Location Academy, avec le modèle de bail type validé par notaire.
-
-## Pour aller plus loin
-
-La formation **Sous-Location Academy** couvre les 6 modules du process complet, avec tous les scripts, bails et templates. Tu peux la découvrir ici : [/formations/sous-location](/formations/sous-location).
 
 ---
 
