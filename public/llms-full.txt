@@ -2,7 +2,7 @@
 
 > Académie de formation professionnelle à la location courte durée (LCD) en France et au Maroc : sous-location professionnelle, conciergerie Airbnb, ménage Airbnb (cleaning BnB). Index court : https://www.rentimmoacademy.fr/llms.txt
 
-Ce fichier regroupe le texte intégral des 62 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
+Ce fichier regroupe le texte intégral des 67 articles du blog de Rentimmo Academy, du plus récent au plus ancien.
 
 ---
 
@@ -294,6 +294,97 @@ Quand tu es à l'aise avec 3 ou 4 clients, tu peux recruter des cleaners, ajoute
 <BlogCTA
   title="Passe de cleaner solo à chef d'équipe avec la Cleaning BNB Academy"
   description="Tarifs, devis, protocoles qualité et prospection de conciergeries : la formation Cleaning BNB de Rentimmo Academy te donne la méthode complète pour lancer ton activité."
+  href="/formations/cleaning-bnb"
+  cta="Découvrir la formation Cleaning BNB"
+  variant="green"
+/>
+
+---
+
+# Checklist ménage Airbnb : le modèle complet à utiliser à chaque rotation (2026)
+
+URL : https://www.rentimmoacademy.fr/blog/checklist-menage-airbnb-modele-2026/
+Publié le : 2026-10-21
+Catégorie : cleaning
+
+**Une checklist est ce qui transforme un ménage correct en un ménage constant.** Elle garantit le même résultat à chaque rotation, facilite la formation d'un nouveau cleaner et sert de preuve auprès des conciergeries. Voici un modèle complet, à adapter à chaque logement.
+
+## Avant de commencer : l'état d'arrivée
+
+- **Photographie le logement tel que tu l'as trouvé**, pièce par pièce, avant de toucher à quoi que ce soit.
+- **Repère les anomalies** : casse, taches, objets oubliés, manques. Signale-les tout de suite au client.
+- **Aère** le logement et ouvre les fenêtres.
+- **Retire** le linge sale et les déchets.
+
+Cette étape te protège en cas de litige : tu prouves l'état dans lequel tu as trouvé le logement.
+
+## Cuisine
+
+- Vider et nettoyer le réfrigérateur, jeter les restes
+- Nettoyer plaques, four, micro-ondes (intérieur et extérieur)
+- Vider et nettoyer le lave-vaisselle, ranger la vaisselle
+- Nettoyer évier, robinetterie, plans de travail
+- Vérifier que la vaisselle, les casseroles et les couverts sont complets et propres
+- Vider les poubelles et poser un sac neuf
+- Réapprovisionner : liquide vaisselle, éponge, essuie-tout, café ou thé si prévu
+- Laver le sol
+
+## Salle de bain et WC
+
+- Désinfecter douche ou baignoire, parois et joints
+- Nettoyer lavabo, miroir et robinetterie, sans traces
+- Nettoyer et désinfecter les WC (cuvette, abattant, brosse)
+- Retirer les cheveux des évacuations
+- Remplacer les serviettes
+- Réapprovisionner : savon, gel douche, papier toilette (avec une réserve)
+- Vider la poubelle et poser un sac neuf
+- Laver le sol
+
+Pour la sécurité, ne mélange jamais de produits différents (notamment javel et produits acides ou ammoniaqués).
+
+## Chambres et séjour
+
+- Changer les draps, housses de couette et taies
+- Faire le lit selon le standard du logement
+- Dépoussiérer surfaces, tables de nuit, étagères
+- Vérifier sous les lits et dans les tiroirs : objets oubliés
+- Nettoyer les surfaces du séjour, télécommandes comprises
+- Remettre les coussins et plaids en place
+- Aspirer sols et canapés, puis laver les sols durs
+
+## Linge
+
+- Compter le linge propre et le comparer au stock prévu
+- Mettre le linge sale à laver ou à récupérer selon l'accord
+- Signaler les taches définitives, déchirures ou manques
+
+## Final : le contrôle
+
+- Vérifier que chaque pièce est conforme à la checklist
+- Contrôler les odeurs : aucune odeur de produit ou de renfermé
+- Vérifier la température du logement selon les consignes
+- Éteindre les lumières et appareils inutiles
+- Fermer et verrouiller, remettre les clés selon le protocole
+
+## Photos de contrôle
+
+Photographie après ménage : chaque chambre, la cuisine, la salle de bain, le salon. Envoie-les au client avec un court message récapitulatif. C'est ton principal argument de qualité, et la raison pour laquelle on te garde. Pour le prix de cette prestation, voir [combien facturer un ménage Airbnb](/blog/tarif-menage-airbnb-combien-facturer-2026/).
+
+## Adapter la checklist
+
+Garde un **socle commun**, et ajoute des modules selon le logement :
+
+- balcon ou terrasse
+- machine à laver, sèche-linge
+- cheminée ou poêle
+- jacuzzi ou piscine (selon la prestation)
+- consignes spécifiques du propriétaire
+
+Imprime la checklist ou garde-la sur ton téléphone, et coche chaque ligne. Pour former un nouveau cleaner, c'est ton meilleur outil. Pour structurer une équipe, lis [lancer et structurer un business de cleaning BNB](/blog/cleaning-bnb-lancer-structurer-business/). Le métier est présenté sur la page [ménage Airbnb professionnel](/menage-airbnb-professionnel/).
+
+<BlogCTA
+  title="Récupère les checklists et protocoles dans la Cleaning BNB Academy"
+  description="Checklists par type de logement, protocoles qualité, rapports photo et formation d'équipe : tout est dans la formation Cleaning BNB de Rentimmo Academy."
   href="/formations/cleaning-bnb"
   cta="Découvrir la formation Cleaning BNB"
   variant="green"
@@ -675,6 +766,149 @@ Pour voir le métier de l'intérieur, la page [ménage Airbnb professionnel](/me
 <BlogCTA
   title="Transforme le ménage en vrai business avec la Cleaning BNB Academy"
   description="Protocoles, tarifs, prospection de conciergeries et recrutement : la formation Cleaning BNB de Rentimmo Academy te donne la méthode complète."
+  href="/formations/cleaning-bnb"
+  cta="Découvrir la formation Cleaning BNB"
+  variant="green"
+/>
+
+---
+
+# Ménage Airbnb au Maroc : devenir prestataire de nettoyage pour les conciergeries (guide 2026)
+
+URL : https://www.rentimmoacademy.fr/blog/menage-airbnb-maroc-cleaner-guide-2026/
+Publié le : 2026-10-21
+Catégorie : cleaning
+
+**Au Maroc, le ménage est le point faible de beaucoup de conciergeries Airbnb.** La main-d'œuvre existe, mais la régularité et les standards hôteliers demandés par les voyageurs internationaux manquent souvent. C'est une opportunité pour qui sait structurer une équipe fiable. Voici comment aborder le marché.
+
+> Les tarifs, le statut et les plafonds changent. Vérifie-les auprès des sources officielles ou d'un expert-comptable au Maroc avant de te lancer.
+
+## Pourquoi la demande de ménage monte
+
+La location courte durée se développe dans les grandes villes et les destinations touristiques. Les voyageurs, souvent étrangers, comparent les logements aux standards internationaux : linge propre, salle de bain impeccable, accueil soigné. Les conciergeries qui s'installent se rendent vite compte que **le ménage est le premier facteur d'avis négatifs**.
+
+Notre article sur la [conciergerie Airbnb au Maroc](/blog/conciergerie-airbnb-maroc-guide/) cite d'ailleurs l'anticipation du ménage parmi les erreurs à éviter. Et la perspective de la Coupe du monde 2030 renforce encore la demande, comme on l'explique dans [l'opportunité Airbnb au Maroc](/blog/coupe-monde-2030-airbnb-maroc-opportunite/).
+
+## Les clients à viser
+
+1. **Les conciergeries Airbnb** : besoin récurrent sur plusieurs logements, décision rapide.
+2. **Les hôtes multi-logements** : ils gèrent eux-mêmes plusieurs biens.
+3. **Les propriétaires étrangers** qui louent à distance et cherchent un prestataire de confiance.
+
+Les villes à cibler en priorité : Marrakech, Casablanca, Tanger, Agadir, selon ta localisation.
+
+## Les standards à appliquer
+
+Ce qui fait la différence aux yeux des voyageurs internationaux :
+
+- **Linge** propre, repassé, de qualité constante
+- **Salle de bain** sans traces, sans odeur
+- **Cuisine** impeccable, vaisselle complète
+- **Consommables** toujours réapprovisionnés
+- **Rapport photo** envoyé après chaque intervention
+
+Une checklist écrite est indispensable : voir notre [modèle de checklist ménage Airbnb](/blog/checklist-menage-airbnb-modele-2026/).
+
+## Structurer une équipe
+
+La disponibilité de la main-d'œuvre est un atout, mais **la formation fait la qualité** :
+
+- une **checklist unique** pour tous les cleaners
+- un **responsable d'équipe** qui contrôle et envoie les photos
+- une **rémunération correcte**, qui fidélise et évite la rotation du personnel
+- un **plan de remplacement** en cas d'absence
+
+Notre article sur la [conciergerie à Agadir](/blog/conciergerie-airbnb-agadir-2026/) montre comment une conciergerie intègre l'équipe ménage dans son modèle, avec des simulations de coûts par rotation.
+
+## Trouver tes premiers clients
+
+La méthode est la même qu'en France :
+
+1. Liste les conciergeries de ta ville (LinkedIn, Google Maps, annonces Airbnb).
+2. Envoie un message court : zone, tarif par rotation, rapport photo, proposition d'essai.
+3. Propose un essai sur un logement.
+4. Relance à 3 ou 4 jours, une semaine et deux semaines.
+
+Pour le détail des messages, lis [comment trouver ses premiers clients de ménage Airbnb](/blog/trouver-clients-menage-airbnb-conciergeries-hotes-2026/). Adapte le ton et la langue à ton interlocuteur : français, arabe ou anglais selon la conciergerie.
+
+## Statut et tarifs
+
+Le statut d'**auto-entrepreneur** existe au Maroc et permet de démarrer simplement. Les plafonds de chiffre d'affaires et les taux dépendent de ton activité : consulte les sources officielles avant de choisir.
+
+Pour les tarifs, pars du temps réel passé et du revenu que tu vises, comme expliqué dans [combien facturer un ménage Airbnb](/blog/tarif-menage-airbnb-combien-facturer-2026/), puis compare avec les prix du marché de ta ville. Les niveaux de prix ne sont pas les mêmes qu'en France.
+
+## Lancer ton activité
+
+La formation Cleaning BNB Academy de Rentimmo Academy s'adresse à la France et au Maroc. Pour voir le métier en détail, la page [ménage Airbnb professionnel](/menage-airbnb-professionnel/) et notre page [se former à Airbnb au Maroc](/se-former-airbnb-maroc/) donnent le cadre.
+
+<BlogCTA
+  title="Lance ton activité de ménage Airbnb au Maroc"
+  description="Protocoles, checklists, prospection de conciergeries et organisation d'équipe : la formation Cleaning BNB de Rentimmo Academy te donne la méthode, en France comme au Maroc."
+  href="/formations/cleaning-bnb"
+  cta="Découvrir la formation Cleaning BNB"
+  variant="green"
+/>
+
+---
+
+# Ménage spécialisé Airbnb : remise en état, grand ménage, linge et services à forte valeur
+
+URL : https://www.rentimmoacademy.fr/blog/menage-specialise-airbnb-remise-en-etat-linge-2026/
+Publié le : 2026-10-21
+Catégorie : cleaning
+
+**Le ménage de rotation est ton socle. Le ménage spécialisé est ce qui augmente ton revenu par client.** Remise en état, grand ménage, lavage du linge, vitres : ces services demandent plus de temps, mais se facturent nettement plus cher et fidélisent les conciergeries. Voici lesquels proposer et comment les chiffrer.
+
+## Les 5 services spécialisés qui se vendent le mieux
+
+**1. La remise en état après un séjour difficile.** Un voyageur a laissé le logement très sale, des taches, des odeurs, du désordre. Le logement doit être rendu disponible pour la prochaine arrivée, souvent dans un délai serré. C'est un service d'urgence, bien payé, car la conciergerie n'a pas d'alternative.
+
+**2. Le grand ménage de fin de saison ou de début de location.** Intérieur des placards, électroménager, vitres, plinthes, murs, lits démontés. Un logement qui accueille des voyageurs toute l'année a besoin d'un nettoyage profond régulier, par exemple chaque trimestre.
+
+**3. Le lavage et le repassage du linge.** Pour beaucoup d'hôtes, gérer le linge est la partie la plus pénible. Si tu proposes de récupérer le linge sale, de le laver et de le rapporter propre, tu deviens indispensable.
+
+**4. Le nettoyage des vitres et des extérieurs.** Balcon, terrasse, baies vitrées : des points qui jouent beaucoup sur l'effet d'arrivée et les photos des avis.
+
+**5. La désinfection approfondie.** Sanitaires, literie, surfaces de contact : un service apprécié des clients qui veulent un standard hôtelier.
+
+## Comment les chiffrer
+
+La logique est la même que pour la rotation, mais au devis :
+
+1. **Estime le temps réel** pour la prestation (avec photos si possible).
+2. **Ajoute les coûts** : produits spécifiques, matériel, linge, déplacements.
+3. **Applique ton revenu horaire cible**.
+4. **Présente un prix clair** et un délai.
+
+Un devis simple, avec le périmètre et le prix, évite les discussions après coup. Pour la méthode de calcul, lis [combien facturer un ménage Airbnb](/blog/tarif-menage-airbnb-combien-facturer-2026/).
+
+## Comment les proposer
+
+Ne les impose pas, **propose-les comme des options** à tes clients réguliers :
+
+- à la signature : « Je propose aussi le linge et le grand ménage trimestriel. »
+- après un séjour compliqué : « Je peux faire une remise en état demain matin. »
+- en saison creuse : « C'est le bon moment pour un grand ménage. »
+
+Chaque service a un bénéfice clair pour le client : un logement prêt plus vite, un linge impeccable, des avis protégés.
+
+## Les points de vigilance
+
+- **Assurance** : vérifie que ta responsabilité civile professionnelle couvre ces prestations.
+- **Produits** : n'utilise que des produits adaptés aux surfaces, et ne mélange jamais des produits différents.
+- **Photos** : photographie avant et après toute remise en état, pour protéger ta responsabilité.
+- **Périmètre écrit** : liste précisément ce qui est inclus, ce qui est exclu.
+- **Pas de travaux** : tu fais du nettoyage, pas de la réparation ni de la rénovation. Si un dégât est constaté, signale-le.
+
+## Un levier pour passer à l'échelle
+
+Les services spécialisés augmentent ton revenu sans chercher de nouveaux clients. Ils rendent aussi ton activité plus solide : un client qui t'achète rotation, linge et grand ménage est difficile à remplacer. À terme, ils te permettent de recruter une équipe et de structurer ton entreprise, comme décrit dans [lancer et structurer un business de cleaning BNB](/blog/cleaning-bnb-lancer-structurer-business/).
+
+Pour les bases du métier, la page [ménage Airbnb professionnel](/menage-airbnb-professionnel/) et notre [checklist ménage Airbnb](/blog/checklist-menage-airbnb-modele-2026/) donnent le socle.
+
+<BlogCTA
+  title="Monte en gamme avec la Cleaning BNB Academy"
+  description="Protocoles qualité, tarifs des services spécialisés, devis types et organisation d'équipe : la formation Cleaning BNB de Rentimmo Academy te donne la méthode complète."
   href="/formations/cleaning-bnb"
   cta="Découvrir la formation Cleaning BNB"
   variant="green"
@@ -2255,6 +2489,163 @@ Attention : la sous-location en France est soumise au **régime LMNP (BIC)**. Sa
 - [Devenir conciergerie Airbnb (alternative à la sous-loc)](/devenir-conciergerie-airbnb/)
 
 Tu hésites encore ? [Réserve un appel stratégique 30 min](https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true), on audite ta situation et on te dit quel modèle est le plus aligné avec ton profil et ton objectif.
+
+---
+
+# Tarif ménage Airbnb en 2026 : combien facturer par logement (grille et méthode de calcul)
+
+URL : https://www.rentimmoacademy.fr/blog/tarif-menage-airbnb-combien-facturer-2026/
+Publié le : 2026-10-21
+Catégorie : cleaning
+
+**Un ménage Airbnb se facture par logement et par rotation, pas à l'heure.** En 2026, les ordres de grandeur en France sont : studio 30 à 50 €, T2 50 à 70 €, T3 70 à 90 €, T4 et plus 90 à 120 €. Voici la grille complète et la méthode pour calculer ton propre prix.
+
+## La grille de départ
+
+Ordres de grandeur par rotation :
+
+- **Studio** : 30 à 50 €
+- **T2** : 50 à 70 €
+- **T3** : 70 à 90 €
+- **T4 et plus** : 90 à 120 €
+
+Ces fourchettes incluent en général : le ménage complet, le changement des draps et des serviettes, la remise en place et le réassort des consommables courants. Elles varient selon ta ville, le niveau de service et la présence de linge.
+
+## Ce qui s'ajoute au tarif de base
+
+Quelques éléments se facturent à part ou se négocient dans un forfait :
+
+- **Le linge** : souvent 5 à 10 € par jeu quand tu le fournis et le laves. Gratuit si la conciergerie gère son propre stock.
+- **Le déplacement** : à intégrer au tarif ou à facturer au-delà d'une certaine zone.
+- **La remise en état** : un logement très sale demande plus de temps, à chiffrer sur devis.
+- **Le grand ménage** de fin de saison : un service à part, détaillé dans notre article sur le [ménage spécialisé Airbnb](/blog/menage-specialise-airbnb-remise-en-etat-linge-2026/).
+- **L'intervention urgente** le jour même ou le week-end.
+
+## La méthode pour calculer ton propre prix
+
+1. **Chronomètre le temps réel** sur 5 à 10 logements : ménage, trajet, courses éventuelles.
+2. **Additionne les coûts directs** : produits, linge, carburant, usure du matériel.
+3. **Fixe ton revenu horaire cible**, après cotisations.
+4. **Divise** : prix par logement = (temps × revenu horaire) + coûts directs.
+
+Exemple illustratif : un T2 prend 1 h 30 de ménage plus 20 minutes de trajet, soit environ 1 h 50. À 60 €, avec 3 € de produits, il reste 57 € pour 1 h 50, soit environ 31 € de l'heure avant cotisations. Si ton objectif est plus haut, tu augmentes le tarif, tu réduis le trajet en regroupant les logements, ou tu gagnes en rapidité.
+
+C'est un exemple, pas une promesse : tes temps réels dépendent de ton expérience et de l'état des logements.
+
+## Les erreurs de tarification
+
+- **T'aligner sur le prix le plus bas** : les clients sérieux ne choisissent pas sur 5 €.
+- **Oublier le trajet** : il peut faire baisser ton revenu réel de 20 % ou plus.
+- **Ne rien facturer pour le linge** : le lavage coûte du temps, de l'eau et de l'énergie.
+- **Ne jamais réviser** : tes coûts montent, ton prix doit suivre.
+- **Ne pas écrire tes conditions** : sans cadre, chaque client te demande plus pour le même prix.
+
+## Comment vendre ton prix
+
+Un tarif se défend par la preuve, pas par la discussion. Mets en avant :
+
+- un **rapport photo avant et après** à chaque intervention
+- le **respect des horaires** de check-out et de check-in
+- le **signalement des anomalies** (casse, tache, manque de linge)
+- le **réassort des consommables**
+
+Ces garanties justifient un prix un peu plus élevé que le prestataire qui arrive en retard. Pour ce que ça représente sur un mois, lis [combien gagne un cleaner Airbnb](/blog/combien-gagne-cleaner-airbnb-2026/), et pour trouver les clients qui paieront ce prix, [comment trouver ses premiers clients de ménage Airbnb](/blog/trouver-clients-menage-airbnb-conciergeries-hotes-2026/).
+
+## Aller plus loin
+
+La page [ménage Airbnb professionnel](/menage-airbnb-professionnel/) présente le métier, et la Cleaning BNB Academy de Rentimmo Academy te donne la grille de tarifs, les scripts et les conditions types.
+
+<BlogCTA
+  title="Fixe tes tarifs et signe tes premiers clients avec la Cleaning BNB Academy"
+  description="Grille de tarifs, devis, conditions types et scripts de prospection : tout est dans la formation Cleaning BNB de Rentimmo Academy."
+  href="/formations/cleaning-bnb"
+  cta="Découvrir la formation Cleaning BNB"
+  variant="green"
+/>
+
+---
+
+# Comment trouver ses premiers clients de ménage Airbnb (conciergeries et hôtes) en 2026
+
+URL : https://www.rentimmoacademy.fr/blog/trouver-clients-menage-airbnb-conciergeries-hotes-2026/
+Publié le : 2026-10-21
+Catégorie : cleaning
+
+**Tes meilleurs clients de ménage Airbnb sont les conciergeries.** Elles gèrent plusieurs logements, ont un besoin chaque semaine et cherchent des prestataires fiables. Voici où les trouver, quoi leur écrire, et comment transformer un premier contact en contrat récurrent.
+
+## Les 3 types de clients, par ordre de priorité
+
+1. **Les conciergeries Airbnb** : plusieurs logements, besoin récurrent, décision rapide. C'est ta cible n°1.
+2. **Les hôtes multi-logements** : ils gèrent eux-mêmes 2 à 5 biens et manquent de temps.
+3. **Les propriétaires à distance** : ils ont un logement loué et ne vivent pas sur place.
+
+Un seul client du premier type peut représenter plusieurs dizaines d'interventions par mois. C'est pourquoi on commence par là. Pour comprendre leur fonctionnement, lis [comment ouvrir une conciergerie Airbnb](/blog/comment-ouvrir-conciergerie-airbnb-2026/).
+
+## Où les trouver
+
+- **LinkedIn** : recherche « conciergerie Airbnb [ta ville] », repère les dirigeants et envoie un message.
+- **Google Maps** : cherche « conciergerie Airbnb » autour de toi, note le site et l'e-mail.
+- **Groupes Facebook d'hôtes** de ta ville : réponds aux demandes de recommandation de ménage.
+- **Les annonces Airbnb de ta zone** : repère les logements bien tenus gérés par un même profil, c'est une conciergerie ou un hôte multi-logements.
+- **Le bouche-à-oreille** : chaque client satisfait peut te recommander.
+
+## Le message qui obtient une réponse
+
+Un bon premier message est court, concret et propose une action simple.
+
+> Bonjour [prénom], je suis [prénom], prestataire de ménage spécialisé en location courte durée à [ville]. J'interviens entre chaque check-out et check-in, avec rapport photo avant et après et signalement des anomalies. Je cherche à travailler avec une ou deux conciergeries sur la zone. Seriez-vous ouvert à un essai sur un de vos logements, à tarif réduit ? Je peux vous envoyer un exemple de rapport.
+
+Ce qui fonctionne : une preuve concrète (le rapport photo), une demande précise (un essai sur un logement) et aucune longue présentation.
+
+## L'offre d'essai
+
+Propose une **intervention sur un seul logement**, avec un rapport photo complet. Précise par écrit :
+
+- le logement concerné et la date
+- ce qui est inclus (ménage complet, linge, consommables)
+- le tarif (gratuit ou réduit)
+- ce qui se passe ensuite si la conciergerie est satisfaite
+
+L'essai permet à la conciergerie de vérifier ta qualité sans risque. C'est le moment où tu gagnes ou perds le contrat.
+
+## Les relances
+
+La plupart des contrats se signent après plusieurs contacts. Prévois :
+
+1. **Relance 1** (3 à 4 jours après) : un exemple de rapport photo.
+2. **Relance 2** (une semaine après) : ta disponibilité sur les prochains jours.
+3. **Relance 3** (deux semaines après) : un dernier message court, qui laisse la porte ouverte.
+
+Après la troisième relance sans réponse, passe au suivant. Note chaque contact dans un tableur : date, nom, canal, statut.
+
+## Répondre aux objections
+
+- **« J'ai déjà un prestataire. »** → « Très bien. Je peux être votre solution de secours quand il est indisponible. » Un second prestataire fiable est précieux.
+- **« Vos tarifs sont trop élevés. »** → Reviens à la preuve : rapport photo, respect des horaires, signalement des anomalies. Ne baisse pas ton prix sans contrepartie. Pour fixer ton prix, lis [combien facturer un ménage Airbnb](/blog/tarif-menage-airbnb-combien-facturer-2026/).
+- **« Je préfère un prestataire avec une équipe. »** → Explique ta capacité et ton plan de remplacement en cas d'absence.
+
+## Tenir le contrat dans la durée
+
+Signer ne suffit pas, il faut garder le client :
+
+- **Ponctualité** sur chaque rotation.
+- **Rapport photo** systématique.
+- **Signalement immédiat** des problèmes (casse, manque de linge).
+- **Un interlocuteur unique** pour la conciergerie.
+
+Un client satisfait te confie davantage de logements et te recommande à d'autres conciergeries.
+
+## Pour structurer ta prospection
+
+Notre article [lancer et structurer un business de cleaning BNB](/blog/cleaning-bnb-lancer-structurer-business/) détaille l'organisation de ton activité, et la page [ménage Airbnb professionnel](/menage-airbnb-professionnel/) présente le métier en entier.
+
+<BlogCTA
+  title="Signe tes premières conciergeries avec les scripts de la Cleaning BNB Academy"
+  description="Messages de prospection, offre d'essai, relances et contrats types : la formation Cleaning BNB de Rentimmo Academy te donne la méthode complète."
+  href="/formations/cleaning-bnb"
+  cta="Découvrir la formation Cleaning BNB"
+  variant="green"
+/>
 
 ---
 
