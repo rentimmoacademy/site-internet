@@ -46,23 +46,7 @@ export async function onRequestPost({ request, env }) {
   const userIP = request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For') || '1.1.1.1';
   const key = env.SYSTEMEIO_API_KEY;
 
-  // 1. Google Sheets log (fire-and-forget, même Apps Script que l'optin — source distingue le type)
-  if (env.APPS_SCRIPT_URL) {
-    fetch(env.APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        firstName: name.trim(),
-        email,
-        phone: phone || '',
-        source: 'contact-form',
-        formation: formation || '',
-        message: message || '',
-      }),
-    }).catch(() => {});
-  }
-
-  // 2. Systeme.io CRM
+  // Systeme.io CRM
   if (key) {
     const search = await sio(`/contacts?email=${encodeURIComponent(email)}`, 'GET', null, key, userIP);
     let contact = (search.data?.items || search.data?.['hydra:member'] || [])[0] || null;

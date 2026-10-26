@@ -1,10 +1,10 @@
 /**
  * Cloudflare Pages Function — POST /api/optin
- * Double pipeline : Google Sheet (via APPS_SCRIPT_URL) + Systeme.io (CRM)
+ * Pipeline : Systeme.io (CRM). Le Sheet CRM est alimenté par le webhook Systeme.io (CONTACT_CREATED / CONTACT_TAG_ADDED).
  */
 
 const SIO = 'https://api.systeme.io/api';
-const TAGS = { optinMasterclass: 1721885, sourceInsta: 1054256, sourceTiktok: 1057171, sourceYoutube: 1057170 };
+const TAGS = { optinMasterclass: 1721885, optinCleaning: 2252481, funnelCleaning: 2252482, sourceInsta: 1054256, sourceTiktok: 1057171, sourceYoutube: 1057170 };
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -19,6 +19,11 @@ function formatPhone(phone) {
   if (d.startsWith('0') && d.length === 10) return '+33' + d.slice(1);
   if (d.length >= 10) return '+' + d;
   return null;
+}
+
+function funnelTagIds(funnel) {
+  if (funnel === 'cleaning') return [TAGS.optinCleaning, TAGS.funnelCleaning];
+  return [TAGS.optinMasterclass];
 }
 
 function sourceTagId(src) {
@@ -56,7 +61,7 @@ export async function onRequestPost({ request, env }) {
   let body;
   try { body = await request.json(); } catch { return json({ error: 'bad_json' }, 400); }
 
-  const { firstName, email, phone, source } = body;
+  const { firstName, email, phone, source, funnel } = body;
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: 'invalid_email' }, 400);
   if (!firstName?.trim()) return json({ error: 'missing_first_name' }, 400);
 
@@ -64,16 +69,7 @@ export async function onRequestPost({ request, env }) {
   const userIP = request.headers.get('CF-Connecting-IP') || request.headers.get('X-Forwarded-For') || '1.1.1.1';
   const key = env.SYSTEMEIO_API_KEY;
 
-  // 1. Google Sheets log (fire-and-forget)
-  if (env.APPS_SCRIPT_URL) {
-    fetch(env.APPS_SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstName: firstName.trim(), email, phone: phone || '', source: source || '' }),
-    }).catch(() => {});
-  }
-
-  // 2. Systeme.io CRM (avec IP réelle du lead)
+  // Systeme.io CRM (avec IP réelle du lead)
   if (key) {
     const search = await sio(`/contacts?email=${encodeURIComponent(email)}`, 'GET', null, key, userIP);
     let contact = (search.data?.items || search.data?.['hydra:member'] || [])[0] || null;
@@ -84,11 +80,11 @@ export async function onRequestPost({ request, env }) {
       const create = await sio('/contacts', 'POST', { email, fields }, key, userIP);
       if (create.ok) {
         contact = create.data;
-        const tags = [TAGS.optinMasterclass, sourceTagId(source)].filter(Boolean);
+        const tags = [...funnelTagIds(funnel), sourceTagId(source)].filter(Boolean);
         await Promise.all(tags.map(tagId => sio(`/contacts/${contact.id}/tags`, 'POST', { tagId }, key, userIP)));
       }
     } else if (contact) {
-      const tags = [TAGS.optinMasterclass, sourceTagId(source)].filter(Boolean);
+      const tags = [...funnelTagIds(funnel), sourceTagId(source)].filter(Boolean);
       await Promise.all(tags.map(tagId => sio(`/contacts/${contact.id}/tags`, 'POST', { tagId }, key, userIP)));
     }
   }
