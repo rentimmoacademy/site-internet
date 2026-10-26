@@ -8,6 +8,7 @@ import "./globals.css";
 
 import { formations } from "@/lib/formations";
 import SiteShell from "@/components/layout/SiteShell";
+import MetaPixel from "@/components/analytics/MetaPixel";
 
 const SITE = "https://www.rentimmoacademy.fr";
 
@@ -199,6 +200,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
 
         <SiteShell>{children}</SiteShell>
+        <MetaPixel />
 
 
 

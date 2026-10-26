@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-
-const STORAGE_KEY = "rentimmo-cookie-consent";
+import { CONSENT_EVENT, CONSENT_KEY as STORAGE_KEY } from "@/lib/consent";
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -18,6 +17,7 @@ export default function CookieBanner() {
 
   const choose = (v: "accept" | "decline") => {
     localStorage.setItem(STORAGE_KEY, v);
+    window.dispatchEvent(new Event(CONSENT_EVENT));
     setVisible(false);
   };
 

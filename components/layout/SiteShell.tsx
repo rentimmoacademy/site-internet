@@ -18,7 +18,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <main>{children}</main>
       {!isFunnel && <Footer />}
       {!isFunnel && <CallFloat />}
-      {!isFunnel && <CookieBanner />}
+      <CookieBanner />
     </>
   );
 }
