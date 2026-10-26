@@ -227,7 +227,7 @@ export default function MasterclassPage() {
         </div>
 
         <div style={{ maxWidth: 980, margin: "0 auto 48px", borderRadius: 24, overflow: "hidden", boxShadow: "0 32px 80px rgba(0,0,0,.55)", aspectRatio: "16/9" }}>
-          <iframe src="https://www.youtube.com/embed/QyzwMPk_4yY?rel=0&modestbranding=1&controls=1&playsinline=1&autoplay=1" title="Masterclass Rentimmo Academy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ width: "100%", height: "100%", border: 0, display: "block" }} />
+          <iframe src="https://www.youtube.com/embed/Hku4kW4_ijY?rel=0&modestbranding=1&controls=1&playsinline=1&autoplay=1" title="Masterclass Rentimmo Academy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ width: "100%", height: "100%", border: 0, display: "block" }} />
         </div>
 
         <div className="mc-video-cta" style={{ maxWidth: 640, margin: "0 auto", background: `rgba(45,184,75,.08)`, border: `1px solid rgba(45,184,75,.25)`, borderRadius: 24, padding: "clamp(24px,5vw,40px) clamp(18px,5vw,32px)", textAlign: "center" }}>

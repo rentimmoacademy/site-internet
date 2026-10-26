@@ -3,8 +3,8 @@ export const MC_KEY = "rentimmo_mc_watched_v1";
 export const MC_THRESHOLD = 0.5; // 50% watched unlocks the call CTA
 
 // YouTube video ID (the part after v= or after youtu.be/)
-// https://youtu.be/QyzwMPk_4yY → QyzwMPk_4yY
-export const MC_VIDEO_ID = "QyzwMPk_4yY";
+// https://youtu.be/Hku4kW4_ijY → Hku4kW4_ijY
+export const MC_VIDEO_ID = "Hku4kW4_ijY";
 
 export const MC_TITLE = "Masterclass — Génère tes premiers revenus Airbnb sans crédit";
 
