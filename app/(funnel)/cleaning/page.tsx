@@ -13,10 +13,10 @@ const CREAM = "#F7F6F2";
 const FONT = "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)";
 
 const BULLETS = [
+  "Monter ton activité de ménage Airbnb de A à Z, sans local et sans capital",
+  "Trouver et signer ton premier client (hôte, conciergerie ou propriétaire)",
+  "Encaisser ton premier revenu, puis passer de « je fais le ménage » à « je dirige une équipe »",
   "Ce qu'un hôte Airbnb attend vraiment de la personne qui s'occupe de son logement",
-  "Comment monter une activité de ménage Airbnb sans local et sans capital",
-  "Comment passer de « je fais le ménage » à « je dirige une équipe »",
-  "Où trouver tes premiers clients et comment les garder",
 ];
 
 const FAQ = [
@@ -97,7 +97,7 @@ export default function CleaningPage() {
               ▶ Accès débloqué — Présentation Cleaning BnB Academy
             </div>
             <h1 style={{ color: "#fff", fontSize: "clamp(24px,4vw,40px)", fontWeight: 800, lineHeight: 1.1, marginBottom: 28 }}>
-              Transforme le ménage Airbnb en <span style={{ color: G }}>vraie entreprise</span>
+              Du premier client au <span style={{ color: G }}>premier encaissement</span>
             </h1>
           </div>
           <div style={{ maxWidth: 980, margin: "0 auto 40px", borderRadius: 24, overflow: "hidden", boxShadow: "0 32px 80px rgba(0,0,0,.55)", aspectRatio: "16/9", background: "#000" }}>
@@ -145,7 +145,7 @@ export default function CleaningPage() {
               Présentation offerte · accès immédiat
             </div>
             <h1 style={{ color: "#fff", fontSize: "clamp(28px,4.2vw,46px)", lineHeight: 1.07, fontWeight: 800, marginBottom: 16 }}>
-              Le ménage Airbnb : un métier que tu peux transformer en <span style={{ color: G }}>entreprise</span>
+              Monte ton activité de ménage Airbnb de A à Z : <span style={{ color: G }}>signe ton premier client et encaisse</span>
             </h1>
             <p style={{ color: "rgba(255,255,255,.65)", fontSize: 16, lineHeight: 1.6, marginBottom: 22 }}>
               Une présentation de 9 minutes par Marwan AFASSI : plus de 7 ans en location courte durée, jusqu'à 24 logements gérés entre la France et le Maroc.
