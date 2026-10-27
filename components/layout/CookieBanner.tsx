@@ -3,22 +3,49 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { CONSENT_EVENT, CONSENT_KEY as STORAGE_KEY } from "@/lib/consent";
+import {
+  CONSENT_EVENT,
+  CONSENT_KEY as STORAGE_KEY,
+  CONSENT_OPEN_EVENT,
+  clearTrackingCookies,
+} from "@/lib/consent";
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => {
-      if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
+      try {
+        if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
+      } catch {
+        setVisible(true);
+      }
     }, 600);
-    return () => clearTimeout(t);
+    // « Gérer mes cookies » (pied de page) rouvre le bandeau pour modifier le choix.
+    const reopen = () => setVisible(true);
+    window.addEventListener(CONSENT_OPEN_EVENT, reopen);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener(CONSENT_OPEN_EVENT, reopen);
+    };
   }, []);
 
   const choose = (v: "accept" | "decline") => {
-    localStorage.setItem(STORAGE_KEY, v);
+    let previous: string | null = null;
+    try {
+      previous = localStorage.getItem(STORAGE_KEY);
+      localStorage.setItem(STORAGE_KEY, v);
+    } catch {
+      /* stockage indisponible */
+    }
     window.dispatchEvent(new Event(CONSENT_EVENT));
     setVisible(false);
+    // Retrait du consentement : on purge les cookies de mesure et on recharge
+    // pour décharger GA4 et le pixel déjà actifs dans la page.
+    if (v === "decline" && previous === "accept") {
+      clearTrackingCookies();
+      window.location.reload();
+    }
   };
 
   return (

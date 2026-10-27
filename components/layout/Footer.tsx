@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Instagram, Youtube, Mail } from "lucide-react";
 import Logo from "./Logo";
 import { SITE } from "@/lib/utils";
+import CookieSettingsButton from "./CookieSettingsButton";
 
 const cols = [
   {
@@ -126,6 +127,11 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+                {col.title === "Légal" && (
+                  <li>
+                    <CookieSettingsButton className="text-sm text-white/75 transition-colors hover:text-brand-green" />
+                  </li>
+                )}
               </ul>
             </div>
           ))}
