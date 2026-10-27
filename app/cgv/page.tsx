@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 
-export const metadata: Metadata = { title: "Conditions générales de vente" };
+export const metadata: Metadata = { title: "Conditions générales de vente", alternates: { canonical: "https://www.rentimmoacademy.fr/cgv" } };
 
 export default function CGVPage() {
   return (

@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/mdx";
 import BlogGrid from "@/components/blog/BlogGrid";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.rentimmoacademy.fr/blog" },
   title: "Blog — Ressources LCD, sous-location & conciergerie",
   description:
     "Guides terrain, études de cas et retours d'expérience sur la sous-location, la conciergerie Airbnb et le cleaning BNB, en France et au Maroc.",

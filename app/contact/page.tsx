@@ -13,6 +13,7 @@ function TikTokIcon({ size = 16 }: { size?: number }) {
 }
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.rentimmoacademy.fr/contact" },
   title: "Contact — Parle-nous de ton projet LCD",
   description: "Contact Rentimmo Academy. Pose ta question, réserve un appel ou écris-nous directement.",
 };
@@ -43,7 +44,7 @@ export default function ContactPage() {
               </span>
               <span>
                 <p className="text-[10px] uppercase tracking-widest text-brand-green">Recommandé</p>
-                <p className="font-bold">Réserver un appel stratégique (30 min)</p>
+                <p className="font-bold">Réserver un appel stratégique</p>
               </span>
             </CallGate>
             <a

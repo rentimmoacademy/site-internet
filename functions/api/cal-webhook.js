@@ -25,9 +25,11 @@ const SOURCE_TAGS = {
 function detectSource(text) {
   if (!text) return null;
   const s = String(text).toLowerCase();
-  if (s.includes('insta')) return 'insta';
-  if (s.includes('tiktok') || s.includes('tt')) return 'tiktok';
-  if (s.includes('youtube') || s.includes('yt')) return 'youtube';
+  // Mots entiers uniquement : l'ancien test includes('tt') / includes('yt') attribuait
+  // « tiktok » à tout texte contenant « tt » (« attendre », « http »...).
+  if (/\binsta(gram)?\b/.test(s)) return 'insta';
+  if (/\btik ?tok\b|\btt\b/.test(s)) return 'tiktok';
+  if (/\byoutube\b|\byt\b/.test(s)) return 'youtube';
   return null;
 }
 

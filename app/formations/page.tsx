@@ -8,6 +8,7 @@ import { AGGREGATE_RATING } from "@/lib/testimonials";
 import { Check, X, ArrowRight, Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://www.rentimmoacademy.fr/formations" },
   title: "Formations — Sous-Location Academy · Conciergerie BNB Academy · Cleaning BNB Academy",
   description:
     "Sous-Location Academy, Conciergerie BNB Academy, Cleaning BNB Academy — 3 formations terrain pour lancer ton activité de location courte durée en France et au Maroc. Sans banque, sans crédit.",

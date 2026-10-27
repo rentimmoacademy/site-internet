@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 
-export const metadata: Metadata = { title: "Politique de confidentialité" };
+export const metadata: Metadata = { title: "Politique de confidentialité", alternates: { canonical: "https://www.rentimmoacademy.fr/politique-confidentialite" } };
 
 export default function PolitiqueConfidentialitePage() {
   return (

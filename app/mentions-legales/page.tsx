@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LegalLayout from "@/components/LegalLayout";
 
-export const metadata: Metadata = { title: "Mentions légales" };
+export const metadata: Metadata = { title: "Mentions légales", alternates: { canonical: "https://www.rentimmoacademy.fr/mentions-legales" } };
 
 export default function MentionsLegalesPage() {
   return (
