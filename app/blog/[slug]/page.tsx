@@ -54,13 +54,13 @@ const ctaByCategory: Record<string, { headline: string; sub: string; cta: string
   },
   outils: {
     headline: "Les outils seuls ne suffisent pas — il faut le bon système",
-    sub: "Dans Super BNB Academy, on configure pricing dynamique, messagerie automatisée, domotique et channel manager avec toi en 4 semaines. Résultat moyen : +38 % de revenus, 15 min/jour de gestion.",
+    sub: "Dans Super BNB Academy, on configure pricing dynamique, messagerie automatisée, domotique et channel manager avec toi en 4 semaines. Objectif visé : +30 % de chiffre d'affaires et 15 min/jour de gestion, une fois le système installé.",
     cta: "Voir Super BNB Academy",
     href: "/super-bnb-academy",
   },
   scale: {
     headline: "Les outils seuls ne suffisent pas — il faut le bon système",
-    sub: "Dans Super BNB Academy, on configure pricing dynamique, messagerie automatisée, domotique et channel manager avec toi en 4 semaines. Résultat moyen : +38 % de revenus, 15 min/jour de gestion.",
+    sub: "Dans Super BNB Academy, on configure pricing dynamique, messagerie automatisée, domotique et channel manager avec toi en 4 semaines. Objectif visé : +30 % de chiffre d'affaires et 15 min/jour de gestion, une fois le système installé.",
     cta: "Voir Super BNB Academy",
     href: "/super-bnb-academy",
   },
