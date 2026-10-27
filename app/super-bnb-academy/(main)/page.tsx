@@ -335,7 +335,7 @@ export default function SuperBnbAcademyPage() {
                   Pas sûr que ce soit pour toi ?
                 </p>
                 <h3 className="mt-3 max-w-2xl text-2xl font-extrabold leading-tight tracking-[-0.015em] md:text-3xl">
-                  Réserve ton appel diagnostic gratuit de 30 minutes. On regarde ton annonce ensemble, sans engagement.
+                  Réserve ton appel diagnostic gratuit. On regarde ton annonce ensemble, sans engagement.
                 </h3>
                 <ul className="mt-4 space-y-1.5">
                   {[

@@ -89,7 +89,7 @@ export default function SuperBnbAuditPopup() {
 
         {/* Label */}
         <p className="mt-4 text-[10px] font-black uppercase tracking-[0.25em] text-brand-green">
-          Audit gratuit, 30 min
+          Audit gratuit
         </p>
 
         {/* Headline */}
@@ -99,7 +99,7 @@ export default function SuperBnbAuditPopup() {
 
         {/* Body */}
         <p className="mt-3 text-sm leading-relaxed text-white/65">
-          On analyse ton annonce Airbnb en 30 min : pricing, texte, photos, positionnement.
+          On analyse ton annonce Airbnb : pricing, texte, photos, positionnement.
           Tu repars avec un plan d&apos;action concret. C&apos;est gratuit.
         </p>
 

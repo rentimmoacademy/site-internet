@@ -57,13 +57,13 @@ export const metadata: Metadata = {
     url: SITE,
     title: "Rentimmo Academy — Formations LCD France & Maroc",
     description:
-      "Génère +700 €/mois avec ton premier logement Airbnb. Formation terrain, applicable immédiatement.",
+      "Formation terrain pour lancer ta sous-location, ta conciergerie Airbnb ou ton activité de ménage. Applicable immédiatement.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Rentimmo Academy — Formations LCD France & Maroc",
-    description: "Génère +700 €/mois avec ton premier logement Airbnb.",
+    description: "Formation terrain : sous-location, conciergerie Airbnb et ménage professionnel.",
     images: ["/og-image.jpg"],
   },
   robots: {

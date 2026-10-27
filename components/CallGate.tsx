@@ -74,7 +74,7 @@ export function CallGateDialog({
         </h3>
         <p className="mt-4 text-sm leading-relaxed text-white/70">
           Pour qu'on parle de ton projet en connaissance de cause, on demande à tous nos prospects
-          de visionner la masterclass au préalable. C'est gratuit, ~30 min, et ça pose les bases.
+          de visionner la masterclass au préalable. C'est gratuit, et ça pose les bases.
         </p>
         <div className="mt-7 flex flex-col gap-3 sm:flex-row">
           <Link

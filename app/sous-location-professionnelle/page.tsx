@@ -354,7 +354,7 @@ export default function SousLocationProfessionnellePage() {
                 Sur-mesure
               </span>
             </div>
-            <h3 className="mt-4 text-2xl font-extrabold text-ink">Appel stratégique 30 min</h3>
+            <h3 className="mt-4 text-2xl font-extrabold text-ink">Appel stratégique offert</h3>
             <p className="mt-2 text-ink-muted">
               Tu hésites encore ? Réserve un appel offert avec notre équipe. On audit ta situation, on te dit honnêtement si la sous-location est faite pour toi.
             </p>

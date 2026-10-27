@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Logo from "@/components/layout/Logo";
+import { trackEvent, trackMeta } from "@/lib/gtag";
 
 const API_BASE = "/api";
 const POLL_MS = 4000;
@@ -236,6 +237,8 @@ export default function AuditPublicPage() {
         }),
       });
     } catch { /* silently pass */ }
+    trackEvent("audit_optin", { score: a.globalScore });
+    trackMeta("Lead", { content_name: "super-bnb-audit" });
     setAudit(a); setStep("result"); setOptinLoading(false);
   };
 
@@ -307,7 +310,7 @@ export default function AuditPublicPage() {
             </button>
           </div>
 
-          <p className="text-white/40 text-xs text-center">Gratuit · Sans inscription · Sans engagement</p>
+          <p className="text-white/40 text-xs text-center">Gratuit · Sans carte bancaire · Sans engagement</p>
         </div>
         </Reveal>
 
@@ -353,7 +356,7 @@ export default function AuditPublicPage() {
               { q: "Comment fonctionne cet audit gratuit ?", a: "Notre IA analyse les données publiques de ton annonce (titre, photos, description, prix, avis) et les compare aux standards et aux annonces concurrentes de ta zone. Tu obtiens un score par catégorie et un plan d'action en 90 secondes." },
               { q: "Est-ce vraiment gratuit et sans engagement ?", a: "Oui. Aucune carte bancaire, aucun abonnement. Tu renseignes juste tes coordonnées pour recevoir le rapport complet." },
               { q: "Que deviennent mes données ?", a: "Elles servent uniquement à générer ton rapport et, si tu le souhaites, à te recontacter pour un audit stratégique gratuit. Aucune revente à des tiers." },
-              { q: "Et après l'audit ?", a: "Tu peux réserver un appel stratégique gratuit de 30 minutes avec un coach Super BNB Academy pour aller plus loin sur ton annonce." },
+              { q: "Et après l'audit ?", a: "Tu peux réserver un appel stratégique gratuit avec un coach Super BNB Academy pour aller plus loin sur ton annonce." },
             ].map((item) => (
               <details key={item.q} className="group p-4">
                 <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-semibold text-white/80">
@@ -699,11 +702,11 @@ export default function AuditPublicPage() {
               <p className="text-white/75 text-sm mb-6 leading-relaxed max-w-sm mx-auto">
                 Tu gères déjà {gestion} logement{gestion === "1" ? "" : "s"} mais tu es freiné dans ta croissance. Réserve ton audit stratégique gratuit : on analyse ton parc complet et tu repars avec le plan exact pour débloquer la suite.
               </p>
-              <a href={CAL_URL} target="_blank" rel="noopener noreferrer"
+              <a href={CAL_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackEvent("audit_call_click"); trackMeta("Schedule", { content_name: "super-bnb-audit" }); }}
                 className="inline-block bg-white text-brand-dark font-extrabold text-base px-8 py-3.5 rounded-xl hover:bg-cream hover:-translate-y-0.5 transition-all animate-pulse-soft shadow-glow">
                 Réserver mon audit gratuit →
               </a>
-              <p className="text-white/40 text-xs mt-4">30 min · Gratuit · Sans engagement</p>
+              <p className="text-white/40 text-xs mt-4">Gratuit · Sans engagement</p>
             </div>
           </div>
         ) : (
@@ -721,7 +724,7 @@ export default function AuditPublicPage() {
               </a>
               <p className="text-white/40 text-xs mt-4">
                 Tu gères déjà plusieurs biens ?{" "}
-                <a href={CAL_URL} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Réserve quand même un audit</a>
+                <a href={CAL_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackEvent("audit_call_click"); trackMeta("Schedule", { content_name: "super-bnb-audit" }); }} className="underline hover:text-white">Réserve quand même un audit</a>
               </p>
             </div>
           </div>

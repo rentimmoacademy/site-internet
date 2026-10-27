@@ -84,7 +84,7 @@ export default function MasterclassPopup() {
 
         {/* Body */}
         <p className="mt-3 text-sm leading-relaxed text-white/65">
-          30 min pour comprendre comment lancer ta sous-location professionnelle — de la
+          Une présentation pour comprendre comment lancer ta sous-location professionnelle — de la
           prospection au premier virement. Gratuit, sans inscription.
         </p>
 

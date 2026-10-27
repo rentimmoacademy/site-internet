@@ -122,7 +122,7 @@ const CATEGORIES: Category[] = [
       },
       {
         q: "Combien coûte une formation en sous-location professionnelle ?",
-        a: "Les formations sérieuses du marché se situent généralement entre 500 € et 2 500 € selon la profondeur du contenu, l'accompagnement et l'accès communauté. Rentimmo Academy propose un appel stratégique gratuit de 45 minutes avant tout engagement pour valider que la formation est adaptée à votre situation.",
+        a: "Les formations sérieuses du marché se situent généralement entre 500 € et 2 500 € selon la profondeur du contenu, l'accompagnement et l'accès communauté. Rentimmo Academy propose un appel stratégique gratuit avant tout engagement pour valider que la formation est adaptée à votre situation.",
       },
       {
         q: "Formation sous-location Airbnb : est-ce finançable par le CPF ?",
@@ -236,7 +236,7 @@ export default function QuestionsFrequentesPage() {
       <LandingSection
         kicker="Une question précise sur votre situation ?"
         title="Parlons-en directement"
-        intro="Ces réponses couvrent les cas généraux. Pour un diagnostic sur votre ville, votre budget et votre objectif, réservez un appel stratégique gratuit de 45 minutes."
+        intro="Ces réponses couvrent les cas généraux. Pour un diagnostic sur votre ville, votre budget et votre objectif, réservez un appel stratégique gratuit."
         bg="ink"
       >
         <div className="flex flex-wrap gap-4">

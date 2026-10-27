@@ -14,21 +14,21 @@ const CONTENT: Record<
   { label: string; headline: string; body: string; question: string; options: string[] }
 > = {
   "sous-location": {
-    label: "Diagnostic gratuit — 20 min",
+    label: "Diagnostic gratuit",
     headline: "Tu hésites encore à te lancer en sous-location ?",
     body: "Réponds en 1 clic, on regarde ensemble si c'est fait pour toi. Gratuit, sans engagement.",
     question: "Où en es-tu aujourd'hui ?",
     options: ["Je n'ai pas encore de bien", "J'ai un bien mais ça galère", "Je veux scaler sur plusieurs biens"],
   },
   conciergerie: {
-    label: "Diagnostic gratuit — 20 min",
+    label: "Diagnostic gratuit",
     headline: "La conciergerie Airbnb, c'est fait pour toi ?",
     body: "Réponds en 1 clic, on regarde ensemble si c'est rentable pour toi. Gratuit, sans engagement.",
     question: "Ta situation aujourd'hui ?",
     options: ["Je n'ai pas encore de client", "J'ai 1 à 3 logements en gestion", "Je veux structurer et scaler"],
   },
   cleaning: {
-    label: "Diagnostic gratuit — 20 min",
+    label: "Diagnostic gratuit",
     headline: "Le ménage Airbnb pro, c'est fait pour toi ?",
     body: "Réponds en 1 clic, on regarde ensemble si c'est fait pour toi. Gratuit, sans engagement.",
     question: "Ta situation aujourd'hui ?",

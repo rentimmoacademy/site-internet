@@ -117,7 +117,7 @@ export default function CleaningPage() {
           </div>
           <div style={{ maxWidth: 640, margin: "0 auto", background: "rgba(45,184,75,.08)", border: "1px solid rgba(45,184,75,.25)", borderRadius: 24, padding: "32px 24px", textAlign: "center" }}>
             <h2 style={{ color: "#fff", fontSize: "clamp(20px,3vw,26px)", fontWeight: 800, marginBottom: 12 }}>Tu veux savoir si c'est fait pour toi ?</h2>
-            <p style={{ color: "rgba(255,255,255,.6)", fontSize: 16, marginBottom: 24 }}>Réserve un appel de 45 min. On regarde ta situation et on voit si la formation peut t'accompagner.</p>
+            <p style={{ color: "rgba(255,255,255,.6)", fontSize: 16, marginBottom: 24 }}>Réserve un appel avec Marwan. On regarde ta situation et on voit si la formation peut t'accompagner.</p>
             <a
               href={CLEANING_CAL_URL}
               target="_blank"
@@ -127,7 +127,7 @@ export default function CleaningPage() {
             >
               Réserver mon appel offert →
             </a>
-            <p style={{ color: "rgba(255,255,255,.35)", fontSize: 13, marginTop: 12 }}>45 min · 0 € · Sans engagement</p>
+            <p style={{ color: "rgba(255,255,255,.35)", fontSize: 13, marginTop: 12 }}>Gratuit · Sans engagement</p>
           </div>
         </section>
         {Footer}
