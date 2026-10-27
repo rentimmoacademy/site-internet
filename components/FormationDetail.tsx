@@ -11,18 +11,20 @@ import {
   Layers,
   Users,
   ShieldCheck,
-  Star,
   MapPin,
   Flame,
 } from "lucide-react";
 import type { Formation } from "@/lib/formations";
 import { formations } from "@/lib/formations";
 import CallGate from "@/components/CallGate";
+import { TESTIMONIALS } from "@/lib/testimonials";
 
 export default function FormationDetail({ formation }: { formation: Formation }) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
   const [faqIdx, setFaqIdx] = useState<number | null>(0);
   const others = formations.filter((f) => f.slug !== formation.slug);
+  // Uniquement des témoignages publics sourcés (Trustpilot, YouTube) ; rien si la formation n'en a pas encore.
+  const proofs = TESTIMONIALS.filter((t) => t.formation === formation.slug && t.result).slice(0, 3);
 
   return (
     <>
@@ -251,25 +253,41 @@ export default function FormationDetail({ formation }: { formation: Formation })
             </div>
           </div>
 
-          <div>
-            <p className="tag mb-5 text-brand-green">Ils l'ont suivie</p>
-            <h2 className="text-3xl font-extrabold tracking-tight text-white">Témoignages vérifiés.</h2>
-            <div className="mt-8 space-y-4">
-              {formation.testimonials.map((t) => (
-                <div key={t.name} className="rounded-2xl border border-white/10 bg-[#1f1f1f] p-6">
-                  <div className="flex items-center gap-1 text-warning">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={13} fill="currentColor" strokeWidth={0} />
-                    ))}
+          {proofs.length > 0 && (
+            <div>
+              <p className="tag mb-5 text-brand-green">Ils l'ont suivie</p>
+              <h2 className="text-3xl font-extrabold tracking-tight text-white">Témoignages publics.</h2>
+              <div className="mt-8 space-y-4">
+                {proofs.map((t) => (
+                  <div key={t.id} className="rounded-2xl border border-white/10 bg-[#1f1f1f] p-6">
+                    <p className="text-base font-bold leading-tight text-white">{t.result}</p>
+                    <p className="mt-2 text-sm text-white/55">
+                      {t.firstName} ·{" "}
+                      {t.source.type === "youtube" ? (
+                        <a
+                          href={`https://www.youtube.com/watch?v=${t.source.videoId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:text-brand-green"
+                        >
+                          voir la vidéo
+                        </a>
+                      ) : t.source.type === "trustpilot" ? (
+                        <a
+                          href={t.source.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:text-brand-green"
+                        >
+                          avis Trustpilot
+                        </a>
+                      ) : null}
+                    </p>
                   </div>
-                  <p className="mt-3 text-base font-bold leading-tight text-white">{t.result}</p>
-                  <p className="mt-2 text-sm text-white/55">
-                    {t.name} — {t.city}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 

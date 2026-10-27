@@ -77,11 +77,8 @@ export const formations: Formation[] = [
       { q: "Combien de temps avant les premiers revenus ?", a: "Entre 15 et 45 jours après signature du bail, selon la saison et la ville." },
       { q: "Est-ce que ça marche au Maroc ?", a: "Oui, le module Bonus Maroc est dédié à ça. Les villes touristiques sont particulièrement rentables." },
     ],
-    testimonials: [
-      { name: "Karim B.", city: "Paris 17e", result: "+1 200 €/mois net sur le premier logement en 45 jours" },
-      { name: "Sophie L.", city: "Lyon", result: "3 logements signés en 6 mois, 2 800 €/mois net" },
-      { name: "Yassine A.", city: "Tanger", result: "Premier bail signé au Maroc, +8 000 MAD/mois" },
-    ],
+    // Témoignages sourcés : voir lib/testimonials.ts (aucun résultat chiffré non vérifiable ici).
+    testimonials: [],
     tiers: [
       {
         label: "Bronze",
@@ -162,11 +159,8 @@ export const formations: Formation[] = [
       { q: "Et si le propriétaire veut récupérer son bien ?", a: "Le mandat type de la formation te protège avec un préavis clair et des clauses de sortie." },
       { q: "Peut-on lancer une conciergerie au Maroc ?", a: "Oui, le module Bonus Maroc détaille la démarche, les statuts et les villes à cibler." },
     ],
-    testimonials: [
-      { name: "Nadia R.", city: "Marseille", result: "8 mandats signés, 3 200 €/mois de commissions" },
-      { name: "Thomas K.", city: "Bordeaux", result: "Première équipe montée à 3 personnes en 9 mois" },
-      { name: "Fatima E.", city: "Marrakech", result: "5 riads en gestion, activité rentable dès le 2e mois" },
-    ],
+    // Témoignages sourcés : voir lib/testimonials.ts (aucun résultat chiffré non vérifiable ici).
+    testimonials: [],
     tiers: [
       {
         label: "Bronze",
@@ -246,11 +240,8 @@ export const formations: Formation[] = [
       { q: "Quel matériel faut-il au départ ?", a: "Moins de 500 € d'équipement pro. Le module 3 détaille la liste exacte." },
       { q: "Le modèle fonctionne-t-il au Maroc ?", a: "Oui, c'est même l'activité la plus accessible au Maroc avec un capital très faible." },
     ],
-    testimonials: [
-      { name: "Laura M.", city: "Nantes", result: "12 logements en rotation, 2 400 €/mois net" },
-      { name: "Mehdi O.", city: "Lille", result: "Équipe de 2 personnes, 4 100 €/mois à 8 mois" },
-      { name: "Salma H.", city: "Casablanca", result: "Premier contrat signé en 3 semaines" },
-    ],
+    // Témoignages sourcés : voir lib/testimonials.ts (aucun résultat chiffré non vérifiable ici).
+    testimonials: [],
     tiers: [
       {
         label: "Bronze",
