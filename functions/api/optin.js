@@ -26,7 +26,10 @@ function funnelTagIds(funnel) {
   return [TAGS.optinMasterclass];
 }
 
-function sourceTagId(src) {
+// Les tags source (OPTIN VSL ORGA INSTA/TT/YT) déclenchent la campagne sous-location :
+// jamais posés aux leads Cleaning.
+function sourceTagId(src, funnel) {
+  if (funnel === 'cleaning') return null;
   const s = (src || '').toLowerCase();
   if (s.includes('insta') || s.startsWith('ig')) return TAGS.sourceInsta;
   if (s.includes('tiktok') || s.startsWith('tt')) return TAGS.sourceTiktok;
@@ -80,11 +83,11 @@ export async function onRequestPost({ request, env }) {
       const create = await sio('/contacts', 'POST', { email, fields }, key, userIP);
       if (create.ok) {
         contact = create.data;
-        const tags = [...funnelTagIds(funnel), sourceTagId(source)].filter(Boolean);
+        const tags = [...funnelTagIds(funnel), sourceTagId(source, funnel)].filter(Boolean);
         await Promise.all(tags.map(tagId => sio(`/contacts/${contact.id}/tags`, 'POST', { tagId }, key, userIP)));
       }
     } else if (contact) {
-      const tags = [...funnelTagIds(funnel), sourceTagId(source)].filter(Boolean);
+      const tags = [...funnelTagIds(funnel), sourceTagId(source, funnel)].filter(Boolean);
       await Promise.all(tags.map(tagId => sio(`/contacts/${contact.id}/tags`, 'POST', { tagId }, key, userIP)));
     }
   }
