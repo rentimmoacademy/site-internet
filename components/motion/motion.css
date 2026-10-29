@@ -1,0 +1,237 @@
+/* ==========================================================================
+   Kit motion Rentimmo Academy : CSS + IntersectionObserver, zéro dépendance.
+   Tout est préfixé `mo-` ou piloté par des attributs `data-*`.
+   Règles : seulement transform / opacity (pas de CLS), états finaux visibles
+   sans JavaScript, tout est neutralisé sous prefers-reduced-motion.
+   Mode d'emploi : components/motion/README.md
+   ========================================================================== */
+
+:root {
+  --mo-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --mo-green: #2db84b;
+  --mo-green-d: #1f8035; /* blanc dessus = AA (4,9:1) */
+  --mo-green-dd: #1a6b33;
+  --mo-ink: #1a1a1a;
+  --mo-cream: #f7f6f2;
+}
+
+/* ---------- 1. Entrée CSS pure (au-dessus de la ligne de flottaison) ------- */
+@keyframes mo-rise {
+  from { opacity: 0; transform: translate3d(0, 22px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes mo-pop {
+  from { opacity: 0; transform: scale(0.94) translate3d(0, 16px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes mo-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes mo-word {
+  from { opacity: 0; transform: translate3d(0, 0.5em, 0); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+/* délai en ms via la variable unitless --mo-d (ex. style={{"--mo-d": 120}}) */
+.mo-enter { animation: mo-rise 0.7s var(--mo-ease) calc(var(--mo-d, 0) * 1ms) both; }
+.mo-enter-pop { animation: mo-pop 0.8s var(--mo-ease) calc(var(--mo-d, 0) * 1ms) both; }
+.mo-enter-fade { animation: mo-fade 1s ease calc(var(--mo-d, 0) * 1ms) both; }
+.mo-word {
+  display: inline-block;
+  animation: mo-word 0.7s var(--mo-ease) calc(var(--mo-d, 0) * 1ms + var(--i, 0) * 30ms) both;
+}
+
+/* ---------- 2. Reveal au scroll (data-reveal) ------------------------------ */
+[data-reveal] { --mo-from: translate3d(0, 28px, 0); }
+[data-reveal="fade"] { --mo-from: none; }
+[data-reveal="scale"] { --mo-from: scale(0.93) translate3d(0, 16px, 0); }
+[data-reveal="left"] { --mo-from: translate3d(-36px, 0, 0); }
+[data-reveal="right"] { --mo-from: translate3d(36px, 0, 0); }
+[data-reveal][data-mo] {
+  transition:
+    opacity 0.8s ease calc(var(--mo-d, 0) * 1ms),
+    transform 0.9s var(--mo-ease) calc(var(--mo-d, 0) * 1ms);
+}
+[data-reveal][data-mo="hidden"] { opacity: 0; transform: var(--mo-from); will-change: opacity, transform; }
+[data-reveal][data-mo="in"] { opacity: 1; transform: none; }
+
+/* ---------- 3. Fond aurore (blobs verts qui dérivent, compositor only) ------ */
+.mo-aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.mo-aurora::before {
+  /* grille de points estompée */
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+}
+.mo-blob {
+  position: absolute; width: 60vmax; height: 60vmax; max-width: 760px; max-height: 760px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(45, 184, 75, 0.34), rgba(45, 184, 75, 0) 62%);
+  animation: mo-drift 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.mo-blob--a { top: -34%; left: -18%; }
+.mo-blob--b {
+  bottom: -46%; right: -14%;
+  background: radial-gradient(circle at center, rgba(95, 216, 122, 0.22), rgba(95, 216, 122, 0) 62%);
+  animation-duration: 24s; animation-direction: alternate-reverse;
+}
+@keyframes mo-drift {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(6%, 8%, 0) scale(1.12); }
+}
+
+/* ---------- 4. Marquee (défilement infini, pause au survol) ------------------ */
+.mo-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.mo-marquee-track { display: flex; width: max-content; animation: mo-marquee var(--mo-speed, 38s) linear infinite; }
+.mo-marquee:hover .mo-marquee-track { animation-play-state: paused; }
+.mo-marquee-group { display: flex; flex-shrink: 0; align-items: center; }
+@keyframes mo-marquee { to { transform: translate3d(-50%, 0, 0); } }
+
+/* ---------- 5. Cartes qui s'inclinent + spotlight (pointeur fin uniquement) -- */
+.mo-tilt {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.35s var(--mo-ease), border-color 0.3s, box-shadow 0.3s;
+  transform-style: preserve-3d;
+}
+.mo-tilt[data-tilting] { transition: transform 0.08s linear, border-color 0.3s, box-shadow 0.3s; }
+.mo-spot { position: relative; overflow: hidden; isolation: isolate; }
+.mo-spot::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(45, 184, 75, 0.2), transparent 65%);
+  transition: opacity 0.35s;
+}
+.mo-spot[data-tilting]::after { opacity: 1; }
+
+/* ---------- 6. Bouton magnétique (data-magnetic) + reflet ------------------- */
+[data-magnetic] {
+  translate: var(--tx, 0px) var(--ty, 0px);
+  transition: translate 0.35s var(--mo-ease), box-shadow 0.3s, filter 0.3s;
+}
+[data-magnetic][data-pulling] { transition: translate 0.1s linear, box-shadow 0.3s, filter 0.3s; }
+.mo-shine { position: relative; overflow: hidden; isolation: isolate; }
+.mo-shine::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 45%; z-index: -1; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+  transform: translate3d(-130%, 0, 0) skewX(-18deg);
+  animation: mo-shine 4.2s ease-in-out 1.6s infinite;
+}
+@keyframes mo-shine {
+  0%, 55% { transform: translate3d(-130%, 0, 0) skewX(-18deg); }
+  100% { transform: translate3d(330%, 0, 0) skewX(-18deg); }
+}
+
+/* ---------- 7. Bordure lumineuse qui tourne (carte formulaire) -------------- */
+.mo-borderspin { position: relative; overflow: hidden; isolation: isolate; }
+.mo-borderspin::before {
+  content: ""; position: absolute; inset: -60%; z-index: -2;
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(45, 184, 75, 0.15) 74%, #5fd87a 88%, transparent 100%);
+  animation: mo-spin 7s linear infinite;
+}
+.mo-borderspin::after {
+  content: ""; position: absolute; inset: 2px; z-index: -1;
+  border-radius: calc(var(--mo-radius, 24px) - 2px); background: var(--mo-card-bg, #fff);
+}
+@keyframes mo-spin { to { transform: rotate(360deg); } }
+
+/* ---------- 8. Barre de progression de lecture ------------------------------ */
+.mo-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 80; pointer-events: none;
+  background: linear-gradient(90deg, var(--mo-green-dd), var(--mo-green), #5fd87a);
+  transform: scaleX(0); transform-origin: 0 50%;
+}
+
+/* ---------- 9. Ligne qui se remplit au scroll (data-scrollfill) --------------- */
+.mo-fill { position: absolute; background: rgba(26, 26, 26, 0.1); overflow: hidden; }
+.mo-fill::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(var(--mo-fill-dir, 180deg), var(--mo-green-dd), var(--mo-green));
+  transform: scaleY(var(--mo-fill, 0)); transform-origin: 50% 0;
+}
+.mo-fill--x::after { transform: scaleX(var(--mo-fill, 0)); transform-origin: 0 50%; --mo-fill-dir: 90deg; }
+
+/* ---------- 10. Coche qui se dessine, point pulsé ----------------------------- */
+.mo-check path { stroke-dasharray: 24; stroke-dashoffset: 24; animation: mo-draw 0.6s var(--mo-ease) calc(var(--mo-d, 0) * 1ms + 250ms) forwards; }
+@keyframes mo-draw { to { stroke-dashoffset: 0; } }
+.mo-pulse-dot { position: relative; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--mo-green); }
+.mo-pulse-dot::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--mo-green);
+  animation: mo-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes mo-ping { 75%, 100% { transform: scale(3); opacity: 0; } }
+
+/* ---------- 11. Halo lumineux autour d'un média (VSL) -------------------------- */
+.mo-halo { position: relative; }
+.mo-halo::before {
+  content: ""; position: absolute; inset: -6%; z-index: -1; border-radius: 40px; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(45, 184, 75, 0.38), transparent 68%);
+  animation: mo-breathe 5s ease-in-out infinite;
+}
+@keyframes mo-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(0.97); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+.mo-skeleton {
+  background: linear-gradient(100deg, #101010 30%, #1c1c1c 50%, #101010 70%);
+  background-size: 200% 100%; animation: mo-skel 1.6s linear infinite;
+}
+@keyframes mo-skel { to { background-position: -200% 0; } }
+
+/* ---------- 12. Accordéon (grid-template-rows 0fr -> 1fr) ---------------------- */
+.mo-acc { display: grid; gap: 12px; }
+.mo-acc-item {
+  border: 1px solid rgba(26, 26, 26, 0.08); border-radius: 18px; background: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.mo-acc-item[data-open="true"] { border-color: rgba(45, 184, 75, 0.45); box-shadow: 0 14px 34px -18px rgba(26, 107, 51, 0.35); }
+.mo-acc-h { margin: 0; font: inherit; }
+.mo-acc-btn {
+  all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px; padding: 20px 22px; font-weight: 600; font-size: 16px; line-height: 1.35;
+  border-radius: 18px;
+}
+.mo-acc-btn:focus-visible { outline: 3px solid var(--mo-green); outline-offset: 2px; }
+.mo-acc-icon { position: relative; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: rgba(45, 184, 75, 0.12); transition: background 0.3s, transform 0.4s var(--mo-ease); }
+.mo-acc-icon::before, .mo-acc-icon::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; margin: -1px 0 0 -6px; border-radius: 2px;
+  background: var(--mo-green-d); transition: transform 0.4s var(--mo-ease);
+}
+.mo-acc-icon::after { transform: rotate(90deg); }
+.mo-acc-item[data-open="true"] .mo-acc-icon { background: var(--mo-green-d); transform: rotate(180deg); }
+.mo-acc-item[data-open="true"] .mo-acc-icon::before, .mo-acc-item[data-open="true"] .mo-acc-icon::after { background: #fff; }
+.mo-acc-item[data-open="true"] .mo-acc-icon::after { transform: rotate(0deg); }
+.mo-acc-panel { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 0.45s var(--mo-ease), visibility 0s linear 0.45s; }
+.mo-acc-item[data-open="true"] .mo-acc-panel { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows 0.45s var(--mo-ease), visibility 0s; }
+.mo-acc-inner { overflow: hidden; min-height: 0; }
+.mo-acc-inner > p { margin: 0; padding: 0 22px 22px; color: #5b5b5b; font-size: 15px; line-height: 1.65; }
+
+/* ---------- 13. CTA collant mobile ------------------------------------------- */
+.mo-sticky {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: none;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(to top, rgba(26, 26, 26, 0.96) 55%, rgba(26, 26, 26, 0));
+  transform: translate3d(0, 110%, 0); visibility: hidden;
+  transition: transform 0.5s var(--mo-ease), visibility 0s linear 0.5s;
+}
+.mo-sticky[data-show="true"] { transform: none; visibility: visible; transition: transform 0.5s var(--mo-ease), visibility 0s; }
+@media (max-width: 767px) { .mo-sticky { display: block; } }
+
+/* ---------- 14. Réduction de mouvement ------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .mo-enter, .mo-enter-pop, .mo-enter-fade, .mo-word { animation: none !important; opacity: 1; transform: none; filter: none; }
+  [data-reveal][data-mo], [data-reveal][data-mo="hidden"] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .mo-blob, .mo-borderspin::before, .mo-halo::before, .mo-shine::after, .mo-pulse-dot::after, .mo-skeleton { animation: none !important; }
+  .mo-borderspin::before { transform: none; background: var(--mo-green); }
+  .mo-check path { animation: none; stroke-dashoffset: 0; }
+  .mo-marquee { -webkit-mask-image: none; mask-image: none; overflow: visible; }
+  .mo-marquee-track { animation: none !important; width: auto; flex-wrap: wrap; justify-content: center; }
+  .mo-marquee-group[aria-hidden="true"] { display: none; }
+  .mo-tilt, [data-magnetic] { transition: none !important; transform: none; translate: none; }
+  .mo-acc-panel, .mo-acc-icon, .mo-sticky, .mo-acc-icon::before, .mo-acc-icon::after { transition: none !important; }
+}
