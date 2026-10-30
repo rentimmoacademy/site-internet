@@ -10,9 +10,9 @@ export default function MentionsLegalesPage() {
       <p>
         <strong>Rentimmo Academy</strong>
         <br />
-        Forme juridique : SASU
+        Forme juridique : SASU (société par actions simplifiée unipersonnelle)
         <br />
-        Capital social : 1 000 €
+        Capital social : 100 €
         <br />
         Siège social : 9 rue Clément Marillier, 21000 Dijon, France
         <br />
@@ -29,11 +29,11 @@ export default function MentionsLegalesPage() {
 
       <h2>Hébergeur</h2>
       <p>
-        Vercel Inc.
+        Cloudflare, Inc.
         <br />
-        340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis
+        101 Townsend St, San Francisco, CA 94107, États-Unis
         <br />
-        <a href="https://vercel.com">vercel.com</a>
+        <a href="https://www.cloudflare.com">cloudflare.com</a>
       </p>
 
       <h2>Propriété intellectuelle</h2>

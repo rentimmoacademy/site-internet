@@ -14,7 +14,7 @@ export default function PolitiqueConfidentialitePage() {
 
       <h2>1. Responsable du traitement</h2>
       <p>
-        Le responsable du traitement est <strong>Rentimmo Academy</strong>, [adresse à compléter], joignable
+        Le responsable du traitement est <strong>Rentimmo Academy</strong>, 9 rue Clément Marillier, 21000 Dijon, France, joignable
         à <a href="mailto:contact@rentimmoacademy.fr">contact@rentimmoacademy.fr</a>.
       </p>
 
@@ -89,7 +89,7 @@ export default function PolitiqueConfidentialitePage() {
       <h2>8. Destinataires</h2>
       <p>
         Vos données sont accessibles uniquement à l'équipe Rentimmo Academy et à nos sous-traitants
-        (Stripe pour le paiement, Vercel pour l'hébergement, SendGrid pour l'emailing). Toutes les
+        (Stripe pour le paiement, Cloudflare pour l'hébergement, SendGrid pour l'emailing). Toutes les
         données restent au sein de l'UE ou sont transférées sous les clauses contractuelles types de la
         Commission européenne.
       </p>
