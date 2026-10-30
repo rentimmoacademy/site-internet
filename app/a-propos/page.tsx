@@ -9,7 +9,7 @@ const URL = `${SITE}/a-propos`;
 export const metadata: Metadata = {
   title: "À propos — Marwan Afassi, fondateur",
   description:
-    "Ingénieur, papa, praticien LCD. Lancé avec 1 000 €, +500K€ générés sans être propriétaire, dizaines de biens gérés entre France et Maroc.",
+    "Ingénieur, papa, praticien LCD. Lancé avec 1 000 €, +697K€ générés sans être propriétaire, dizaines de biens gérés entre France et Maroc.",
   alternates: { canonical: URL },
 };
 
@@ -23,7 +23,7 @@ const personSchema = {
   familyName: "Afassi",
   jobTitle: "Fondateur, Expert location courte durée",
   description:
-    "Ingénieur industriel, MRE, expert Airbnb depuis 2019. +500 000 € générés en sous-location professionnelle sans être propriétaire. Note 4,93/5 sur 1 196 avis Airbnb. Fondateur de Rentimmo Academy (formation LCD) et de Daribnb (conciergerie Airbnb à Tanger).",
+    "Ingénieur industriel, MRE, expert Airbnb depuis 2019. +697 000 € générés en sous-location professionnelle sans être propriétaire. Note 4,93/5 sur 1 196 avis Airbnb. Fondateur de Rentimmo Academy (formation LCD) et de Daribnb (conciergerie Airbnb à Tanger).",
   image: `${SITE}/marwan.jpg`,
   url: URL,
   knowsAbout: [
@@ -105,7 +105,7 @@ const timeline = [
   },
   {
     year: "2025-2026",
-    title: "+500 000 € générés sans être propriétaire",
+    title: "+697 000 € générés sans être propriétaire",
     text: "Rentimmo Academy naît pour transmettre toute cette méthodologie. Pas d'apport, pas de crédit, juste du process et de l'exécution. Et l'expertise d'une équipe.",
   },
 ];
@@ -137,7 +137,7 @@ export default function AboutPage() {
           <p className="text-lg leading-relaxed text-white/75">
             Je suis ingénieur industriel et papa. J'ai démarré avec{" "}
             <span className="text-white">1 000 € en poche</span> et j'ai fait{" "}
-            <span className="text-white">+500 000 €</span> sans jamais être propriétaire.{" "}
+            <span className="text-white">+697 000 €</span> sans jamais être propriétaire.{" "}
             <span className="text-white">+1 196 évaluations</span> et{" "}
             <span className="text-white">4,93/5</span> sur Airbnb. Une méthode terrain systématisée —
             entre la France et le Maroc.
@@ -180,7 +180,7 @@ export default function AboutPage() {
         <div className="container-x relative">
           <p className="tag mb-5 text-brand-green">Parcours</p>
           <h2 className="max-w-3xl text-h2 font-extrabold leading-[1.05] tracking-[-0.02em] text-white">
-            De 1 000 € à +500 K€ générés.
+            De 1 000 € à +697 K€ générés.
           </h2>
 
           <div className="mt-16 border-l border-white/10 pl-8 md:pl-12">
@@ -202,7 +202,7 @@ export default function AboutPage() {
       <section className="bg-ink py-20">
         <div className="container-x grid gap-6 md:grid-cols-4">
           {[
-            ["+500 K€", "Générés sans être proprio"],
+            ["+697 K€", "Générés sans être proprio"],
             ["1 196", "Évaluations Airbnb"],
             ["4,93★", "Note globale"],
             ["6 ans", "Hôte Airbnb"],

@@ -6,12 +6,12 @@ import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
 import { ArrowRight, Check, MessageCircle, Video, ClipboardCheck, Flag } from "lucide-react";
+import { useReducedMotionAfterMount } from "@/lib/useReducedMotionAfterMount";
 
 // Parcours type d'un élève, construit sur les modules réels des formations (lib/formations.ts).
 // Aucun chiffre de résultat : on montre la progression des compétences et le suivi, pas une promesse de revenu.
@@ -295,7 +295,7 @@ function PinnedJourney() {
 }
 
 export default function StudentJourney() {
-  const reduce = useReducedMotion();
+  const reduce = useReducedMotionAfterMount();
   return (
     <>
       {!reduce && <PinnedJourney />}

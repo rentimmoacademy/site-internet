@@ -6,7 +6,8 @@ const items = [
   "Sans apport",
   "🇲🇦 Disponible au Maroc",
   "Formation terrain",
-  "+500K€ générés",
+  "Des dizaines d'élèves lancés",
+  "+697K€ générés",
   "Experts LCD",
 ];
 

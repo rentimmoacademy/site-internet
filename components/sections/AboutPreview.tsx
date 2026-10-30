@@ -79,7 +79,7 @@ export default function AboutPreview() {
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-white/70">
             Ingénieur industriel, papa, lancé avec <span className="text-white">1 000 € de budget</span>.
-            J'ai fait <span className="text-white">+500 000 € de chiffre d'affaires</span> sans jamais
+            J'ai fait <span className="text-white">+697 000 € de chiffre d'affaires</span> sans jamais
             être propriétaire — juste en maîtrisant la sous-location et la conciergerie.
           </p>
           <p className="mt-4 text-lg leading-relaxed text-white/70">
@@ -92,7 +92,7 @@ export default function AboutPreview() {
           <div className="mt-10 grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
             {[
               ["1 000 €", "Budget de départ"],
-              ["+500 K€", "Générés sans être proprio"],
+              ["+697 K€", "Générés sans être proprio"],
               ["2 pays", "France & Maroc"],
             ].map(([v, l]) => (
               <div key={l}>
