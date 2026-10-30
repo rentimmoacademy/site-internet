@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { MotionConfig } from "framer-motion";
+import { ArrowRight, BadgeCheck, Check, Play } from "lucide-react";
 import Logo from "@/components/layout/Logo";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
+import Reveal from "@/components/ui/Reveal";
+import { useReducedMotionAfterMount } from "@/lib/useReducedMotionAfterMount";
 import { trackEvent, trackMeta } from "@/lib/gtag";
 
 const BULLETS = [
@@ -24,52 +30,13 @@ const FAQ = [
   { q: "C'est fait pour moi si je n'ai pas d'expérience ?", a: "Oui. Beaucoup de nos apprenants partent de zéro. On évalue ta situation précisément lors de l'appel stratégique pour te recommander le modèle le plus adapté — sous-location ou conciergerie." },
 ];
 
-const G = "#2DB84B";
-const GD = "#1A6B33";
-const INK = "#1A1A1A";
-const MUTED = "#6B6B6B";
-const CREAM = "#F7F6F2";
-
-/* ── motion: scroll-reveal wrapper (respects prefers-reduced-motion) ── */
-function Reveal({ children, delay = 0, style = {}, className = "" }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        ...style,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(18px)",
-        transition: `opacity .6s cubic-bezier(.23,1,.32,1) ${delay}ms, transform .6s cubic-bezier(.23,1,.32,1) ${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+const PAGE_CSS = `
+  @keyframes ctaPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(45,184,75,.35); } 50% { box-shadow: 0 0 0 10px rgba(45,184,75,0); } }
+  @keyframes shakeX { 10%,90% { transform: translateX(-1px); } 20%,80% { transform: translateX(2px); } 30%,50%,70% { transform: translateX(-4px); } 40%,60% { transform: translateX(4px); } }
+  .cta-pulse { animation: ctaPulse 2.6s ease-in-out infinite; }
+  .input-error { animation: shakeX .4s; }
+  @media (prefers-reduced-motion: reduce) { .cta-pulse, .input-error { animation: none !important; } }
+`;
 
 /* ── motion: count-up stat (respects prefers-reduced-motion) ── */
 function CountUp({ to, prefix = "", suffix = "" }: { to: number; prefix?: string; suffix?: string }) {
@@ -115,7 +82,34 @@ function CountUp({ to, prefix = "", suffix = "" }: { to: number; prefix?: string
   );
 }
 
+function Topbar() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <Logo dark />
+        <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-ink/10 bg-white px-3 py-1.5 text-xs font-bold text-ink/75">
+          <BadgeCheck size={14} className="text-brand-dark" /> <span className="hidden sm:inline">Organisme</span> QUALIOPI
+        </span>
+      </div>
+    </header>
+  );
+}
+
+function FunnelFooter() {
+  return (
+    <footer className="bg-ink px-6 py-7 text-center text-[13px] text-white/55">
+      <strong className="text-white">Rentimmo Academy</strong> · Marwan AFASSI · Organisme certifié QUALIOPI · © 2026
+    </footer>
+  );
+}
+
+const inputCls = (err?: string) =>
+  `w-full rounded-xl border-[1.5px] bg-cream px-4 py-3.5 text-base text-ink placeholder:text-ink/40 outline-none transition-colors focus:border-brand-green focus:bg-white ${
+    err ? "input-error border-[#DC2626]" : "border-ink/15"
+  }`;
+
 export default function MasterclassPage() {
+  const reduce = useReducedMotionAfterMount();
   const [step, setStep] = useState<"form" | "video">("form");
   const [loading, setLoading] = useState(false);
   const [errs, setErrs] = useState<Record<string, string>>({});
@@ -176,350 +170,301 @@ export default function MasterclassPage() {
     }
   }
 
-  /* ── shared topbar ── */
-  const Topbar = () => (
-    <header style={{ background: "rgba(26,26,26,.92)", backdropFilter: "blur(8px)", borderBottom: "1px solid rgba(255,255,255,.08)", padding: "13px 24px", position: "sticky", top: 0, zIndex: 50 }}>
-      <div style={{ maxWidth: 1180, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Logo />
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,.08)", padding: "6px 12px", borderRadius: 999, fontSize: 12, fontWeight: 700, border: "1px solid rgba(255,255,255,.14)", color: "rgba(255,255,255,.8)" }}>
-          <span style={{ color: G }}>✓</span> Organisme QUALIOPI
-        </div>
-      </div>
-    </header>
-  );
+  const scrollToForm = () => formCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
 
-  if (step === "video") return (
-    <div
-      style={{
-        background: `
-          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
-          ${INK}
-        `,
-        backgroundSize: "40px 40px, 40px 40px, auto",
-        minHeight: "100vh",
-        fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)",
-      }}
-    >
-      <style>{`
-        @keyframes ctaPulse { 0%,100% { box-shadow: 0 12px 28px rgba(45,184,75,.35); } 50% { box-shadow: 0 12px 28px rgba(45,184,75,.35), 0 0 0 10px rgba(45,184,75,.14); } }
-        .cta-pulse { animation: ctaPulse 2.6s ease-in-out infinite; }
-        .btn-lift { transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1); }
-        .btn-lift:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(45,184,75,.4); }
-        @media (prefers-reduced-motion: reduce) { .cta-pulse, .btn-lift { animation: none !important; transition: none !important; } .btn-lift:hover { transform: none !important; } }
-        @media (max-width: 767px) {
-          .mc-video-section { padding: 28px 16px 56px !important; }
-          .mc-video-section h1 { font-size: 22px !important; }
-          .mc-video-section p { font-size: 15px !important; }
-          .mc-video-cta { padding: 20px 16px !important; }
-          .mc-video-cta a { font-size: 15px !important; padding: 16px 18px !important; }
-        }
-      `}</style>
-      <Topbar />
-      <section className="mc-video-section" style={{ padding: "56px 24px 80px" }}>
-        <div style={{ maxWidth: 980, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(45,184,75,.12)", color: G, padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 700, marginBottom: 24 }}>
-            ▶ Accès débloqué — Masterclass offerte
-          </div>
-          <h1 style={{ color: "#fff", fontSize: "clamp(26px,4vw,44px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-.025em", marginBottom: 12 }}>
-            Génère tes premiers revenus Airbnb <span style={{ color: G }}>avec la méthode qui a généré +697K€ sur Airbnb.</span>
-          </h1>
-          <p style={{ color: "rgba(255,255,255,.6)", fontSize: 17, marginBottom: 32 }}>Lance la vidéo et prends des notes — chaque minute compte.</p>
-        </div>
-
-        <div style={{ maxWidth: 980, margin: "0 auto 48px", borderRadius: 24, overflow: "hidden", boxShadow: "0 32px 80px rgba(0,0,0,.55)", aspectRatio: "16/9" }}>
-          <iframe src="https://www.youtube.com/embed/Hku4kW4_ijY?rel=0&modestbranding=1&controls=1&playsinline=1&autoplay=1" title="Masterclass Rentimmo Academy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{ width: "100%", height: "100%", border: 0, display: "block" }} />
-        </div>
-
-        <div className="mc-video-cta" style={{ maxWidth: 640, margin: "0 auto", background: `rgba(45,184,75,.08)`, border: `1px solid rgba(45,184,75,.25)`, borderRadius: 24, padding: "clamp(24px,5vw,40px) clamp(18px,5vw,32px)", textAlign: "center" }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>📞</div>
-          <h2 style={{ color: "#fff", fontSize: "clamp(20px,3vw,28px)", fontWeight: 800, marginBottom: 12, letterSpacing: "-.02em" }}>Tu veux passer à l'action ?</h2>
-          <p style={{ color: "rgba(255,255,255,.6)", fontSize: 16, marginBottom: 28 }}>Réserve un appel avec Marwan. On analyse ta situation et on voit si la formation peut t'accompagner.</p>
-          <a href="https://cal.com/rentimmoacademy/appel-strategique" target="_blank" rel="noopener noreferrer" onClick={() => { trackEvent("masterclass_call_click"); trackMeta("Schedule", { content_name: "masterclass" }); }} className="cta-pulse btn-lift" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "18px 28px", background: `linear-gradient(135deg,${GD},${G})`, color: "#fff", borderRadius: 14, fontWeight: 800, fontSize: "clamp(15px,2.5vw,17px)", textDecoration: "none", boxShadow: "0 12px 28px rgba(45,184,75,.35)", textAlign: "center" as const }}>
-            Réserver mon appel stratégique offert →
-          </a>
-          <p style={{ color: "rgba(255,255,255,.35)", fontSize: 13, marginTop: 14 }}>Gratuit · Sans engagement</p>
-        </div>
-      </section>
-      <footer style={{ padding: "28px 24px", background: "#111", color: "rgba(255,255,255,.45)", textAlign: "center", fontSize: 13 }}>
-        <strong style={{ color: "#fff" }}>Rentimmo Academy</strong> · Marwan AFASSI · Organisme certifié QUALIOPI · © 2026
-      </footer>
-    </div>
-  );
-
-  return (
-    <div style={{ background: CREAM, minHeight: "100vh", fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)", color: INK }}>
-      <style>{`
-        @keyframes ctaPulse { 0%,100% { box-shadow: 0 12px 28px rgba(45,184,75,.3); } 50% { box-shadow: 0 12px 28px rgba(45,184,75,.3), 0 0 0 10px rgba(45,184,75,.12); } }
-        @keyframes shakeX { 10%,90% { transform: translateX(-1px); } 20%,80% { transform: translateX(2px); } 30%,50%,70% { transform: translateX(-4px); } 40%,60% { transform: translateX(4px); } }
-        @keyframes heroIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-        .cta-pulse { animation: ctaPulse 2.6s ease-in-out infinite; }
-        .input-error { animation: shakeX .4s; }
-        .hero-in { animation: heroIn .7s cubic-bezier(.23,1,.32,1) both; }
-        .btn-lift { transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1); }
-        .btn-lift:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(45,184,75,.4); }
-        @media (prefers-reduced-motion: reduce) {
-          .cta-pulse, .input-error, .hero-in, .btn-lift { animation: none !important; transition: none !important; }
-          .btn-lift:hover { transform: none !important; }
-        }
-        .sticky-cta-mobile { display: none; }
-        @media (max-width: 767px) {
-          .mc-hero-section { padding: 28px 16px 48px !important; }
-          .mc-hero-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
-          .mc-hero-grid > div:first-child h1 { font-size: 26px !important; }
-          .mc-form-card { padding: 20px 16px !important; border-radius: 18px !important; }
-          .mc-form-card h2 { font-size: 20px !important; }
-          .mc-form-card button { font-size: 15px !important; padding: 16px 18px !important; }
-          .mc-trust-bar { padding: 18px 16px !important; gap: 16px !important; }
-          .mc-testimonials-section { padding: 48px 16px !important; }
-          .mc-second-cta { padding: 44px 16px !important; }
-          .mc-faq-section { padding: 48px 16px !important; }
-          .sticky-cta-mobile { display: flex !important; }
-          body { padding-bottom: 72px; }
-        }
-      `}</style>
-      <Topbar />
-
-      {/* HERO + FORM */}
-      <section
-        className="mc-hero-section hero-in"
-        style={{
-          padding: "56px 24px 72px",
-          position: "relative",
-          overflow: "hidden",
-          backgroundColor: INK,
-          backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)",
-          backgroundSize: "40px 40px, 40px 40px",
-        }}
-      >
-        <div style={{ pointerEvents: "none", position: "absolute", left: "50%", top: -140, transform: "translateX(-50%)", width: 640, height: 640, borderRadius: "50%", background: "rgba(45,184,75,.15)", filter: "blur(140px)" }} />
-        <div className="mc-hero-grid" style={{ maxWidth: 1140, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center", position: "relative" }}>
-
-          {/* LEFT */}
-          <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(45,184,75,.14)", color: G, padding: "8px 16px", borderRadius: 999, fontSize: 13, fontWeight: 700, marginBottom: 22 }}>
-              <span style={{ width: 6, height: 6, borderRadius: "50%", background: G, boxShadow: `0 0 0 4px rgba(45,184,75,.2)`, display: "inline-block" }} />
-              Masterclass offerte · accès immédiat
-            </div>
-            <h1 style={{ fontSize: "clamp(28px,4.2vw,48px)", lineHeight: 1.06, letterSpacing: "-.025em", fontWeight: 800, marginBottom: 18, color: "#fff" }}>
-              Sous-location &amp; conciergerie Airbnb :{" "}
-              <span style={{ background: "linear-gradient(180deg,transparent 58%,rgba(45,184,75,.5) 58%)", padding: "0 4px" }}>
-                la méthode que j'applique depuis 7 ans
+  if (step === "video")
+    return (
+      <MotionConfig reducedMotion={reduce ? "always" : "never"}>
+        <div className="min-h-screen overflow-x-hidden text-ink">
+          <style>{PAGE_CSS}</style>
+          <Topbar />
+          <section className="px-4 pb-16 pt-10 sm:px-6 md:pb-24 md:pt-14">
+            <div className="mx-auto max-w-4xl text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-green/30 bg-brand-green/10 px-4 py-2 text-[13px] font-bold text-brand-dark">
+                <Play size={13} className="fill-current" /> Accès débloqué — Masterclass offerte
               </span>
-            </h1>
-            <p style={{ fontSize: "clamp(15px,1.5vw,17px)", color: "rgba(255,255,255,.65)", marginBottom: 26, lineHeight: 1.6 }}>
-              Une méthode terrain, halal-friendly, testée sur +697K€ générés sur Airbnb, en France et à l'étranger.
-            </p>
-            <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: 11 }}>
-              {BULLETS.map((b) => (
-                <li key={b} style={{ display: "flex", gap: 11, alignItems: "flex-start", fontSize: 15, color: "rgba(255,255,255,.85)", fontWeight: 500 }}>
-                  <span style={{ flexShrink: 0, width: 22, height: 22, background: G, color: "#fff", borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 900, marginTop: 1 }}>✓</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
+              <h1 className="mt-6 text-[clamp(1.6rem,4.2vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.03em] text-ink">
+                Génère tes <Highlight>premiers revenus</Highlight> Airbnb avec la méthode qui a généré +697K€ sur Airbnb.
+              </h1>
+              <p className="mt-4 text-base text-ink/65 md:text-lg">Lance la vidéo et prends des notes — chaque minute compte.</p>
+            </div>
 
-            {/* Social proof mini */}
-            <div style={{ display: "flex", gap: 20, marginTop: 28, padding: "18px 0", borderTop: "1px solid rgba(255,255,255,.12)", flexWrap: "wrap" as const }}>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 800, color: G }}><CountUp to={7} prefix="+" suffix=" ans" /></div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>d'expérience</div>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 800, color: G }}><CountUp to={697} prefix="+" suffix="K€" /></div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>générés sur Airbnb</div>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 20, fontWeight: 800, color: G }}>QUALIOPI</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,.45)", fontWeight: 600, textTransform: "uppercase", letterSpacing: ".04em" }}>certifié</div>
+            <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-[1.5rem] border border-ink/10 bg-ink shadow-[0_10px_0_-2px_#1A6B33] md:rounded-[2rem]">
+              <div className="aspect-video">
+                <iframe
+                  src="https://www.youtube.com/embed/Hku4kW4_ijY?rel=0&modestbranding=1&controls=1&playsinline=1&autoplay=1"
+                  title="Masterclass Rentimmo Academy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="block h-full w-full border-0"
+                />
               </div>
             </div>
-          </div>
 
-          {/* FORM CARD */}
-          <div ref={formCardRef} className="mc-form-card" style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 40px 80px rgba(26,107,51,.18)", border: "1px solid rgba(26,107,51,.07)", position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 5, background: `linear-gradient(90deg,${GD},${G})` }} />
-            <div style={{ display: "inline-block", background: "rgba(45,184,75,.12)", color: GD, padding: "5px 12px", borderRadius: 999, fontSize: 11, fontWeight: 700, letterSpacing: ".04em", textTransform: "uppercase", marginBottom: 14 }}>
-              Accès offert · 0€
-            </div>
-            <h2 style={{ fontSize: 23, fontWeight: 800, letterSpacing: "-.02em", marginBottom: 6, lineHeight: 1.2, color: INK }}>Reçois ta masterclass maintenant</h2>
-            <p style={{ color: MUTED, fontSize: 14, marginBottom: 22 }}>Renseigne tes infos. Tu accèdes à la vidéo dans 10 secondes.</p>
-
-            <form onSubmit={handleSubmit} noValidate>
-              {[
-                { name: "firstName", label: "Prénom", type: "text", placeholder: "Ton prénom", ac: "given-name" },
-                { name: "email", label: "Email", type: "email", placeholder: "ton@email.com", ac: "email" },
-              ].map(({ name, label, type, placeholder, ac }) => (
-                <div key={name} style={{ marginBottom: 13 }}>
-                  <label style={{ display: "block", fontSize: 13, fontWeight: 700, color: "#2D2D2D", marginBottom: 5 }}>{label}</label>
-                  <input
-                    ref={(el) => { inputRefs.current[name] = el; }}
-                    name={name} type={type} placeholder={placeholder} autoComplete={ac}
-                    className={errs[name] ? "input-error" : ""}
-                    aria-invalid={!!errs[name]}
-                    style={{ width: "100%", padding: "13px 15px", border: `1.5px solid ${errs[name] ? "#DC2626" : "rgba(26,26,26,.13)"}`, borderRadius: 12, fontFamily: "inherit", fontSize: 15, color: INK, background: CREAM, boxSizing: "border-box" as const }} />
-                  {errs[name] && <p role="alert" aria-live="polite" style={{ color: "#DC2626", fontSize: 11, marginTop: 3, fontWeight: 600 }}>{errs[name]}</p>}
-                </div>
-              ))}
-
-              <div style={{ marginBottom: 18 }}>
-                <label style={{ display: "block", fontSize: 13, fontWeight: 700, color: "#2D2D2D", marginBottom: 5 }}>
-                  📱 WhatsApp <span style={{ color: MUTED, fontWeight: 400, fontSize: 11 }}>(je t'envoie la masterclass + bonus en privé)</span>
-                </label>
-                <input
-                  ref={(el) => { inputRefs.current.phone = el; }}
-                  name="phone" type="tel" placeholder="+33 6 12 34 56 78" autoComplete="tel"
-                  className={errs.phone ? "input-error" : ""}
-                  aria-invalid={!!errs.phone}
-                  style={{ width: "100%", padding: "13px 15px", border: `1.5px solid ${errs.phone ? "#DC2626" : "rgba(26,26,26,.13)"}`, borderRadius: 12, fontFamily: "inherit", fontSize: 15, color: INK, background: CREAM, boxSizing: "border-box" as const }} />
-                {errs.phone && <p role="alert" aria-live="polite" style={{ color: "#DC2626", fontSize: 11, marginTop: 3, fontWeight: 600 }}>{errs.phone}</p>}
-              </div>
-
-              {errs.global && (
-                <div role="alert" style={{ background: "rgba(220,38,38,.07)", border: "1px solid rgba(220,38,38,.22)", borderRadius: 11, padding: "11px 15px", color: "#DC2626", fontSize: 13, marginBottom: 14 }}>{errs.global}</div>
-              )}
-
-              <button type="submit" disabled={loading} className={loading ? "" : "cta-pulse btn-lift"} style={{ width: "100%", padding: "19px 24px", background: `linear-gradient(135deg,${GD},${G})`, color: "#fff", border: 0, borderRadius: 13, fontFamily: "inherit", fontWeight: 800, fontSize: 17, cursor: loading ? "not-allowed" : "pointer", opacity: loading ? .7 : 1, boxShadow: "0 12px 28px rgba(45,184,75,.3)", display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}>
-                {loading ? "⏳ Préparation de ton accès…" : "🎁 J'accède à la masterclass maintenant →"}
-              </button>
-
-              <div style={{ display: "flex", gap: 12, marginTop: 14, justifyContent: "center", fontSize: 12, color: MUTED, flexWrap: "wrap" as const }}>
-                {["0€ · gratuit", "Infos protégées", "Désinscription en 1 clic"].map((t) => (
-                  <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: 5 }}><span style={{ color: G, fontWeight: 900 }}>✓</span> {t}</span>
-                ))}
-              </div>
-              <p style={{ fontSize: 11, color: MUTED, textAlign: "center" as const, marginTop: 10, lineHeight: 1.5 }}>
-                En validant, tu acceptes de recevoir la masterclass et des messages de Rentimmo Academy par email et WhatsApp. Désinscription possible à tout moment.
-              </p>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* TRUST BAR */}
-      <Reveal>
-        <div className="mc-trust-bar" style={{ background: "#fff", padding: "22px 24px", borderTop: "1px solid rgba(26,26,26,.06)", borderBottom: "1px solid rgba(26,26,26,.06)" }}>
-          <div style={{ maxWidth: 1140, margin: "0 auto", display: "flex", flexWrap: "wrap" as const, justifyContent: "center", gap: 32 }}>
-            <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 24, fontWeight: 800, color: GD, letterSpacing: "-.02em" }}><CountUp to={7} prefix="+" suffix=" ans" /></div>
-              <div style={{ fontSize: 11, color: MUTED, textTransform: "uppercase", letterSpacing: ".05em", fontWeight: 600, marginTop: 2 }}>d'expérience terrain</div>
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 24, fontWeight: 800, color: GD, letterSpacing: "-.02em" }}><CountUp to={697} prefix="+" suffix="K€" /></div>
-              <div style={{ fontSize: 11, color: MUTED, textTransform: "uppercase", letterSpacing: ".05em", fontWeight: 600, marginTop: 2 }}>générés sur Airbnb</div>
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 24, fontWeight: 800, color: GD, letterSpacing: "-.02em" }}>FR + 🌍</div>
-              <div style={{ fontSize: 11, color: MUTED, textTransform: "uppercase", letterSpacing: ".05em", fontWeight: 600, marginTop: 2 }}>France et étranger</div>
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 24, fontWeight: 800, color: GD, letterSpacing: "-.02em" }}>QUALIOPI</div>
-              <div style={{ fontSize: 11, color: MUTED, textTransform: "uppercase", letterSpacing: ".05em", fontWeight: 600, marginTop: 2 }}>organisme certifié</div>
-            </div>
-          </div>
-        </div>
-      </Reveal>
-
-      {/* TESTIMONIALS */}
-      <section className="mc-testimonials-section" style={{ padding: "64px 24px", background: CREAM }}>
-        <div style={{ maxWidth: 1140, margin: "0 auto" }}>
-          <Reveal>
-            <h2 style={{ fontSize: "clamp(22px,3vw,34px)", fontWeight: 800, letterSpacing: "-.025em", textAlign: "center", marginBottom: 10 }}>Ils sont passés à l'action</h2>
-          </Reveal>
-          <Reveal delay={80}>
-            <p style={{ textAlign: "center", color: MUTED, fontSize: 16, marginBottom: 44 }}>Témoignages vidéo réels de la communauté Rentimmo Academy — clique pour regarder</p>
-          </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(270px,1fr))", gap: 20 }}>
-            {TESTIMONIALS.map((t, idx) => (
-              <Reveal key={t.name} delay={idx * 100}>
+            <Reveal className="mx-auto mt-12 max-w-2xl">
+              <div className="rounded-3xl bg-ink px-5 py-8 text-center text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B] sm:px-10 sm:py-10">
+                <div className="text-3xl" aria-hidden>📞</div>
+                <h2 className="mt-3 text-[clamp(1.35rem,3vw,1.9rem)] font-extrabold tracking-[-0.02em]">
+                  Tu veux passer à l&apos;<Underline>action</Underline> ?
+                </h2>
+                <p className="mt-3 text-base text-white/65">Réserve un appel avec Marwan. On analyse ta situation et on voit si la formation peut t&apos;accompagner.</p>
                 <a
-                  href={`https://www.youtube.com/watch?v=${t.videoId}`}
+                  href="https://cal.com/rentimmoacademy/appel-strategique"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ textDecoration: "none", color: "inherit", display: "block", background: "#fff", borderRadius: 18, overflow: "hidden", boxShadow: "0 8px 24px rgba(26,107,51,.08)" }}
+                  onClick={() => { trackEvent("masterclass_call_click"); trackMeta("Schedule", { content_name: "masterclass" }); }}
+                  className="btn-primary cta-pulse mt-7 w-full text-[15px] hover:gap-3 sm:text-[17px]"
                 >
-                  <div style={{ position: "relative", aspectRatio: "16/9", background: INK }}>
-                    <img
-                      src={`https://img.youtube.com/vi/${t.videoId}/hqdefault.jpg`}
-                      alt={`Témoignage vidéo de ${t.name}`}
-                      loading="lazy"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                    />
-                    <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0,0,0,.25)" }}>
-                      <div style={{ width: 54, height: 54, borderRadius: "50%", background: "rgba(255,255,255,.92)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: GD }}>▶</div>
-                    </div>
-                  </div>
-                  <div style={{ padding: "18px 20px" }}>
-                    <div style={{ color: G, marginBottom: 6, fontSize: 13 }}>★ ★ ★ ★ ★</div>
-                    <div style={{ fontWeight: 700, fontSize: 15 }}>{t.name}</div>
-                    <div style={{ fontSize: 13, color: MUTED, marginTop: 2 }}>{t.meta}</div>
-                  </div>
+                  Réserver mon appel stratégique offert <ArrowRight size={18} />
                 </a>
-              </Reveal>
-            ))}
-          </div>
+                <p className="mt-3 text-[13px] text-white/50">Gratuit · Sans engagement</p>
+              </div>
+            </Reveal>
+          </section>
+          <FunnelFooter />
         </div>
-      </section>
+      </MotionConfig>
+    );
 
-      {/* MICRO-FAQ / OBJECTIONS */}
-      <section className="mc-faq-section" style={{ padding: "60px 24px", background: "#fff" }}>
-        <div style={{ maxWidth: 820, margin: "0 auto" }}>
-          <Reveal>
-            <h2 style={{ fontSize: "clamp(20px,2.6vw,28px)", fontWeight: 800, letterSpacing: "-.02em", textAlign: "center", marginBottom: 32 }}>Tes questions, nos réponses</h2>
-          </Reveal>
-          <div style={{ display: "grid", gap: 14 }}>
-            {FAQ.map((f, idx) => (
-              <Reveal key={f.q} delay={idx * 90}>
-                <div style={{ background: CREAM, border: "1px solid rgba(26,26,26,.06)", borderRadius: 16, padding: "20px 22px" }}>
-                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 6, color: INK }}>{f.q}</div>
-                  <div style={{ fontSize: 14, color: MUTED, lineHeight: 1.6 }}>{f.a}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+  return (
+    <MotionConfig reducedMotion={reduce ? "always" : "never"}>
+      <div className="min-h-screen overflow-x-hidden text-ink">
+        <style>{PAGE_CSS}</style>
+        <Topbar />
 
-      {/* SECOND CTA */}
-      <Reveal>
-        <section className="mc-second-cta" style={{ padding: "56px 24px", background: INK, textAlign: "center" }}>
-          <div style={{ maxWidth: 640, margin: "0 auto" }}>
-            <h2 style={{ color: "#fff", fontSize: "clamp(22px,3vw,32px)", fontWeight: 800, marginBottom: 12, letterSpacing: "-.02em" }}>Tu hésites encore ?<br />Inscris-toi, c'est gratuit.</h2>
-            <p style={{ color: "rgba(255,255,255,.6)", marginBottom: 28, fontSize: 16 }}>
-              0€ · aucun engagement · tu peux accéder à la masterclass maintenant et décider ensuite.
-            </p>
-            <button onClick={() => formCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })} className="cta-pulse btn-lift" style={{ padding: "18px 36px", background: "#fff", color: GD, border: 0, borderRadius: 13, fontFamily: "inherit", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: "0 12px 32px rgba(0,0,0,.18)" }}>
-              ↑ Accéder à la masterclass gratuite
-            </button>
+        {/* HERO + FORM (crème quadrillé) */}
+        <section className="relative px-4 pb-14 pt-8 sm:px-6 md:pb-20 md:pt-14">
+          <div className="pointer-events-none absolute -right-40 -top-20 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(closest-side,rgba(45,184,75,0.12),transparent)]" />
+          <div className="relative mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-x-14 lg:gap-y-6">
+            {/* Accroche (LCP : jamais en opacité 0) */}
+            <div className="lg:col-start-1 lg:row-start-1">
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-green/30 bg-brand-green/10 px-4 py-2 text-[13px] font-bold text-brand-dark">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-green shadow-[0_0_0_4px_rgba(45,184,75,0.2)]" />
+                Masterclass offerte · accès immédiat
+              </span>
+              <h1 className="mt-5 text-[clamp(1.75rem,4.4vw,3.1rem)] font-extrabold leading-[1.06] tracking-[-0.03em] text-ink">
+                Sous-location &amp; conciergerie Airbnb : la méthode que j&apos;applique <Highlight>depuis 7 ans</Highlight>
+              </h1>
+              <p className="mt-4 text-[15px] leading-relaxed text-ink/70 md:text-[17px]">
+                Une méthode terrain, halal-friendly, testée sur +697K€ générés sur Airbnb, en France et à l&apos;étranger.
+              </p>
+            </div>
+
+            {/* FORMULAIRE (carte blanche) */}
+            <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+              <div
+                ref={formCardRef}
+                className="relative overflow-hidden rounded-3xl border border-ink/10 bg-white px-5 py-6 shadow-[0_8px_0_#1A6B33] sm:px-8 sm:py-9 lg:sticky lg:top-24"
+              >
+                <div className="absolute inset-x-0 top-0 h-1.5 bg-brand-gradient" />
+                <span className="inline-block rounded-full bg-brand-green/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-dark">
+                  Accès offert · 0€
+                </span>
+                <h2 className="mt-3 text-[1.35rem] font-extrabold leading-tight tracking-[-0.02em] text-ink sm:text-[1.5rem]">
+                  Reçois ta masterclass maintenant
+                </h2>
+                <p className="mt-1.5 text-sm text-ink/60">Renseigne tes infos. Tu accèdes à la vidéo dans 10 secondes.</p>
+
+                <form onSubmit={handleSubmit} noValidate className="mt-5">
+                  {[
+                    { name: "firstName", label: "Prénom", type: "text", placeholder: "Ton prénom", ac: "given-name" },
+                    { name: "email", label: "Email", type: "email", placeholder: "ton@email.com", ac: "email" },
+                  ].map(({ name, label, type, placeholder, ac }) => (
+                    <div key={name} className="mb-3.5">
+                      <label htmlFor={`mc-${name}`} className="mb-1.5 block text-[13px] font-bold text-ink/85">{label}</label>
+                      <input
+                        id={`mc-${name}`}
+                        ref={(el) => { inputRefs.current[name] = el; }}
+                        name={name} type={type} placeholder={placeholder} autoComplete={ac}
+                        aria-invalid={!!errs[name]}
+                        className={inputCls(errs[name])}
+                      />
+                      {errs[name] && <p role="alert" aria-live="polite" className="mt-1 text-xs font-semibold text-[#DC2626]">{errs[name]}</p>}
+                    </div>
+                  ))}
+
+                  <div className="mb-5">
+                    <label htmlFor="mc-phone" className="mb-1.5 block text-[13px] font-bold text-ink/85">
+                      📱 WhatsApp <span className="text-xs font-normal text-ink/55">(je t&apos;envoie la masterclass + bonus en privé)</span>
+                    </label>
+                    <input
+                      id="mc-phone"
+                      ref={(el) => { inputRefs.current.phone = el; }}
+                      name="phone" type="tel" placeholder="+33 6 12 34 56 78" autoComplete="tel"
+                      aria-invalid={!!errs.phone}
+                      className={inputCls(errs.phone)}
+                    />
+                    {errs.phone && <p role="alert" aria-live="polite" className="mt-1 text-xs font-semibold text-[#DC2626]">{errs.phone}</p>}
+                  </div>
+
+                  {errs.global && (
+                    <div role="alert" className="mb-4 rounded-xl border border-[#DC2626]/25 bg-[#DC2626]/[0.07] px-4 py-3 text-[13px] text-[#DC2626]">{errs.global}</div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className={`btn-primary w-full px-5 text-[15px] hover:gap-3 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 sm:text-[17px] ${loading ? "" : "cta-pulse"}`}
+                  >
+                    {loading ? "⏳ Préparation de ton accès…" : "🎁 J'accède à la masterclass maintenant →"}
+                  </button>
+
+                  <div className="mt-3.5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-ink/60">
+                    {["0€ · gratuit", "Infos protégées", "Désinscription en 1 clic"].map((t) => (
+                      <span key={t} className="inline-flex items-center gap-1"><Check size={13} strokeWidth={3} className="text-brand-dark" /> {t}</span>
+                    ))}
+                  </div>
+                  <p className="mt-2.5 text-center text-[11px] leading-relaxed text-ink/55">
+                    En validant, tu acceptes de recevoir la masterclass et des messages de Rentimmo Academy par email et WhatsApp. Désinscription possible à tout moment.
+                  </p>
+                </form>
+              </div>
+            </div>
+
+            {/* Bénéfices + mini-preuves */}
+            <div className="lg:col-start-1 lg:row-start-2">
+              <ul className="grid gap-3">
+                {BULLETS.map((b, i) => (
+                  <Reveal as="li" key={b} index={i} y={12} className="flex items-start gap-3 text-[15px] font-medium text-ink/85">
+                    <span className="mt-0.5 inline-flex h-[22px] w-[22px] flex-shrink-0 items-center justify-center rounded-full bg-ink text-brand-green">
+                      <Check size={13} strokeWidth={3.5} />
+                    </span>
+                    {b}
+                  </Reveal>
+                ))}
+              </ul>
+
+              <div className="mt-7 flex flex-wrap gap-x-8 gap-y-4 border-t border-ink/10 pt-5">
+                {[
+                  { v: <CountUp to={7} prefix="+" suffix=" ans" />, l: "d'expérience" },
+                  { v: <CountUp to={697} prefix="+" suffix="K€" />, l: "générés sur Airbnb" },
+                  { v: "QUALIOPI", l: "certifié" },
+                ].map((s) => (
+                  <div key={s.l}>
+                    <div className="text-xl font-extrabold tracking-tight text-brand-dark">{s.v}</div>
+                    <div className="text-[11px] font-semibold uppercase tracking-wider text-ink/55">{s.l}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
-      </Reveal>
 
-      <footer style={{ padding: "28px 24px", background: "#111", color: "rgba(255,255,255,.45)", textAlign: "center", fontSize: 13 }}>
-        <strong style={{ color: "#fff" }}>Rentimmo Academy</strong> · Marwan AFASSI · Organisme certifié QUALIOPI · © 2026
-      </footer>
+        {/* BANDE NOIRE : chiffres clés */}
+        <section className="bg-ink px-4 py-10 text-white sm:px-6 md:py-12">
+          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-x-4 gap-y-8 text-center md:grid-cols-4">
+            {[
+              { v: <CountUp to={7} prefix="+" suffix=" ans" />, l: "d'expérience terrain" },
+              { v: <CountUp to={697} prefix="+" suffix="K€" />, l: "générés sur Airbnb" },
+              { v: "FR + 🌍", l: "France et étranger" },
+              { v: "QUALIOPI", l: "organisme certifié" },
+            ].map((s, i) => (
+              <Reveal key={s.l} index={i}>
+                <div className="text-[1.6rem] font-extrabold tracking-[-0.02em] text-brand-green md:text-3xl">{s.v}</div>
+                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-white/60">{s.l}</div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
-      {/* STICKY MOBILE CTA */}
-      <div
-        className="sticky-cta-mobile"
-        style={{
-          position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 60,
-          padding: "12px 16px",
-          background: "#fff",
-          borderTop: "1px solid rgba(26,26,26,.08)",
-          boxShadow: "0 -8px 24px rgba(0,0,0,.1)",
-          transform: showSticky ? "translateY(0)" : "translateY(100%)",
-          transition: "transform .3s ease",
-        }}
-      >
-        <button
-          onClick={() => formCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
-          className="btn-lift"
-          style={{ width: "100%", padding: "15px 18px", background: `linear-gradient(135deg,${GD},${G})`, color: "#fff", border: 0, borderRadius: 12, fontFamily: "inherit", fontWeight: 800, fontSize: 15, cursor: "pointer" }}
+        {/* TÉMOIGNAGES (fond blanc, cartes noires) */}
+        <section className="bg-white px-4 py-14 sm:px-6 md:py-20">
+          <div className="mx-auto max-w-6xl">
+            <Reveal>
+              <h2 className="text-center text-[clamp(1.6rem,3.4vw,2.4rem)] font-extrabold tracking-[-0.025em] text-ink">
+                Ils sont passés à l&apos;<Underline>action</Underline>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mx-auto mt-3 max-w-2xl text-center text-base text-ink/65">
+                Témoignages vidéo réels de la communauté Rentimmo Academy — clique pour regarder
+              </p>
+            </Reveal>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {TESTIMONIALS.map((t, idx) => (
+                <Reveal key={t.name} index={idx}>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${t.videoId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block overflow-hidden rounded-3xl bg-ink text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
+                  >
+                    <div className="relative aspect-video bg-ink">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`https://img.youtube.com/vi/${t.videoId}/hqdefault.jpg`}
+                        alt={`Témoignage vidéo de ${t.name}`}
+                        loading="lazy"
+                        className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-ink/25">
+                        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/95 text-brand-dark transition-transform duration-300 group-hover:scale-110">
+                          <Play size={20} className="ml-0.5 fill-current" />
+                        </span>
+                      </div>
+                    </div>
+                    <div className="px-5 py-5">
+                      <div className="text-base font-bold">{t.name}</div>
+                      <div className="mt-0.5 text-[13px] text-white/65">{t.meta}</div>
+                    </div>
+                  </a>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ (crème quadrillé, cartes blanches) */}
+        <section className="px-4 py-14 sm:px-6 md:py-20">
+          <div className="mx-auto max-w-3xl">
+            <Reveal>
+              <h2 className="text-center text-[clamp(1.5rem,3vw,2.1rem)] font-extrabold tracking-[-0.02em] text-ink">
+                Tes questions, nos <span className="text-brand-dark">réponses</span>
+              </h2>
+            </Reveal>
+            <div className="mt-8 grid gap-4">
+              {FAQ.map((f, idx) => (
+                <Reveal key={f.q} index={idx}>
+                  <div className="rounded-3xl border border-ink/10 bg-white px-5 py-5 shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-colors hover:border-brand-green/40 sm:px-6">
+                    <div className="text-[15px] font-bold text-ink">{f.q}</div>
+                    <div className="mt-1.5 text-sm leading-relaxed text-ink/65">{f.a}</div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* SECOND CTA (carte noire) */}
+            <Reveal className="mt-14">
+              <div className="isolate rounded-3xl bg-ink px-5 py-10 text-center text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B] sm:px-10">
+                <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extrabold leading-tight tracking-[-0.02em]">
+                  Tu hésites encore ?<br />Inscris-toi, <Highlight>c&apos;est gratuit.</Highlight>
+                </h2>
+                <p className="mx-auto mt-3 max-w-lg text-base text-white/65">
+                  0€ · aucun engagement · tu peux accéder à la masterclass maintenant et décider ensuite.
+                </p>
+                <button type="button" onClick={scrollToForm} className="btn-primary cta-pulse mt-7 hover:gap-3">
+                  ↑ Accéder à la masterclass gratuite
+                </button>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        <FunnelFooter />
+        {/* Réserve la place de la barre CTA mobile sous le footer */}
+        <div aria-hidden className="h-[76px] bg-ink md:hidden" />
+
+        {/* STICKY MOBILE CTA */}
+        <div
+          className={`fixed inset-x-0 bottom-0 z-[60] border-t border-ink/10 bg-cream/95 px-4 py-3 shadow-[0_-8px_24px_rgba(0,0,0,0.08)] backdrop-blur transition-transform duration-300 md:hidden ${
+            showSticky ? "translate-y-0" : "translate-y-full"
+          }`}
         >
-          🎁 Accéder à la masterclass gratuite →
-        </button>
+          <button type="button" onClick={scrollToForm} className="btn-primary w-full py-3.5 text-[15px]">
+            🎁 Accéder à la masterclass gratuite →
+          </button>
+        </div>
       </div>
-    </div>
+    </MotionConfig>
   );
 }

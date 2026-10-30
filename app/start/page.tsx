@@ -1,65 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { MotionConfig } from "framer-motion";
+import { ArrowRight, BadgeCheck } from "lucide-react";
 import Logo from "@/components/layout/Logo";
+import Highlight from "@/components/ui/Highlight";
+import Reveal from "@/components/ui/Reveal";
+import { useReducedMotionAfterMount } from "@/lib/useReducedMotionAfterMount";
 import { trackEvent } from "@/lib/gtag";
-
-const G = "#2DB84B";
-const GD = "#1A6B33";
-const INK = "#1A1A1A";
-const MUTED = "#6B6B6B";
-const CREAM = "#F7F6F2";
-
-/* ── motion: scroll-reveal wrapper (respects prefers-reduced-motion) ── */
-function Reveal({
-  children,
-  delay = 0,
-  style = {},
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  style?: React.CSSProperties;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        ...style,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(18px)",
-        transition: `opacity .6s cubic-bezier(.23,1,.32,1) ${delay}ms, transform .6s cubic-bezier(.23,1,.32,1) ${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
 
 type Path = {
   id: string;
@@ -96,206 +43,128 @@ const PATHS: Path[] = [
     eyebrow: "Je veux monter mon activité ménage",
     title: "Monte ton activité de ménage Airbnb et décroche tes premiers clients",
     sub: "Cleaning BNB Academy · Formation complète, bonus Maroc inclus",
-    cta: "Découvrir la formation",
-    href: "/formations/cleaning-bnb",
+    cta: "Voir la présentation gratuite",
+    href: "/cleaning",
   },
 ];
 
+// Bandeau défilant : noms des programmes (repris de la description de la page).
+const MARQUEE = ["Sous-location professionnelle", "Conciergerie Airbnb", "Ménage BNB", "Super BNB Academy", "Organisme QUALIOPI", "🇫🇷 🇲🇦"];
+
 export default function StartPage() {
+  const reduce = useReducedMotionAfterMount();
+
   return (
-    <div
-      style={{
-        background: `
-          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
-          ${INK}
-        `,
-        backgroundSize: "40px 40px, 40px 40px, auto",
-        minHeight: "100vh",
-        fontFamily: "var(--font-jakarta, 'Plus Jakarta Sans', sans-serif)",
-      }}
-    >
-      <style>{`
-        .hub-card { transition: transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1), border-color .35s; }
-        .hub-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(45,184,75,.22); border-color: rgba(45,184,75,.5) !important; }
-        @keyframes ctaPulse { 0%,100% { box-shadow: 0 10px 24px rgba(45,184,75,.3); } 50% { box-shadow: 0 10px 24px rgba(45,184,75,.3), 0 0 0 8px rgba(45,184,75,.12); } }
-        .cta-pulse { animation: ctaPulse 2.8s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) { .hub-card, .cta-pulse { animation: none !important; transition: none !important; } .hub-card:hover { transform: none !important; } }
-      `}</style>
+    <MotionConfig reducedMotion={reduce ? "always" : "never"}>
+      <div className="min-h-screen overflow-x-hidden text-ink">
+        {/* ── Header ── */}
+        <header className="flex justify-center px-5 pb-2 pt-6">
+          <Logo dark />
+        </header>
 
-      {/* ── Header ── */}
-      <header style={{ padding: "24px 20px 8px", display: "flex", justifyContent: "center" }}>
-        <Logo />
-      </header>
-
-      <main style={{ maxWidth: 640, margin: "0 auto", padding: "32px 20px 64px" }}>
-        {/* ── Identity block ── */}
-        <Reveal>
-          <div style={{ textAlign: "center" }}>
-            <div
-              style={{
-                width: 92,
-                height: 92,
-                borderRadius: "50%",
-                margin: "0 auto 18px",
-                background: `linear-gradient(135deg, ${G}, ${GD})`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden",
-                border: "3px solid rgba(255,255,255,.12)",
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/marwan.jpg"
-                alt="Marwan AFASSI"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-            <h1 style={{ color: "#fff", fontSize: 22, fontWeight: 800, lineHeight: 1.35, letterSpacing: "-0.01em", margin: "0 0 10px" }}>
-              Leader francophone de la sous-location professionnelle et de la conciergerie Airbnb depuis plus de 7 ans
-            </h1>
-            <p style={{ color: "rgba(255,255,255,.65)", fontSize: 15, lineHeight: 1.6, margin: "0 0 14px" }}>
-              +697 000€ générés en partant de zéro. Sans riba, sans crédit, sans apport. 🇫🇷 🇲🇦
-            </p>
-            <p style={{ color: "rgba(255,255,255,.45)", fontSize: 12.5, lineHeight: 1.6, margin: 0 }}>
-              Ingénieur de formation, aujourd&apos;hui coach Airbnb · Biens en gestion en France et au Maroc
-            </p>
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                background: "rgba(45,184,75,.12)",
-                padding: "6px 14px",
-                borderRadius: 999,
-                fontSize: 12,
-                fontWeight: 700,
-                color: G,
-                border: "1px solid rgba(45,184,75,.25)",
-                marginTop: 16,
-              }}
-            >
-              ✓ Organisme QUALIOPI
-            </div>
+        {/* ── Identité (LCP : jamais en opacité 0) ── */}
+        <section className="mx-auto max-w-xl px-5 pb-8 pt-6 text-center">
+          <div className="mx-auto mb-5 h-[92px] w-[92px] overflow-hidden rounded-full bg-brand-gradient ring-4 ring-white shadow-[0_6px_0_#1A6B33]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/marwan.jpg" alt="Marwan AFASSI" className="h-full w-full object-cover" />
           </div>
-        </Reveal>
-
-        {/* ── Choix du chemin ── */}
-        <Reveal delay={100}>
-          <p
-            style={{
-              color: "rgba(255,255,255,.4)",
-              fontSize: 12,
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              textAlign: "center",
-              margin: "40px 0 16px",
-            }}
-          >
-            Choisis ta situation
+          <h1 className="text-[1.4rem] font-extrabold leading-[1.3] tracking-[-0.015em] text-ink sm:text-[1.6rem]">
+            Leader francophone de la sous-location professionnelle et de la conciergerie Airbnb depuis <Highlight>plus de 7 ans</Highlight>
+          </h1>
+          <p className="mt-3 text-[15px] leading-relaxed text-ink/70">
+            +697 000€ générés en partant de zéro. Sans riba, sans crédit, sans apport. 🇫🇷 🇲🇦
           </p>
-        </Reveal>
+          <p className="mt-2 text-[13px] leading-relaxed text-ink/55">
+            Ingénieur de formation, aujourd&apos;hui coach Airbnb · Biens en gestion en France et au Maroc
+          </p>
+          <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white px-3.5 py-1.5 text-xs font-bold text-ink/75">
+            <BadgeCheck size={14} className="text-brand-dark" /> Organisme QUALIOPI
+          </span>
+        </section>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          {PATHS.map((p, i) => (
-            <Reveal key={p.id} delay={150 + i * 90}>
-              <a
-                href={p.href}
-                onClick={() => trackEvent("hub_card_click", { card: p.id })}
-                className="hub-card"
-                style={{
-                  display: "block",
-                  background: "#fff",
-                  borderRadius: 18,
-                  padding: "22px 22px",
-                  border: "1px solid rgba(255,255,255,.08)",
-                  textDecoration: "none",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
-                  <div
-                    style={{
-                      fontSize: 26,
-                      width: 48,
-                      height: 48,
-                      flexShrink: 0,
-                      borderRadius: 12,
-                      background: CREAM,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {p.emoji}
-                  </div>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <p style={{ color: G, fontSize: 11.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 4px" }}>
-                      {p.eyebrow}
-                    </p>
-                    <h2 style={{ color: INK, fontSize: 16.5, fontWeight: 800, lineHeight: 1.35, margin: "0 0 6px" }}>{p.title}</h2>
-                    <p style={{ color: MUTED, fontSize: 13, lineHeight: 1.5, margin: "0 0 12px" }}>{p.sub}</p>
-                    <span
-                      className={i === 0 ? "cta-pulse" : ""}
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 6,
-                        background: G,
-                        color: "#fff",
-                        fontSize: 13,
-                        fontWeight: 700,
-                        padding: "9px 16px",
-                        borderRadius: 999,
-                      }}
-                    >
-                      {p.cta} →
-                    </span>
-                  </div>
-                </div>
-              </a>
-            </Reveal>
-          ))}
+        {/* ── Bandeau noir défilant ── */}
+        <div className="overflow-hidden bg-ink py-3 text-white" aria-hidden>
+          <div className="flex w-max animate-marquee motion-reduce:animate-none">
+            {[0, 1].map((k) => (
+              <div key={k} className="flex shrink-0 items-center">
+                {[...MARQUEE, ...MARQUEE].map((m, i) => (
+                  <span key={i} className="flex items-center whitespace-nowrap px-4 text-[13px] font-bold uppercase tracking-[0.12em] text-white/85">
+                    {m}
+                    <span className="ml-8 h-1.5 w-1.5 rounded-full bg-brand-green" />
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* ── Trust bar ── */}
-        <Reveal delay={500}>
-          <div
-            style={{
-              marginTop: 40,
-              padding: "18px 20px",
-              borderRadius: 16,
-              background: "rgba(255,255,255,.04)",
-              border: "1px solid rgba(255,255,255,.08)",
-              display: "flex",
-              justifyContent: "space-around",
-              textAlign: "center",
-            }}
-          >
-            <div>
-              <p style={{ color: "#fff", fontSize: 18, fontWeight: 800, margin: "0 0 2px" }}>+7 ans</p>
-              <p style={{ color: "rgba(255,255,255,.45)", fontSize: 11, margin: 0 }}>d&apos;expérience</p>
-            </div>
-            <div>
-              <p style={{ color: "#fff", fontSize: 18, fontWeight: 800, margin: "0 0 2px" }}>+697K€</p>
-              <p style={{ color: "rgba(255,255,255,.45)", fontSize: 11, margin: 0 }}>générés</p>
-            </div>
-            <div>
-              <p style={{ color: "#fff", fontSize: 18, fontWeight: 800, margin: "0 0 2px" }}>4</p>
-              <p style={{ color: "rgba(255,255,255,.45)", fontSize: 11, margin: 0 }}>formations</p>
-            </div>
-          </div>
-        </Reveal>
+        <main className="mx-auto max-w-xl px-5 pb-14 pt-10">
+          {/* ── Choix du chemin ── */}
+          <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.14em] text-ink/55">Choisis ta situation</p>
 
-        {/* ── Réseaux ── */}
-        <Reveal delay={580}>
-          <div style={{ marginTop: 36, textAlign: "center" }}>
-            <p style={{ color: "rgba(255,255,255,.4)", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", margin: "0 0 14px" }}>
-              Suis-nous
-            </p>
-            <div style={{ display: "flex", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
+          <div className="flex flex-col gap-5">
+            {PATHS.map((p, i) => {
+              const dark = i !== 1;
+              return (
+                <Reveal key={p.id} index={i}>
+                  <a
+                    href={p.href}
+                    onClick={() => trackEvent("hub_card_click", { card: p.id })}
+                    className={`group block rounded-3xl p-5 transition-all duration-500 hover:-translate-y-1.5 sm:p-6 ${
+                      dark
+                        ? "bg-ink text-white shadow-[0_8px_0_#1A6B33] hover:shadow-[0_12px_0_#2DB84B]"
+                        : "border border-ink/10 bg-white text-ink shadow-[0_8px_0_rgba(26,26,26,0.1)] hover:border-brand-green/40 hover:shadow-[0_12px_0_#2DB84B]"
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-[26px] transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110 ${
+                          dark ? "bg-white/10" : "bg-cream"
+                        }`}
+                      >
+                        {p.emoji}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className={`text-[11.5px] font-extrabold uppercase tracking-[0.06em] ${dark ? "text-brand-light" : "text-brand-dark"}`}>
+                          {p.eyebrow}
+                        </p>
+                        <h2 className="mt-1 text-[1.05rem] font-extrabold leading-snug">{p.title}</h2>
+                        <p className={`mt-1.5 text-[13px] leading-relaxed ${dark ? "text-white/65" : "text-ink/60"}`}>{p.sub}</p>
+                        <span
+                          className={`mt-4 inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[13px] font-bold transition-all duration-300 group-hover:gap-2.5 ${
+                            dark ? "bg-brand-green text-ink" : "bg-ink text-white"
+                          }`}
+                        >
+                          {p.cta} <ArrowRight size={14} />
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          {/* ── Trust bar ── */}
+          <Reveal className="mt-10">
+            <div className="flex justify-around rounded-3xl border border-ink/10 bg-white px-5 py-5 text-center shadow-[0_6px_0_rgba(26,26,26,0.06)]">
+              {[
+                { v: "+7 ans", l: "d'expérience" },
+                { v: "+697K€", l: "générés" },
+                { v: "4", l: "formations" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <p className="text-lg font-extrabold text-ink">{s.v}</p>
+                  <p className="text-[11px] text-ink/55">{s.l}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* ── Réseaux ── */}
+          <Reveal className="mt-9 text-center">
+            <p className="mb-3.5 text-xs font-bold uppercase tracking-[0.1em] text-ink/55">Suis-nous</p>
+            <div className="flex flex-wrap justify-center gap-2.5">
               {[
                 { label: "Instagram", href: "https://instagram.com/rentimmo_academy" },
                 { label: "TikTok", href: "https://tiktok.com/@rentimmoacademy" },
@@ -307,27 +176,17 @@ export default function StartPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackEvent("hub_social_click", { network: s.label })}
-                  style={{
-                    color: "rgba(255,255,255,.7)",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    padding: "9px 16px",
-                    borderRadius: 999,
-                    border: "1px solid rgba(255,255,255,.15)",
-                    textDecoration: "none",
-                  }}
+                  className="rounded-full border border-ink/15 bg-white px-4 py-2.5 text-[13px] font-semibold text-ink/80 transition-all hover:-translate-y-0.5 hover:border-ink hover:text-ink"
                 >
                   {s.label}
                 </a>
               ))}
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
 
-        <p style={{ textAlign: "center", color: "rgba(255,255,255,.25)", fontSize: 11, marginTop: 40 }}>
-          © {new Date().getFullYear()} Rentimmo Academy
-        </p>
-      </main>
-    </div>
+          <p className="mt-10 text-center text-[11px] text-ink/50">© {new Date().getFullYear()} Rentimmo Academy</p>
+        </main>
+      </div>
+    </MotionConfig>
   );
 }
