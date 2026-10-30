@@ -22,10 +22,13 @@ import {
   Flame,
 } from "lucide-react";
 import SuperBnbHero from "@/components/sections/SuperBnbHero";
+import OfferVideo from "@/components/OfferVideo";
 import SuperBnbWeeks from "@/components/sections/SuperBnbWeeks";
 import CallGate from "@/components/CallGate";
 import SuperBnbAuditModal from "@/components/SuperBnbAuditModal";
 import SuperBnbAuditPopup from "@/components/SuperBnbAuditPopup";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
 
 const forYou = [
   "Tu as déjà au moins 1 bien Airbnb actif",
@@ -99,19 +102,30 @@ const faq = [
   },
 ];
 
+// Super BNB Academy = famille Rentimmo Academy : mêmes noir / vert / crème.
+// Accent propre à SBA : davantage de blocs noirs (chiffres, programme, bonus) et 2 bandes noires.
+const TEAL = "text-brand-dark";
+const CARD = "rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]";
+const DARK_CARD =
+  "rounded-3xl bg-ink text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]";
+const ICON_BOX = "inline-flex items-center justify-center rounded-2xl bg-brand-green/10 text-brand-dark ring-1 ring-brand-green/30";
+const ICON_BOX_DARK = "inline-flex items-center justify-center rounded-2xl bg-brand-green/15 text-brand-green ring-1 ring-brand-green/30";
+const KICKER = "text-[11px] font-bold uppercase tracking-[0.3em]";
+
 export default function SuperBnbAcademyPage() {
   const [faqIdx, setFaqIdx] = useState<number | null>(0);
   const [auditOpen, setAuditOpen] = useState(false);
 
   return (
-    <div className="font-poppins bg-auto-navy text-white">
+    <div className="text-ink">
       <SuperBnbHero />
 
+      <OfferVideo name="super-bnb" title="Présentation de Super BNB Academy" />
+
       {/* Journée type - narratif douleur */}
-      <section className="relative bg-auto-navy-soft py-20">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+      <section className="relative border-y border-ink/10 bg-white py-20">
         <div className="container-x relative mx-auto max-w-3xl">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint text-center">
+          <p className={`${KICKER} ${TEAL} text-center`}>
             Le quotidien d&apos;un hôte qui gère seul
           </p>
           <div className="mt-10 space-y-5">
@@ -126,40 +140,39 @@ export default function SuperBnbAcademyPage() {
                 initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex items-start gap-5 rounded-2xl border border-white/10 bg-auto-navy/50 p-5"
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                className="flex items-start gap-5 rounded-2xl border border-ink/10 bg-cream p-5 shadow-[0_6px_0_rgba(26,26,26,0.06)]"
               >
-                <span className="shrink-0 rounded-full bg-auto-mint/10 px-3 py-1.5 text-xs font-extrabold text-auto-mint">
+                <span className="shrink-0 rounded-full bg-ink px-3 py-1.5 text-xs font-extrabold text-brand-light">
                   {row.h}
                 </span>
-                <p className="text-sm leading-relaxed text-white/70">{row.d}</p>
+                <p className="text-sm leading-relaxed text-ink/70">{row.d}</p>
               </motion.div>
             ))}
           </div>
-          <p className="mt-10 text-center text-xl font-extrabold tracking-tight text-white">
-            Ça te parle ?
+          <p className="mt-10 text-center text-xl font-extrabold tracking-tight text-ink">
+            Ça te <Underline>parle</Underline> ?
           </p>
-          <p className="mt-3 text-center text-sm text-white/55">
+          <p className="mt-3 text-center text-sm text-ink/55">
             C&apos;est exactement ce qu&apos;on élimine avec toi en 30 jours&nbsp;: messages automatiques, pricing dynamique, check-in autonome.
           </p>
         </div>
       </section>
 
       {/* Résultats clients */}
-      <section className="relative border-y border-white/5 bg-auto-navy-soft py-20">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+      <section className="relative py-20">
         <div className="container-x relative">
           <div className="flex flex-col items-start gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+              <p className={`${KICKER} ${TEAL}`}>
                 Objectifs du programme
               </p>
               <h2 className="mt-4 max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
                 Ce qu'on vise avec toi.{" "}
-                <span className="bg-auto-mint bg-clip-text text-transparent">En 30 jours.</span>
+                <Highlight>En 30 jours.</Highlight>
               </h2>
             </div>
-            <p className="max-w-xs text-sm text-white/60">
+            <p className="max-w-xs text-sm text-ink/55">
               Objectifs visés avec toi pendant le programme Super BNB Academy.
             </p>
           </div>
@@ -171,17 +184,17 @@ export default function SuperBnbAcademyPage() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="rounded-3xl border border-white/10 bg-auto-navy/60 p-7 backdrop-blur"
+                transition={{ duration: 0.6, delay: i * 0.06 }}
+                className={`${DARK_CARD} p-7`}
               >
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-auto-mint/10 text-auto-mint ring-1 ring-auto-mint/30">
+                <div className={`${ICON_BOX_DARK} h-11 w-11`}>
                   <s.icon size={20} strokeWidth={2.2} />
                 </div>
-                <p className="mt-6 text-4xl font-extrabold tracking-[-0.02em] text-auto-mint md:text-5xl">
+                <p className="mt-6 text-4xl font-extrabold tracking-[-0.02em] text-brand-green md:text-5xl">
                   {s.value}
                 </p>
                 <p className="mt-2 text-sm font-bold text-white">{s.label}</p>
-                <p className="mt-1 text-xs text-white/55">{s.sub}</p>
+                <p className="mt-1 text-xs text-white/65">{s.sub}</p>
               </motion.div>
             ))}
           </div>
@@ -189,26 +202,23 @@ export default function SuperBnbAcademyPage() {
       </section>
 
       {/* Pour qui */}
-      <section className="relative bg-auto-navy-soft py-24">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+      <section className="relative border-y border-ink/10 bg-white py-24">
         <div className="container-x relative">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">Pour qui</p>
+          <p className={`${KICKER} ${TEAL}`}>Pour qui</p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
             Honnêtement,{" "}
-            <span className="bg-auto-mint bg-clip-text text-transparent">
-              c'est pour qui ce programme ?
-            </span>
+            <span className="text-brand-dark">c'est pour qui ce programme ?</span>
           </h2>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2">
-            <div className="rounded-3xl border border-auto-mint/30 bg-auto-mint/5 p-8">
-              <p className="text-sm font-bold uppercase tracking-widest text-auto-mint">
+            <div className={`${DARK_CARD} p-8`}>
+              <p className="text-sm font-bold uppercase tracking-widest text-brand-light">
                 ✓ Pour toi si
               </p>
               <ul className="mt-5 space-y-3">
                 {forYou.map((p) => (
                   <li key={p} className="flex items-start gap-3 text-white/85">
-                    <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-auto-mint/20 text-auto-mint">
+                    <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-brand-green/20 text-brand-green">
                       <Check size={14} />
                     </span>
                     {p}
@@ -216,27 +226,27 @@ export default function SuperBnbAcademyPage() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-              <p className="text-sm font-bold uppercase tracking-widest text-white/50">
+            <div className="rounded-3xl border border-ink/10 bg-cream p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)]">
+              <p className="text-sm font-bold uppercase tracking-widest text-ink/55">
                 ✗ Pas pour toi si
               </p>
               <ul className="mt-5 space-y-3">
                 {notForYou.map((p) => (
-                  <li key={p} className="flex items-start gap-3 text-white/65">
-                    <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-white/10 text-white/50">
+                  <li key={p} className="flex items-start gap-3 text-ink/70">
+                    <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-ink/[0.06] text-ink/55">
                       <X size={14} />
                     </span>
                     {p}
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-xs text-white/40 leading-relaxed">
+              <p className="mt-6 text-xs text-ink/55 leading-relaxed">
                 Pas encore de logement ? Découvre notre formation{" "}
-                <Link href="/sous-location-professionnelle" className="text-auto-mint underline underline-offset-2 hover:text-white">
+                <Link href="/sous-location-professionnelle" className={`${TEAL} underline underline-offset-2 hover:text-ink`}>
                   sous-location professionnelle
                 </Link>
                 . Tu préfères tout déléguer ?{" "}
-                <Link href="/devenir-conciergerie-airbnb" className="text-auto-mint underline underline-offset-2 hover:text-white">
+                <Link href="/devenir-conciergerie-airbnb" className={`${TEAL} underline underline-offset-2 hover:text-ink`}>
                   Découvre la conciergerie Airbnb
                 </Link>
                 .
@@ -247,17 +257,16 @@ export default function SuperBnbAcademyPage() {
       </section>
 
       {/* 4 Piliers */}
-      <section className="relative bg-auto-navy py-24">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+      <section className="relative overflow-hidden bg-ink py-24 text-white">
+        <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-brand-green/15 blur-[120px]" />
         <div className="container-x relative">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+          <p className={`${KICKER} text-brand-light`}>
             Méthode
           </p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            Les 4 piliers du{" "}
-            <span className="bg-auto-mint bg-clip-text text-transparent">programme.</span>
+            Les 4 piliers du <Highlight>programme.</Highlight>
           </h2>
-          <p className="mt-5 max-w-2xl text-white/60 text-sm leading-relaxed">
+          <p className="mt-5 max-w-2xl text-white/65 text-sm leading-relaxed">
             Peu importe d&apos;où tu pars aujourd&apos;hui, on fait le bilan de ta situation réelle puis on avance sur ces 4 axes en 30 jours avec ton coach dédié.
           </p>
 
@@ -273,50 +282,59 @@ export default function SuperBnbAcademyPage() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="rounded-3xl border border-white/10 bg-auto-navy-soft/60 p-7 backdrop-blur"
+                transition={{ duration: 0.6, delay: i * 0.06 }}
+                className="rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-green/50"
               >
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-auto-mint/10 text-auto-mint ring-1 ring-auto-mint/30">
+                  <div className={`${ICON_BOX_DARK} h-11 w-11`}>
                     <pilier.icon size={20} strokeWidth={2.2} />
                   </div>
-                  <span className="text-3xl font-extrabold tracking-tight text-auto-mint/30">{pilier.n}</span>
+                  <span className="text-3xl font-extrabold tracking-tight text-brand-green" aria-hidden="true">{pilier.n}</span>
                 </div>
                 <h3 className="text-lg font-extrabold tracking-tight text-white">{pilier.title}</h3>
-                <p className="mt-2 text-sm text-white/60 leading-relaxed">{pilier.desc}</p>
+                <p className="mt-2 text-sm text-white/65 leading-relaxed">{pilier.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Audit hook - modal trigger */}
-      <section className="relative bg-auto-navy border-y border-white/5 py-16">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-auto-mint/8 blur-[100px]" />
-        <div className="container-x relative text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint mb-4">
-            Diagnostic gratuit
-          </p>
-          <h2 className="text-[clamp(1.75rem,3.5vw,2.25rem)] font-extrabold text-white leading-tight tracking-tight mb-3">
-            Commence par voir où en est ton annonce
-          </h2>
-          <p className="text-white/50 text-sm max-w-md mx-auto mb-8 leading-relaxed">
-            Score /100 · Points critiques · Gain de revenus estimé · Résultat en 60 secondes
-          </p>
-          <button
-            onClick={() => setAuditOpen(true)}
-            className="inline-flex items-center gap-2 rounded-full bg-auto-mint px-8 py-4 font-bold text-auto-navy hover:brightness-110 transition-all hover:shadow-glow-mint"
+      {/* Audit hook - modal trigger (carte claire sur la grille, juste après la bande noire) */}
+      <section className="relative py-16">
+        <div className="container-x">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-3xl border border-brand-green/30 bg-white px-6 py-14 text-center shadow-[0_6px_0_rgba(26,26,26,0.06)] md:px-12"
           >
-            <Sparkles size={14} /> Analyser mon annonce gratuitement
-          </button>
-          <p className="text-white/25 text-xs mt-3">Sans inscription · Sans engagement</p>
-          <Link
-            href="/super-bnb-academy/audit"
-            className="mt-4 inline-block text-xs font-semibold text-white/40 underline underline-offset-4 hover:text-auto-mint transition-colors"
-          >
-            Ou utilise l&apos;outil sur sa page dédiée →
-          </Link>
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-green/10 blur-[100px]" />
+            <div className="relative">
+              <p className={`${KICKER} ${TEAL} mb-4`}>
+                Diagnostic gratuit
+              </p>
+              <h2 className="text-[clamp(1.75rem,3.5vw,2.25rem)] font-extrabold text-ink leading-tight tracking-tight mb-3">
+                Commence par voir où en est <Underline>ton annonce</Underline>
+              </h2>
+              <p className="text-ink/70 text-sm max-w-md mx-auto mb-8 leading-relaxed">
+                Score /100 · Points critiques · Gain de revenus estimé · Résultat en 60 secondes
+              </p>
+              <button
+                onClick={() => setAuditOpen(true)}
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 font-bold text-white shadow-[0_6px_0_#1A6B33] transition-all hover:-translate-y-0.5 hover:gap-3 hover:shadow-[0_8px_0_#2DB84B]"
+              >
+                <Sparkles size={14} className="text-brand-green" /> Analyser mon annonce gratuitement
+              </button>
+              <p className="text-ink/55 text-xs mt-4">Sans inscription · Sans engagement</p>
+              <Link
+                href="/super-bnb-academy/audit"
+                className="mt-3 inline-block text-xs font-semibold text-ink/60 underline underline-offset-4 hover:text-brand-dark transition-colors"
+              >
+                Ou utilise l&apos;outil sur sa page dédiée →
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -325,16 +343,16 @@ export default function SuperBnbAcademyPage() {
       <SuperBnbWeeks />
 
       {/* Mid-page CTA */}
-      <section className="relative bg-auto-navy py-16">
+      <section className="relative py-16">
         <div className="container-x">
-          <div className="relative overflow-hidden rounded-3xl border border-auto-mint/30 bg-gradient-to-br from-auto-mint/15 via-auto-mint/5 to-transparent p-8 md:p-12">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-auto-mint/30 blur-[100px]" />
+          <div className="relative overflow-hidden rounded-3xl border border-brand-green/30 bg-white p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)] md:p-12">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-brand-green/15 blur-[100px]" />
             <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+                <p className={`${KICKER} ${TEAL}`}>
                   Pas sûr que ce soit pour toi ?
                 </p>
-                <h3 className="mt-3 max-w-2xl text-2xl font-extrabold leading-tight tracking-[-0.015em] md:text-3xl">
+                <h3 className="mt-3 max-w-2xl text-2xl font-extrabold leading-tight tracking-[-0.015em] text-ink md:text-3xl">
                   Réserve ton appel diagnostic gratuit. On regarde ton annonce ensemble, sans engagement.
                 </h3>
                 <ul className="mt-4 space-y-1.5">
@@ -343,8 +361,8 @@ export default function SuperBnbAcademyPage() {
                     "3 axes concrets d'amélioration identifiés",
                     "La réponse claire : Super BNB Academy est-il fait pour toi ?",
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-white/70">
-                      <Check size={14} className="mt-0.5 shrink-0 text-auto-mint" />
+                    <li key={item} className="flex items-start gap-2 text-sm text-ink/70">
+                      <Check size={14} className={`mt-0.5 shrink-0 ${TEAL}`} />
                       {item}
                     </li>
                   ))}
@@ -352,9 +370,9 @@ export default function SuperBnbAcademyPage() {
               </div>
               <CallGate
                 href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
-                className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-auto-mint px-7 py-4 font-bold text-auto-navy transition-all hover:scale-[1.03] hover:shadow-glow-mint"
+                className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-ink px-7 py-4 font-bold text-white shadow-[0_6px_0_#1A6B33] transition-all hover:-translate-y-0.5 hover:gap-3 hover:shadow-[0_8px_0_#2DB84B]"
               >
-                <CalendarCheck size={16} /> Réserver mon audit
+                <CalendarCheck size={16} className="text-brand-green" /> Réserver mon audit
               </CallGate>
             </div>
           </div>
@@ -362,15 +380,13 @@ export default function SuperBnbAcademyPage() {
       </section>
 
       {/* Bonus stack */}
-      <section className="relative bg-auto-navy py-28">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+      <section className="relative border-y border-ink/10 bg-white py-28">
         <div className="container-x relative">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+          <p className={`${KICKER} ${TEAL}`}>
             Bonus stack inclus
           </p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            6 bonus qu'on déploie{" "}
-            <span className="bg-auto-mint bg-clip-text text-transparent">avec toi.</span>
+            6 bonus qu'on déploie <Underline>avec toi.</Underline>
           </h2>
 
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -380,14 +396,18 @@ export default function SuperBnbAcademyPage() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="rounded-3xl border border-white/10 bg-auto-navy-soft/60 p-7 backdrop-blur transition-all hover:-translate-y-1 hover:border-auto-mint/40"
+                transition={{ duration: 0.6, delay: i * 0.06 }}
+                className={
+                  i % 3 === 1
+                    ? `${DARK_CARD} p-7`
+                    : "rounded-3xl border border-ink/10 bg-cream p-7 shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-green/50"
+                }
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-auto-mint/10 text-auto-mint ring-1 ring-auto-mint/30">
+                <div className={`${i % 3 === 1 ? ICON_BOX_DARK : ICON_BOX} h-12 w-12`}>
                   <b.icon size={22} strokeWidth={2.2} />
                 </div>
-                <h3 className="mt-6 text-lg font-extrabold tracking-tight">{b.title}</h3>
-                <p className="mt-2 text-sm text-white/65">{b.desc}</p>
+                <h3 className={`mt-6 text-lg font-extrabold tracking-tight ${i % 3 === 1 ? "text-white" : "text-ink"}`}>{b.title}</h3>
+                <p className={`mt-2 text-sm ${i % 3 === 1 ? "text-white/65" : "text-ink/70"}`}>{b.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -395,30 +415,30 @@ export default function SuperBnbAcademyPage() {
       </section>
 
       {/* Compare */}
-      <section className="relative bg-auto-navy-soft py-24">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
+      <section className="relative py-24">
         <div className="container-x relative">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+          <p className={`${KICKER} ${TEAL}`}>
             La différence
           </p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            Super BNB Academy vs <span className="text-white/40">formation classique</span>
+            Super BNB Academy vs <span className="text-ink/55">formation classique</span>
           </h2>
 
-          <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-auto-navy/50 backdrop-blur">
+          <div className="mt-12 overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-white/10">
-                  <th className="p-5 text-left text-[10px] uppercase tracking-widest text-white/50">
+                {/* En-tête noir */}
+                <tr className="bg-ink">
+                  <th className="p-5 text-left text-[10px] uppercase tracking-widest text-white/70">
                     Critère
                   </th>
                   <th className="p-5 text-left">
-                    <p className="text-[10px] uppercase tracking-widest text-auto-mint">
+                    <p className="text-[10px] uppercase tracking-widest text-brand-light">
                       Super BNB Academy
                     </p>
                   </th>
                   <th className="p-5 text-left">
-                    <p className="text-[10px] uppercase tracking-widest text-white/40">
+                    <p className="text-[10px] uppercase tracking-widest text-white/70">
                       Formation classique
                     </p>
                   </th>
@@ -426,22 +446,22 @@ export default function SuperBnbAcademyPage() {
               </thead>
               <tbody>
                 {compareRows.map(([label, a, b]) => (
-                  <tr key={label} className="border-b border-white/5 last:border-0">
-                    <td className="p-5 font-bold text-white">{label}</td>
-                    <td className="p-5 text-auto-mint">
+                  <tr key={label} className="border-b border-ink/10 last:border-0">
+                    <td className="p-5 font-bold text-ink">{label}</td>
+                    <td className={`p-5 font-semibold ${TEAL}`}>
                       {a === "yes" ? (
-                        <Check size={18} className="text-auto-mint" />
+                        <Check size={18} className={TEAL} />
                       ) : a === "no" ? (
-                        <X size={18} className="text-white/30" />
+                        <X size={18} className="text-ink/40" />
                       ) : (
                         a
                       )}
                     </td>
-                    <td className="p-5 text-white/50">
+                    <td className="p-5 text-ink/55">
                       {b === "yes" ? (
-                        <Check size={18} className="text-auto-mint" />
+                        <Check size={18} className={TEAL} />
                       ) : b === "no" ? (
-                        <X size={18} className="text-white/30" />
+                        <X size={18} className="text-ink/40" />
                       ) : (
                         b
                       )}
@@ -455,68 +475,71 @@ export default function SuperBnbAcademyPage() {
       </section>
 
       {/* Garantie */}
-      <section className="relative bg-auto-navy py-20">
-        <div className="container-x">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border border-white/10 bg-auto-navy-soft/60 p-10 text-center md:p-14">
-            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-auto-mint/15 text-auto-mint ring-1 ring-auto-mint/40">
+      <section className="relative overflow-hidden bg-ink py-24 text-white">
+        <div className="pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-brand-green/15 blur-[120px]" />
+        <div className="container-x relative">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center"
+          >
+            <span className={`${ICON_BOX_DARK} h-14 w-14`}>
               <ShieldCheck size={26} strokeWidth={2.2} />
             </span>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+            <p className={`${KICKER} text-brand-light`}>
               Garantie installation
             </p>
-            <h3 className="max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
+            <h3 className="max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.02em] text-white">
               Ton système est installé et opérationnel à J30.{" "}
-              <span className="bg-auto-mint bg-clip-text text-transparent">
-                Sinon remboursement intégral.
-              </span>
+              <Highlight>Sinon remboursement intégral.</Highlight>
             </h3>
             <p className="max-w-xl text-sm text-white/65">
               C'est notre seule garantie contractuelle, protégée par une checklist de réception à 38 points signée ensemble à la fin du programme.
             </p>
-            <div className="mt-2 rounded-2xl border border-auto-mint/20 bg-auto-mint/5 px-6 py-4 text-sm text-white/70 text-center max-w-lg">
-              <span className="font-bold text-auto-mint">Notre objectif de transformation :</span> +30% de chiffre d'affaires comparé à l'année précédente, et une gestion quotidienne ramenée à 15 minutes par jour. C'est ce qu'on vise avec toi, pas une garantie sur les revenus générés.
+            <div className="mt-2 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-4 text-sm text-white/65 text-center max-w-lg">
+              <span className="font-bold text-brand-light">Notre objectif de transformation :</span> +30% de chiffre d'affaires comparé à l'année précédente, et une gestion quotidienne ramenée à 15 minutes par jour. C'est ce qu'on vise avec toi, pas une garantie sur les revenus générés.
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Urgence / places limitées */}
-      <section className="relative bg-auto-navy py-20">
+      <section className="relative py-20">
         <div className="container-x">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border border-auto-mint/30 bg-gradient-to-br from-auto-mint/15 via-auto-mint/5 to-transparent p-10 text-center md:p-14">
-            <span className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-auto-mint/15 text-auto-mint ring-1 ring-auto-mint/40">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-3xl border border-brand-green/30 bg-white p-10 text-center shadow-[0_6px_0_rgba(26,26,26,0.06)] md:p-14">
+            <span className={`${ICON_BOX} h-14 w-14`}>
               <Flame size={26} strokeWidth={2.2} />
             </span>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">
+            <p className={`${KICKER} ${TEAL}`}>
               Places limitées ce mois-ci
             </p>
-            <h3 className="max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
-              Il reste{" "}
-              <span className="bg-auto-mint bg-clip-text text-transparent">2 à 3 places</span>{" "}
-              disponibles ce mois.
+            <h3 className="max-w-2xl text-[clamp(1.75rem,3.5vw,2.5rem)] font-extrabold leading-[1.1] tracking-[-0.02em] text-ink">
+              Il reste <span className="text-brand-dark">2 à 3 places</span> disponibles ce mois.
             </h3>
-            <p className="max-w-xl text-sm text-white/65">
+            <p className="max-w-xl text-sm text-ink/70">
               Chaque coach accompagne un nombre volontairement restreint d&apos;hôtes en simultané sur les 30 jours du programme, pour garantir un suivi réellement personnalisé, pas une formation de masse. Une fois les places du mois prises, il faut attendre la session suivante.
             </p>
             <CallGate
               href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
-              className="mt-2 inline-flex items-center gap-2 rounded-full bg-auto-mint px-7 py-4 font-bold text-auto-navy transition-all hover:scale-[1.03] hover:shadow-glow-mint"
+              className="mt-2 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 font-bold text-white shadow-[0_6px_0_#1A6B33] transition-all hover:-translate-y-0.5 hover:gap-3 hover:shadow-[0_8px_0_#2DB84B]"
             >
-              <CalendarCheck size={16} /> Réserver ma place ce mois
+              <CalendarCheck size={16} className="text-brand-green" /> Réserver ma place ce mois
             </CallGate>
           </div>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="relative bg-auto-navy-soft py-24">
+      <section className="relative border-t border-ink/10 bg-white py-24">
         <div className="container-x">
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-auto-mint">FAQ</p>
+          <p className={`${KICKER} ${TEAL}`}>FAQ</p>
           <h2 className="mt-6 max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.02em]">
-            Questions fréquentes.
+            Questions <span className="text-brand-dark">fréquentes.</span>
           </h2>
 
-          <div className="mt-12 divide-y divide-white/10 rounded-3xl border border-white/10 bg-auto-navy/40 backdrop-blur">
+          <div className="mt-12 divide-y divide-ink/10 rounded-3xl border border-ink/10 bg-cream shadow-[0_6px_0_rgba(26,26,26,0.06)]">
             {faq.map((item, i) => {
               const open = faqIdx === i;
               return (
@@ -526,17 +549,17 @@ export default function SuperBnbAcademyPage() {
                   className="block w-full text-left"
                 >
                   <div className="flex items-center justify-between p-6 md:p-8">
-                    <h3 className="pr-4 text-base font-extrabold md:text-lg">{item.q}</h3>
+                    <h3 className="pr-4 text-base font-extrabold text-ink md:text-lg">{item.q}</h3>
                     <ChevronDown
                       size={18}
-                      className={`flex-shrink-0 text-white/60 transition-transform ${
+                      className={`flex-shrink-0 text-ink/55 transition-transform ${
                         open ? "rotate-180" : ""
                       }`}
                     />
                   </div>
                   {open && (
                     <div className="px-6 pb-8 md:px-8">
-                      <p className="text-sm leading-relaxed text-white/70">{item.a}</p>
+                      <p className="text-sm leading-relaxed text-ink/70">{item.a}</p>
                     </div>
                   )}
                 </button>
@@ -547,21 +570,21 @@ export default function SuperBnbAcademyPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden bg-auto-mint py-28 text-auto-navy">
-        <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:radial-gradient(rgba(13,27,46,0.18)_1px,transparent_1px)] [background-size:32px_32px]" />
+      <section className="relative overflow-hidden bg-brand-green py-28 text-ink">
+        <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:radial-gradient(rgba(26,26,26,0.18)_1px,transparent_1px)] [background-size:32px_32px]" />
         <div className="container-x relative text-center">
-          <p className="inline-flex items-center gap-2 rounded-full bg-auto-navy px-4 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-auto-mint">
+          <p className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-brand-light">
             <Sparkles size={12} /> Diagnostic gratuit
           </p>
           <h2 className="mx-auto mt-8 max-w-3xl text-[clamp(2.25rem,5.5vw,4.5rem)] font-extrabold leading-[1] tracking-[-0.03em]">
-            Prêt à automatiser ton Airbnb ?
+            Prêt à <Underline>automatiser</Underline> ton Airbnb ?
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg">
             On regarde ensemble où tu perds de l'argent, et comment on le corrige en 30 jours.
           </p>
           <CallGate
             href="https://cal.com/rentimmoacademy/superbnbacademy?overlayCalendar=true"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-auto-navy px-8 py-4 font-bold text-auto-mint transition-transform hover:scale-[1.03]"
+            className="mt-10 inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 font-bold text-white transition-all hover:-translate-y-0.5 hover:gap-3"
           >
             Réserver mon audit gratuit <ArrowRight size={16} />
           </CallGate>

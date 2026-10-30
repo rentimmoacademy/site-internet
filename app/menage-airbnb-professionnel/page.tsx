@@ -2,10 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, ArrowRight, Sparkles, Clock, TrendingUp, Star } from "lucide-react";
 import LandingHero from "@/components/sections/LandingHero";
+import OfferVideo from "@/components/OfferVideo";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import PillarLinks from "@/components/sections/PillarLinks";
 import ActivityCallPopup from "@/components/ActivityCallPopup";
+import Reveal from "@/components/ui/Reveal";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
+
+const DARK_CARD =
+  "rounded-3xl bg-ink text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]";
+const LIGHT_CARD = "rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]";
+
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/menage-airbnb-professionnel`;
@@ -106,25 +115,29 @@ export default function MenageAirbnbProfessionnelPage() {
     <>
       <LandingHero
         kicker="Métier rentable, peu connu"
-        h1="Nettoyage Airbnb professionnel : devenir cleaner BNB en 2026"
+        h1={<>Nettoyage Airbnb professionnel : devenir <span className="text-brand-dark">cleaner BNB</span> en 2026</>}
+        introHighlight="tarif fixe par rotation, demande croissante, faible barrière à l'entrée"
         intro="Le nettoyage Airbnb professionnel (ménage BNB / cleaning) est un des métiers les plus rentables et stables du secteur LCD : tarif fixe par rotation, demande croissante, faible barrière à l'entrée. Voici comment lancer ton activité de cleaner BNB en 2026."
         primaryCta={{ href: "/formations/cleaning-bnb", label: "Voir la formation" }}
         secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Nettoyage Airbnb professionnel" }]}
       />
 
-      <LandingSection kicker="Le métier" title="Cleaner Airbnb pro : c'est quoi exactement ?" bg="cream">
+      <OfferVideo name="menage" title="Présentation du ménage Airbnb professionnel" />
+
+      <LandingSection kicker="Le métier" title={<>Cleaner Airbnb pro : c&apos;est quoi <Highlight>exactement</Highlight> ?</>} bg="cream">
         <div className="grid gap-8 md:grid-cols-2">
           <div>
             <p className="text-lg leading-relaxed text-ink">
-              Un <strong>cleaner Airbnb professionnel</strong> (ou prestataire de nettoyage Airbnb / cleaning BNB) prend en charge le nettoyage de rotation entre voyageurs sur les locations courte durée. Il travaille avec les <strong>conciergeries Airbnb</strong>, les <strong>hôtes propriétaires actifs</strong> et les <strong>sous-locataires professionnels</strong>. Pour une vue d'ensemble complète (tarifs, statut, FAQ), consulte notre <Link href="/blog/menage-airbnb-tout-savoir-2026" className="font-semibold text-brand-green underline">guide ménage Airbnb 2026</Link>.
+              Un <strong>cleaner Airbnb professionnel</strong> (ou prestataire de nettoyage Airbnb / cleaning BNB) prend en charge le nettoyage de rotation entre voyageurs sur les locations courte durée. Il travaille avec les <strong>conciergeries Airbnb</strong>, les <strong>hôtes propriétaires actifs</strong> et les <strong>sous-locataires professionnels</strong>. Pour une vue d'ensemble complète (tarifs, statut, FAQ), consulte notre <Link href="/blog/menage-airbnb-tout-savoir-2026" className="font-semibold text-brand-dark underline">guide ménage Airbnb 2026</Link>.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink">
               C'est un métier <strong>récurrent</strong> (mêmes biens à nettoyer chaque semaine), <strong>scalable</strong> (tu peux recruter une équipe), et avec une <strong>marge attractive</strong> (60-70% net après charges).
             </p>
           </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
-            <h3 className="text-xl font-bold text-ink">Une rotation type, étape par étape</h3>
+          <Reveal className={`${DARK_CARD} p-8`}>
+            <p className="text-xs font-bold uppercase tracking-widest text-brand-light">À retenir</p>
+            <h3 className="mt-2 text-xl font-bold text-white">Une rotation type, étape par étape</h3>
             <ul className="mt-4 space-y-3">
               {[
                 "État des lieux d'arrivée : photos avant ménage",
@@ -138,18 +151,18 @@ export default function MenageAirbnbProfessionnelPage() {
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <Sparkles className="mt-0.5 size-5 flex-shrink-0 text-brand-green" />
-                  <span className="text-ink">{item}</span>
+                  <span className="text-white/80">{item}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-sm italic text-ink-muted">Durée moyenne : 1h30 (studio) à 3h (T4+).</p>
-          </div>
+            <p className="mt-4 text-sm text-white/65">Durée moyenne : 1h30 (studio) à 3h (T4+).</p>
+          </Reveal>
         </div>
       </LandingSection>
 
       <LandingSection
         kicker="Pourquoi ça paie autant"
-        title="3 raisons pour lesquelles le cleaner BNB est rentable"
+        title={<>3 raisons pour lesquelles le cleaner BNB est <Underline>rentable</Underline></>}
         bg="white"
       >
         <div className="grid gap-6 md:grid-cols-3">
@@ -169,16 +182,25 @@ export default function MenageAirbnbProfessionnelPage() {
               title: "Évolution rapide",
               desc: "Mois 1-3 : tu fais toi-même. Mois 4-6 : tu recrutes 1 cleaner externe à 30% commission. Mois 12 : équipe de 3-4 cleaners, tu pilotes davantage et tu interviens moins sur le terrain (résultats variables selon l'exécution).",
             },
-          ].map((b) => {
+          ].map((b, i) => {
             const Icon = b.icon;
+            const dark = i === 1;
             return (
-              <div key={b.title} className="rounded-2xl bg-cream p-6">
-                <div className="flex size-12 items-center justify-center rounded-xl bg-brand-green/10">
-                  <Icon className="size-6 text-brand-green" />
+              <Reveal key={b.title} index={i} className="h-full">
+                <div
+                  className={`h-full p-8 ${
+                    dark
+                      ? DARK_CARD
+                      : "rounded-3xl border border-ink/10 bg-cream shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5"
+                  }`}
+                >
+                  <div className={`flex size-12 items-center justify-center rounded-xl ${dark ? "bg-brand-green/15" : "bg-brand-green/10"}`}>
+                    <Icon className={`size-6 ${dark ? "text-brand-green" : "text-brand-dark"}`} />
+                  </div>
+                  <h3 className={`mt-4 text-xl font-bold ${dark ? "text-white" : "text-ink"}`}>{b.title}</h3>
+                  <p className={`mt-2 ${dark ? "text-white/65" : "text-ink-muted"}`}>{b.desc}</p>
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-ink">{b.title}</h3>
-                <p className="mt-2 text-ink-muted">{b.desc}</p>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -186,12 +208,12 @@ export default function MenageAirbnbProfessionnelPage() {
 
       <LandingSection
         kicker="Tarifs et revenus"
-        title="Combien gagne un cleaner Airbnb pro ?"
+        title={<>Combien <span className="text-brand-dark">gagne</span> un cleaner Airbnb pro ?</>}
         bg="cream"
       >
-        <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-ink/5">
+        <Reveal className={`overflow-x-auto ${LIGHT_CARD}`}>
           <table className="w-full">
-            <thead className="bg-ink text-cream">
+            <thead className="bg-ink text-white">
               <tr>
                 <th className="p-4 text-left text-sm font-bold uppercase tracking-wider">Niveau</th>
                 <th className="p-4 text-left text-sm font-bold uppercase tracking-wider">Rotations/mois</th>
@@ -216,36 +238,38 @@ export default function MenageAirbnbProfessionnelPage() {
               ))}
             </tbody>
           </table>
-        </div>
-        <p className="mt-4 text-sm italic text-ink-muted">
+        </Reveal>
+        <p className="mt-4 text-sm text-ink-muted">
           Simulation illustrative, sans garantie de résultat. Net après charges = CA − URSSAF − véhicule (carburant + amortissement) − produits ménagers − assurance pro − sous-traitance cleaners. Hors impôt sur le revenu. Médiane sur biens 60-110€/nuit.
         </p>
       </LandingSection>
 
-      <LandingSection kicker="Plan d'action" title="Lancer ton activité cleaner BNB en 30 jours" bg="white">
-        <ol className="space-y-6">
+      <LandingSection kicker="Plan d'action" title={<>Lancer ton activité cleaner BNB <Highlight>en 30 jours</Highlight></>} bg="ink">
+        <ol className="grid gap-5 md:grid-cols-2">
           {[
             { num: "01", t: "Statut auto-entrepreneur", d: "Création en ligne (24h, gratuit) sur autoentrepreneur.urssaf.fr. Code APE 8121Z. Souscription assurance RC pro (~25€/mois). Achat du matériel de base (800-1 500€)." },
             { num: "02", t: "Définir ton offre tarifaire", d: "Grille tarifaire claire : Studio 35€, T2 55€, T3 75€, T4 95€. Inclus : ménage complet, draps, consommables. Options : linge fourni (+8€), check-in (+15€), urgence (+30%). La transparence = bouche-à-oreille." },
             { num: "03", t: "Trouver tes 3 premières conciergeries", d: "LinkedIn search 'conciergerie airbnb [ville]' + email/DM avec offre claire. Google Maps + appels. Groupes Facebook 'hôtes airbnb [ville]'. Objectif : 3 conciergeries clientes = 50-80 rotations récurrentes." },
             { num: "04", t: "Délivrer impeccable et obtenir des reviews", d: "Photos avant/après envoyées au proprio à chaque rotation. Standard hôtelier non négociable. 2 reviews 5 étoiles parfaites = recommandation à 5 autres conciergeries via le réseau." },
             { num: "05", t: "Recruter et déléguer (mois 4+)", d: "Quand tu satures (90 rotations/mois solo), recrutement d'un 1er cleaner externe : 30% de commission sur les rotations qu'il fait. Tu passes du métier à l'entreprise. Outils : Notion pour planning, WhatsApp groupe équipe, paiement Pennylane." },
-          ].map((s) => (
-            <li key={s.num} className="flex gap-6 rounded-2xl bg-cream p-6">
-              <div className="flex-shrink-0 text-3xl font-extrabold text-brand-green/30 md:text-4xl">{s.num}</div>
-              <div>
-                <h3 className="text-xl font-bold text-ink">{s.t}</h3>
-                <p className="mt-2 leading-relaxed text-ink-muted">{s.d}</p>
+          ].map((s, i) => (
+            <Reveal as="li" key={s.num} index={i} className="h-full">
+              <div className="flex h-full gap-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-green/50 md:p-8">
+                <div className="flex-shrink-0 text-3xl font-extrabold text-brand-green md:text-4xl">{s.num}</div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">{s.t}</h3>
+                  <p className="mt-2 leading-relaxed text-white/65">{s.d}</p>
+                </div>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </LandingSection>
 
-      <LandingSection kicker="FAQ" title="Questions fréquentes sur le ménage Airbnb pro" bg="cream">
+      <LandingSection kicker="FAQ" title={<>Questions fréquentes sur le <span className="text-brand-dark">ménage Airbnb pro</span></>} bg="cream">
         <div className="space-y-3">
           {FAQS.map((f) => (
-            <details key={f.q} className="group rounded-2xl bg-white p-6">
+            <details key={f.q} className="group rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_6px_0_rgba(26,26,26,0.06)]">
               <summary className="cursor-pointer list-none flex items-start justify-between gap-4 font-bold text-ink">
                 <span>{f.q}</span>
                 <span className="text-2xl text-brand-green transition-transform group-open:rotate-45">+</span>
@@ -258,30 +282,30 @@ export default function MenageAirbnbProfessionnelPage() {
 
       <LandingSection
         kicker="Aller plus loin"
-        title="Tu veux te lancer ?"
+        title={<>Tu veux te <Highlight>lancer</Highlight> ?</>}
         intro="Tu as les fondamentaux. Pour devenir opérationnel et signer tes premières conciergeries en 30-45 jours, voici ton chemin."
         bg="white"
       >
         <div className="grid gap-6 md:grid-cols-2">
           <Link
             href="/formations/cleaning-bnb"
-            className="group block rounded-2xl bg-ink p-8 text-cream transition-transform hover:-translate-y-1"
+            className={`group block p-8 ${DARK_CARD}`}
           >
             <span className="rounded-full bg-brand-green/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-light">
               Recommandé
             </span>
             <h3 className="mt-4 text-2xl font-extrabold">Cleaning BNB Academy</h3>
-            <p className="mt-2 text-cream/80">
+            <p className="mt-2 text-white/65">
               Formation complète : statut, standards hôteliers, tarification, prospection conciergeries, gestion d'équipe. Tu signes tes premiers contrats en 30 jours.
             </p>
-            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-light group-hover:text-white">
+            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-light transition-all group-hover:gap-3 group-hover:text-white">
               Voir le programme <ArrowRight size={16} />
             </span>
           </Link>
 
           <Link
             href="/devenir-conciergerie-airbnb"
-            className="group block rounded-2xl border-2 border-ink/10 bg-cream p-8 transition-transform hover:-translate-y-1"
+            className="group block rounded-3xl border border-ink/10 bg-cream p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5"
           >
             <span className="rounded-full bg-brand-dark/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-dark">
               Alternative
@@ -290,7 +314,7 @@ export default function MenageAirbnbProfessionnelPage() {
             <p className="mt-2 text-ink-muted">
               Si tu veux gérer aussi l'annonce, les voyageurs et la maintenance (et pas que le ménage), regarde notre guide pour devenir conciergerie Airbnb complète.
             </p>
-            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-green">
+            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-dark transition-all group-hover:gap-3">
               Voir le guide <ArrowRight size={16} />
             </span>
           </Link>

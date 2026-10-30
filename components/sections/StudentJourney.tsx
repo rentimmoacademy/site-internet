@@ -189,7 +189,7 @@ function Cta() {
 // Version sans pin : mobile et préférence « réduire les animations ».
 function StaticJourney({ always = false }: { always?: boolean }) {
   return (
-    <section className={`bg-cream py-24 ${always ? "" : "lg:hidden"}`}>
+    <section className={`dot-grid-light bg-cream py-24 ${always ? "" : "lg:hidden"}`}>
       <div className="container-x">
         <Intro />
         <ol className="relative mt-12 space-y-8 border-l-2 border-brand-green/25 pl-7">
@@ -232,7 +232,7 @@ function PinnedJourney() {
   });
 
   return (
-    <section ref={ref} className="relative hidden bg-cream lg:block" style={{ height: `${stages.length * 75}vh` }}>
+    <section ref={ref} className="dot-grid-light relative hidden bg-cream lg:block" style={{ height: `${stages.length * 75}vh` }}>
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div
           style={{ top: glowY }}

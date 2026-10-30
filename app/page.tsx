@@ -3,6 +3,7 @@ import SocialProof from "@/components/sections/SocialProof";
 import FormationsGrid from "@/components/sections/FormationsGrid";
 import SuperBnbCard from "@/components/SuperBnbCard";
 import StudentJourney from "@/components/sections/StudentJourney";
+import TestimonialLanes from "@/components/sections/TestimonialLanes";
 import Results from "@/components/sections/Results";
 import PropertiesShowcase from "@/components/sections/PropertiesShowcase";
 import WhyRentimmo from "@/components/sections/WhyRentimmo";
@@ -22,6 +23,7 @@ export default function HomePage() {
       <FormationsGrid />
       <SuperBnbCard />
       <StudentJourney />
+      <TestimonialLanes />
       <Results />
       <PropertiesShowcase />
       <WhyRentimmo />

@@ -24,11 +24,12 @@ const config: Config = {
           DEFAULT: "#C4933F",
           dark: "#8B6420",
         },
+        // Super BNB Academy : mêmes codes que la marque (vert + noir), plus de bleu/menthe.
         auto: {
-          navy: "#0D1B2E",
-          "navy-soft": "#152744",
-          mint: "#00C49A",
-          "mint-light": "#5EEBC8",
+          navy: "#1A1A1A",
+          "navy-soft": "#262626",
+          mint: "#2DB84B",
+          "mint-light": "#5FD87A",
         },
         alert: "#C0392B",
         warning: "#E6A817",
@@ -47,11 +48,11 @@ const config: Config = {
       backgroundImage: {
         "brand-gradient": "linear-gradient(165deg, #1A6B33 0%, #2DB84B 50%, #5FD87A 100%)",
         "morocco-gradient": "linear-gradient(135deg, #C4933F 0%, #8B6420 100%)",
-        "auto-gradient": "linear-gradient(165deg, #0D1B2E 0%, #152744 50%, #00C49A 130%)",
-        "auto-mint": "linear-gradient(135deg, #00C49A 0%, #5EEBC8 100%)",
+        "auto-gradient": "linear-gradient(165deg, #1A1A1A 0%, #262626 50%, #2DB84B 130%)",
+        "auto-mint": "linear-gradient(135deg, #1A6B33 0%, #2DB84B 50%, #5FD87A 100%)",
         "dot-grid": "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
         "dot-grid-dark": "radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px)",
-        "dot-grid-mint": "radial-gradient(rgba(0,196,154,0.12) 1px, transparent 1px)",
+        "dot-grid-mint": "radial-gradient(rgba(45,184,75,0.12) 1px, transparent 1px)",
       },
       backgroundSize: {
         "dot-32": "32px 32px",

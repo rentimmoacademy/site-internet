@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import CallGate from "@/components/CallGate";
+import Highlight from "@/components/ui/Highlight";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -16,41 +17,33 @@ const fadeUp = {
 
 export default function SuperBnbHero() {
   return (
-    <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-auto-navy pt-32 font-poppins text-white">
-      <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-auto-mint/15 blur-[140px]" />
-      <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-auto-mint/10 blur-[140px]" />
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-32 text-ink">
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-brand-green/[0.12] blur-[140px]" />
+      <div className="pointer-events-none absolute -bottom-40 right-0 h-[500px] w-[500px] rounded-full bg-brand-green/[0.08] blur-[140px]" />
 
       <div className="container-x relative z-10 py-20">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="inline-flex items-center gap-2 rounded-full border border-auto-mint/40 bg-auto-mint/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-auto-mint"
+          className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-brand-light"
         >
           <Sparkles size={12} /> Programme, pas une formation
         </motion.div>
 
-        <motion.h1
-          variants={fadeUp}
-          custom={1}
-          initial="hidden"
-          animate="show"
-          className="mt-8 max-w-5xl text-[clamp(2.5rem,6.5vw,5.25rem)] font-extrabold leading-[0.95] tracking-[-0.035em]"
-        >
-          Automatise ton Airbnb en{" "}
-          <span className="bg-auto-mint bg-clip-text text-transparent">30 jours.</span>{" "}
-          On le fait avec toi.
-        </motion.h1>
+        <h1 className="mt-8 max-w-5xl text-[clamp(2.5rem,6.5vw,5.25rem)] font-extrabold leading-[0.95] tracking-[-0.035em]">
+          Automatise ton Airbnb en <Highlight>30 jours.</Highlight> On le fait avec toi.
+        </h1>
 
         <motion.p
           variants={fadeUp}
           custom={2}
           initial="hidden"
           animate="show"
-          className="mt-8 max-w-2xl text-lg leading-relaxed text-white/75 md:text-xl"
+          className="mt-8 max-w-2xl text-lg leading-relaxed text-ink/70 md:text-xl"
         >
-          Un accompagnement sur mesure pour les hôtes Airbnb actifs qui veulent reprendre leur temps.
+          Un accompagnement sur mesure pour les hôtes Airbnb actifs qui veulent{" "}
+          <span className="font-semibold text-ink">reprendre leur temps</span>.
           Annonce, messages, pricing, domotique, outils IA : on configure tout avec ton coach dédié.
           Un format encore rare sur le marché francophone de la location courte durée.
         </motion.p>
@@ -70,7 +63,7 @@ export default function SuperBnbHero() {
           </CallGate>
           <Link
             href="#programme"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-4 font-bold text-white backdrop-blur transition-colors hover:bg-white/10"
+            className="btn-ghost-dark"
           >
             Voir le programme
           </Link>
@@ -82,15 +75,15 @@ export default function SuperBnbHero() {
           custom={4}
           initial="hidden"
           animate="show"
-          className="mt-14 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur"
+          className="mt-14 inline-flex items-center gap-3 rounded-2xl bg-ink px-5 py-4 text-white shadow-[0_6px_0_#1A6B33]"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-auto-mint/15 text-auto-mint">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-green/15 text-brand-green">
             <ShieldCheck size={18} />
           </div>
           <div>
-            <p className="text-xs uppercase tracking-widest text-white/60">Propulsé par Superhote</p>
-            <p className="text-sm font-bold">
-              Le channel manager qui centralise <span className="text-auto-mint">tous tes calendriers et messages</span>
+            <p className="text-xs uppercase tracking-widest text-brand-light">Propulsé par Superhote</p>
+            <p className="text-sm font-bold text-white">
+              Le channel manager qui centralise <span className="text-brand-green">tous tes calendriers et messages</span>
             </p>
           </div>
         </motion.div>

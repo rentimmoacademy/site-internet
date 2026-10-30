@@ -128,32 +128,32 @@ export default function RevenueCalculator() {
       </div>
 
       {/* Résultat */}
-      <div className="rounded-3xl border border-ink/10 bg-ink p-6 text-white md:p-8">
-        <p className="tag text-brand-light">Estimation illustrative</p>
+      <div className="rounded-3xl border-2 border-brand-green/30 bg-white p-6 text-ink shadow-[0_6px_0_rgba(26,26,26,0.06)] md:p-8">
+        <p className="tag text-brand-dark">Estimation illustrative</p>
         <h2 className="mt-3 text-xl font-extrabold">Ce que ça pourrait donner</h2>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl bg-white/5 p-5">
-            <div className="text-xs font-bold uppercase tracking-widest text-white/50">
+          <div className="rounded-2xl bg-cream p-5">
+            <div className="text-xs font-bold uppercase tracking-widest text-ink/55">
               Sous-location
             </div>
-            <div className="mt-2 text-2xl font-extrabold text-brand-light">
+            <div className="mt-2 text-2xl font-extrabold text-brand-dark">
               {result.sousLocationTotal[0]} – {result.sousLocationTotal[1]} €
             </div>
-            <div className="text-xs text-white/40">par mois, marge nette estimée</div>
+            <div className="text-xs text-ink/55">par mois, marge nette estimée</div>
           </div>
-          <div className="rounded-2xl bg-white/5 p-5">
-            <div className="text-xs font-bold uppercase tracking-widest text-white/50">
+          <div className="rounded-2xl bg-cream p-5">
+            <div className="text-xs font-bold uppercase tracking-widest text-ink/55">
               Conciergerie
             </div>
-            <div className="mt-2 text-2xl font-extrabold text-brand-light">
+            <div className="mt-2 text-2xl font-extrabold text-brand-dark">
               {result.conciergerieTotal[0]} – {result.conciergerieTotal[1]} €
             </div>
-            <div className="text-xs text-white/40">par mois, commission estimée</div>
+            <div className="text-xs text-ink/55">par mois, commission estimée</div>
           </div>
         </div>
 
-        <p className="mt-6 text-xs leading-relaxed text-white/40">
+        <p className="mt-6 text-xs leading-relaxed text-ink/55">
           Exemple illustratif basé sur les fourchettes moyennes constatées par Rentimmo Academy
           selon la ville et le type de bien. Ce n'est pas une garantie de résultat : le revenu
           réel dépend de ton bien, de ta gestion et du marché local. On affine ton estimation

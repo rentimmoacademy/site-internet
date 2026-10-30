@@ -185,7 +185,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="bg-ink text-cream antialiased">
+      <body className="antialiased">
         <SiteShell>{children}</SiteShell>
         <GoogleAnalytics />
         <MetaPixel />

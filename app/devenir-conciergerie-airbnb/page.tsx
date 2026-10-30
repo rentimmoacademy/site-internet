@@ -2,10 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, ArrowRight, Briefcase, Users, BarChart3, ShieldCheck } from "lucide-react";
 import LandingHero from "@/components/sections/LandingHero";
+import OfferVideo from "@/components/OfferVideo";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import PillarLinks from "@/components/sections/PillarLinks";
 import ActivityCallPopup from "@/components/ActivityCallPopup";
+import Reveal from "@/components/ui/Reveal";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
+
+const DARK_CARD =
+  "rounded-3xl bg-ink text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]";
+const LIGHT_CARD = "rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]";
+
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/devenir-conciergerie-airbnb`;
@@ -105,16 +114,19 @@ export default function DevenirConciergerieAirbnbPage() {
     <>
       <LandingHero
         kicker="Lancer son activité"
-        h1="Devenir conciergerie Airbnb : se lancer en 2026 sans capital"
+        h1={<>Devenir conciergerie Airbnb : se lancer en 2026 <span className="text-brand-dark">sans capital</span></>}
+        introHighlight="tu gères ceux des autres et tu prends 15 à 25% de commission"
         intro="Tu veux ouvrir ta conciergerie Airbnb en France ou au Maroc ? Tu n'as pas besoin de logements en propre — tu gères ceux des autres et tu prends 15 à 25% de commission. Voici comment se lancer concrètement, étape par étape."
         primaryCta={{ href: "/formations/conciergerie-bnb", label: "Voir la formation" }}
         secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Devenir conciergerie Airbnb" }]}
       />
 
+      <OfferVideo name="conciergerie" title="Présentation de la conciergerie Airbnb" />
+
       <LandingSection
         kicker="Le métier en clair"
-        title="C'est quoi une conciergerie Airbnb, concrètement ?"
+        title={<>C&apos;est quoi une conciergerie Airbnb, <Highlight>concrètement</Highlight> ?</>}
         bg="cream"
       >
         <div className="grid gap-8 md:grid-cols-2">
@@ -126,8 +138,9 @@ export default function DevenirConciergerieAirbnbPage() {
               C'est un <strong>business sans stock, sans fonds de commerce, sans matériel lourd</strong>. Tes seuls coûts fixes : assurance pro (~30€/mois), outils SaaS (~80-150€/mois pour 5 biens gérés), et ton temps.
             </p>
           </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
-            <h3 className="text-xl font-bold text-ink">Ce qu'inclut typiquement une conciergerie</h3>
+          <Reveal className={`${DARK_CARD} p-8`}>
+            <p className="text-xs font-bold uppercase tracking-widest text-brand-light">À retenir</p>
+            <h3 className="mt-2 text-xl font-bold text-white">Ce qu'inclut typiquement une conciergerie</h3>
             <ul className="mt-4 space-y-3">
               {[
                 "Création et optimisation de l'annonce Airbnb / Booking / Vrbo",
@@ -140,17 +153,17 @@ export default function DevenirConciergerieAirbnbPage() {
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <Check className="mt-0.5 size-5 flex-shrink-0 text-brand-green" />
-                  <span className="text-ink">{item}</span>
+                  <span className="text-white/80">{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </LandingSection>
 
       <LandingSection
         kicker="Pourquoi maintenant"
-        title="Le marché 2026 : opportunité massive et concurrence faible"
+        title={<>Le marché 2026 : opportunité <Underline>massive</Underline> et concurrence faible</>}
         intro="Le marché de la conciergerie Airbnb explose en France et au Maroc, avec un déséquilibre fort entre l'offre (peu de conciergeries pros) et la demande (proprios débordés ou MRE)."
         bg="white"
       >
@@ -171,16 +184,25 @@ export default function DevenirConciergerieAirbnbPage() {
               title: "Barrières à l'entrée faibles",
               desc: "Aucun diplôme requis, statut auto-entrepreneur en 24h, premiers clients possibles dès le mois 1. Mais la qualité prime — le marché est sale, il y a de la place pour les pros sérieux.",
             },
-          ].map((b) => {
+          ].map((b, i) => {
             const Icon = b.icon;
+            const dark = i === 1;
             return (
-              <div key={b.title} className="rounded-2xl bg-cream p-6">
-                <div className="flex size-12 items-center justify-center rounded-xl bg-brand-green/10">
-                  <Icon className="size-6 text-brand-green" />
+              <Reveal key={b.title} index={i} className="h-full">
+                <div
+                  className={`h-full p-8 ${
+                    dark
+                      ? DARK_CARD
+                      : "rounded-3xl border border-ink/10 bg-cream shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5"
+                  }`}
+                >
+                  <div className={`flex size-12 items-center justify-center rounded-xl ${dark ? "bg-brand-green/15" : "bg-brand-green/10"}`}>
+                    <Icon className={`size-6 ${dark ? "text-brand-green" : "text-brand-dark"}`} />
+                  </div>
+                  <h3 className={`mt-4 text-xl font-bold ${dark ? "text-white" : "text-ink"}`}>{b.title}</h3>
+                  <p className={`mt-2 ${dark ? "text-white/65" : "text-ink-muted"}`}>{b.desc}</p>
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-ink">{b.title}</h3>
-                <p className="mt-2 text-ink-muted">{b.desc}</p>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -188,13 +210,13 @@ export default function DevenirConciergerieAirbnbPage() {
 
       <LandingSection
         kicker="Combien on gagne"
-        title="Revenus typiques d'une conciergerie Airbnb"
+        title={<>Revenus <span className="text-brand-dark">typiques</span> d&apos;une conciergerie Airbnb</>}
         intro="Médianes constatées sur les conciergeries que nos étudiants ont lancé en 2024-2026 (France & Maroc)."
         bg="cream"
       >
-        <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-ink/5">
+        <Reveal className={`overflow-x-auto ${LIGHT_CARD}`}>
           <table className="w-full">
-            <thead className="bg-ink text-cream">
+            <thead className="bg-ink text-white">
               <tr>
                 <th className="p-4 text-left text-sm font-bold uppercase tracking-wider">Portefeuille</th>
                 <th className="p-4 text-left text-sm font-bold uppercase tracking-wider">CA mensuel généré</th>
@@ -219,40 +241,42 @@ export default function DevenirConciergerieAirbnbPage() {
               ))}
             </tbody>
           </table>
-        </div>
-        <p className="mt-4 text-sm italic text-ink-muted">
+        </Reveal>
+        <p className="mt-4 text-sm text-ink-muted">
           Net après charges = commission − URSSAF − outils SaaS − sous-traitance ménage − assurance. Hors impôt sur le revenu. Médiane sur biens de 70-110€/nuit, 70-80% taux d'occupation.
         </p>
       </LandingSection>
 
       <LandingSection
         kicker="Plan d'action"
-        title="Les 5 étapes pour lancer ta conciergerie en 60 jours"
-        bg="white"
+        title={<>Les 5 étapes pour lancer ta conciergerie <Highlight>en 60 jours</Highlight></>}
+        bg="ink"
       >
-        <ol className="space-y-6">
+        <ol className="grid gap-5 md:grid-cols-2">
           {[
             { num: "01", t: "Créer ton statut juridique", d: "Auto-entrepreneur en 24h sur autoentrepreneur.urssaf.fr — gratuit, code APE 6810Z (Activités des marchands de biens immobiliers) ou 8299Z (Autres activités de soutien aux entreprises). Souscrire l'assurance RC pro (Hiscox, Allianz : 25-40€/mois)." },
             { num: "02", t: "Définir ton offre et ta tarification", d: "Choisir ta zone géo (1 ville pour démarrer), ta cible (proprios occasionnels vs investisseurs MRE), ta commission (15 à 25%), et tes services inclus vs en option. Plus c'est précis, plus tu vends." },
             { num: "03", t: "Trouver tes premiers clients propriétaires", d: "3 canaux qui marchent : (1) Facebook groupes 'propriétaires Airbnb', (2) LinkedIn proprios immobiliers, (3) partenariats avec agences immo locales (commission croisée). Le pitch fait toute la différence : 'on génère 30% de revenus en plus que la gestion en direct'." },
             { num: "04", t: "Setup outils et processus", d: "Channel manager (Hostaway 30j gratuit, puis 25-50€/bien/mois), automation messages (Hospitable), checklist de prise en main (clés, accès, équipement, photos), templates contrat de mandat. Tout doit être prêt AVANT le 1er client." },
             { num: "05", t: "Onboarder et délivrer", d: "Premier client = bouche-à-oreille gold mine si tu délivres. Photos pro du logement (300€ ROI massif), refonte annonce, multi-canaux, communication voyageur réactive. Objectif : le 1er proprio te recommande à 2-3 amis dans les 60 jours." },
-          ].map((s) => (
-            <li key={s.num} className="flex gap-6 rounded-2xl bg-cream p-6">
-              <div className="flex-shrink-0 text-3xl font-extrabold text-brand-green/30 md:text-4xl">{s.num}</div>
-              <div>
-                <h3 className="text-xl font-bold text-ink">{s.t}</h3>
-                <p className="mt-2 leading-relaxed text-ink-muted">{s.d}</p>
+          ].map((s, i) => (
+            <Reveal as="li" key={s.num} index={i} className="h-full">
+              <div className="flex h-full gap-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-green/50 md:p-8">
+                <div className="flex-shrink-0 text-3xl font-extrabold text-brand-green md:text-4xl">{s.num}</div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">{s.t}</h3>
+                  <p className="mt-2 leading-relaxed text-white/65">{s.d}</p>
+                </div>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </LandingSection>
 
-      <LandingSection kicker="FAQ" title="Questions fréquentes sur la conciergerie Airbnb" bg="cream">
+      <LandingSection kicker="FAQ" title={<>Questions fréquentes sur la <span className="text-brand-dark">conciergerie Airbnb</span></>} bg="cream">
         <div className="space-y-3">
           {FAQS.map((f) => (
-            <details key={f.q} className="group rounded-2xl bg-white p-6">
+            <details key={f.q} className="group rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_6px_0_rgba(26,26,26,0.06)]">
               <summary className="cursor-pointer list-none flex items-start justify-between gap-4 font-bold text-ink">
                 <span>{f.q}</span>
                 <span className="text-2xl text-brand-green transition-transform group-open:rotate-45">+</span>
@@ -265,30 +289,30 @@ export default function DevenirConciergerieAirbnbPage() {
 
       <LandingSection
         kicker="Aller plus loin"
-        title="Tu veux te lancer pour de vrai ?"
+        title={<>Tu veux te lancer <Highlight>pour de vrai</Highlight> ?</>}
         intro="Ce guide te donne le cadre. Pour devenir opérationnel et signer ton premier client en 30 jours, tu as 2 chemins."
         bg="white"
       >
         <div className="grid gap-6 md:grid-cols-2">
           <Link
             href="/formations/conciergerie-bnb"
-            className="group block rounded-2xl bg-ink p-8 text-cream transition-transform hover:-translate-y-1"
+            className={`group block p-8 ${DARK_CARD}`}
           >
             <span className="rounded-full bg-brand-green/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-light">
               Recommandé
             </span>
             <h3 className="mt-4 text-2xl font-extrabold">Conciergerie BNB Academy</h3>
-            <p className="mt-2 text-cream/80">
+            <p className="mt-2 text-white/65">
               Formation complète : statut, prospection, contrats, outils, automation. Tu lances ta conciergerie et tu signes ton 1er proprio en 30-45 jours. Bonus Maroc inclus.
             </p>
-            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-light group-hover:text-white">
+            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-light transition-all group-hover:gap-3 group-hover:text-white">
               Voir le programme <ArrowRight size={16} />
             </span>
           </Link>
 
           <Link
             href="/sous-location-professionnelle"
-            className="group block rounded-2xl border-2 border-ink/10 bg-cream p-8 transition-transform hover:-translate-y-1"
+            className="group block rounded-3xl border border-ink/10 bg-cream p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5"
           >
             <span className="rounded-full bg-brand-dark/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-dark">
               Alternative
@@ -297,7 +321,7 @@ export default function DevenirConciergerieAirbnbPage() {
             <p className="mt-2 text-ink-muted">
               Si tu préfères louer des biens et les sous-louer en ton nom (vs gérer ceux des autres), regarde notre guide sous-location.
             </p>
-            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-green">
+            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-dark transition-all group-hover:gap-3">
               Voir le guide <ArrowRight size={16} />
             </span>
           </Link>
@@ -306,21 +330,21 @@ export default function DevenirConciergerieAirbnbPage() {
 
 
       {/* Outil audit annonce */}
-      <section className="bg-ink py-16">
+      <section className="py-16">
         <div className="container-x">
-          <div className="rounded-3xl border border-brand-green/20 bg-brand-green/5 p-8 flex flex-col md:flex-row items-center gap-6 justify-between">
+          <Reveal className="rounded-3xl border border-brand-green/25 bg-white p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)] flex flex-col md:flex-row items-center gap-6 justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-brand-green mb-2">Outil gratuit</p>
-              <h3 className="text-xl font-extrabold text-white tracking-tight">Auditez votre annonce Airbnb en 90 secondes</h3>
-              <p className="text-white/55 text-sm mt-1">Score /100 · Benchmark concurrents · Titre réoptimisé par IA</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-dark mb-2">Outil gratuit</p>
+              <h3 className="text-xl font-extrabold text-ink tracking-tight">Auditez votre annonce Airbnb en 90 secondes</h3>
+              <p className="text-ink/55 text-sm mt-1">Score /100 · Benchmark concurrents · Titre réoptimisé par IA</p>
             </div>
             <Link
               href="/outils/audit-annonce"
-              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white transition-all hover:bg-brand-light"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition-all hover:gap-3 hover:bg-brand-dark"
             >
               Analyser mon annonce <ArrowRight size={14} />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 

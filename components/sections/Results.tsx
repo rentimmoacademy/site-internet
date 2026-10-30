@@ -36,17 +36,15 @@ const results = [
 
 export default function Results() {
   return (
-    <section id="resultats" className="relative overflow-hidden bg-cream py-28 text-ink">
-      <div className="dot-grid-light pointer-events-none absolute inset-0 opacity-60" />
+    <section id="resultats" className="relative isolate overflow-hidden bg-ink py-28 text-white">
+      <div className="dot-grid pointer-events-none absolute inset-0 opacity-20" />
+      <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-brand-green/15 blur-[120px]" />
       <div className="container-x relative">
         <SectionHeader
           tag="Ils se sont lancés"
-          title={
-            <>
-              Des résultats réels,{" "}
-              <span className="bg-brand-gradient bg-clip-text text-transparent">pas des promesses.</span>
-            </>
-          }
+          dark
+          title="Des résultats réels,"
+          highlight="pas des promesses."
           subtitle="Des entrepreneurs qui partaient sans capital et qui génèrent aujourd'hui des revenus récurrents, en France comme au Maroc."
         />
 
@@ -57,8 +55,8 @@ export default function Results() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col rounded-3xl border border-ink/10 bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-xl"
+              transition={{ duration: 0.6, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col rounded-3xl bg-white p-8 text-ink shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
             >
               {/* Photo placeholder */}
               <div className={`h-40 rounded-2xl ${r.accent} relative overflow-hidden`}>

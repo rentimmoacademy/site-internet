@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/mdx";
 import BlogGrid from "@/components/blog/BlogGrid";
+import Highlight from "@/components/ui/Highlight";
+import FinalCTA from "@/components/sections/FinalCTA";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://www.rentimmoacademy.fr/blog" },
@@ -14,23 +16,27 @@ export default async function BlogPage() {
 
   return (
     <>
-      <section className="relative bg-ink pt-40 pb-24">
-        <div className="dot-grid pointer-events-none absolute inset-0 opacity-50" />
+      <section className="relative pt-40 pb-16">
         <div className="container-x relative">
-          <p className="tag mb-5 text-brand-green">Blog Rentimmo Academy</p>
-          <h1 className="max-w-4xl text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-white">
+          <p className="tag mb-5 text-brand-dark">Blog Rentimmo Academy</p>
+          <h1 className="max-w-4xl text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-ink">
             Du contenu terrain.{" "}
             <span className="bg-brand-gradient bg-clip-text text-transparent">Zéro blabla.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-white/70">
-            Guides, études de cas, retours d&apos;expérience. 100% applicable.
+          <p className="isolate mt-6 max-w-2xl text-lg text-ink/70">
+            Guides, études de cas, retours d&apos;expérience.{" "}
+            <Highlight>100% applicable.</Highlight>
           </p>
-
-          <div className="mt-12">
-            <BlogGrid posts={posts} />
-          </div>
         </div>
       </section>
+
+      <section className="bg-white py-20">
+        <div className="container-x">
+          <BlogGrid posts={posts} />
+        </div>
+      </section>
+
+      <FinalCTA />
     </>
   );
 }

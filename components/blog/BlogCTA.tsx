@@ -19,10 +19,10 @@ const variants = {
     btn:     "bg-brand-green text-ink hover:bg-brand-light",
   },
   dark: {
-    wrapper: "bg-ink/5 border-ink/15",
-    title:   "text-ink",
-    desc:    "text-ink/70",
-    btn:     "bg-ink text-white hover:bg-ink/85",
+    wrapper: "bg-ink border-ink shadow-[0_8px_0_#1A6B33]",
+    title:   "text-white",
+    desc:    "text-white/65",
+    btn:     "bg-brand-green text-ink hover:bg-brand-light",
   },
   gold: {
     wrapper: "bg-amber-50 border-amber-200",
@@ -46,7 +46,7 @@ export default function BlogCTA({
       <p className={`mt-2 text-sm leading-relaxed ${v.desc}`}>{description}</p>
       <Link
         href={href}
-        className={`mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-colors ${v.btn}`}
+        className={`mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all hover:gap-3 ${v.btn}`}
       >
         {cta} <ArrowRight size={14} />
       </Link>

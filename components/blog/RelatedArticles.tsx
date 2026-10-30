@@ -37,10 +37,10 @@ export default function RelatedArticles({
   if (related.length === 0) return null;
 
   return (
-    <section className="bg-cream py-16 border-t border-ink/10">
+    <section className="bg-white py-16">
       <div className="container-x">
         <div className="mx-auto max-w-3xl">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-ink/40 mb-6">
+          <p className="tag mb-6 text-brand-dark">
             Articles connexes · {categoryLabel[category] ?? category}
           </p>
           <div className="grid gap-4 sm:grid-cols-3">
@@ -48,15 +48,15 @@ export default function RelatedArticles({
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col gap-2 rounded-2xl border border-ink/10 bg-white p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                className="group flex flex-col gap-2 rounded-2xl border border-ink/10 bg-cream p-5 shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
               >
-                <span className="text-[10px] font-black uppercase tracking-widest text-ink/40">
+                <span className="text-[10px] font-black uppercase tracking-widest text-ink/55">
                   {categoryLabel[post.category] ?? post.category}
                 </span>
                 <p className="text-sm font-bold leading-snug text-ink line-clamp-3 group-hover:text-brand-dark transition-colors">
                   {post.title}
                 </p>
-                <div className="mt-auto flex items-center justify-between pt-3 border-t border-ink/8 text-xs text-ink/50">
+                <div className="mt-auto flex items-center justify-between pt-3 border-t border-ink/10 text-xs text-ink/55">
                   <span className="flex items-center gap-1">
                     <Clock size={10} /> {post.readTime}
                   </span>

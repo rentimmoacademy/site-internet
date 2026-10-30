@@ -38,10 +38,10 @@ export default function ContactForm() {
 
   if (sent) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-[#1f1f1f] p-8 py-16 text-center md:p-10">
-        <CheckCircle2 size={40} className="mb-4 text-brand-green" />
-        <p className="text-xl font-extrabold text-white">Message envoyé !</p>
-        <p className="mt-2 text-white/70">On te répond sous 24h.</p>
+      <div className="flex flex-col items-center justify-center rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)] p-8 py-16 text-center md:p-10">
+        <CheckCircle2 size={40} className="mb-4 text-brand-dark" />
+        <p className="text-xl font-extrabold text-ink">Message envoyé !</p>
+        <p className="mt-2 text-ink/70">On te répond sous 24h.</p>
       </div>
     );
   }
@@ -49,7 +49,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={submit}
-      className="rounded-3xl border border-white/10 bg-[#1f1f1f] p-8 md:p-10"
+      className="rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)] p-8 md:p-10"
     >
       <div className="grid gap-5">
         <div className="grid gap-5 md:grid-cols-2">
@@ -77,13 +77,13 @@ export default function ContactForm() {
           onChange={(v) => setForm((p) => ({ ...p, phone: v }))}
         />
         <div>
-          <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-white/70">
+          <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/70">
             Formation intéressée
           </label>
           <select
             value={form.formation}
             onChange={(e) => setForm((p) => ({ ...p, formation: e.target.value }))}
-            className="w-full rounded-xl border border-white/10 bg-[#141414] px-4 py-3.5 text-sm text-white outline-none focus:border-brand-green"
+            className="w-full rounded-xl border border-ink/15 bg-cream px-4 py-3.5 text-sm text-ink outline-none focus:border-brand-green"
           >
             <option>Sous-Location Academy</option>
             <option>Conciergerie BNB Academy</option>
@@ -92,7 +92,7 @@ export default function ContactForm() {
           </select>
         </div>
         <div>
-          <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-white/70">
+          <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/70">
             Message
           </label>
           <textarea
@@ -100,7 +100,7 @@ export default function ContactForm() {
             placeholder="Parle-nous de ton projet et de tes objectifs…"
             value={form.message}
             onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
-            className="w-full resize-none rounded-xl border border-white/10 bg-[#141414] px-4 py-3.5 text-sm text-white outline-none focus:border-brand-green"
+            className="w-full resize-none rounded-xl border border-ink/15 bg-cream px-4 py-3.5 text-sm text-ink outline-none focus:border-brand-green"
           />
         </div>
         <button
@@ -111,11 +111,11 @@ export default function ContactForm() {
           {loading ? <Loader2 size={18} className="animate-spin" /> : "Envoyer ma demande"}
         </button>
         {error && (
-          <p className="text-xs text-red-400">
+          <p className="text-xs text-red-600">
             Une erreur est survenue. Réessaie ou écris-nous directement par email.
           </p>
         )}
-        <p className="text-xs text-white/50">
+        <p className="text-xs text-ink/55">
           En envoyant ce formulaire, j'accepte la{" "}
           <a href="/politique-confidentialite" className="underline">
             politique de confidentialité
@@ -144,8 +144,8 @@ function Field({
 }) {
   return (
     <div>
-      <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-white/70">
-        {label} {required && <span className="text-brand-green">*</span>}
+      <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/70">
+        {label} {required && <span className="text-brand-dark">*</span>}
       </label>
       <input
         type={type}
@@ -153,7 +153,7 @@ function Field({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-white/10 bg-[#141414] px-4 py-3.5 text-sm text-white outline-none placeholder:text-white/30 focus:border-brand-green"
+        className="w-full rounded-xl border border-ink/15 bg-cream px-4 py-3.5 text-sm text-ink outline-none placeholder:text-ink/40 focus:border-brand-green"
       />
     </div>
   );

@@ -4,6 +4,24 @@ import { ArrowRight } from "lucide-react";
 import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import Reveal from "@/components/ui/Reveal";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
+
+// Rythme : grille → blanc → NOIR → blanc → grille, puis bande blanche CTA et carte noire FinalCTA.
+const CAT_BG = ["cream", "white", "ink", "white", "cream"] as const;
+
+function catTitle(title: string, i: number) {
+  const [head, tail] = title.split(" : ");
+  if (!tail) return title;
+  const accent =
+    i % 3 === 0 ? <Highlight>{tail}</Highlight> : i % 3 === 1 ? <span className="text-brand-dark">{tail}</span> : <Underline>{tail}</Underline>;
+  return (
+    <>
+      {head} : {i === 2 ? <Highlight>{tail}</Highlight> : accent}
+    </>
+  );
+}
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/questions-frequentes`;
@@ -190,7 +208,7 @@ export default function QuestionsFrequentesPage() {
     <>
       <LandingHero
         kicker="Le guide de référence"
-        h1="Toutes les réponses aux questions qu'on nous pose le plus"
+        h1={<>Toutes les réponses aux questions qu&apos;on nous pose <span className="text-brand-dark">le plus</span></>}
         intro="Sous-location professionnelle, conciergerie Airbnb, ménage bnb, formation, marché marocain : les 24 questions les plus posées sur Google et auprès des IA dans notre niche, avec des réponses directes de Marwan Afassi, expert Airbnb depuis plus de 6 ans."
         primaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Poser ma question par appel" }}
         secondaryCta={{ href: "/formations", label: "Voir les formations" }}
@@ -198,14 +216,14 @@ export default function QuestionsFrequentesPage() {
       />
 
       {/* Sommaire catégories */}
-      <section className="bg-white py-10">
+      <section className="border-y border-ink/10 bg-white py-10">
         <div className="container-x">
           <div className="flex flex-wrap gap-3">
             {CATEGORIES.map((c) => (
               <a
                 key={c.id}
                 href={`#${c.id}`}
-                className="rounded-full border border-ink/10 bg-cream px-5 py-2.5 text-sm font-bold text-ink transition-colors hover:border-brand-green hover:text-brand-green"
+                className="rounded-full border border-ink/10 bg-cream px-5 py-2.5 text-sm font-bold text-ink transition-all hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-white"
               >
                 {c.label}
               </a>
@@ -216,44 +234,54 @@ export default function QuestionsFrequentesPage() {
 
       {CATEGORIES.map((cat, i) => (
         <div id={cat.id} key={cat.id} className="scroll-mt-24">
-          <LandingSection kicker={cat.kicker} title={cat.title} bg={i % 2 === 0 ? "cream" : "white"}>
+          <LandingSection kicker={cat.kicker} title={catTitle(cat.title, i)} bg={CAT_BG[i % CAT_BG.length]}>
             <div className="space-y-3">
-              {cat.items.map((f) => (
-                <details key={f.q} className="group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
+              {cat.items.map((f, j) => (
+                <Reveal key={f.q} index={j}>
+                <details className="group rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_6px_0_rgba(26,26,26,0.06)]">
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-bold text-ink">
                     <span>{f.q}</span>
                     <span className="text-2xl text-brand-green transition-transform group-open:rotate-45">+</span>
                   </summary>
                   <p className="mt-4 leading-relaxed text-ink-muted">{f.a}</p>
                 </details>
+                </Reveal>
               ))}
             </div>
           </LandingSection>
         </div>
       ))}
 
-      {/* CTA final */}
-      <LandingSection
-        kicker="Une question précise sur votre situation ?"
-        title="Parlons-en directement"
-        intro="Ces réponses couvrent les cas généraux. Pour un diagnostic sur votre ville, votre budget et votre objectif, réservez un appel stratégique gratuit."
-        bg="ink"
-      >
-        <div className="flex flex-wrap gap-4">
-          <Link
-            href="https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true"
-            className="inline-flex items-center gap-2 rounded-full bg-brand-green px-7 py-4 font-bold text-white transition-transform hover:scale-[1.03] hover:bg-brand-light"
-          >
-            Réserver mon appel stratégique <ArrowRight size={16} />
-          </Link>
-          <Link
-            href="/formations"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 font-bold text-cream backdrop-blur transition-colors hover:bg-white/10"
-          >
-            Voir les formations
-          </Link>
+      {/* CTA : bande blanche (le FinalCTA qui suit est une carte noire) */}
+      <section className="border-y border-ink/10 bg-white py-20 md:py-28">
+        <div className="container-x">
+          <Reveal className="max-w-4xl">
+            <p className="text-sm font-bold uppercase tracking-wider text-brand-dark">
+              Une question précise sur votre situation ?
+            </p>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl lg:text-5xl">
+              Parlons-en <Highlight>directement</Highlight>
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-ink/70">
+              Ces réponses couvrent les cas généraux. Pour un diagnostic sur votre ville, votre budget et votre objectif, réservez un appel stratégique gratuit.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true"
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 font-bold text-white shadow-[0_6px_0_#1A6B33] transition-all hover:-translate-y-0.5 hover:gap-3 hover:shadow-[0_8px_0_#2DB84B]"
+              >
+                Réserver mon appel stratégique <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/formations"
+                className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-white px-7 py-4 font-bold text-ink transition-all hover:gap-3 hover:border-ink"
+              >
+                Voir les formations
+              </Link>
+            </div>
+          </Reveal>
         </div>
-      </LandingSection>
+      </section>
 
       <FinalCTA />
 

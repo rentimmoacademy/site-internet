@@ -13,7 +13,7 @@ export default function Highlight({ children }: { children: ReactNode }) {
       <motion.span
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "-50px 0px" }}
         transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         style={{ transformOrigin: "0% 50%" }}
         className="absolute inset-x-0 bottom-[0.05em] top-[0.5em] -z-10 rounded-sm bg-brand-green/25"

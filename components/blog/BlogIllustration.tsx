@@ -12,10 +12,10 @@ const ICONS = {
 const COLORS = {
   legal: { bg: "bg-amber-50 border-amber-200", icon: "text-amber-600 bg-amber-100", label: "text-amber-700" },
   news: { bg: "bg-sky-50 border-sky-200", icon: "text-sky-600 bg-sky-100", label: "text-sky-700" },
-  education: { bg: "bg-brand-green/5 border-brand-green/20", icon: "text-brand-green bg-brand-green/10", label: "text-brand-green" },
-  checklist: { bg: "bg-brand-green/5 border-brand-green/20", icon: "text-brand-green bg-brand-green/10", label: "text-brand-green" },
+  education: { bg: "bg-brand-green/5 border-brand-green/20", icon: "text-brand-dark bg-brand-green/10", label: "text-brand-dark" },
+  checklist: { bg: "bg-brand-green/5 border-brand-green/20", icon: "text-brand-dark bg-brand-green/10", label: "text-brand-dark" },
   comparison: { bg: "bg-ink/5 border-ink/10", icon: "text-ink bg-ink/10", label: "text-ink" },
-  cta: { bg: "bg-brand-green/5 border-brand-green/20", icon: "text-brand-green bg-brand-green/10", label: "text-brand-green" },
+  cta: { bg: "bg-brand-green/5 border-brand-green/20", icon: "text-brand-dark bg-brand-green/10", label: "text-brand-dark" },
 };
 
 type IllustrationType = keyof typeof ICONS;

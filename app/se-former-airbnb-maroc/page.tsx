@@ -4,6 +4,15 @@ import { Check, ArrowRight, Globe2, MapPin, FileText, TrendingUp } from "lucide-
 import LandingHero from "@/components/sections/LandingHero";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
+import Reveal from "@/components/ui/Reveal";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
+
+const DARK_CARD =
+  "rounded-3xl bg-ink text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]";
+const LIGHT_CARD = "rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]";
+const CREAM_CARD =
+  "rounded-3xl border border-ink/10 bg-cream shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5";
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/se-former-airbnb-maroc`;
@@ -90,14 +99,15 @@ export default function SeFormerAirbnbMarocPage() {
     <>
       <LandingHero
         kicker="🇲🇦 Spécial Maroc & MRE"
-        h1="Se former à Airbnb au Maroc en 2026"
+        h1={<>Se former à Airbnb <span className="text-brand-dark">au Maroc</span> en 2026</>}
+        introHighlight="le Maroc est l'opportunité Airbnb la plus claire de la décennie"
         intro="Coupe du Monde 2030, marché en explosion, coût d'entrée 3x plus bas qu'en France : le Maroc est l'opportunité Airbnb la plus claire de la décennie. Voici comment t'y positionner — en sous-location, conciergerie ou ménage pro — depuis la France ou sur place."
         primaryCta={{ href: "/formations", label: "Voir toutes les formations" }}
         secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Se former à Airbnb au Maroc" }]}
       />
 
-      <LandingSection kicker="Le marché 2026" title="Pourquoi le Maroc maintenant ?" bg="cream">
+      <LandingSection kicker="Le marché 2026" title={<>Pourquoi le Maroc <Highlight>maintenant</Highlight> ?</>} bg="cream">
         <div className="grid gap-6 md:grid-cols-3">
           {[
             {
@@ -115,16 +125,19 @@ export default function SeFormerAirbnbMarocPage() {
               title: "Demande européenne forte",
               desc: "FR, BE, NL, ES, DE : les voyageurs européens représentent 60% des nuitées Airbnb au Maroc. Demande stable été-hiver-printemps, accélération en 2026-2030.",
             },
-          ].map((b) => {
+          ].map((b, i) => {
             const Icon = b.icon;
+            const dark = i === 1;
             return (
-              <div key={b.title} className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
-                <div className="flex size-12 items-center justify-center rounded-xl bg-brand-green/10">
-                  <Icon className="size-6 text-brand-green" />
+              <Reveal key={b.title} index={i} className="h-full">
+                <div className={`h-full p-8 ${dark ? DARK_CARD : `${LIGHT_CARD} transition-all duration-500 hover:-translate-y-1.5`}`}>
+                  <div className={`flex size-12 items-center justify-center rounded-xl ${dark ? "bg-brand-green/15" : "bg-brand-green/10"}`}>
+                    <Icon className={`size-6 ${dark ? "text-brand-green" : "text-brand-dark"}`} />
+                  </div>
+                  <h3 className={`mt-4 text-xl font-bold ${dark ? "text-white" : "text-ink"}`}>{b.title}</h3>
+                  <p className={`mt-2 ${dark ? "text-white/65" : "text-ink-muted"}`}>{b.desc}</p>
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-ink">{b.title}</h3>
-                <p className="mt-2 text-ink-muted">{b.desc}</p>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -132,12 +145,13 @@ export default function SeFormerAirbnbMarocPage() {
 
       <LandingSection
         kicker="3 modèles, 3 formations"
-        title="Quel métier choisir au Maroc ?"
+        title={<>Quel <Underline>métier</Underline> choisir au Maroc ?</>}
         intro="Selon ton apport, ton temps disponible et ton appétence, voici le bon modèle."
         bg="white"
       >
         <div className="grid gap-6 md:grid-cols-3">
-          <Link href="/formations/sous-location" className="group block rounded-2xl bg-cream p-6 transition-transform hover:-translate-y-1">
+          <Reveal index={0} className="h-full">
+          <Link href="/formations/sous-location" className={`group block h-full p-8 ${CREAM_CARD}`}>
             <span className="rounded-full bg-brand-green/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-dark">
               Sans apport
             </span>
@@ -146,26 +160,30 @@ export default function SeFormerAirbnbMarocPage() {
               Tu loues des biens à des proprios marocains, tu sous-loues sur Airbnb avec leur accord. Démarrage avec 25-50K MAD (2,5-5K€).
             </p>
             <p className="mt-4 text-sm font-bold text-brand-dark">Idéal : MRE en France qui veut démarrer au Maroc sans crédit local.</p>
-            <span className="mt-4 inline-flex items-center gap-2 font-bold text-brand-green group-hover:gap-3 transition-all">
+            <span className="mt-4 inline-flex items-center gap-2 font-bold text-brand-dark group-hover:gap-3 transition-all">
               Voir la formation <ArrowRight size={14} />
             </span>
           </Link>
+          </Reveal>
 
-          <Link href="/formations/conciergerie-bnb" className="group block rounded-2xl bg-cream p-6 transition-transform hover:-translate-y-1">
-            <span className="rounded-full bg-brand-green/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-dark">
+          <Reveal index={1} className="h-full">
+          <Link href="/formations/conciergerie-bnb" className={`group block h-full p-8 ${DARK_CARD}`}>
+            <span className="rounded-full bg-brand-green/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-light">
               0€ investissement
             </span>
-            <h3 className="mt-4 text-xl font-bold text-ink">Conciergerie Airbnb</h3>
-            <p className="mt-2 text-ink-muted">
+            <h3 className="mt-4 text-xl font-bold text-white">Conciergerie Airbnb</h3>
+            <p className="mt-2 text-white/65">
               Tu gères les biens d'autres proprios (locaux ou MRE absents). Commission 20-30% selon ville. Énorme demande sur Tanger / Marrakech.
             </p>
-            <p className="mt-4 text-sm font-bold text-brand-dark">Idéal : tu vis au Maroc et veux servir les MRE qui ont besoin de toi sur place.</p>
+            <p className="mt-4 text-sm font-bold text-brand-light">Idéal : tu vis au Maroc et veux servir les MRE qui ont besoin de toi sur place.</p>
             <span className="mt-4 inline-flex items-center gap-2 font-bold text-brand-green group-hover:gap-3 transition-all">
               Voir la formation <ArrowRight size={14} />
             </span>
           </Link>
+          </Reveal>
 
-          <Link href="/formations/cleaning-bnb" className="group block rounded-2xl bg-cream p-6 transition-transform hover:-translate-y-1">
+          <Reveal index={2} className="h-full">
+          <Link href="/formations/cleaning-bnb" className={`group block h-full p-8 ${CREAM_CARD}`}>
             <span className="rounded-full bg-brand-green/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-dark">
               Cash récurrent
             </span>
@@ -174,16 +192,17 @@ export default function SeFormerAirbnbMarocPage() {
               Tu deviens prestataire de ménage pour les conciergeries marocaines. Récurrent, scalable, marges saines. Très peu de pros sur ce créneau au Maroc.
             </p>
             <p className="mt-4 text-sm font-bold text-brand-dark">Idéal : tu vis au Maroc et veux un revenu rapide et stable.</p>
-            <span className="mt-4 inline-flex items-center gap-2 font-bold text-brand-green group-hover:gap-3 transition-all">
+            <span className="mt-4 inline-flex items-center gap-2 font-bold text-brand-dark group-hover:gap-3 transition-all">
               Voir la formation <ArrowRight size={14} />
             </span>
           </Link>
+          </Reveal>
         </div>
       </LandingSection>
 
-      <LandingSection kicker="Cadre légal" title="La législation Airbnb Maroc 2026" bg="cream">
+      <LandingSection kicker="Cadre légal" title={<>La <span className="text-brand-dark">législation</span> Airbnb Maroc 2026</>} bg="cream">
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
+          <div className={`${LIGHT_CARD} p-8`}>
             <div className="flex items-center gap-3">
               <FileText className="size-6 text-brand-green" />
               <h3 className="text-xl font-bold text-ink">Démarches obligatoires</h3>
@@ -195,9 +214,9 @@ export default function SeFormerAirbnbMarocPage() {
               <li className="flex items-start gap-2"><Check size={16} className="mt-1 flex-shrink-0 text-brand-green" />Registre voyageurs tenu et archivé 5 ans</li>
               <li className="flex items-start gap-2"><Check size={16} className="mt-1 flex-shrink-0 text-brand-green" />Conformité incendie : détecteur fumée, sortie sécurisée</li>
             </ul>
-            <p className="mt-4 text-sm italic text-ink-muted">Sanction si non-conforme : 5 000 à 20 000 MAD + suspension annonce.</p>
+            <p className="mt-4 text-sm text-ink-muted">Sanction si non-conforme : 5 000 à 20 000 MAD + suspension annonce.</p>
           </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
+          <div className={`${LIGHT_CARD} p-8`}>
             <div className="flex items-center gap-3">
               <Globe2 className="size-6 text-brand-green" />
               <h3 className="text-xl font-bold text-ink">Spécifique MRE</h3>
@@ -213,26 +232,29 @@ export default function SeFormerAirbnbMarocPage() {
         </div>
       </LandingSection>
 
-      <LandingSection kicker="Top 4 villes" title="Où démarrer au Maroc en 2026 ?" bg="white">
+      <LandingSection kicker="Top 4 villes" title={<>Où <Highlight>démarrer</Highlight> au Maroc en 2026 ?</>} bg="ink">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             { name: "Tanger", profile: "MRE, business Tanger Med, weekenders européens", entry: "25-40K MAD/mois CA T2", best: "🏆 Meilleur pour MRE débutants" },
             { name: "Marrakech", profile: "Tourisme international premium, riads, expérience", entry: "30-60K MAD/mois CA T2", best: "Forte demande mais concurrence saturée" },
             { name: "Casablanca", profile: "Business, tourisme d'affaires, expats", entry: "20-35K MAD/mois CA T2", best: "Idéal pour cible pros / longue durée" },
             { name: "Agadir", profile: "Saisonnier balnéaire, familles européennes", entry: "18-32K MAD/mois CA T2", best: "Excellent ratio rentabilité / prix entrée" },
-          ].map((c) => (
-            <div key={c.name} className="rounded-2xl bg-cream p-6">
-              <h3 className="text-2xl font-extrabold text-ink">{c.name}</h3>
-              <p className="mt-3 text-sm font-bold uppercase tracking-wider text-brand-dark">{c.best}</p>
-              <p className="mt-3 text-sm text-ink-muted">{c.profile}</p>
-              <p className="mt-3 text-sm font-bold text-ink">{c.entry}</p>
-            </div>
+          ].map((c, i) => (
+            <Reveal key={c.name} index={i} className="h-full">
+              <div className="h-full rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-green/50">
+                <MapPin className="size-5 text-brand-green" />
+                <h3 className="mt-3 text-2xl font-extrabold text-white">{c.name}</h3>
+                <p className="mt-3 text-sm font-bold uppercase tracking-wider text-brand-light">{c.best}</p>
+                <p className="mt-3 text-sm text-white/65">{c.profile}</p>
+                <p className="mt-3 text-sm font-bold text-white">{c.entry}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </LandingSection>
 
-      <LandingSection kicker="Exemple opérationnel" title="Daribnb : une conciergerie bâtie sur ce modèle" bg="white">
-        <div className="rounded-2xl border border-brand-green/20 bg-brand-green/5 p-8">
+      <LandingSection kicker="Exemple opérationnel" title={<>Daribnb : une conciergerie <span className="text-brand-dark">bâtie sur ce modèle</span></>} bg="white">
+        <Reveal className="rounded-3xl border border-brand-green/25 bg-cream p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)] md:p-10">
           <p className="text-lg text-ink leading-relaxed">
             <a href="https://www.daribnb.com" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-dark underline decoration-brand-green/40 underline-offset-2 hover:text-brand-green transition-colors">Daribnb</a>{" "}
             est la conciergerie Airbnb fondée par Marwan à Tanger en 2019. Elle opère aujourd'hui à Tanger, Marrakech, Casablanca et Rabat — plusieurs dizaines de biens gérés, note Airbnb 4,93/5 sur près de 1 200 avis.
@@ -240,13 +262,13 @@ export default function SeFormerAirbnbMarocPage() {
           <p className="mt-4 text-ink-muted">
             Ce n'est pas un exemple théorique. C'est le modèle exact que les formations Rentimmo Academy t'apprennent à reproduire — mandat, équipe terrain, pricing dynamique, gestion à distance pour les MRE absents.
           </p>
-        </div>
+        </Reveal>
       </LandingSection>
 
-      <LandingSection kicker="FAQ" title="Questions fréquentes Airbnb Maroc" bg="cream">
+      <LandingSection kicker="FAQ" title={<>Questions fréquentes <Underline>Airbnb Maroc</Underline></>} bg="cream">
         <div className="space-y-3">
           {FAQS.map((f) => (
-            <details key={f.q} className="group rounded-2xl bg-white p-6">
+            <details key={f.q} className="group rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_6px_0_rgba(26,26,26,0.06)]">
               <summary className="cursor-pointer list-none flex items-start justify-between gap-4 font-bold text-ink">
                 <span>{f.q}</span>
                 <span className="text-2xl text-brand-green transition-transform group-open:rotate-45">+</span>

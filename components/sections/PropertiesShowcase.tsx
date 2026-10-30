@@ -74,8 +74,7 @@ const properties: Property[] = [
 
 export default function PropertiesShowcase() {
   return (
-    <section className="relative bg-cream py-28 text-ink">
-      <div className="dot-grid-light pointer-events-none absolute inset-0 opacity-50" />
+    <section className="relative bg-white py-28 text-ink">
       <div className="container-x relative">
         <SectionHeader
           tag="Nos réalisations"
@@ -98,7 +97,7 @@ export default function PropertiesShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="group overflow-hidden rounded-3xl border border-ink/10 bg-white transition-all hover:-translate-y-1 hover:shadow-xl"
+              className="group overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
             >
               {/* Image / placeholder */}
               <div className="relative h-56 overflow-hidden">

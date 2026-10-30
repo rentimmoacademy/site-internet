@@ -8,22 +8,18 @@ export default async function BlogPreview() {
   const posts = (await getAllPosts()).slice(0, 3);
 
   return (
-    <section className="relative bg-cream py-28 text-ink">
+    <section className="relative py-28 text-ink">
       <div className="container-x">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <SectionHeader
             tag="Ressources"
-            title={
-              <>
-                Du contenu terrain,{" "}
-                <span className="bg-brand-gradient bg-clip-text text-transparent">chaque semaine.</span>
-              </>
-            }
+            title="Du contenu terrain,"
+            highlight="chaque semaine."
             subtitle="Guides, études de cas, retours d'expérience. 100% applicable, zéro blabla."
           />
           <Link
             href="/blog"
-            className="btn-ghost-dark shrink-0"
+            className="btn-ghost-dark shrink-0 hover:gap-3"
           >
             Voir tous les articles <ArrowRight size={16} />
           </Link>

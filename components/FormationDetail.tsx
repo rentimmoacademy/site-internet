@@ -17,7 +17,19 @@ import {
 import type { Formation } from "@/lib/formations";
 import { formations } from "@/lib/formations";
 import CallGate from "@/components/CallGate";
+import OfferVideo, { type OfferVideoName } from "@/components/OfferVideo";
 import { TESTIMONIALS } from "@/lib/testimonials";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
+
+const DARK_CARD =
+  "rounded-3xl bg-ink text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]";
+
+const VIDEO_BY_SLUG: Record<string, OfferVideoName> = {
+  "sous-location": "sous-location",
+  "conciergerie-bnb": "conciergerie",
+  "cleaning-bnb": "menage",
+};
 
 export default function FormationDetail({ formation }: { formation: Formation }) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -29,14 +41,13 @@ export default function FormationDetail({ formation }: { formation: Formation })
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-ink pt-40 pb-24">
-        <div className="dot-grid pointer-events-none absolute inset-0 opacity-50" />
-        <div className="pointer-events-none absolute -top-20 right-0 h-[500px] w-[500px] rounded-full bg-brand-green/20 blur-[120px]" />
+      <section className="relative overflow-hidden pt-40 pb-24">
+        <div className="pointer-events-none absolute -top-20 right-0 h-[500px] w-[500px] rounded-full bg-brand-green/[0.12] blur-[120px]" />
 
         <div className="container-x relative grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <span className="chip text-brand-green">{formation.name}</span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-brand-dark">{formation.name}</span>
               {formation.badge && (
                 <span className="rounded-full bg-brand-green px-3 py-1 text-[10px] font-black uppercase tracking-widest text-ink">
                   {formation.badge}
@@ -47,16 +58,11 @@ export default function FormationDetail({ formation }: { formation: Formation })
               </span>
             </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="mt-6 text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-white"
-            >
+            <h1 className="mt-6 text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-ink">
               {formation.tagline}
-            </motion.h1>
+            </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">
               {formation.description}
             </p>
           </div>
@@ -66,23 +72,33 @@ export default function FormationDetail({ formation }: { formation: Formation })
               { icon: Clock, label: "Contenu", value: formation.duration },
               { icon: Layers, label: "Modules", value: `${formation.modules} + bonus` },
               { icon: Users, label: "Équipe", value: "Experts LCD" },
-            ].map((s) => (
-              <div key={s.label} className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+            ].map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 + i * 0.06 }}
+                className={`${DARK_CARD} rounded-2xl p-5`}
+              >
                 <s.icon size={18} className="text-brand-green" />
-                <p className="mt-4 text-[10px] uppercase tracking-widest text-white/60">{s.label}</p>
+                <p className="mt-4 text-[10px] uppercase tracking-widest text-brand-light">{s.label}</p>
                 <p className="mt-1 text-xl font-extrabold text-white">{s.value}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {VIDEO_BY_SLUG[formation.slug] && (
+        <OfferVideo name={VIDEO_BY_SLUG[formation.slug]} title={`Présentation : ${formation.name}`} />
+      )}
+
       {/* Pour qui */}
-      <section className="bg-ink-soft py-24">
+      <section className="border-y border-ink/10 bg-white py-24">
         <div className="container-x">
-          <p className="tag mb-5 text-brand-green">Pour qui</p>
-          <h2 className="max-w-3xl text-h2 font-extrabold leading-[1.05] tracking-[-0.02em] text-white">
-            Cette formation est faite pour toi si…
+          <p className="tag mb-5 text-brand-dark">Pour qui</p>
+          <h2 className="max-w-3xl text-h2 font-extrabold leading-[1.05] tracking-[-0.02em] text-ink">
+            Cette formation est faite <Underline>pour toi</Underline> si…
           </h2>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {formation.personas.map((p, i) => (
@@ -91,14 +107,22 @@ export default function FormationDetail({ formation }: { formation: Formation })
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className="rounded-3xl border border-white/10 bg-[#1f1f1f] p-8"
+                transition={{ duration: 0.6, delay: i * 0.06 }}
+                className={
+                  i === 1
+                    ? `${DARK_CARD} p-8`
+                    : "rounded-3xl border border-ink/10 bg-cream p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)]"
+                }
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-green font-black">
+                <div
+                  className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl font-black ${
+                    i === 1 ? "bg-brand-green/15 text-brand-light" : "bg-brand-green/10 text-brand-dark"
+                  }`}
+                >
                   {i + 1}
                 </div>
-                <h3 className="mt-6 text-xl font-extrabold tracking-tight text-white">{p.title}</h3>
-                <p className="mt-3 text-sm text-white/65">{p.desc}</p>
+                <h3 className={`mt-6 text-xl font-extrabold tracking-tight ${i === 1 ? "text-white" : "text-ink"}`}>{p.title}</h3>
+                <p className={`mt-3 text-sm ${i === 1 ? "text-white/65" : "text-ink/70"}`}>{p.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -106,57 +130,64 @@ export default function FormationDetail({ formation }: { formation: Formation })
       </section>
 
       {/* Programme */}
-      <section className="bg-ink py-24">
-        <div className="dot-grid pointer-events-none absolute inset-0 opacity-40" />
+      <section className="py-24">
         <div className="container-x relative">
-          <p className="tag mb-5 text-brand-green">Programme</p>
-          <h2 className="max-w-3xl text-h2 font-extrabold leading-[1.05] tracking-[-0.02em] text-white">
-            {formation.modules} modules + 1 module bonus Maroc.
+          <p className="tag mb-5 text-brand-dark">Programme</p>
+          <h2 className="max-w-3xl text-h2 font-extrabold leading-[1.05] tracking-[-0.02em] text-ink">
+            {formation.modules} modules + <Highlight>1 module bonus Maroc.</Highlight>
           </h2>
 
-          <div className="mt-12 divide-y divide-white/10 rounded-3xl border border-white/10 bg-[#141414]">
+          <div className="mt-12 grid gap-5">
             {formation.program.map((m, i) => {
               const open = openIdx === i;
               return (
-                <button
+                <motion.div
                   key={m.title}
-                  onClick={() => setOpenIdx(open ? null : i)}
-                  className="block w-full text-left"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.6, delay: i * 0.06 }}
                 >
-                  <div className="flex items-center justify-between p-6 md:p-8">
-                    <div className="flex items-center gap-4">
-                      <span className="text-xs font-bold text-brand-green">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="text-lg font-extrabold tracking-tight text-white md:text-xl">
-                        {m.title}
-                      </h3>
-                    </div>
-                    <ChevronDown
-                      size={20}
-                      className={`text-white/60 transition-transform ${open ? "rotate-180" : ""}`}
-                    />
-                  </div>
-                  {open && (
-                    <motion.ul
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      className="px-6 pb-8 md:px-8"
-                    >
-                      <div className="grid gap-3 pl-10 md:grid-cols-2">
-                        {m.items.map((it) => (
-                          <div
-                            key={it}
-                            className="flex items-start gap-2 text-sm leading-relaxed text-white/75"
-                          >
-                            <Check size={14} className="mt-1 flex-shrink-0 text-brand-green" />
-                            {it}
-                          </div>
-                        ))}
+                  <button
+                    onClick={() => setOpenIdx(open ? null : i)}
+                    aria-expanded={open}
+                    className={`${DARK_CARD} block w-full text-left`}
+                  >
+                    <div className="flex items-center justify-between gap-4 p-6 md:p-8">
+                      <div className="flex items-center gap-4 md:gap-6">
+                        <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-brand-green/15 text-sm font-black text-brand-light">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="text-lg font-extrabold tracking-tight text-white md:text-xl">
+                          {m.title}
+                        </h3>
                       </div>
-                    </motion.ul>
-                  )}
-                </button>
+                      <ChevronDown
+                        size={20}
+                        className={`flex-shrink-0 text-brand-green transition-transform ${open ? "rotate-180" : ""}`}
+                      />
+                    </div>
+                    {open && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        className="px-6 pb-8 md:px-8"
+                      >
+                        <div className="grid gap-3 border-t border-white/10 pt-6 md:grid-cols-2 md:pl-[4.25rem]">
+                          {m.items.map((it) => (
+                            <div
+                              key={it}
+                              className="flex items-start gap-2 text-sm leading-relaxed text-white/65"
+                            >
+                              <Check size={14} className="mt-1 flex-shrink-0 text-brand-green" />
+                              {it}
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </button>
+                </motion.div>
               );
             })}
           </div>
@@ -164,11 +195,11 @@ export default function FormationDetail({ formation }: { formation: Formation })
       </section>
 
       {/* Outcomes */}
-      <section className="bg-cream py-24 text-ink">
+      <section className="border-y border-ink/10 bg-white py-24 text-ink">
         <div className="container-x">
           <p className="tag mb-5 text-brand-dark">Ce que tu vas apprendre</p>
           <h2 className="max-w-3xl text-h2 font-extrabold leading-[1.05] tracking-[-0.02em]">
-            Des résultats concrets, applicables tout de suite.
+            Des résultats concrets, <span className="text-brand-dark">applicables tout de suite.</span>
           </h2>
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {formation.outcomes.map((o, i) => (
@@ -177,10 +208,10 @@ export default function FormationDetail({ formation }: { formation: Formation })
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="flex items-start gap-3 rounded-2xl border border-ink/10 bg-white p-5"
+                transition={{ duration: 0.5, delay: i * 0.06 }}
+                className="flex items-start gap-3 rounded-2xl border border-ink/10 bg-cream p-5 shadow-[0_6px_0_rgba(26,26,26,0.06)]"
               >
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand-green/15 text-brand-green">
+                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand-green/15 text-brand-dark">
                   <Check size={16} />
                 </span>
                 <p className="font-semibold leading-snug">{o}</p>
@@ -191,39 +222,44 @@ export default function FormationDetail({ formation }: { formation: Formation })
       </section>
 
       {/* Bonus Maroc */}
-      <section className="relative overflow-hidden bg-morocco-gradient py-24 text-white">
-        <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><path d=%22M20 0L40 20L20 40L0 20Z%22 fill=%22white%22/></svg>')] [background-size:40px_40px]" />
+      <section className="relative overflow-hidden bg-ink py-24 text-white">
+        <div className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><path d=%22M20 0L40 20L20 40L0 20Z%22 fill=%22white%22/></svg>')] [background-size:40px_40px]" />
+        <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-brand-green/20 blur-[120px]" />
         <div className="container-x relative grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
           <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-widest backdrop-blur">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-green/40 bg-brand-green/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-brand-light">
               <span className="text-xl leading-none">🇲🇦</span> Module Bonus Maroc
             </div>
             <h2 className="text-h2 font-extrabold leading-[1.05] tracking-[-0.02em]">
-              Le marché marocain, décortiqué.
+              Le marché marocain, <Highlight>décortiqué.</Highlight>
             </h2>
-            <p className="mt-6 text-lg leading-relaxed text-white/85">{formation.moroccoText}</p>
+            <p className="mt-6 text-lg leading-relaxed text-white/65">{formation.moroccoText}</p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             {["Tanger", "Marrakech", "Casablanca", "Agadir"].map((c, i) => (
-              <div
+              <motion.div
                 key={c}
-                className={`rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur ${
-                  i === 1 || i === 2 ? "translate-y-6" : ""
-                }`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: i * 0.06 }}
+                className={i === 1 || i === 2 ? "translate-y-6" : ""}
               >
-                <MapPin size={18} className="text-white/80" />
-                <p className="mt-3 text-2xl font-extrabold tracking-tight">{c}</p>
-                <p className="text-xs uppercase tracking-widest text-white/70">Couvert</p>
-              </div>
+                <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-green/50">
+                  <MapPin size={18} className="text-brand-green" />
+                  <p className="mt-3 text-2xl font-extrabold tracking-tight">{c}</p>
+                  <p className="text-xs uppercase tracking-widest text-brand-light">Couvert</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Instructor + Testimonials */}
-      <section className="bg-ink py-24">
+      <section className="py-24">
         <div className="container-x grid gap-12 lg:grid-cols-[1fr_1fr]">
-          <div className="rounded-3xl border border-white/10 bg-[#1f1f1f] p-8 md:p-10">
+          <div className="rounded-3xl border border-ink/10 bg-white p-8 md:p-10 shadow-[0_6px_0_rgba(26,26,26,0.06)]">
             <div className="flex items-center gap-5">
               <div
                 className="h-20 w-20 flex-shrink-0 rounded-full bg-brand-green bg-cover bg-center ring-2 ring-brand-green/40"
@@ -231,23 +267,23 @@ export default function FormationDetail({ formation }: { formation: Formation })
                 aria-label="Marwan Afassi"
               />
               <div>
-                <p className="tag mb-2 text-brand-green">Le formateur</p>
-                <h2 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                <p className="tag mb-2 text-brand-dark">Le formateur</p>
+                <h2 className="text-2xl font-extrabold tracking-tight text-ink md:text-3xl">
                   Marwan Afassi
                 </h2>
-                <p className="text-sm text-white/60">Ingénieur industriel · Papa · Hôte Airbnb 4,93★</p>
+                <p className="text-sm text-ink/60">Ingénieur industriel · Papa · Hôte Airbnb 4,93★</p>
               </div>
             </div>
-            <p className="mt-6 text-white/70">
-              Lancé avec <span className="text-white">1 000 € de budget</span>, j'ai fait +697 000€ de CA sans
+            <p className="mt-6 text-ink/70">
+              Lancé avec <span className="font-bold text-ink">1 000 € de budget</span>, j'ai fait +697 000€ de CA sans
               jamais être propriétaire. Dizaines de biens gérés entre la France et le Maroc. Expertise de
               consultant mise à ta disposition — la mienne et celle de nos équipes.
             </p>
-            <div className="mt-8 grid grid-cols-3 gap-6 border-t border-white/10 pt-6">
+            <div className="mt-8 grid grid-cols-3 gap-6 border-t border-ink/10 pt-6">
               {[["+697K€", "générés"], ["7 ans", "terrain"], ["2 pays", "FR & MA"]].map(([v, l]) => (
                 <div key={l}>
-                  <p className="text-2xl font-extrabold text-white md:text-3xl">{v}</p>
-                  <p className="mt-1 text-xs uppercase tracking-widest text-white/50">{l}</p>
+                  <p className="text-2xl font-extrabold text-brand-dark md:text-3xl">{v}</p>
+                  <p className="mt-1 text-xs uppercase tracking-widest text-ink/55">{l}</p>
                 </div>
               ))}
             </div>
@@ -255,20 +291,22 @@ export default function FormationDetail({ formation }: { formation: Formation })
 
           {proofs.length > 0 && (
             <div>
-              <p className="tag mb-5 text-brand-green">Ils l'ont suivie</p>
-              <h2 className="text-3xl font-extrabold tracking-tight text-white">Témoignages publics.</h2>
+              <p className="tag mb-5 text-brand-dark">Ils l'ont suivie</p>
+              <h2 className="text-3xl font-extrabold tracking-tight text-ink">
+                Témoignages <span className="text-brand-dark">publics.</span>
+              </h2>
               <div className="mt-8 space-y-4">
                 {proofs.map((t) => (
-                  <div key={t.id} className="rounded-2xl border border-white/10 bg-[#1f1f1f] p-6">
-                    <p className="text-base font-bold leading-tight text-white">{t.result}</p>
-                    <p className="mt-2 text-sm text-white/55">
+                  <div key={t.id} className="rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_6px_0_rgba(26,26,26,0.06)]">
+                    <p className="text-base font-bold leading-tight text-ink">{t.result}</p>
+                    <p className="mt-2 text-sm text-ink/55">
                       {t.firstName} ·{" "}
                       {t.source.type === "youtube" ? (
                         <a
                           href={`https://www.youtube.com/watch?v=${t.source.videoId}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="underline hover:text-brand-green"
+                          className="underline hover:text-brand-dark"
                         >
                           voir la vidéo
                         </a>
@@ -277,7 +315,7 @@ export default function FormationDetail({ formation }: { formation: Formation })
                           href={t.source.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="underline hover:text-brand-green"
+                          className="underline hover:text-brand-dark"
                         >
                           avis Trustpilot
                         </a>
@@ -292,13 +330,13 @@ export default function FormationDetail({ formation }: { formation: Formation })
       </section>
 
       {/* Urgence / places limitées */}
-      <section className="bg-ink py-16">
+      <section className="pb-16">
         <div className="container-x">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 rounded-3xl border border-brand-green/30 bg-brand-green/5 p-8 text-center md:p-10">
+          <div className={`${DARK_CARD} mx-auto flex max-w-3xl flex-col items-center gap-5 p-8 text-center md:p-10`}>
             <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/15 text-brand-green ring-1 ring-brand-green/40">
               <Flame size={22} strokeWidth={2.2} />
             </span>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-green">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-light">
               Places de coaching limitées
             </p>
             <h3 className="text-xl font-extrabold leading-snug tracking-tight text-white md:text-2xl">
@@ -312,18 +350,18 @@ export default function FormationDetail({ formation }: { formation: Formation })
       </section>
 
       {/* Pricing */}
-      <section className="bg-cream py-28 text-ink">
+      <section className="border-y border-ink/10 bg-white py-28 text-ink">
         <div className="container-x">
           <div className="mx-auto max-w-3xl text-center">
             <p className="tag mb-5 text-brand-dark">Investissement</p>
             <h2 className="text-h2 font-extrabold leading-[1.05] tracking-[-0.02em]">
-              Choisis ta formule. Démarre aujourd&apos;hui.
+              Choisis ta formule. <Underline>Démarre</Underline> aujourd&apos;hui.
             </h2>
             <p className="mt-4 text-ink/60">Paiement sécurisé Stripe · Apple Pay · virement IBAN · paiement en plusieurs fois sans frais</p>
 
             <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-brand-green/30 bg-brand-green/5 px-6 py-4">
               <p className="flex items-center justify-center gap-2 text-sm font-bold text-brand-dark">
-                <ShieldCheck size={16} className="flex-shrink-0 text-brand-green" />
+                <ShieldCheck size={16} className="flex-shrink-0 text-brand-dark" />
                 Éligible au CPF (Compte Personnel de Formation) via notre organisme partenaire
               </p>
               <p className="mt-1 text-xs text-ink/60">
@@ -333,11 +371,19 @@ export default function FormationDetail({ formation }: { formation: Formation })
           </div>
 
           <div className="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-3">
-            {formation.tiers.map((tier, i) => (
-              <div
+            {formation.tiers.map((tier, i) => {
+              const dark = i === 1;
+              return (
+              <motion.div
                 key={tier.label}
-                className={`relative flex flex-col rounded-3xl border-2 bg-white p-8 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.12)] ${
-                  i === 1 ? "border-brand-green ring-4 ring-brand-green/10" : "border-ink/10"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: i * 0.06 }}
+                className={`relative flex flex-col p-8 ${
+                  dark
+                    ? DARK_CARD
+                    : "rounded-3xl border border-ink/10 bg-cream shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5"
                 }`}
               >
                 {i === 1 && (
@@ -345,34 +391,39 @@ export default function FormationDetail({ formation }: { formation: Formation })
                     Recommandé
                   </div>
                 )}
-                <p className="text-sm font-bold text-ink/50">{tier.badge}</p>
+                <p className={`text-sm font-bold ${dark ? "text-brand-light" : "text-ink/55"}`}>{tier.badge}</p>
                 <p className="mt-3 text-2xl font-extrabold tracking-tight">Tarif personnalisé*</p>
-                <p className="mt-1 text-xs text-ink/50">Communiqué lors de ton appel stratégique offert</p>
+                <p className={`mt-1 text-xs ${dark ? "text-white/65" : "text-ink/55"}`}>Communiqué lors de ton appel stratégique offert</p>
                 {tier.guarantee && (
-                  <div className="mt-4 rounded-xl bg-brand-green/10 px-3 py-2 text-xs font-semibold text-brand-dark">
+                  <div
+                    className={`mt-4 rounded-xl px-3 py-2 text-xs font-semibold ${
+                      dark ? "bg-brand-green/15 text-brand-light" : "bg-brand-green/10 text-brand-dark"
+                    }`}
+                  >
                     ✓ {tier.guarantee}
                   </div>
                 )}
                 <ul className="mt-6 flex-1 space-y-2">
                   {tier.highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-2 text-sm">
-                      <span className="mt-0.5 flex-shrink-0 text-brand-green"><Check size={14} /></span>
+                    <li key={h} className={`flex items-start gap-2 text-sm ${dark ? "text-white/80" : ""}`}>
+                      <span className={`mt-0.5 flex-shrink-0 ${dark ? "text-brand-green" : "text-brand-dark"}`}><Check size={14} /></span>
                       {h}
                     </li>
                   ))}
                 </ul>
                 <a
                   href={tier.checkoutUrl}
-                  className={`mt-8 block rounded-2xl py-4 text-center text-sm font-bold transition-transform hover:scale-[1.02] ${
-                    i === 1
-                      ? "bg-brand-gradient text-white shadow-[0_8px_30px_-8px_rgba(45,184,75,0.5)]"
-                      : "bg-ink text-white hover:bg-ink/80"
+                  className={`group mt-8 flex items-center justify-center gap-2 rounded-2xl py-4 text-center text-sm font-bold transition-all hover:gap-3 ${
+                    dark
+                      ? "bg-brand-green text-ink hover:bg-brand-light"
+                      : "bg-ink text-white hover:bg-ink/85"
                   }`}
                 >
-                  Choisir {tier.label} <ArrowRight size={14} className="ml-1 inline" />
+                  Choisir {tier.label} <ArrowRight size={14} />
                 </a>
-              </div>
-            ))}
+              </motion.div>
+              );
+            })}
           </div>
 
           <p className="mt-10 text-center text-sm text-ink/50">
@@ -382,13 +433,13 @@ export default function FormationDetail({ formation }: { formation: Formation })
       </section>
 
       {/* FAQ */}
-      <section className="bg-ink py-24">
+      <section className="py-24">
         <div className="container-x">
-          <p className="tag mb-5 text-brand-green">FAQ</p>
-          <h2 className="max-w-3xl text-h2 font-extrabold leading-[1.05] tracking-[-0.02em] text-white">
-            Questions fréquentes.
+          <p className="tag mb-5 text-brand-dark">FAQ</p>
+          <h2 className="max-w-3xl text-h2 font-extrabold leading-[1.05] tracking-[-0.02em] text-ink">
+            Questions <span className="text-brand-dark">fréquentes.</span>
           </h2>
-          <div className="mt-12 divide-y divide-white/10 rounded-3xl border border-white/10 bg-[#141414]">
+          <div className="mt-12 divide-y divide-ink/10 rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]">
             {formation.faq.map((item, i) => {
               const open = faqIdx === i;
               return (
@@ -398,17 +449,17 @@ export default function FormationDetail({ formation }: { formation: Formation })
                   className="block w-full text-left"
                 >
                   <div className="flex items-center justify-between p-6 md:p-8">
-                    <h3 className="pr-4 text-base font-extrabold text-white md:text-lg">{item.q}</h3>
+                    <h3 className="pr-4 text-base font-extrabold text-ink md:text-lg">{item.q}</h3>
                     <ChevronDown
                       size={18}
-                      className={`flex-shrink-0 text-white/60 transition-transform ${
+                      className={`flex-shrink-0 text-ink/55 transition-transform ${
                         open ? "rotate-180" : ""
                       }`}
                     />
                   </div>
                   {open && (
                     <div className="px-6 pb-8 md:px-8">
-                      <p className="text-sm leading-relaxed text-white/70">{item.a}</p>
+                      <p className="text-sm leading-relaxed text-ink/70">{item.a}</p>
                     </div>
                   )}
                 </button>
@@ -419,9 +470,9 @@ export default function FormationDetail({ formation }: { formation: Formation })
       </section>
 
       {/* Cross-sell : autres formations */}
-      <section className="bg-cream py-16 text-ink">
+      <section className="border-t border-ink/10 bg-white py-16 text-ink">
         <div className="container-x">
-          <p className="mb-8 text-xs font-bold uppercase tracking-[0.25em] text-ink/40">
+          <p className="mb-8 text-xs font-bold uppercase tracking-[0.25em] text-ink/55">
             Aussi dans Rentimmo Academy
           </p>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -429,11 +480,11 @@ export default function FormationDetail({ formation }: { formation: Formation })
               <Link
                 key={f.slug}
                 href={`/formations/${f.slug}`}
-                className="group flex items-center justify-between rounded-2xl border border-ink/10 bg-white px-6 py-5 transition-all hover:border-brand-green/40 hover:shadow-md"
+                className="group flex items-center justify-between rounded-2xl border border-ink/10 bg-cream px-6 py-5 shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-green/40"
               >
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-ink/40">Formation</p>
-                  <p className="mt-0.5 font-extrabold tracking-tight text-ink group-hover:text-brand-green transition-colors">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-ink/55">Formation</p>
+                  <p className="mt-0.5 font-extrabold tracking-tight text-ink group-hover:text-brand-dark transition-colors">
                     {f.name}
                   </p>
                   <p className="mt-1 text-xs text-ink/55 line-clamp-1">{f.tagline}</p>

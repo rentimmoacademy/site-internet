@@ -12,6 +12,8 @@ import BlogIllustration from "@/components/blog/BlogIllustration";
 import BlogCTA from "@/components/blog/BlogCTA";
 import MasterclassPopup from "@/components/blog/MasterclassPopup";
 import ContactBanner from "@/components/sections/ContactBanner";
+import Reveal from "@/components/ui/Reveal";
+import Underline from "@/components/ui/Underline";
 
 function TikTokIcon({ size = 16 }: { size?: number }) {
   return (
@@ -76,25 +78,23 @@ const defaultCTA = {
 function BlogFinalCTA({ category }: { category: string }) {
   const content = ctaByCategory[category] ?? defaultCTA;
   return (
-    <section className="bg-ink py-16 border-t border-white/10">
+    <section className="bg-white py-16">
       <div className="container-x">
-        <div className="mx-auto max-w-3xl rounded-3xl bg-brand-green/10 border border-brand-green/25 p-8 md:p-10">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-brand-green">
-            Rentimmo Academy
-          </p>
-          <h2 className="mt-3 text-2xl font-extrabold text-white leading-snug">
+        <Reveal className="mx-auto max-w-3xl rounded-3xl border border-brand-green/30 bg-cream p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)] md:p-10">
+          <p className="tag text-brand-dark">Rentimmo Academy · recommandé</p>
+          <h2 className="mt-3 text-2xl font-extrabold text-ink leading-snug">
             {content.headline}
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-white/65">
+          <p className="mt-3 text-sm leading-relaxed text-ink/65">
             {content.sub}
           </p>
           <a
             href={content.href}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-green px-7 py-3.5 text-sm font-bold text-ink transition-transform hover:scale-[1.03]"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-bold text-white transition-all hover:gap-3 hover:bg-brand-dark"
           >
             {content.cta} <ArrowRight size={14} />
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -142,73 +142,77 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   return (
     <>
       <article>
-        {/* ─── Hero visuel catégorie ─── */}
-        <div className={cn("relative overflow-hidden pt-32 pb-16 text-white", cat.bg)}>
-          {post.coverImage && (
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              fill
-              priority
-              className="object-cover opacity-30"
-            />
-          )}
-          <div className={cn("pointer-events-none absolute inset-0", cat.bg, "opacity-70")} />
-          <div className="dot-grid pointer-events-none absolute inset-0 opacity-20" />
-          <div className="pointer-events-none absolute -top-32 right-0 h-[400px] w-[400px] rounded-full bg-white/10 blur-[100px]" />
+        {/* ─── Hero (clair) ─── */}
+        <div className="relative overflow-hidden pt-32 pb-16 text-ink">
+          <div className="pointer-events-none absolute -top-32 right-0 h-[400px] w-[400px] rounded-full bg-brand-green/10 blur-[110px]" />
 
           <div className="container-x relative">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 hover:text-white"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-ink/60 hover:text-brand-dark"
             >
               <ArrowLeft size={14} /> Retour au blog
             </Link>
 
-            <div className="mt-8 max-w-3xl">
-              {/* Catégorie + icône */}
-              <div className="mb-5 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20">
-                  <CatIcon size={16} />
+            <div className="mt-8 grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:items-center">
+              <div className="max-w-3xl">
+                {/* Catégorie + icône */}
+                <div className="mb-5 flex items-center gap-3">
+                  <div className={cn("flex h-9 w-9 items-center justify-center rounded-xl text-white", cat.bg)}>
+                    <CatIcon size={16} />
+                  </div>
+                  <span className="text-[11px] font-black uppercase tracking-[0.2em] text-ink/70">
+                    {cat.label}
+                  </span>
                 </div>
-                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white/80">
-                  {cat.label}
-                </span>
+
+                {/* Titre */}
+                <h1 className="text-[clamp(1.85rem,4.5vw,3.25rem)] font-extrabold leading-[1.1] tracking-[-0.025em] text-ink">
+                  {post.title}
+                </h1>
+
+                {/* Excerpt */}
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/70">
+                  {post.excerpt}
+                </p>
+
+                {/* Meta */}
+                <div className="mt-6 flex items-center gap-6 text-xs text-ink/55">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar size={12} />{" "}
+                    {new Date(post.date).toLocaleDateString("fr-FR", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Clock size={12} /> {post.readTime}
+                  </span>
+                </div>
               </div>
 
-              {/* Titre */}
-              <h1 className="text-[clamp(1.85rem,4.5vw,3.25rem)] font-extrabold leading-[1.1] tracking-[-0.025em]">
-                {post.title}
-              </h1>
-
-              {/* Excerpt */}
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75">
-                {post.excerpt}
-              </p>
-
-              {/* Meta */}
-              <div className="mt-6 flex items-center gap-6 text-xs text-white/60">
-                <span className="flex items-center gap-1.5">
-                  <Calendar size={12} />{" "}
-                  {new Date(post.date).toLocaleDateString("fr-FR", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Clock size={12} /> {post.readTime}
-                </span>
-              </div>
+              {post.coverImage && (
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.title}
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 40vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* ─── Contenu ─── */}
-        <div className="bg-cream pb-20">
+        <div className="pb-20">
           <div className="container-x">
-            <div className="mx-auto max-w-3xl -translate-y-8 rounded-3xl bg-white shadow-xl ring-1 ring-ink/5 p-8 text-ink md:p-12">
-              <div className="prose prose-lg prose-neutral mx-auto max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-h2:mt-10 prose-h2:text-3xl prose-a:text-brand-dark prose-a:font-bold prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-ul:my-5 prose-li:my-1">
+            <div className="mx-auto max-w-3xl rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)] p-8 text-ink md:p-12">
+              <div className="prose prose-lg prose-neutral mx-auto max-w-none prose-headings:font-extrabold prose-headings:tracking-tight prose-h2:mt-10 prose-h2:text-3xl prose-a:text-brand-dark prose-a:font-bold prose-a:no-underline hover:prose-a:underline prose-strong:text-ink prose-ul:my-5 prose-li:my-1 prose-pre:rounded-2xl prose-pre:border prose-pre:border-ink/10 prose-pre:bg-cream prose-pre:text-ink/80 prose-code:text-ink">
                 <MDXRemote source={post.content} components={{ BlogIllustration, BlogCTA }} />
               </div>
             </div>
@@ -219,16 +223,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <RelatedArticles posts={allPosts} currentSlug={post.slug} category={post.category} />
 
       {/* Social follow section */}
-      <section className="bg-ink py-14 border-t border-white/10">
+      <section className="relative isolate overflow-hidden bg-ink py-16 text-white">
+        <div className="dot-grid pointer-events-none absolute inset-0 -z-10 opacity-20" />
         <div className="container-x">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-white/40">
-              Rentimmo Academy
-            </p>
-            <h2 className="mt-3 text-2xl font-extrabold text-white">
-              Contenus gratuits chaque semaine sur la LCD
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <p className="tag text-brand-light">Rentimmo Academy</p>
+            <h2 className="mt-3 text-[clamp(1.6rem,3vw,2.25rem)] font-extrabold leading-tight text-white">
+              Contenus gratuits chaque{" "}
+              <Underline>semaine</Underline> sur la LCD
             </h2>
-            <p className="mt-2 text-sm text-white/60">
+            <p className="mt-3 text-sm text-white/65">
               Sous-location, conciergerie, automatisation, réglementation : abonne-toi pour ne rien manquer.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -236,31 +240,31 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 href={SITE.socials.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:border-brand-green/60"
               >
-                <Youtube size={16} className="text-red-400" />
+                <Youtube size={16} className="text-brand-green" />
                 YouTube — @rentimmoacademy
               </a>
               <a
                 href={SITE.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:border-brand-green/60"
               >
-                <Instagram size={16} className="text-pink-400" />
+                <Instagram size={16} className="text-brand-green" />
                 Instagram — @rentimmo_academy
               </a>
               <a
                 href={SITE.socials.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:border-brand-green/60"
               >
                 <TikTokIcon size={16} />
                 TikTok — @rentimmoacademy
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --bg: #1a1a1a;
-  --fg: #f7f6f2;
+  --bg: #f7f6f2;
+  --fg: #1a1a1a;
 }
 
 html {
@@ -12,7 +12,11 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(26, 26, 26, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 26, 26, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
   color: var(--fg);
   font-family: var(--font-jakarta), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,13 +29,18 @@ body {
 }
 
 @layer components {
+  /* Quadrillage de fond (lignes fines), teinté vert sur fond sombre, encre sur fond clair */
   .dot-grid {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-image:
+      linear-gradient(rgba(45, 184, 75, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45, 184, 75, 0.09) 1px, transparent 1px);
+    background-size: 46px 46px;
   }
   .dot-grid-light {
-    background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-image:
+      linear-gradient(rgba(26, 26, 26, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 26, 26, 0.05) 1px, transparent 1px);
+    background-size: 46px 46px;
   }
   .tag {
     @apply inline-block text-tag uppercase text-brand-green;
@@ -69,7 +78,7 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f0f0f;
+  background: #f7f6f2;
 }
 ::-webkit-scrollbar-thumb {
   background: #2db84b;

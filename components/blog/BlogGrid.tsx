@@ -36,14 +36,14 @@ export default function BlogGrid({ posts }: { posts: BlogPostMeta[] }) {
             onClick={() => setActive(c.slug)}
             className={
               active === c.slug
-                ? "rounded-full border border-brand-green bg-brand-green px-4 py-2 text-xs font-bold text-ink transition-colors"
-                : "rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-bold text-white/75 backdrop-blur transition-colors hover:bg-white/10 hover:text-white"
+                ? "rounded-full border border-ink bg-ink px-4 py-2 text-xs font-bold text-white shadow-[0_3px_0_#1A6B33] transition-colors"
+                : "rounded-full border border-ink/10 bg-white px-4 py-2 text-xs font-bold text-ink/70 transition-colors hover:border-ink/30 hover:text-ink"
             }
           >
             {c.label}
           </button>
         ))}
-        <span className="ml-auto self-center text-xs text-white/35">
+        <span className="ml-auto self-center text-xs text-ink/55">
           {filtered.length} article{filtered.length !== 1 ? "s" : ""}
         </span>
       </div>
@@ -56,7 +56,7 @@ export default function BlogGrid({ posts }: { posts: BlogPostMeta[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="py-20 text-center text-sm text-white/40">
+        <p className="py-20 text-center text-sm text-ink/55">
           Aucun article dans cette catégorie pour l&apos;instant.
         </p>
       )}

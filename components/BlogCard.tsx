@@ -41,11 +41,11 @@ export default function BlogCard({ post, index = 0 }: { post: BlogPostMeta; inde
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay: index * 0.08 }}
+      transition={{ duration: 0.6, delay: Math.min(index, 8) * 0.06, ease: [0.22, 1, 0.36, 1] }}
     >
       <Link
         href={`/blog/${post.slug}`}
-        className="group flex h-full flex-col overflow-hidden rounded-3xl border border-ink/10 bg-white transition-all hover:-translate-y-1 hover:shadow-xl"
+        className="group flex h-full flex-col overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
       >
         {/* Cover */}
         <div className="relative h-56 overflow-hidden">
@@ -72,7 +72,7 @@ export default function BlogCard({ post, index = 0 }: { post: BlogPostMeta; inde
             <span className="flex items-center gap-1.5">
               <Clock size={12} /> {post.readTime}
             </span>
-            <span className="inline-flex items-center gap-1 font-bold text-ink transition-transform group-hover:translate-x-1">
+            <span className="inline-flex items-center gap-1 font-bold text-ink transition-all group-hover:gap-2 group-hover:text-brand-dark">
               Lire <ArrowUpRight size={12} />
             </span>
           </div>

@@ -29,18 +29,12 @@ const values = [
 
 export default function WhyRentimmo() {
   return (
-    <section className="relative overflow-hidden bg-ink py-28">
-      <div className="dot-grid pointer-events-none absolute inset-0 opacity-60" />
+    <section className="relative overflow-hidden py-28">
       <div className="container-x relative">
         <SectionHeader
           tag="Pourquoi Rentimmo Academy"
-          title={
-            <>
-              On forme des pros,{" "}
-              <span className="bg-brand-gradient bg-clip-text text-transparent">pas des rêveurs.</span>
-            </>
-          }
-          dark
+          title="On forme des pros, pas des"
+          underline="rêveurs."
         />
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -50,16 +44,24 @@ export default function WhyRentimmo() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="group rounded-3xl border border-white/10 bg-[#1f1f1f] p-8 transition-all hover:-translate-y-1 hover:border-brand-green/40 hover:shadow-glow"
+              transition={{ duration: 0.6, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className={
+                i % 2 === 0
+                  ? "group rounded-3xl bg-ink p-8 text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
+                  : "group rounded-3xl border border-ink/10 bg-white p-8 text-ink shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
+              }
             >
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-green ring-1 ring-brand-green/20">
+              <div
+                className={
+                  i % 2 === 0
+                    ? "inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/15 text-brand-green ring-1 ring-brand-green/30"
+                    : "inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-dark ring-1 ring-brand-green/20"
+                }
+              >
                 <v.icon size={22} strokeWidth={2.2} />
               </div>
-              <h3 className="mt-6 text-xl font-extrabold leading-snug tracking-tight text-white">
-                {v.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/65">{v.desc}</p>
+              <h3 className="mt-6 text-xl font-extrabold leading-snug tracking-tight">{v.title}</h3>
+              <p className={`mt-3 text-sm leading-relaxed ${i % 2 === 0 ? "text-white/65" : "text-ink/65"}`}>{v.desc}</p>
             </motion.div>
           ))}
         </div>

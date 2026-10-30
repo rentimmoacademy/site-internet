@@ -11,11 +11,10 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { ArrowRight, BadgeCheck, Star, Users } from "lucide-react";
+import { ArrowRight, BadgeCheck, Users } from "lucide-react";
 import StatCounter from "@/components/StatCounter";
 import CallGate from "@/components/CallGate";
 import Highlight from "@/components/ui/Highlight";
-import { AGGREGATE_RATING } from "@/lib/testimonials";
 import { useReducedMotionAfterMount } from "@/lib/useReducedMotionAfterMount";
 
 const fadeUp = {
@@ -101,8 +100,8 @@ function Scene({ progress, depth, reduce }: { progress: MotionValue<number>; dep
       {/* Halo arrière */}
       <div className="pointer-events-none absolute -inset-16 bg-[radial-gradient(closest-side,rgba(45,184,75,0.35),transparent)]" />
 
-      {/* Cadre : la pièce réelle à travers la serrure */}
-      <div className="absolute inset-0 overflow-hidden rounded-[2rem] border border-white/10 bg-[#141414]">
+      {/* Cadre vert de la marque : la pièce réelle apparaît à travers la serrure */}
+      <div className="absolute inset-0 overflow-hidden rounded-[2rem] bg-brand-gradient shadow-[0_10px_0_-2px_#1A6B33]">
         <motion.div
           style={{
             x: bgShift.x,
@@ -144,16 +143,7 @@ function Scene({ progress, depth, reduce }: { progress: MotionValue<number>; dep
       </motion.div>
 
       {/* Avant-plan : preuves réelles, plus rapides que le sujet */}
-      {AGGREGATE_RATING.reviewCount > 0 && (
-        <ProofCard className="-left-10 top-[22%]" delay={1.6} shift={nearShift} scrollY={cardsY}>
-          <Star size={18} className="fill-brand-green text-brand-green" />
-          <div>
-            <p className="text-sm font-extrabold leading-tight">{AGGREGATE_RATING.ratingValue}/5</p>
-            <p className="text-xs text-white/60">{AGGREGATE_RATING.reviewCount} avis élèves</p>
-          </div>
-        </ProofCard>
-      )}
-      <ProofCard className="-right-8 top-[48%]" delay={1.75} shift={midShift} scrollY={cardsY}>
+      <ProofCard className="-right-8 top-[30%]" delay={1.75} shift={midShift} scrollY={cardsY}>
         <BadgeCheck size={18} className="text-brand-green" />
         <p className="text-sm font-bold leading-tight">
           Organisme certifié
@@ -161,7 +151,7 @@ function Scene({ progress, depth, reduce }: { progress: MotionValue<number>; dep
           <span className="font-medium text-white/60">Qualiopi</span>
         </p>
       </ProofCard>
-      <ProofCard className="-left-6 bottom-[9%] hidden lg:block" delay={1.9} shift={midShift} scrollY={cardsY}>
+      <ProofCard className="-left-8 bottom-[14%]" delay={1.9} shift={midShift} scrollY={cardsY}>
         <Users size={18} className="text-brand-green" />
         <p className="text-sm font-bold leading-tight">
           Des dizaines d&apos;élèves
@@ -203,13 +193,13 @@ export default function Hero() {
       ref={ref}
       onPointerMove={onPointerMove}
       onPointerLeave={onPointerLeave}
-      className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink pt-24"
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-cream pt-24"
     >
       {/* Dot grid */}
-      <div className="dot-grid pointer-events-none absolute inset-0 opacity-80" />
+      <div className="dot-grid-light pointer-events-none absolute inset-0" />
       {/* Radial gradients au lieu de blur-[120px] : même rendu, sans filtre coûteux au premier paint mobile */}
-      <div className="pointer-events-none absolute -top-64 left-1/2 h-[900px] w-[900px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(45,184,75,0.22),transparent)]" />
-      <div className="pointer-events-none absolute -bottom-72 -right-24 h-[800px] w-[800px] bg-[radial-gradient(closest-side,rgba(26,107,51,0.32),transparent)]" />
+      <div className="pointer-events-none absolute -top-64 left-1/2 h-[900px] w-[900px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(45,184,75,0.14),transparent)]" />
+      <div className="pointer-events-none absolute -bottom-72 -right-24 h-[800px] w-[800px] bg-[radial-gradient(closest-side,rgba(45,184,75,0.12),transparent)]" />
 
       <div className="container-x relative z-10 grid items-center py-16 lg:grid-cols-[1.35fr_1fr] lg:gap-10 lg:py-20">
         {/* Mobile : le wrapper s'efface (contents) pour glisser la scène juste sous le titre */}
@@ -219,7 +209,7 @@ export default function Hero() {
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="order-1 mb-8 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/80 backdrop-blur"
+            className="order-1 mb-8 inline-flex w-fit items-center gap-2 rounded-full border border-ink/10 bg-white px-4 py-2 text-xs font-semibold text-ink/70 shadow-sm"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green opacity-75" />
@@ -233,9 +223,9 @@ export default function Hero() {
           </motion.div>
 
           {/* Headline — no entrance animation: this is the LCP element, must paint immediately */}
-          <h1 className="order-2 max-w-4xl text-[clamp(2.3rem,4.4vw,3.9rem)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white">
+          <h1 className="order-2 max-w-4xl text-[clamp(2.3rem,4.4vw,3.9rem)] font-extrabold leading-[0.95] tracking-[-0.035em] text-ink">
             Formation <span className="bg-brand-gradient bg-clip-text text-transparent">sous-location & conciergerie Airbnb</span>{" "}
-            : génère +700 €/mois sans crédit, sans apport.
+            : génère <Highlight>+700 €/mois</Highlight> sans crédit, sans apport.
           </h1>
 
           {/* Subtitle */}
@@ -244,12 +234,12 @@ export default function Hero() {
             custom={2}
             initial="hidden"
             animate="show"
-            className="order-4 mt-8 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl"
+            className="order-4 mt-8 max-w-2xl text-lg leading-relaxed text-ink/70 md:text-xl"
           >
             La formation terrain pour lancer ta sous-location, ta conciergerie Airbnb ou ton activité
             de ménage pro.{" "}
             <Highlight>
-              <span className="text-white">Sans banque, sans crédit, sans apport.</span>
+              <span className="text-ink">Sans banque, sans crédit, sans apport.</span>
             </Highlight>
           </motion.p>
 
@@ -266,7 +256,7 @@ export default function Hero() {
             </Link>
             <CallGate
               href="https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true"
-              className="btn-ghost"
+              className="btn-ghost-dark"
             >
               Réserver un appel stratégique
             </CallGate>
@@ -278,7 +268,7 @@ export default function Hero() {
             custom={4}
             initial="hidden"
             animate="show"
-            className="order-6 mt-14 grid grid-cols-2 gap-8 border-t border-white/10 pt-8 md:grid-cols-4"
+            className="order-6 mt-14 grid grid-cols-2 gap-8 border-t border-ink/10 pt-8 md:grid-cols-4"
           >
             {[
               { label: "ans d'expérience terrain", value: 7 },
@@ -287,10 +277,10 @@ export default function Hero() {
               { label: "marchés couverts", value: 2, labelExtra: "France & Maroc" },
             ].map((s) => (
               <div key={s.label}>
-                <p className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+                <p className="text-3xl font-extrabold tracking-tight text-ink md:text-4xl">
                   <StatCounter value={s.value} prefix={s.prefix} suffix={s.suffix} />
                 </p>
-                <p className="mt-2 text-xs uppercase tracking-widest text-white/50">
+                <p className="mt-2 text-xs uppercase tracking-widest text-ink/50">
                   {s.labelExtra ?? s.label}
                 </p>
               </div>

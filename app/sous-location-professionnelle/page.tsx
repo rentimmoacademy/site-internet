@@ -2,10 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, ArrowRight, ShieldCheck, TrendingUp, MapPin, Wallet } from "lucide-react";
 import LandingHero from "@/components/sections/LandingHero";
+import OfferVideo from "@/components/OfferVideo";
 import LandingSection from "@/components/sections/LandingSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import PillarLinks from "@/components/sections/PillarLinks";
 import ActivityCallPopup from "@/components/ActivityCallPopup";
+import Reveal from "@/components/ui/Reveal";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
+
+const DARK_CARD =
+  "rounded-3xl bg-ink text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]";
+const LIGHT_CARD = "rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]";
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/sous-location-professionnelle`;
@@ -115,17 +123,20 @@ export default function SousLocationProfessionnellePage() {
     <>
       <LandingHero
         kicker="Guide complet 2026"
-        h1="Sous-location professionnelle : devenir sous-loueur pro en 2026 sans banque, sans apport"
+        h1={<>Sous-location professionnelle : devenir sous-loueur pro en 2026 <span className="text-brand-dark">sans banque, sans apport</span></>}
+        introHighlight="Tu signes un bail de sous-location professionnelle Airbnb avec le propriétaire, tu sous-loues sur Airbnb, tu gardes la marge."
         intro="La sous-location professionnelle (le métier de sous-loueur professionnel) est le moyen le plus rapide pour générer des revenus locatifs en courte durée sans crédit immobilier. Tu signes un bail de sous-location professionnelle Airbnb avec le propriétaire, tu sous-loues sur Airbnb, tu gardes la marge. Voici comment ça marche concrètement."
         primaryCta={{ href: "/formations/sous-location", label: "Voir la formation" }}
         secondaryCta={{ href: "https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true", label: "Réserver un appel" }}
         breadcrumb={[{ label: "Accueil", href: "/" }, { label: "Sous-location professionnelle" }]}
       />
 
+      <OfferVideo name="sous-location" title="Présentation de la sous-location professionnelle" />
+
       {/* Définition + cadre légal */}
       <LandingSection
         kicker="C'est quoi exactement"
-        title="Sous-location professionnelle : la définition claire"
+        title={<>Sous-location professionnelle : la définition <Highlight>claire</Highlight></>}
         bg="cream"
       >
         <div className="grid gap-8 md:grid-cols-2">
@@ -137,8 +148,9 @@ export default function SousLocationProfessionnellePage() {
               C'est un modèle <strong>légal en France</strong> à condition de respecter 3 règles dans ton <strong>bail de sous-location professionnelle Airbnb</strong> : accord écrit du bailleur, clauses du bail adaptées à la courte durée, et déclaration fiscale correcte de tes revenus.
             </p>
           </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
-            <h3 className="text-xl font-bold text-ink">Les 3 clauses légales obligatoires du bail</h3>
+          <Reveal className={`${DARK_CARD} p-8`}>
+            <p className="text-xs font-bold uppercase tracking-widest text-brand-light">À retenir</p>
+            <h3 className="mt-2 text-xl font-bold text-white">Les 3 clauses légales obligatoires du bail</h3>
             <ul className="mt-4 space-y-3">
               {[
                 "Accord ÉCRIT du propriétaire (jamais oral)",
@@ -147,18 +159,18 @@ export default function SousLocationProfessionnellePage() {
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <ShieldCheck className="mt-0.5 size-5 flex-shrink-0 text-brand-green" />
-                  <span className="text-ink">{item}</span>
+                  <span className="text-white/80">{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </LandingSection>
 
       {/* Pourquoi c'est le meilleur démarrage */}
       <LandingSection
         kicker="Le meilleur point d'entrée"
-        title="Pourquoi la sous-location bat l'achat immobilier en 2026"
+        title={<>Pourquoi la sous-location <Underline>bat</Underline> l'achat immobilier en 2026</>}
         intro="L'achat immobilier classique demande 30 à 50K€ d'apport, un dossier bancaire solide, et bloque ton endettement pendant 20 ans. La sous-location professionnelle te donne accès au cashflow Airbnb sans ces contraintes."
         bg="white"
       >
@@ -179,16 +191,25 @@ export default function SousLocationProfessionnellePage() {
               title: "Scalable sans plafond bancaire",
               desc: "Les banques refusent généralement de financer plus de 3-4 biens locatifs. En sous-loc, tu peux signer 5, 10, 20 baux sans aucune limite — uniquement bridé par le temps.",
             },
-          ].map((b) => {
+          ].map((b, i) => {
             const Icon = b.icon;
+            const dark = i === 1;
             return (
-              <div key={b.title} className="rounded-2xl bg-cream p-6">
-                <div className="flex size-12 items-center justify-center rounded-xl bg-brand-green/10">
-                  <Icon className="size-6 text-brand-green" />
+              <Reveal key={b.title} index={i} className="h-full">
+                <div
+                  className={`h-full p-8 ${
+                    dark
+                      ? DARK_CARD
+                      : "rounded-3xl border border-ink/10 bg-cream shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5"
+                  }`}
+                >
+                  <div className={`flex size-12 items-center justify-center rounded-xl ${dark ? "bg-brand-green/15" : "bg-brand-green/10"}`}>
+                    <Icon className={`size-6 ${dark ? "text-brand-green" : "text-brand-dark"}`} />
+                  </div>
+                  <h3 className={`mt-4 text-xl font-bold ${dark ? "text-white" : "text-ink"}`}>{b.title}</h3>
+                  <p className={`mt-2 ${dark ? "text-white/65" : "text-ink-muted"}`}>{b.desc}</p>
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-ink">{b.title}</h3>
-                <p className="mt-2 text-ink-muted">{b.desc}</p>
-              </div>
+              </Reveal>
             );
           })}
         </div>
@@ -197,13 +218,13 @@ export default function SousLocationProfessionnellePage() {
       {/* Combien ça rapporte */}
       <LandingSection
         kicker="Chiffres concrets"
-        title="Combien rapporte une sous-location en 2026 ?"
+        title={<>Combien <span className="text-brand-dark">rapporte</span> une sous-location en 2026 ?</>}
         intro="Ces chiffres sont des médianes constatées sur les 150+ étudiants Rentimmo Academy qui ont signé leur premier bail (France et Maroc confondus)."
         bg="cream"
       >
-        <div className="overflow-x-auto rounded-2xl bg-white shadow-sm ring-1 ring-ink/5">
+        <Reveal className={`overflow-x-auto ${LIGHT_CARD}`}>
           <table className="w-full">
-            <thead className="bg-ink text-cream">
+            <thead className="bg-ink text-white">
               <tr>
                 <th className="p-4 text-left text-sm font-bold uppercase tracking-wider">Type de bien</th>
                 <th className="p-4 text-left text-sm font-bold uppercase tracking-wider">Loyer payé proprio</th>
@@ -229,8 +250,8 @@ export default function SousLocationProfessionnellePage() {
               ))}
             </tbody>
           </table>
-        </div>
-        <p className="mt-4 text-sm italic text-ink-muted">
+        </Reveal>
+        <p className="mt-4 text-sm text-ink-muted">
           Cashflow net = revenus Airbnb − loyer propriétaire − ménage − consommables − commission plateforme. Hors fiscalité (LMNP avec abattement). Médiane sur 12 mois pleins après stabilisation.
         </p>
       </LandingSection>
@@ -238,10 +259,10 @@ export default function SousLocationProfessionnellePage() {
       {/* Les 6 étapes pour démarrer */}
       <LandingSection
         kicker="Comment se lancer"
-        title="Les 6 étapes pour démarrer ta sous-location"
-        bg="white"
+        title={<>Les <Highlight>6 étapes</Highlight> pour démarrer ta sous-location</>}
+        bg="ink"
       >
-        <ol className="space-y-6">
+        <ol className="grid gap-5 md:grid-cols-2">
           {[
             { num: "01", t: "Comprendre le cadre légal", d: "Maîtriser l'accord écrit, les clauses du bail et les obligations en mairie. C'est ton garde-fou contre la résiliation." },
             { num: "02", t: "Trouver le bon propriétaire", d: "3 canaux qui marchent vraiment : LeBonCoin, agences immobilières spécialisées propriétaires-bailleurs, et le bouche-à-oreille MRE. Le pitch fait toute la différence." },
@@ -249,14 +270,16 @@ export default function SousLocationProfessionnellePage() {
             { num: "04", t: "Ameubler et lancer l'annonce", d: "Budget ameublement optimisé (souvent 2 500-3 500 € pour un T2). Photos pro, titre vendeur, description SEO Airbnb. L'annonce doit cartonner dès la mise en ligne." },
             { num: "05", t: "Pricing dynamique et premiers avis", d: "Outils gratuits pour ajuster les tarifs en temps réel (Wheelhouse, PriceLabs trial). Stratégie pour obtenir 10 avis 5 étoiles dans les 2 premiers mois et grimper dans le ranking Airbnb." },
             { num: "06", t: "Automatiser et scaler", d: "Check-in autonome (boîte à clé, smart lock), ménage délégué (équipe locale ou Bnbsitter), réponses voyageurs automatisées (Hospitable, Smartbnb). Tu passes de 1 à 5 logements sans tripler le temps." },
-          ].map((s) => (
-            <li key={s.num} className="flex gap-6 rounded-2xl bg-cream p-6">
-              <div className="flex-shrink-0 text-3xl font-extrabold text-brand-green/30 md:text-4xl">{s.num}</div>
-              <div>
-                <h3 className="text-xl font-bold text-ink">{s.t}</h3>
-                <p className="mt-2 leading-relaxed text-ink-muted">{s.d}</p>
+          ].map((s, i) => (
+            <Reveal as="li" key={s.num} index={i} className="h-full">
+              <div className="flex h-full gap-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-brand-green/50 md:p-8">
+                <div className="flex-shrink-0 text-3xl font-extrabold text-brand-green md:text-4xl">{s.num}</div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">{s.t}</h3>
+                  <p className="mt-2 leading-relaxed text-white/65">{s.d}</p>
+                </div>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ol>
       </LandingSection>
@@ -264,11 +287,11 @@ export default function SousLocationProfessionnellePage() {
       {/* France vs Maroc */}
       <LandingSection
         kicker="France & Maroc"
-        title="Sous-location en France vs au Maroc : ce qui change"
+        title={<>Sous-location en France vs au Maroc : <span className="text-brand-dark">ce qui change</span></>}
         bg="cream"
       >
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
+          <div className={`${LIGHT_CARD} p-8`}>
             <div className="flex items-center gap-3">
               <span className="text-3xl">🇫🇷</span>
               <h3 className="text-xl font-bold text-ink">France</h3>
@@ -281,7 +304,7 @@ export default function SousLocationProfessionnellePage() {
             </ul>
             <p className="mt-4 text-sm text-ink-muted">Marché mature avec forte concurrence mais demande stable : tourisme, business, étudiants.</p>
           </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
+          <div className={`${LIGHT_CARD} p-8`}>
             <div className="flex items-center gap-3">
               <span className="text-3xl">🇲🇦</span>
               <h3 className="text-xl font-bold text-ink">Maroc</h3>
@@ -300,14 +323,14 @@ export default function SousLocationProfessionnellePage() {
       {/* FAQ */}
       <LandingSection
         kicker="FAQ"
-        title="Questions fréquentes sur la sous-location professionnelle"
+        title={<>Questions <Underline>fréquentes</Underline> sur la sous-location professionnelle</>}
         bg="white"
       >
         <div className="space-y-3">
           {FAQS.map((f) => (
             <details
               key={f.q}
-              className="group rounded-2xl bg-cream p-6"
+              className="group rounded-2xl border border-ink/10 bg-cream p-6 shadow-[0_6px_0_rgba(26,26,26,0.06)]"
             >
               <summary className="cursor-pointer list-none flex items-start justify-between gap-4 font-bold text-ink">
                 <span>{f.q}</span>
@@ -322,14 +345,14 @@ export default function SousLocationProfessionnellePage() {
       {/* Lien fort vers la formation */}
       <LandingSection
         kicker="Aller plus loin"
-        title="Tu veux passer à l'action ?"
+        title={<>Tu veux passer à <Highlight>l&apos;action</Highlight> ?</>}
         intro="Ce guide donne les fondamentaux. Pour passer du « je comprends » au « j'ai signé mon premier bail », tu as 2 options."
         bg="cream"
       >
         <div className="grid gap-6 md:grid-cols-2">
           <Link
             href="/formations/sous-location"
-            className="group block rounded-2xl bg-ink p-8 text-cream transition-transform hover:-translate-y-1"
+            className={`group block p-8 ${DARK_CARD}`}
           >
             <div className="flex items-center gap-3">
               <span className="rounded-full bg-brand-green/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-light">
@@ -337,17 +360,17 @@ export default function SousLocationProfessionnellePage() {
               </span>
             </div>
             <h3 className="mt-4 text-2xl font-extrabold">Sous-Location Academy</h3>
-            <p className="mt-2 text-cream/80">
+            <p className="mt-2 text-white/65">
               La formation complète. 6 modules, 8h de contenu, accès à vie, support communauté. Tu signes ton premier bail dans les 30 jours.
             </p>
-            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-light group-hover:text-white">
+            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-light transition-all group-hover:gap-3 group-hover:text-white">
               Voir le programme <ArrowRight size={16} />
             </span>
           </Link>
 
           <Link
             href="https://cal.com/rentimmoacademy/appel-strategique?overlayCalendar=true"
-            className="group block rounded-2xl border-2 border-ink/10 bg-white p-8 transition-transform hover:-translate-y-1"
+            className={`group block p-8 ${LIGHT_CARD} transition-all duration-500 hover:-translate-y-1.5`}
           >
             <div className="flex items-center gap-3">
               <span className="rounded-full bg-brand-dark/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-dark">
@@ -358,7 +381,7 @@ export default function SousLocationProfessionnellePage() {
             <p className="mt-2 text-ink-muted">
               Tu hésites encore ? Réserve un appel offert avec notre équipe. On audit ta situation, on te dit honnêtement si la sous-location est faite pour toi.
             </p>
-            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-green">
+            <span className="mt-6 inline-flex items-center gap-2 font-bold text-brand-dark transition-all group-hover:gap-3">
               Réserver un créneau <ArrowRight size={16} />
             </span>
           </Link>
@@ -367,21 +390,21 @@ export default function SousLocationProfessionnellePage() {
 
 
       {/* Outil audit annonce */}
-      <section className="bg-ink py-16">
+      <section className="py-16">
         <div className="container-x">
-          <div className="rounded-3xl border border-brand-green/20 bg-brand-green/5 p-8 flex flex-col md:flex-row items-center gap-6 justify-between">
+          <Reveal className="rounded-3xl border border-brand-green/25 bg-white p-8 shadow-[0_6px_0_rgba(26,26,26,0.06)] flex flex-col md:flex-row items-center gap-6 justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-brand-green mb-2">Outil gratuit</p>
-              <h3 className="text-xl font-extrabold text-white tracking-tight">Auditez votre annonce Airbnb en 90 secondes</h3>
-              <p className="text-white/55 text-sm mt-1">Score /100 · Benchmark concurrents · Titre réoptimisé par IA</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-dark mb-2">Outil gratuit</p>
+              <h3 className="text-xl font-extrabold text-ink tracking-tight">Auditez votre annonce Airbnb en 90 secondes</h3>
+              <p className="text-ink/55 text-sm mt-1">Score /100 · Benchmark concurrents · Titre réoptimisé par IA</p>
             </div>
             <Link
               href="/outils/audit-annonce"
-              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3 text-sm font-bold text-white transition-all hover:bg-brand-light"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition-all hover:gap-3 hover:bg-brand-dark"
             >
               Analyser mon annonce <ArrowRight size={14} />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 

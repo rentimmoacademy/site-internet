@@ -7,6 +7,9 @@ import {
   CATEGORY_LABELS,
 } from "@/lib/lexique";
 import FinalCTA from "@/components/sections/FinalCTA";
+import Reveal from "@/components/ui/Reveal";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
 
 const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/lexique`;
@@ -62,32 +65,32 @@ export default function LexiquePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-ink pt-40 pb-16">
-        <div className="dot-grid pointer-events-none absolute inset-0 opacity-30" />
-        <div className="pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-brand-green/15 blur-3xl" />
+      <section className="relative overflow-hidden pt-40 pb-16">
+        <div className="pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-brand-green/[0.12] blur-3xl" />
 
         <div className="container-x relative">
           <nav aria-label="Fil d'Ariane" className="mb-6">
-            <ol className="flex items-center gap-2 text-sm text-cream/60">
+            <ol className="flex items-center gap-2 text-sm text-ink/55">
               <li>
-                <Link href="/" className="hover:text-brand-light">
+                <Link href="/" className="hover:text-brand-dark">
                   Accueil
                 </Link>
               </li>
-              <li className="text-cream/30">/</li>
-              <li className="font-medium text-cream/90">Lexique</li>
+              <li className="text-ink/40">/</li>
+              <li className="font-medium text-ink/80">Lexique</li>
             </ol>
           </nav>
 
-          <span className="inline-block rounded-full border border-brand-green/30 bg-brand-green/10 px-4 py-1 text-sm font-bold uppercase tracking-wider text-brand-light">
+          <span className="inline-block rounded-full border border-brand-green/30 bg-brand-green/10 px-4 py-1 text-sm font-bold uppercase tracking-wider text-brand-dark">
             Glossaire de référence
           </span>
-          <h1 className="mt-6 text-[clamp(2.25rem,5.5vw,4.5rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-white">
+          <h1 className="mt-6 text-[clamp(2.25rem,5.5vw,4.5rem)] font-extrabold leading-[1.05] tracking-[-0.03em] text-ink">
             Lexique de la location <br className="hidden md:block" />
-            courte durée.
+            <span className="text-brand-dark">courte durée.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-cream/80 md:text-xl">
-            {LEXIQUE.length} termes essentiels de la sous-location professionnelle, conciergerie Airbnb et cleaning BNB — définis clairement, sans jargon. France et Maroc.
+          <p className="mt-6 max-w-2xl text-lg text-ink/70 md:text-xl">
+            {LEXIQUE.length} termes essentiels de la sous-location professionnelle, conciergerie Airbnb et cleaning BNB —{" "}
+            <Highlight>définis clairement, sans jargon.</Highlight> France et Maroc.
           </p>
 
           {/* Categories anchors */}
@@ -96,10 +99,10 @@ export default function LexiquePage() {
               <a
                 key={key}
                 href={`#${key}`}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-cream hover:bg-white/10 transition"
+                className="group inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white px-4 py-2 text-sm text-ink transition-all hover:-translate-y-0.5 hover:border-ink hover:bg-ink hover:text-white"
               >
                 {CATEGORY_LABELS[key]}
-                <span className="text-cream/50">
+                <span className="text-ink/55 group-hover:text-white/65">
                   ({LEXIQUE_BY_CATEGORY[key].length})
                 </span>
               </a>
@@ -109,13 +112,19 @@ export default function LexiquePage() {
       </section>
 
       {/* Termes par catégorie */}
-      <section className="bg-cream py-20">
+      <section className="border-y border-ink/10 bg-white py-20">
         <div className="container-x space-y-16">
-          {categories.map(([key, terms]) => (
+          {categories.map(([key, terms], ci) => (
             <section key={key} id={key} className="scroll-mt-32">
               <div className="mb-10 flex items-baseline justify-between border-b border-ink/10 pb-4">
                 <h2 className="text-3xl font-extrabold text-ink md:text-4xl">
-                  {CATEGORY_LABELS[key]}
+                  {ci % 3 === 0 ? (
+                    <Highlight>{CATEGORY_LABELS[key]}</Highlight>
+                  ) : ci % 3 === 1 ? (
+                    <span className="text-brand-dark">{CATEGORY_LABELS[key]}</span>
+                  ) : (
+                    <Underline>{CATEGORY_LABELS[key]}</Underline>
+                  )}
                 </h2>
                 <span className="text-sm text-ink-muted">
                   {terms.length} termes
@@ -123,12 +132,14 @@ export default function LexiquePage() {
               </div>
 
               <div className="grid gap-6 md:grid-cols-2">
-                {terms.map((t) => (
-                  <article
+                {terms.map((t, ti) => (
+                  <Reveal
+                    as="article"
                     key={t.slug}
-                    id={t.slug}
-                    className="scroll-mt-32 rounded-2xl bg-white p-6 ring-1 ring-ink/5 hover:ring-brand-green/30 transition"
+                    index={ti % 2}
+                    className="h-full"
                   >
+                  <div id={t.slug} className="h-full scroll-mt-32 rounded-2xl border border-ink/10 bg-white p-6 shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1 hover:border-brand-green/40">
                     <h3 className="text-xl font-extrabold text-ink">
                       {t.term}
                     </h3>
@@ -148,7 +159,7 @@ export default function LexiquePage() {
                               {i > 0 && ", "}
                               <a
                                 href={`#${r}`}
-                                className="font-medium text-brand-dark hover:text-brand-green"
+                                className="font-medium text-brand-dark hover:text-brand-dark"
                               >
                                 {rt?.term ?? r}
                               </a>
@@ -157,7 +168,8 @@ export default function LexiquePage() {
                         })}
                       </p>
                     )}
-                  </article>
+                  </div>
+                  </Reveal>
                 ))}
               </div>
             </section>
@@ -165,30 +177,32 @@ export default function LexiquePage() {
         </div>
       </section>
 
-      {/* Cross-link to formations */}
-      <section className="bg-ink py-20 text-cream">
-        <div className="container-x text-center">
-          <p className="tag mb-5 text-brand-green">Aller plus loin</p>
-          <h2 className="text-3xl font-extrabold md:text-4xl">
-            Tu veux passer de la théorie à la pratique ?
-          </h2>
-          <p className="mt-6 max-w-2xl mx-auto text-cream/75">
-            Le lexique te donne les bases. Les formations te donnent la méthode terrain testée sur 150+ étudiants en France et au Maroc.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/formations"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-green px-7 py-4 font-bold text-white transition-transform hover:scale-[1.03]"
-            >
-              Voir les formations <ArrowRight size={16} />
-            </Link>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-4 font-bold text-cream backdrop-blur transition-colors hover:bg-white/20"
-            >
-              Articles blog
-            </Link>
-          </div>
+      {/* Cross-link to formations (le FinalCTA qui suit est une carte noire) */}
+      <section className="py-20">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <p className="tag mb-5 text-brand-dark">Aller plus loin</p>
+            <h2 className="text-3xl font-extrabold md:text-4xl">
+              Tu veux passer de la théorie à la <Highlight>pratique</Highlight> ?
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-ink/70">
+              Le lexique te donne les bases. Les formations te donnent la méthode terrain testée sur 150+ étudiants en France et au Maroc.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/formations"
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 font-bold text-white shadow-[0_6px_0_#1A6B33] transition-all hover:-translate-y-0.5 hover:gap-3 hover:shadow-[0_8px_0_#2DB84B]"
+              >
+                Voir les formations <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-white px-7 py-4 font-bold text-ink transition-all hover:gap-3 hover:border-ink"
+              >
+                Articles blog
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 

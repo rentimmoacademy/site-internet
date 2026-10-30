@@ -30,7 +30,7 @@ function CopyButton({ text }: { text: string }) {
         setCopied(true);
         setTimeout(() => setCopied(false), 1500);
       }}
-      className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1.5 text-xs font-bold text-white/80 transition-colors hover:bg-white/20"
+      className="inline-flex items-center gap-1.5 rounded-lg border border-ink/10 bg-white px-2.5 py-1.5 text-xs font-bold text-ink/70 transition-colors hover:border-ink/30"
     >
       {copied ? <Check size={13} /> : <Copy size={13} />}
       {copied ? "Copié" : "Copier"}
@@ -243,34 +243,34 @@ export default function DescriptionGenerator() {
       </form>
 
       {/* Résultat */}
-      <div className="rounded-3xl border border-ink/10 bg-ink p-6 text-white md:p-8">
-        <p className="tag text-brand-light">Annonce générée par IA</p>
+      <div className="rounded-3xl border-2 border-brand-green/30 bg-white p-6 text-ink shadow-[0_6px_0_rgba(26,26,26,0.06)] md:p-8">
+        <p className="tag text-brand-dark">Annonce générée par IA</p>
 
         {status === "idle" && (
-          <p className="mt-6 text-sm text-white/50">
+          <p className="mt-6 text-sm text-ink/55">
             Remplis le formulaire à gauche pour obtenir un titre et une description optimisés pour
             l&apos;algorithme Airbnb.
           </p>
         )}
 
         {status === "error" && (
-          <p className="mt-6 text-sm text-red-300">
+          <p className="mt-6 text-sm text-red-600">
             Une erreur est survenue : {error}. Réessaie dans quelques instants.
           </p>
         )}
 
         {status === "done" && result && (
           <div className="mt-6 space-y-5">
-            <div className="rounded-2xl bg-white/5 p-5">
+            <div className="rounded-2xl bg-cream p-5">
               <div className="flex items-center justify-between gap-3">
-                <div className="text-xs font-bold uppercase tracking-widest text-white/50">Titre</div>
+                <div className="text-xs font-bold uppercase tracking-widest text-ink/55">Titre</div>
                 <CopyButton text={result.title} />
               </div>
-              <div className="mt-2 text-lg font-extrabold text-brand-light">{result.title}</div>
+              <div className="mt-2 text-lg font-extrabold text-brand-dark">{result.title}</div>
               {result.titleVariants?.length > 0 && (
-                <div className="mt-3 space-y-1.5 border-t border-white/10 pt-3">
+                <div className="mt-3 space-y-1.5 border-t border-ink/10 pt-3">
                   {result.titleVariants.map((v, i) => (
-                    <div key={i} className="text-sm text-white/60">
+                    <div key={i} className="text-sm text-ink/55">
                       {v}
                     </div>
                   ))}
@@ -278,12 +278,12 @@ export default function DescriptionGenerator() {
               )}
             </div>
 
-            <div className="rounded-2xl bg-white/5 p-5">
+            <div className="rounded-2xl bg-cream p-5">
               <div className="flex items-center justify-between gap-3">
-                <div className="text-xs font-bold uppercase tracking-widest text-white/50">Description</div>
+                <div className="text-xs font-bold uppercase tracking-widest text-ink/55">Description</div>
                 <CopyButton text={result.description} />
               </div>
-              <div className="mt-2 space-y-3 text-sm leading-relaxed text-white/80">
+              <div className="mt-2 space-y-3 text-sm leading-relaxed text-ink/70">
                 {result.description.split("\n\n").map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
@@ -291,11 +291,11 @@ export default function DescriptionGenerator() {
             </div>
 
             {result.highlights?.length > 0 && (
-              <div className="rounded-2xl bg-white/5 p-5">
-                <div className="text-xs font-bold uppercase tracking-widest text-white/50">
+              <div className="rounded-2xl bg-cream p-5">
+                <div className="text-xs font-bold uppercase tracking-widest text-ink/55">
                   Points forts reformulés
                 </div>
-                <ul className="mt-2 space-y-1.5 text-sm text-white/80">
+                <ul className="mt-2 space-y-1.5 text-sm text-ink/70">
                   {result.highlights.map((h, i) => (
                     <li key={i}>• {h}</li>
                   ))}
@@ -305,7 +305,7 @@ export default function DescriptionGenerator() {
           </div>
         )}
 
-        <p className="mt-6 text-xs leading-relaxed text-white/40">
+        <p className="mt-6 text-xs leading-relaxed text-ink/55">
           Contenu généré par IA à partir des infos que tu renseignes — relis et adapte avant de
           publier ton annonce. Rentimmo Academy ne garantit pas de résultat de réservation.
         </p>

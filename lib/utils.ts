@@ -1,5 +1,10 @@
 import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge } from "tailwind-merge";
+
+// Les tailles de police maison (text-h2…) doivent être reconnues comme tailles, sinon twMerge les écrase avec la couleur.
+const twMerge = extendTailwindMerge({
+  extend: { classGroups: { "font-size": [{ text: ["display", "h1", "h2", "tag"] }] } },
+});
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

@@ -21,7 +21,7 @@ export default function FormationCard({ formation, index = 0 }: { formation: For
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="group card-dark flex flex-col"
+      className="group relative flex flex-col rounded-3xl border border-ink bg-ink p-8 text-white shadow-[0_8px_0_#1A6B33] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
     >
       {/* Top line: icon + badge */}
       <div className="flex items-start justify-between gap-3">
@@ -43,7 +43,7 @@ export default function FormationCard({ formation, index = 0 }: { formation: For
       <h3 className="mt-8 text-2xl font-extrabold leading-tight tracking-tight text-white">
         {formation.name}
       </h3>
-      <p className="mt-2 text-base font-semibold text-brand-green">{formation.tagline}</p>
+      <p className="mt-2 text-base font-semibold text-brand-light">{formation.tagline}</p>
       <p className="mt-4 text-sm leading-relaxed text-white/65">{formation.description}</p>
 
       {/* Key points */}
@@ -57,7 +57,7 @@ export default function FormationCard({ formation, index = 0 }: { formation: For
       </ul>
 
       {/* Meta */}
-      <div className="mt-8 flex items-center gap-4 border-t border-white/10 pt-5 text-xs text-white/60">
+      <div className="mt-8 flex items-center gap-4 border-t border-white/10 pt-5 text-xs text-white/55">
         <span className="flex items-center gap-1.5">
           <Clock size={13} /> {formation.duration}
         </span>

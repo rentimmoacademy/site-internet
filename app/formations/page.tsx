@@ -6,6 +6,9 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import { formations } from "@/lib/formations";
 import { AGGREGATE_RATING } from "@/lib/testimonials";
 import { Check, X, ArrowRight, Cpu } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
+import Highlight from "@/components/ui/Highlight";
+import Underline from "@/components/ui/Underline";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://www.rentimmoacademy.fr/formations" },
@@ -41,25 +44,23 @@ export default function FormationsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-ink pt-40 pb-20">
-        <div className="dot-grid pointer-events-none absolute inset-0 opacity-50" />
+      <section className="relative pt-40 pb-20">
         <div className="container-x relative">
-          <p className="tag mb-5 text-brand-green">Nos formations</p>
-          <h1 className="max-w-4xl text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-white">
+          <p className="tag mb-5 text-brand-dark">Nos formations</p>
+          <h1 className="max-w-4xl text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.03em] text-ink">
             3 formations.{" "}
-            <span className="bg-brand-gradient bg-clip-text text-transparent">
-              Un seul objectif : ta liberté financière.
-            </span>
+            <span className="text-brand-dark">Un seul objectif : ta liberté financière.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-white/70">
-            Choisis le modèle qui te correspond. Chaque formation inclut un module Bonus Maroc et un accès
-            à la communauté privée.
+          <p className="mt-6 max-w-2xl text-lg text-ink/70">
+            Choisis le modèle qui te correspond.{" "}
+            <Highlight>Chaque formation inclut un module Bonus Maroc</Highlight> et un accès à la communauté
+            privée.
           </p>
         </div>
       </section>
 
       {/* Grid */}
-      <section className="bg-ink-soft py-20">
+      <section className="pb-20">
         <div className="container-x">
           <div className="grid gap-6 md:grid-cols-3">
             {formations.map((f, i) => (
@@ -70,21 +71,18 @@ export default function FormationsPage() {
       </section>
 
       {/* Comparison table */}
-      <section className="bg-cream py-28 text-ink">
+      <section className="border-t border-ink/10 bg-white py-28 text-ink">
         <div className="container-x">
           <SectionHeader
             tag="Comparatif"
             title={
               <>
-                Sous-location, conciergerie, cleaning :{" "}
-                <span className="bg-brand-gradient bg-clip-text text-transparent">
-                  laquelle est faite pour toi ?
-                </span>
+                Sous-location, conciergerie, cleaning : laquelle est faite <Highlight>pour toi</Highlight> ?
               </>
             }
           />
 
-          <div className="mt-14 overflow-x-auto rounded-3xl border border-ink/10 bg-white">
+          <Reveal className="mt-14 overflow-x-auto rounded-3xl border border-ink/10 bg-white shadow-[0_6px_0_rgba(26,26,26,0.06)]">
             <table className="w-full min-w-[780px] text-sm">
               <thead>
                 <tr className="border-b border-ink/10 bg-ink text-white">
@@ -108,7 +106,7 @@ export default function FormationsPage() {
                     {row.values.map((v, i) => (
                       <td key={i} className="p-5 text-ink/75">
                         {v === true ? (
-                          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-green/15 text-brand-green">
+                          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-green/15 text-brand-dark">
                             <Check size={16} />
                           </span>
                         ) : v === false ? (
@@ -124,40 +122,41 @@ export default function FormationsPage() {
                 ))}
               </tbody>
             </table>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Super BNB Academy banner */}
-      <section className="relative overflow-hidden bg-auto-navy py-16 font-poppins">
-        <div className="dot-grid-mint pointer-events-none absolute inset-0 [background-size:32px_32px]" />
-        <div className="pointer-events-none absolute -right-20 top-0 h-[300px] w-[300px] rounded-full bg-auto-mint/20 blur-[100px]" />
-        <div className="container-x relative">
-          <div className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-white/10 bg-auto-navy-soft/50 p-8 backdrop-blur md:flex-row md:items-center md:p-10">
-            <div className="flex items-start gap-5 md:items-center">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-auto-mint text-auto-navy">
-                <Cpu size={24} strokeWidth={2.4} />
+      {/* Super BNB Academy : carte claire (le FinalCTA qui suit est déjà une carte noire) */}
+      <section className="py-20">
+        <div className="container-x">
+          <Reveal>
+            <div className="group relative flex flex-col items-start justify-between gap-6 overflow-hidden rounded-3xl border border-brand-green/30 bg-white p-8 text-ink shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5 md:flex-row md:items-center md:p-10">
+              <div className="pointer-events-none absolute -right-20 -top-20 h-[260px] w-[260px] rounded-full bg-brand-green/10 blur-[100px]" />
+              <div className="relative flex items-start gap-5 md:items-center">
+                <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-ink text-brand-green">
+                  <Cpu size={24} strokeWidth={2.4} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-dark">
+                    Programme accompagnement
+                  </p>
+                  <p className="mt-1 text-xl font-extrabold tracking-tight text-ink md:text-2xl">
+                    Tu as déjà un <Underline>logement Airbnb actif</Underline> ?
+                  </p>
+                  <p className="mt-1 text-sm text-ink/65">
+                    Découvre <span className="font-bold text-ink">Super BNB Academy</span> — le programme
+                    30 jours pour automatiser ton Airbnb.
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-auto-mint">
-                  Programme accompagnement
-                </p>
-                <p className="mt-1 text-xl font-extrabold tracking-tight text-white md:text-2xl">
-                  Tu as déjà un logement Airbnb actif ?
-                </p>
-                <p className="mt-1 text-sm text-white/65">
-                  Découvre <span className="text-white">Super BNB Academy</span> — le programme
-                  30 jours pour automatiser ton Airbnb.
-                </p>
-              </div>
+              <Link
+                href="/super-bnb-academy"
+                className="relative inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-bold text-white shadow-[0_6px_0_#1A6B33] transition-all hover:gap-3 hover:shadow-[0_8px_0_#2DB84B]"
+              >
+                Découvrir le programme <ArrowRight size={14} />
+              </Link>
             </div>
-            <Link
-              href="/super-bnb-academy"
-              className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-auto-mint px-6 py-3.5 text-sm font-bold text-auto-navy transition-all hover:scale-[1.03] hover:shadow-glow-mint"
-            >
-              Découvrir le programme <ArrowRight size={14} />
-            </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 

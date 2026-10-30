@@ -16,12 +16,8 @@ export default async function RecentContent() {
       <div className="container-x">
         <SectionHeader
           tag="En vidéo"
-          title={
-            <>
-              Nos derniers posts,{" "}
-              <span className="bg-brand-gradient bg-clip-text text-transparent">en direct.</span>
-            </>
-          }
+          title="Nos derniers posts, en"
+          underline="direct."
           subtitle="Ce qu'on partage cette semaine sur YouTube et Instagram."
         />
 
@@ -32,7 +28,7 @@ export default async function RecentContent() {
                 href={v.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-ink/10 bg-ink"
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-ink shadow-[0_6px_0_rgba(26,26,26,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
               >
                 <div className="relative aspect-[9/13]">
                   <Image
@@ -59,14 +55,14 @@ export default async function RecentContent() {
               href={IG_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex h-full aspect-[9/13] flex-col items-center justify-center gap-4 rounded-3xl border border-ink/10 bg-cream p-6 text-center transition-colors hover:bg-brand-green/10"
+              className="group flex h-full aspect-[9/13] flex-col items-center justify-center gap-4 rounded-3xl border border-ink/10 bg-cream p-6 text-center shadow-[0_6px_0_rgba(26,26,26,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_0_#2DB84B]"
             >
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green/15 text-brand-green ring-1 ring-brand-green/30">
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green/15 text-brand-dark ring-1 ring-brand-green/30">
                 <Instagram size={24} strokeWidth={2.2} />
               </span>
               <p className="text-sm font-bold text-ink">@rentimmo_academy</p>
               <p className="text-xs text-ink/60">Le quotidien de l'academy en coulisses.</p>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-brand-dark transition-transform group-hover:translate-x-1">
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-brand-dark transition-all group-hover:gap-2">
                 Suivre <ArrowUpRight size={12} />
               </span>
             </a>
@@ -74,7 +70,7 @@ export default async function RecentContent() {
         </div>
 
         <div className="mt-8 flex justify-center">
-          <Link href={YT_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-dark">
+          <Link href={YT_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost-dark hover:gap-3">
             <Youtube size={16} /> Voir toutes nos vidéos
           </Link>
         </div>
