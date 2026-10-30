@@ -47,7 +47,7 @@ export default function CGVPage() {
         Conformément à l'article L221-18 du Code de la consommation, l'Apprenant dispose d'un délai de{" "}
         <strong>14 jours calendaires</strong> à compter de la date de souscription pour se rétracter, sans
         motif à fournir. La demande de rétractation doit être adressée par email à{" "}
-        <a href="mailto:rentimmoacademy@gmail.com">rentimmoacademy@gmail.com</a>.
+        <a href="mailto:contact@rentimmoacademy.fr">contact@rentimmoacademy.fr</a>.
       </p>
       <p>
         En cas de rétractation valide, le remboursement intégral est effectué sous 14 jours par le même

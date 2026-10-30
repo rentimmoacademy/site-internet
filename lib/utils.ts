@@ -10,7 +10,7 @@ export const SITE = {
   tagline: "L'académie qui forme les pros de la LCD",
   url: "https://www.rentimmoacademy.fr",
   whatsapp: "33600000000",
-  email: "rentimmoacademy@gmail.com",
+  email: "contact@rentimmoacademy.fr",
   calBooking: "https://cal.com/rentimmoacademy/appel-strategique",
   socials: {
     instagram: "https://instagram.com/rentimmo_academy",

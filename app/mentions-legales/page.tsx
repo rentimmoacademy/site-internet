@@ -18,11 +18,13 @@ export default function MentionsLegalesPage() {
         <br />
         SIREN : 979190071
         <br />
-        Numéro de TVA intracommunautaire : [à compléter]
+        SIRET du siège : 979 190 071 00014
+        <br />
+        Numéro de TVA intracommunautaire : non applicable (aucun numéro de TVA intracommunautaire valide)
         <br />
         Directeur de la publication : Marwan Afassi
         <br />
-        Email : rentimmoacademy@gmail.com
+        Email : contact@rentimmoacademy.fr
       </p>
 
       <h2>Hébergeur</h2>

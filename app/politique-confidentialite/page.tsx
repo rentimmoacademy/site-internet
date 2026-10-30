@@ -15,7 +15,7 @@ export default function PolitiqueConfidentialitePage() {
       <h2>1. Responsable du traitement</h2>
       <p>
         Le responsable du traitement est <strong>Rentimmo Academy</strong>, [adresse à compléter], joignable
-        à <a href="mailto:rentimmoacademy@gmail.com">rentimmoacademy@gmail.com</a>.
+        à <a href="mailto:contact@rentimmoacademy.fr">contact@rentimmoacademy.fr</a>.
       </p>
 
       <h2>2. Données collectées</h2>
@@ -60,7 +60,7 @@ export default function PolitiqueConfidentialitePage() {
       <p>
         Conformément au RGPD, vous disposez des droits d'accès, de rectification, d'effacement, de
         limitation, de portabilité et d'opposition. Vous pouvez les exercer à tout moment en écrivant à{" "}
-        <a href="mailto:rentimmoacademy@gmail.com">rentimmoacademy@gmail.com</a>.
+        <a href="mailto:contact@rentimmoacademy.fr">contact@rentimmoacademy.fr</a>.
       </p>
       <p>
         Vous pouvez également introduire une réclamation auprès de la CNIL (
