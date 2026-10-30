@@ -2,6 +2,7 @@ import Hero from "@/components/sections/Hero";
 import SocialProof from "@/components/sections/SocialProof";
 import FormationsGrid from "@/components/sections/FormationsGrid";
 import SuperBnbCard from "@/components/SuperBnbCard";
+import StudentJourney from "@/components/sections/StudentJourney";
 import Results from "@/components/sections/Results";
 import PropertiesShowcase from "@/components/sections/PropertiesShowcase";
 import WhyRentimmo from "@/components/sections/WhyRentimmo";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <SocialProof />
       <FormationsGrid />
       <SuperBnbCard />
+      <StudentJourney />
       <Results />
       <PropertiesShowcase />
       <WhyRentimmo />

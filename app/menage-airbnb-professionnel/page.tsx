@@ -11,12 +11,12 @@ const SITE = "https://www.rentimmoacademy.fr";
 const URL = `${SITE}/menage-airbnb-professionnel`;
 
 export const metadata: Metadata = {
-  title: "BNB Cleaning : devenir cleaner Airbnb pro en 2026 (tarifs, statut)",
+  title: "Ménage Airbnb professionnel : devenir cleaner pro en 2026 (tarifs, statut)",
   description:
     "BNB Cleaning (nettoyage Airbnb pro) : tarifs par rotation, statut auto-entrepreneur, standards hôteliers, trouver tes premiers clients conciergeries. Guide complet 2026 — Rentimmo Academy.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "BNB Cleaning : devenir cleaner Airbnb pro en 2026",
+    title: "Ménage Airbnb professionnel : devenir cleaner pro en 2026",
     description:
       "Tarifs, statut, standards hôteliers, premiers clients. Le guide de la Cleaning BNB Academy (Rentimmo Academy) pour lancer ton activité en 2026.",
     url: URL,
@@ -31,7 +31,7 @@ const FAQS = [
   },
   {
     q: "Quel statut juridique pour un cleaner Airbnb ?",
-    a: "Auto-entrepreneur (régime micro-entreprise) pour démarrer : créé en 24h en ligne, gratuit, charges allégées (~22% URSSAF). Code APE 8121Z (Nettoyage courant des bâtiments) ou 9603Z (Services personnels). À partir de 35K€ de CA/an : passage en EURL ou SASU avec choix IR/IS.",
+    a: "Auto-entrepreneur (régime micro-entreprise) pour démarrer : créé en 24h en ligne, gratuit, charges proportionnelles au chiffre d'affaires (taux à vérifier sur autoentrepreneur.urssaf.fr). Code APE 8121Z (Nettoyage courant des bâtiments) ou 9603Z (Services personnels). À partir de 35K€ de CA/an : passage en EURL ou SASU avec choix IR/IS.",
   },
   {
     q: "Combien on facture une rotation de ménage Airbnb ?",
@@ -39,7 +39,7 @@ const FAQS = [
   },
   {
     q: "Combien on gagne en faisant cleaner Airbnb à temps plein ?",
-    a: "À 60€ moyenne par rotation et 4 rotations/jour ouvrable : ~6 000€ CA brut mensuel. Net après URSSAF + frais véhicule + produits : 3 500-4 500€. Au-delà tu recrutes une équipe : 3 cleaners externalisés à 30% commission = potentiel 10-15K€/mois nets sans toucher un balai.",
+    a: "À 60€ moyenne par rotation et 4 rotations/jour ouvrable : ~6 000€ CA brut mensuel. Il faut ensuite déduire cotisations, frais de véhicule et produits : le net dépend de ta situation. Exemple illustratif, pas une promesse de revenu. Au-delà, tu peux recruter une équipe et passer du terrain au pilotage.",
   },
   {
     q: "Comment trouver mes premiers clients ?",
@@ -167,7 +167,7 @@ export default function MenageAirbnbProfessionnelPage() {
             {
               icon: Star,
               title: "Évolution rapide",
-              desc: "Mois 1-3 : tu fais toi-même. Mois 4-6 : tu recrutes 1 cleaner externe à 30% commission. Mois 12 : équipe de 3-4 cleaners, tu pilotes, tu gagnes 8-12K€/mois sans toucher un balai.",
+              desc: "Mois 1-3 : tu fais toi-même. Mois 4-6 : tu recrutes 1 cleaner externe à 30% commission. Mois 12 : équipe de 3-4 cleaners, tu pilotes davantage et tu interviens moins sur le terrain (résultats variables selon l'exécution).",
             },
           ].map((b) => {
             const Icon = b.icon;
@@ -218,7 +218,7 @@ export default function MenageAirbnbProfessionnelPage() {
           </table>
         </div>
         <p className="mt-4 text-sm italic text-ink-muted">
-          Net après charges = CA − URSSAF − véhicule (carburant + amortissement) − produits ménagers − assurance pro − sous-traitance cleaners. Hors impôt sur le revenu. Médiane sur biens 60-110€/nuit.
+          Simulation illustrative, sans garantie de résultat. Net après charges = CA − URSSAF − véhicule (carburant + amortissement) − produits ménagers − assurance pro − sous-traitance cleaners. Hors impôt sur le revenu. Médiane sur biens 60-110€/nuit.
         </p>
       </LandingSection>
 

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "La sous-location professionnelle est-elle légale en France ?",
-    a: "Oui, à 100% — à condition d'avoir l'accord ÉCRIT du propriétaire et de respecter les plafonds de loyer fixés par le Code civil. Sans accord écrit, vous risquez une résiliation immédiate du bail principal et le remboursement de tous les loyers perçus au propriétaire.",
+    a: "Oui, à condition d'avoir l'accord ÉCRIT du propriétaire (idéalement un bail de sous-location professionnelle ou une clause dédiée) et de respecter le cadre légal applicable à ton bail. Vérifie ta situation auprès d'un professionnel du droit. Sans accord écrit, vous risquez une résiliation immédiate du bail principal et le remboursement de tous les loyers perçus au propriétaire.",
   },
   {
     q: "Combien faut-il pour démarrer en sous-location ?",
@@ -102,7 +102,7 @@ export default function SousLocationProfessionnellePage() {
     estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "3500" },
     inLanguage: "fr-FR",
     step: [
-      { "@type": "HowToStep", position: 1, name: "Comprendre le cadre légal", text: "Maîtriser les 3 clauses obligatoires (accord écrit du propriétaire, plafond de loyer, déclaration mairie). C'est ton garde-fou contre la résiliation du bail." },
+      { "@type": "HowToStep", position: 1, name: "Comprendre le cadre légal", text: "Maîtriser les 3 clauses obligatoires (accord écrit du propriétaire, clauses du bail, démarches en mairie). C'est ton garde-fou contre la résiliation du bail." },
       { "@type": "HowToStep", position: 2, name: "Trouver le bon propriétaire", text: "3 canaux qui marchent : LeBonCoin annonces > 30 jours, agences immobilières spécialisées propriétaires-bailleurs, bouche-à-oreille MRE. Le pitch fait toute la différence." },
       { "@type": "HowToStep", position: 3, name: "Visiter et négocier le bail", text: "Checklist de visite en 12 points, négociation du loyer pour garder une marge confortable (objectif : revenus Airbnb bruts ≥ 2x loyer payé), rédaction du bail avec clauses sécurisantes." },
       { "@type": "HowToStep", position: 4, name: "Ameubler et lancer l'annonce", text: "Budget ameublement optimisé (2 500-3 500 € pour un T2). Photos pro, titre vendeur, description SEO Airbnb. L'annonce doit cartonner dès la mise en ligne." },
@@ -134,7 +134,7 @@ export default function SousLocationProfessionnellePage() {
               La <strong>sous-location professionnelle</strong> (on parle aussi de <strong>sous-loueur professionnel</strong> ou <strong>sous-loueur pro</strong>) consiste à louer un bien à un propriétaire (ton bailleur), puis à le re-louer en courte durée sur Airbnb / Booking / Vrbo avec son accord écrit. Tu encaisses la différence entre le loyer que tu paies au propriétaire et les revenus Airbnb générés.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink">
-              C'est un modèle <strong>100% légal en France</strong> à condition de respecter 3 règles dans ton <strong>bail de sous-location professionnelle Airbnb</strong> : accord écrit du bailleur, plafond de loyer fixé par le Code civil, et déclaration fiscale en LMNP.
+              C'est un modèle <strong>légal en France</strong> à condition de respecter 3 règles dans ton <strong>bail de sous-location professionnelle Airbnb</strong> : accord écrit du bailleur, clauses du bail adaptées à la courte durée, et déclaration fiscale correcte de tes revenus.
             </p>
           </div>
           <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-ink/5">
@@ -243,7 +243,7 @@ export default function SousLocationProfessionnellePage() {
       >
         <ol className="space-y-6">
           {[
-            { num: "01", t: "Comprendre le cadre légal", d: "Maîtriser les 3 clauses obligatoires, le plafond de loyer, et les obligations en mairie. C'est ton garde-fou contre la résiliation." },
+            { num: "01", t: "Comprendre le cadre légal", d: "Maîtriser l'accord écrit, les clauses du bail et les obligations en mairie. C'est ton garde-fou contre la résiliation." },
             { num: "02", t: "Trouver le bon propriétaire", d: "3 canaux qui marchent vraiment : LeBonCoin, agences immobilières spécialisées propriétaires-bailleurs, et le bouche-à-oreille MRE. Le pitch fait toute la différence." },
             { num: "03", t: "Visiter et négocier le bail", d: "Checklist de visite en 12 points, négociation du loyer pour garder une marge confortable (objectif : Airbnb brut ≥ 2x loyer payé), rédaction du bail avec clauses sécurisantes." },
             { num: "04", t: "Ameubler et lancer l'annonce", d: "Budget ameublement optimisé (souvent 2 500-3 500 € pour un T2). Photos pro, titre vendeur, description SEO Airbnb. L'annonce doit cartonner dès la mise en ligne." },
