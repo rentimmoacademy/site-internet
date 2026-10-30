@@ -351,19 +351,27 @@ export default function MasterclassPage() {
         </section>
 
         {/* BANDE NOIRE : chiffres clés */}
-        <section className="bg-ink px-4 py-10 text-white sm:px-6 md:py-12">
-          <div className="mx-auto grid max-w-5xl grid-cols-2 gap-x-4 gap-y-8 text-center md:grid-cols-4">
-            {[
-              { v: <CountUp to={7} prefix="+" suffix=" ans" />, l: "d'expérience terrain" },
-              { v: <CountUp to={697} prefix="+" suffix="K€" />, l: "générés sur Airbnb" },
-              { v: "FR + 🌍", l: "France et étranger" },
-              { v: "QUALIOPI", l: "organisme certifié" },
-            ].map((s, i) => (
-              <Reveal key={s.l} index={i}>
-                <div className="text-[1.6rem] font-extrabold tracking-[-0.02em] text-brand-green md:text-3xl">{s.v}</div>
-                <div className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-white/60">{s.l}</div>
-              </Reveal>
-            ))}
+        <section className="overflow-hidden border-b-4 border-brand-green bg-ink py-8 text-white md:py-10">
+          <div className="[mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+            <div className="flex w-max animate-marquee items-center motion-reduce:animate-none hover:[animation-play-state:paused]" style={{ animationDuration: "30s" }}>
+              {[0, 1].map((dup) =>
+                [
+                  { v: "+7 ans", l: "d'expérience terrain" },
+                  { v: "+697K€", l: "générés sur Airbnb" },
+                  { v: "FR + 🌍", l: "France et étranger" },
+                  { v: "QUALIOPI", l: "organisme certifié" },
+                  { v: "100 % halal", l: "zéro riba" },
+                ].map((s) => (
+                  <div key={`${dup}-${s.l}`} aria-hidden={dup === 1 || undefined} className="flex shrink-0 items-center gap-10 pr-10 md:gap-16 md:pr-16">
+                    <div className="text-center">
+                      <div className="whitespace-nowrap text-[1.6rem] font-extrabold tracking-[-0.02em] text-brand-green md:text-3xl">{s.v}</div>
+                      <div className="mt-1 whitespace-nowrap text-[11px] font-semibold uppercase tracking-wider text-white/60">{s.l}</div>
+                    </div>
+                    <span className="h-2 w-2 rounded-full bg-brand-green" aria-hidden />
+                  </div>
+                ))
+              )}
+            </div>
           </div>
         </section>
 
