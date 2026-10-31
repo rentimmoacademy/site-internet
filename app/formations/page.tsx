@@ -53,7 +53,7 @@ export default function FormationsPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-ink/70">
             Choisis le modèle qui te correspond.{" "}
-            <Highlight>Chaque formation inclut un module Bonus Maroc</Highlight> et un accès à la communauté
+            Chaque formation inclut <Highlight>un module Bonus Maroc</Highlight> et un accès à la communauté
             privée.
           </p>
         </div>

@@ -31,6 +31,12 @@ const config: Config = {
           mint: "#2DB84B",
           "mint-light": "#5FD87A",
         },
+        // Super BNB Academy : couleur propre (vert lime + noir). Lime = sur fond noir ou en fond avec texte noir.
+        lime: {
+          DEFAULT: "#B6F23A",
+          dark: "#8BC21A",
+          deep: "#5E8A0A",
+        },
         alert: "#C0392B",
         warning: "#E6A817",
         info: "#0095F6",

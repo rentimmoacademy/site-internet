@@ -115,12 +115,12 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
       onClick={handleClose}
     >
       <div
-        className="relative w-full sm:max-w-lg bg-white border border-ink/10 sm:rounded-3xl rounded-t-3xl overflow-hidden shadow-glow-mint font-poppins"
+        className="relative w-full sm:max-w-lg bg-white border border-ink/10 sm:rounded-3xl rounded-t-3xl overflow-hidden shadow-[0_10px_0_-2px_#5E8A0A]"
         style={{ maxHeight: "92vh" }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Dot grid */}
-        <div className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(45,184,75,0.10)_1px,transparent_1px)] [background-size:28px_28px]" />
+        <div className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(94,138,10,0.10)_1px,transparent_1px)] [background-size:28px_28px]" />
 
         {/* Sticky close */}
         <div className="sticky top-0 z-10 flex justify-end p-4 bg-white/90 backdrop-blur-sm">
@@ -138,7 +138,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
           {/* ── FORM ── */}
           {step === "form" && (
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-auto-mint/30 bg-auto-mint/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.25em] text-[#1A6B33] mb-5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-lime-deep/30 bg-lime/25 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.25em] text-ink mb-5">
                 <Sparkles size={10} /> Gratuit · Résultat en 60 sec
               </div>
               <h2 className="text-2xl font-extrabold text-ink tracking-tight leading-tight mb-2">
@@ -153,7 +153,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
                   <button key={p} onClick={() => setPlatform(p)}
                     className={`flex-1 py-2.5 rounded-xl font-semibold text-sm border transition-all ${
                       platform === p
-                        ? "border-auto-mint/60 bg-auto-mint/15 text-[#1A6B33]"
+                        ? "border-lime-deep bg-lime text-ink"
                         : "border-ink/10 bg-cream text-ink/55 hover:border-ink/25"
                     }`}>
                     {p === "airbnb" ? "🏠 Airbnb" : "🌐 Booking.com"}
@@ -161,7 +161,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
                 ))}
               </div>
 
-              <div className="flex gap-2 bg-cream border border-ink/15 rounded-xl p-1.5 focus-within:border-auto-mint/40 transition-colors mb-3">
+              <div className="flex gap-2 bg-cream border border-ink/15 rounded-xl p-1.5 focus-within:border-lime-deep/60 transition-colors mb-3">
                 <input
                   type="url" value={url} onChange={(e) => setUrl(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && launch()}
@@ -170,7 +170,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
                   autoFocus
                 />
                 <button onClick={launch} disabled={!url.trim()}
-                  className="bg-auto-mint hover:brightness-110 disabled:opacity-40 text-auto-navy font-bold text-sm px-5 py-2.5 rounded-lg transition-all shrink-0">
+                  className="bg-lime hover:bg-lime-dark disabled:opacity-40 text-ink font-bold text-sm px-5 py-2.5 rounded-lg transition-all shrink-0">
                   Analyser →
                 </button>
               </div>
@@ -183,7 +183,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
             <div className="flex flex-col items-center justify-center py-10 text-center">
               <div className="relative w-16 h-16 mb-6">
                 <div className="absolute inset-0 rounded-full border-4 border-ink/[0.06]" />
-                <div className="absolute inset-0 rounded-full border-4 border-t-auto-mint border-r-transparent border-b-transparent border-l-transparent animate-spin" />
+                <div className="absolute inset-0 rounded-full border-4 border-t-lime-deep border-r-transparent border-b-transparent border-l-transparent animate-spin" />
               </div>
               <p className="text-ink font-extrabold text-lg mb-1">{msg || "Analyse en cours…"}</p>
               <p className="text-ink/55 text-sm">~60 secondes</p>
@@ -193,8 +193,8 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
                   { label: "Benchmark concurrents", done: false, active: msg.includes("concurrent") },
                   { label: "Analyse IA", done: false, active: msg.includes("IA") || msg.includes("nal") },
                 ].map((s) => (
-                  <div key={s.label} className={`flex items-center gap-2.5 text-sm transition-colors ${s.active ? "text-[#1A6B33] font-semibold" : s.done ? "text-ink/40 line-through" : "text-ink/40"}`}>
-                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${s.active ? "bg-auto-mint animate-pulse" : s.done ? "bg-ink/25" : "bg-ink/15"}`} />
+                  <div key={s.label} className={`flex items-center gap-2.5 text-sm transition-colors ${s.active ? "text-ink font-bold" : s.done ? "text-ink/40 line-through" : "text-ink/40"}`}>
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${s.active ? "bg-lime-deep animate-pulse" : s.done ? "bg-ink/25" : "bg-ink/15"}`} />
                     {s.label}
                   </div>
                 ))}
@@ -232,7 +232,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
               {/* Top actions */}
               {topActions.length > 0 && (
                 <div className="mb-5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A6B33] mb-3">Points critiques</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink/70 mb-3">Points critiques</p>
                   <div className="space-y-2">
                     {topActions.map((a, i) => (
                       <div key={i} className="flex items-start gap-3 bg-cream border border-ink/10 rounded-xl p-3">
@@ -246,8 +246,8 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
 
               {/* Gain banner */}
               {(audit.revenueProjection?.annualGain ?? 0) > 0 && (
-                <div className="bg-auto-mint/10 border border-auto-mint/25 rounded-2xl p-4 mb-6 text-center">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A6B33] mb-1">Gain potentiel estimé</p>
+                <div className="bg-lime/20 border border-lime-deep/25 rounded-2xl p-4 mb-6 text-center">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink/70 mb-1">Gain potentiel estimé</p>
                   <p className="text-3xl font-extrabold text-ink tracking-tight">
                     +{audit.revenueProjection.annualGain.toLocaleString("fr-FR")} €/an
                   </p>
@@ -260,7 +260,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
               {/* CTA */}
               <button
                 onClick={() => setStep("booking")}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-auto-mint px-6 py-4 font-bold text-auto-navy hover:brightness-110 transition-all hover:shadow-glow-mint text-sm"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-lime px-6 py-4 font-bold text-ink hover:bg-lime-dark transition-all hover:shadow-[0_6px_0_#5E8A0A] text-sm"
               >
                 <CalendarCheck size={16} /> Réserve ton audit gratuit, on corrige ça ensemble
               </button>
@@ -275,7 +275,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
                 className="text-ink/55 hover:text-ink text-sm font-semibold mb-4 flex items-center gap-1 transition-colors">
                 ← Retour aux résultats
               </button>
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A6B33] mb-4">Choisis ton créneau</p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink/70 mb-4">Choisis ton créneau</p>
               <iframe
                 src="https://cal.com/rentimmoacademy/superbnbacademy?embed=true"
                 className="w-full rounded-2xl border border-ink/10 bg-white"

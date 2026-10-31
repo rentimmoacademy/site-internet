@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./Logo";
@@ -27,6 +28,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [guidesOpen, setGuidesOpen] = useState(false);
+  // Super BNB Academy : pages noires (lime + noir) → menu clair sur fond sombre.
+  const pathname = usePathname() ?? "";
+  const sba = pathname.startsWith("/super-bnb-academy");
+  const linkCls = sba
+    ? "text-white/80 hover:text-lime"
+    : "text-ink/70 hover:text-ink";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -50,11 +57,15 @@ export default function Navbar() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-          scrolled ? "bg-cream/85 backdrop-blur-xl border-b border-ink/5" : "bg-transparent"
+          scrolled
+            ? sba
+              ? "bg-ink/85 backdrop-blur-xl border-b border-white/10"
+              : "bg-cream/85 backdrop-blur-xl border-b border-ink/5"
+            : "bg-transparent"
         )}
       >
         <div className="container-x flex h-20 items-center justify-between">
-          <Logo dark />
+          <Logo dark={!sba} />
 
           <nav className="hidden items-center gap-7 md:flex">
             <div
@@ -62,7 +73,7 @@ export default function Navbar() {
               onMouseEnter={() => setGuidesOpen(true)}
               onMouseLeave={() => setGuidesOpen(false)}
             >
-              <button className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/70 transition-colors hover:text-ink">
+              <button className={cn("inline-flex items-center gap-1.5 text-sm font-semibold transition-colors", linkCls)}>
                 Guides
               </button>
               <AnimatePresence>
@@ -93,11 +104,11 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-ink/70 transition-colors hover:text-ink"
+                className={cn("group inline-flex items-center gap-1.5 text-sm font-semibold transition-colors", linkCls)}
               >
                 {l.label}
                 {l.badge && (
-                  <span className="rounded-full bg-auto-mint px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest text-auto-navy">
+                  <span className={cn("rounded-full px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest", sba ? "bg-lime text-ink" : "bg-auto-mint text-auto-navy")}>
                     {l.badge}
                   </span>
                 )}
@@ -108,7 +119,10 @@ export default function Navbar() {
           <div className="hidden md:block">
             <Link
               href="/formations"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-5 py-2.5 text-sm font-bold text-white transition-transform hover:scale-[1.03]"
+              className={cn(
+                "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition-transform hover:scale-[1.03]",
+                sba ? "border border-white/25 text-white hover:border-lime" : "bg-brand-gradient text-white"
+              )}
             >
               Voir les formations
               <ArrowRight size={14} />
@@ -118,7 +132,10 @@ export default function Navbar() {
           <button
             onClick={() => setOpen(true)}
             aria-label="Menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 md:hidden"
+            className={cn(
+              "inline-flex h-10 w-10 items-center justify-center rounded-full border md:hidden",
+              sba ? "border-white/20 text-white" : "border-ink/10"
+            )}
           >
             <Menu size={18} />
           </button>
@@ -132,28 +149,28 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-cream md:hidden"
+            className={cn("fixed inset-0 z-[60] md:hidden", sba ? "bg-ink text-white" : "bg-cream")}
           >
             <div className="container-x flex h-20 items-center justify-between">
-              <Logo dark />
+              <Logo dark={!sba} />
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Fermer"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/10"
+                className={cn("inline-flex h-10 w-10 items-center justify-center rounded-full border", sba ? "border-white/20" : "border-ink/10")}
               >
                 <X size={18} />
               </button>
             </div>
             <nav className="container-x mt-10 flex flex-col gap-4">
-              <div className="border-b border-ink/10 py-5">
-                <span className="text-xs font-bold uppercase tracking-widest text-ink/40">Guides</span>
+              <div className={cn("border-b py-5", sba ? "border-white/10" : "border-ink/10")}>
+                <span className={cn("text-xs font-bold uppercase tracking-widest", sba ? "text-white/50" : "text-ink/40")}>Guides</span>
                 <div className="mt-3 flex flex-col gap-3">
                   {guides.map((g) => (
                     <Link
                       key={g.href}
                       href={g.href}
                       onClick={() => setOpen(false)}
-                      className="text-lg font-bold tracking-tight text-ink/90"
+                      className={cn("text-lg font-bold tracking-tight", sba ? "text-white/90" : "text-ink/90")}
                     >
                       {g.label}
                     </Link>
@@ -165,11 +182,11 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between border-b border-ink/10 py-5 text-3xl font-extrabold tracking-tight"
+                  className={cn("flex items-center justify-between border-b py-5 text-3xl font-extrabold tracking-tight", sba ? "border-white/10" : "border-ink/10")}
                 >
                   <span>{l.label}</span>
                   {l.badge && (
-                    <span className="rounded-full bg-auto-mint px-2 py-1 text-[10px] font-black uppercase tracking-widest text-auto-navy">
+                    <span className={cn("rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-widest", sba ? "bg-lime text-ink" : "bg-auto-mint text-auto-navy")}>
                       {l.badge}
                     </span>
                   )}
@@ -178,7 +195,10 @@ export default function Navbar() {
               <Link
                 href="/formations"
                 onClick={() => setOpen(false)}
-                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-6 py-4 font-bold text-white"
+                className={cn(
+                  "mt-6 inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 font-bold",
+                  sba ? "bg-lime text-ink" : "bg-brand-gradient text-white"
+                )}
               >
                 Voir les formations <ArrowRight size={16} />
               </Link>

@@ -7,7 +7,14 @@ import type { ReactNode } from "react";
  * Highlighter-stroke effect (signature maxencetison.fr) : une bande de surlignage
  * se dessine derrière le texte au scroll, de gauche à droite.
  */
-export default function Highlight({ children }: { children: ReactNode }) {
+export default function Highlight({
+  children,
+  color = "green",
+}: {
+  children: ReactNode;
+  /** "lime" = variante Super BNB Academy (surligneur lime, à utiliser sur fond noir ou avec texte noir). */
+  color?: "green" | "lime";
+}) {
   return (
     <span className="relative inline whitespace-nowrap">
       <motion.span
@@ -16,7 +23,7 @@ export default function Highlight({ children }: { children: ReactNode }) {
         viewport={{ once: true, margin: "-50px 0px" }}
         transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         style={{ transformOrigin: "0% 50%" }}
-        className="absolute inset-x-0 bottom-[0.05em] top-[0.5em] -z-10 rounded-sm bg-brand-green/25"
+        className={`absolute inset-x-0 bottom-[0.05em] top-[0.5em] -z-10 rounded-sm ${color === "lime" ? "bg-lime/35" : "bg-brand-green/25"}`}
       />
       <span className="relative">{children}</span>
     </span>
