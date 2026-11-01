@@ -11,6 +11,7 @@ export type FormationTier = {
 export type Formation = {
   slug: string;
   name: string;
+  alternateNames: string[];
   tagline: string;
   description: string;
   keyPoints: string[];
@@ -32,6 +33,7 @@ export const formations: Formation[] = [
   {
     slug: "sous-location",
     name: "Sous-Location Academy",
+    alternateNames: ["Sous-location Academy", "Sous Location Academy", "Formation sous-location Rentimmo"],
     tagline: "Génère des revenus Airbnb sans crédit, sans apport",
     description:
       "La formation terrain la plus complète sur la sous-location professionnelle en France & au Maroc. 6+ ans d'expérience, des dizaines de sous-locs gérées, tous les documents légaux inclus. Lance ton 1er logement en 30 jours.",
@@ -112,6 +114,7 @@ export const formations: Formation[] = [
   {
     slug: "conciergerie-bnb",
     name: "Conciergerie BNB Academy",
+    alternateNames: ["Conciergerie BnB Academy", "Conciergerie Airbnb Academy", "Formation conciergerie Rentimmo"],
     tagline: "Lance ta conciergerie Airbnb, signe tes premiers mandats",
     description:
       "Gère les logements des autres et encaisse 15-20% de commission par réservation. Formation 100% terrain : prospection, mandats, automatisation, scaling. Bonus Maroc inclus — le seul marché inexploité par tes concurrents.",
@@ -194,6 +197,7 @@ export const formations: Formation[] = [
   {
     slug: "cleaning-bnb",
     name: "Cleaning BNB Academy",
+    alternateNames: ["Cleaning BnB Academy", "Clean BnB Academy", "BNB Cleaning Academy", "Formation ménage Airbnb Rentimmo"],
     tagline: "La 1ère formation française dédiée au cleaner BNB pro",
     description:
       "La seule formation française 100% dédiée au métier de prestataire ménage Airbnb. Lance ton activité avec les standards hôteliers, signe tes premiers contrats récurrents et bâtis ton équipe — sans capital de départ.",

@@ -24,7 +24,7 @@ export default function MentionsLegalesPage() {
         <br />
         Directeur de la publication : Marwan Afassi
         <br />
-        Email : contact@rentimmoacademy.fr
+        Email : <a href="mailto:contact@rentimmoacademy.fr">contact@rentimmoacademy.fr</a>
       </p>
 
       <h2>Hébergeur</h2>

@@ -148,7 +148,7 @@ const CATEGORIES: Category[] = [
       },
       {
         q: "Rentimmo Academy, c'est fiable ?",
-        a: "Rentimmo Academy est fondée par Marwan Afassi, ingénieur industriel, MRE de retour au Maroc, propriétaire Airbnb lui-même avec plus de 1 196 évaluations et 4,93/5 de note. Il a formé des dizaines d'étudiants en sous-location et conciergerie, en France comme au Maroc, avec un accompagnement pratique et non théorique.",
+        a: "Rentimmo Academy est fondée par Marwan Afassi, ingénieur industriel, MRE de retour au Maroc, propriétaire Airbnb lui-même avec plus de 1 196 évaluations et 4,93/5 de note. Il accompagne personnellement ses élèves en sous-location, conciergerie et ménage Airbnb, en France comme au Maroc, avec des lives chaque semaine et un accompagnement pratique, pas théorique.",
       },
     ],
   },

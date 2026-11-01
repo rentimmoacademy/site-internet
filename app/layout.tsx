@@ -92,7 +92,7 @@ const organizationSchema = {
   "@type": "EducationalOrganization",
   "@id": `${SITE}/#organization`,
   name: "Rentimmo Academy",
-  alternateName: "Rentimmo",
+  alternateName: ["Rentimmo", "Rentimmo Academie"],
   url: SITE,
   logo: `${SITE}/icon.svg`,
   image: `${SITE}/og-image.jpg`,
@@ -144,16 +144,31 @@ const organizationSchema = {
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Catalogue des formations Rentimmo Academy",
-    itemListElement: formations.map((f) => ({
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Course",
-        name: f.name,
-        description: f.description,
-        url: `${SITE}/formations/${f.slug}`,
-        provider: { "@id": `${SITE}/#organization` },
+    itemListElement: [
+      ...formations.map((f) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Course",
+          name: f.name,
+          alternateName: f.alternateNames,
+          description: f.description,
+          url: `${SITE}/formations/${f.slug}`,
+          provider: { "@id": `${SITE}/#organization` },
+        },
+      })),
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Course",
+          name: "Super BnB Academy",
+          alternateName: ["Super BNB Academy", "SuperBnb Academy", "Super Airbnb Academy"],
+          description:
+            "Accompagnement 30 jours pour hôtes Airbnb actifs : annonces, prix par logement, channel manager, messagerie automatique, serrure connectée, site de réservation directe.",
+          url: `${SITE}/super-bnb-academy`,
+          provider: { "@id": `${SITE}/#organization` },
+        },
       },
-    })),
+    ],
   },
 };
 

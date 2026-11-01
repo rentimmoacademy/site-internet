@@ -21,7 +21,7 @@ const SEO_TITLE_BY_SLUG: Record<string, string> = {
 
 const SEO_DESCRIPTION_BY_SLUG: Record<string, string> = {
   "sous-location":
-    "Formation sous-location professionnelle : 8 modules, 8h, baux inclus, applicable immédiatement. 6+ ans d'expérience terrain, dizaines de sous-locs gérées. Lance ton 1er logement en 30 jours — France & Maroc.",
+    "Formation sous-location professionnelle : 6 modules, 8h, bail fourni, applicable immédiatement. +697K€ générés sur Airbnb, 7 ans de terrain. Lance ton 1er logement en 30 jours — France & Maroc.",
   "conciergerie-bnb":
     "Formation conciergerie Airbnb 100% terrain : 8 modules, 10h, statut juridique, prospection, mandats, automatisation. Signe ton 1er mandat en 30 jours. Bonus Maroc inclus.",
   "cleaning-bnb":
@@ -58,6 +58,7 @@ export default function FormationPage({ params }: { params: { slug: string } }) 
     "@context": "https://schema.org",
     "@type": "Course",
     name: formation.name,
+    alternateName: formation.alternateNames,
     description: formation.description,
     url,
     provider: { "@id": `${SITE}/#organization` },

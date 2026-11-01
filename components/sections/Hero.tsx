@@ -154,9 +154,9 @@ function Scene({ progress, depth, reduce }: { progress: MotionValue<number>; dep
       <ProofCard className="-left-8 bottom-[14%]" delay={1.9} shift={midShift} scrollY={cardsY}>
         <Users size={18} className="text-brand-green" />
         <p className="text-sm font-bold leading-tight">
-          Des dizaines d&apos;élèves
+          4,93/5 sur Airbnb
           <br />
-          <span className="font-medium text-white/60">déjà lancés</span>
+          <span className="font-medium text-white/60">près de 1 200 avis</span>
         </p>
       </ProofCard>
     </div>

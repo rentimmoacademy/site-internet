@@ -608,6 +608,7 @@ export default function SuperBnbAcademyPage() {
                 "@type": "Course",
                 "@id": "https://www.rentimmoacademy.fr/super-bnb-academy#course",
                 name: "Super BNB Academy",
+                alternateName: ["Super BnB Academy", "SuperBnb Academy", "Super Airbnb Academy"],
                 description:
                   "Programme d'accompagnement 30 jours pour hôtes Airbnb actifs. On automatise ton logement avec toi : annonce, messages, pricing, réservation directe.",
                 url: "https://www.rentimmoacademy.fr/super-bnb-academy",
