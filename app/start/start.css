@@ -1,0 +1,95 @@
+/* /start : habillage motion propre à la page « lien en bio » (charte du site : crème, vert, ink). */
+
+/* Portrait : anneau conique qui tourne + halo qui respire */
+.st-portrait { position: relative; width: 108px; height: 108px; margin: 0 auto; }
+.st-portrait-ring {
+  position: absolute; inset: -5px; border-radius: 50%;
+  background: conic-gradient(from 0deg, #1a6b33, #2db84b, #5fd87a, #b6f23a, #2db84b, #1a6b33);
+  animation: mo-spin 9s linear infinite;
+}
+.st-portrait-ring::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: #f7f6f2; }
+.st-portrait-halo {
+  position: absolute; inset: -22px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(45, 184, 75, 0.35), transparent 65%);
+  animation: mo-breathe 5s ease-in-out infinite;
+}
+.st-portrait img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 18%; background: #1a6b33; }
+.st-live {
+  position: absolute; z-index: 2; right: -4px; bottom: 6px; display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 9px 4px 8px; border-radius: 999px; background: #1a1a1a; color: #fff;
+  font-size: 10.5px; font-weight: 800; letter-spacing: 0.04em; box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.45);
+}
+
+/* Surligneur qui se dessine derrière « plus de 7 ans » (transform seulement) */
+.st-hl { position: relative; display: inline-block; white-space: nowrap; isolation: isolate; }
+.st-hl::before {
+  content: ""; position: absolute; z-index: -1; left: -0.08em; right: -0.08em; top: 0.52em; bottom: 0.04em;
+  border-radius: 4px; background: rgba(45, 184, 75, 0.28);
+  transform-origin: 0 50%; animation: st-hl 0.7s var(--mo-ease) 0.75s both;
+}
+@keyframes st-hl { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Tuiles de preuves */
+.st-proof {
+  position: relative; overflow: hidden; border-radius: 20px; background: #fff;
+  border: 1px solid rgba(26, 26, 26, 0.08); box-shadow: 0 6px 0 rgba(26, 26, 26, 0.06);
+  padding: 12px 10px 11px; text-align: center;
+}
+.st-proof--dark { background: #1a1a1a; border-color: #1a1a1a; box-shadow: 0 6px 0 #1a6b33; color: #fff; }
+.st-proof-v { display: block; white-space: nowrap; font-size: 1.32rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.st-proof-l { display: block; margin-top: 4px; font-size: 11.5px; line-height: 1.35; color: rgba(26, 26, 26, 0.6); }
+.st-proof--dark .st-proof-l { color: rgba(255, 255, 255, 0.65); }
+
+/* Cartes : survol = petite levée (propriété translate, compatible avec le tilt qui écrit transform) */
+.st-root .st-card, .st-root .st-reco { transition: transform 0.35s var(--mo-ease), translate 0.45s var(--mo-ease), box-shadow 0.45s var(--mo-ease), border-color 0.3s; }
+.st-root .st-card[data-tilting], .st-root .st-reco[data-tilting] { transition: transform 0.08s linear, translate 0.45s var(--mo-ease), box-shadow 0.45s var(--mo-ease), border-color 0.3s; }
+.st-card:active, .st-reco:active { scale: 0.985; }
+@media (hover: hover) and (pointer: fine) {
+  .st-card:hover, .st-reco:hover { translate: 0 -6px; }
+  .st-reco:hover { box-shadow: 0 14px 0 #2db84b, 0 30px 60px -30px rgba(26, 107, 51, 0.6); }
+  .st-card--dark:hover { box-shadow: 0 14px 0 #2db84b; }
+  .st-card--light:hover { box-shadow: 0 14px 0 #2db84b; border-color: rgba(45, 184, 75, 0.4); }
+}
+.st-emoji { transition: transform 0.5s var(--mo-ease); }
+.st-card:hover .st-emoji, .st-reco:hover .st-emoji { transform: rotate(-8deg) scale(1.12); }
+.st-arrow { transition: transform 0.3s var(--mo-ease); }
+.st-card:hover .st-arrow, .st-reco:hover .st-arrow { transform: translateX(4px); }
+
+/* Carte recommandée : la bordure tourne, le spotlight passe au-dessus du contenu en mode écran */
+.st-reco { --mo-radius: 24px; --mo-card-bg: #1a1a1a; border-radius: 24px; box-shadow: 0 8px 0 #1a6b33, 0 30px 60px -30px rgba(26, 107, 51, 0.6); }
+.st-reco.mo-spot::after { z-index: 3; mix-blend-mode: screen; }
+.st-reco > a { display: block; border-radius: 24px; background: #1a1a1a; color: #fff; }
+.st-badge {
+  position: absolute; top: -1px; right: 18px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 0 0 10px 10px;
+  background: #2db84b; color: #1a1a1a; font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.st-badge .mo-pulse-dot, .st-badge .mo-pulse-dot::after { background: #1a1a1a; width: 6px; height: 6px; }
+
+/* Bouton principal (magnétique + reflet) */
+.st-cta-main { box-shadow: 0 10px 24px -10px rgba(45, 184, 75, 0.85); }
+
+/* Petite flèche qui invite à descendre */
+.st-nudge { display: inline-block; animation: st-nudge 1.8s ease-in-out infinite; }
+@keyframes st-nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+/* Bandeau défilant */
+.st-marquee-item { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.88); white-space: nowrap; }
+
+/* CTA collant : version claire (crème) avec bouton vert */
+.st-root .mo-sticky { background: linear-gradient(to top, rgba(247, 246, 242, 0.97) 60%, rgba(247, 246, 242, 0)); }
+.st-sticky-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px 18px;
+  border-radius: 999px; background: #2db84b; color: #1a1a1a; font-weight: 800; font-size: 15px; text-decoration: none;
+  box-shadow: 0 6px 0 #1a6b33;
+}
+.st-sticky-btn:focus-visible, .st-card:focus-visible, .st-reco > a:focus-visible { outline: 3px solid #1a1a1a; outline-offset: 3px; }
+
+/* Mouvement réduit (iPhone de Marwan) : on garde la vie, sans grands mouvements */
+@media (prefers-reduced-motion: reduce) {
+  .st-portrait-ring { animation: mo-spin 16s linear infinite; }
+  .st-portrait-halo { animation: none; opacity: 0.8; }
+  .st-hl::before { animation: mo-fade 0.6s ease 0.6s both; }
+  .st-nudge { animation: none; }
+  .st-card, .st-card .st-emoji, .st-arrow { transition: none; }
+}

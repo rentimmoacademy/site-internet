@@ -1,12 +1,10 @@
 "use client";
 
-import { MotionConfig } from "framer-motion";
-import { ArrowRight, BadgeCheck } from "lucide-react";
+import { ArrowDown, ArrowRight, BadgeCheck, Star } from "lucide-react";
 import Logo from "@/components/layout/Logo";
-import Highlight from "@/components/ui/Highlight";
-import Reveal from "@/components/ui/Reveal";
-import { useReducedMotionAfterMount } from "@/lib/useReducedMotionAfterMount";
+import { Marquee, Motion, StickyCta, Words, delay } from "@/components/motion";
 import { trackEvent } from "@/lib/gtag";
+import "./start.css";
 
 type Path = {
   id: string;
@@ -51,142 +49,201 @@ const PATHS: Path[] = [
 // Bandeau défilant : noms des programmes (repris de la description de la page).
 const MARQUEE = ["Sous-location professionnelle", "Conciergerie Airbnb", "Ménage BNB", "Super BNB Academy", "Organisme QUALIOPI", "🇫🇷 🇲🇦"];
 
+const SOCIALS = [
+  { label: "Instagram", href: "https://instagram.com/rentimmo_academy" },
+  { label: "TikTok", href: "https://tiktok.com/@rentimmoacademy" },
+  { label: "YouTube", href: "https://youtube.com/@rentimmoacademy" },
+];
+
+function CardBody({ p, dark, main }: { p: Path; dark: boolean; main?: boolean }) {
+  return (
+    <div className="relative flex items-start gap-4">
+      <div
+        className={`st-emoji flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-[26px] ${dark ? "bg-white/10" : "bg-cream"}`}
+        aria-hidden
+      >
+        {p.emoji}
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className={`text-[11.5px] font-extrabold uppercase tracking-[0.06em] ${dark ? "text-brand-light" : "text-brand-dark"}`}>{p.eyebrow}</p>
+        <h2 className="mt-1 text-[1.05rem] font-extrabold leading-snug">{p.title}</h2>
+        <p className={`mt-1.5 text-[13px] leading-relaxed ${dark ? "text-white/65" : "text-ink/60"}`}>{p.sub}</p>
+        <span
+          className={`mt-4 inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[13px] font-bold ${
+            dark ? "bg-brand-green text-ink" : "bg-ink text-white"
+          } ${main ? "st-cta-main mo-shine px-5 py-3 text-[14px]" : ""}`}
+          {...(main ? { "data-magnetic": "" } : {})}
+        >
+          {p.cta} <ArrowRight size={14} className="st-arrow" aria-hidden />
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function StartPage() {
-  const reduce = useReducedMotionAfterMount();
+  const [main, ...others] = PATHS;
 
   return (
-    <MotionConfig reducedMotion={reduce ? "always" : "never"}>
-      <div className="min-h-screen overflow-x-hidden text-ink">
-        {/* ── Header ── */}
-        <header className="flex justify-center px-5 pb-2 pt-6">
-          <Logo dark />
-        </header>
+    <div className="st-root mo-gentle min-h-screen overflow-x-hidden pb-24 text-ink md:pb-0">
+      <Motion gentle revealAfter={2600} />
 
-        {/* ── Identité (LCP : jamais en opacité 0) ── */}
-        <section className="mx-auto max-w-xl px-5 pb-8 pt-6 text-center">
-          <div className="mx-auto mb-5 h-[92px] w-[92px] overflow-hidden rounded-full bg-brand-gradient ring-4 ring-white shadow-[0_6px_0_#1A6B33]">
+      {/* ── Hero : aurore + portrait + titre mot par mot + preuves (au-dessus de la ligne de flottaison : entrées CSS courtes) ── */}
+      <section id="hero" className="relative overflow-hidden">
+        <div className="mo-aurora mo-aurora--light" aria-hidden>
+          <span className="mo-blob mo-blob--a" />
+          <span className="mo-blob mo-blob--b" />
+        </div>
+
+        <div className="relative z-[1] mx-auto max-w-xl px-5 pb-7 pt-5 text-center sm:max-w-2xl">
+          <header className="mo-enter-fade flex justify-center pb-5">
+            <Logo dark />
+          </header>
+
+          <div className="st-portrait mo-enter-pop" style={delay(60)}>
+            <span className="st-portrait-halo" aria-hidden />
+            <span className="st-portrait-ring" aria-hidden />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/marwan.jpg" alt="Marwan AFASSI" className="h-full w-full object-cover" />
+            <img src="/marwan.webp" alt="Marwan AFASSI" width={108} height={108} fetchPriority="high" decoding="async" />
+            <span className="st-live">
+              <span className="mo-pulse-dot" style={{ width: 6, height: 6 }} aria-hidden /> 🇫🇷 🇲🇦
+            </span>
           </div>
-          <h1 className="text-[1.4rem] font-extrabold leading-[1.3] tracking-[-0.015em] text-ink sm:text-[1.6rem]">
-            Leader francophone de la sous-location professionnelle et de la conciergerie Airbnb depuis <Highlight>plus de 7 ans</Highlight>
+
+          <h1 className="mx-auto mt-5 max-w-xl text-[1.42rem] font-extrabold leading-[1.28] tracking-[-0.015em] text-ink sm:text-[1.65rem]">
+            <Words text="Leader francophone de la sous-location professionnelle et de la conciergerie Airbnb depuis" />{" "}
+            <span className="st-hl">
+              <Words text="plus de 7 ans" start={12} />
+            </span>
           </h1>
-          <p className="mt-3 text-[15px] leading-relaxed text-ink/70">
+
+          <p className="mo-enter mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-ink/70" style={delay(380)}>
             +697 000€ générés en partant de zéro. Sans riba, sans crédit, sans apport. 🇫🇷 🇲🇦
           </p>
-          <p className="mt-2 text-[13px] leading-relaxed text-ink/55">
+          <p className="mo-enter mx-auto mt-2 max-w-xl text-[13px] leading-relaxed text-ink/55" style={delay(450)}>
             Ingénieur de formation, aujourd&apos;hui coach Airbnb · Biens en gestion en France et au Maroc
           </p>
-          <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white px-3.5 py-1.5 text-xs font-bold text-ink/75">
-            <BadgeCheck size={14} className="text-brand-dark" /> Organisme QUALIOPI
-          </span>
-        </section>
 
-        {/* ── Bandeau noir défilant ── */}
-        <div className="overflow-hidden bg-ink py-3 text-white" aria-hidden>
-          <div className="flex w-max animate-marquee motion-reduce:animate-none">
-            {[0, 1].map((k) => (
-              <div key={k} className="flex shrink-0 items-center">
-                {[...MARQUEE, ...MARQUEE].map((m, i) => (
-                  <span key={i} className="flex items-center whitespace-nowrap px-4 text-[13px] font-bold uppercase tracking-[0.12em] text-white/85">
-                    {m}
-                    <span className="ml-8 h-1.5 w-1.5 rounded-full bg-brand-green" />
-                  </span>
-                ))}
+          {/* Preuves : valeurs finales dans le HTML (sans JS / SEO), compteurs animés au chargement */}
+          <ul className="mt-5 grid grid-cols-2 gap-2.5 text-left sm:grid-cols-4" aria-label="Chiffres clés">
+            <li className="st-proof st-proof--dark mo-enter" style={delay(520)}>
+              <span className="st-proof-v">
+                <span data-count="697000" data-prefix="+" data-suffix=" €">+697 000 €</span>
+              </span>
+              <span className="st-proof-l">générés en partant de zéro</span>
+            </li>
+            <li className="st-proof mo-enter" style={delay(580)}>
+              <span className="st-proof-v">
+                <span data-count="7" data-prefix="+" data-suffix=" ans">+7 ans</span>
+              </span>
+              <span className="st-proof-l">d&apos;expérience Airbnb</span>
+            </li>
+            <li className="st-proof mo-enter" style={delay(640)}>
+              <span className="st-proof-v">
+                <span data-count="4.93" data-decimals="2" data-suffix="/5">4,93/5</span>
+              </span>
+              <span className="st-proof-l">
+                <Star size={10} className="-mt-0.5 mr-0.5 inline fill-brand-green text-brand-green" aria-hidden />
+                sur 1 196 avis Airbnb
+              </span>
+            </li>
+            <li className="st-proof mo-enter" style={delay(700)}>
+              <span className="st-proof-v text-brand-dark">
+                <BadgeCheck size={22} className="-mt-1 inline" aria-hidden /> QUALIOPI
+              </span>
+              <span className="st-proof-l">Organisme certifié</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* ── Bandeau noir défilant ── */}
+      <div className="bg-ink py-3 text-white">
+        <Marquee
+          items={MARQUEE}
+          speed={32}
+          itemClassName="st-marquee-item"
+          separator={<span className="mo-pulse-dot" style={{ width: 6, height: 6, margin: "0 22px" }} aria-hidden />}
+        />
+      </div>
+
+      <main className="mx-auto max-w-xl px-5 pb-14 pt-7">
+        {/* ── Choix du chemin ── */}
+        <p className="mb-4 flex items-center justify-center gap-2 text-center text-xs font-bold uppercase tracking-[0.14em] text-ink/55" data-reveal="fade">
+          Choisis ta situation <ArrowDown size={14} className="st-nudge text-brand-green" aria-hidden />
+        </p>
+
+        <div id="situations" className="flex flex-col gap-6" data-stagger="110">
+          {/* Carte recommandée : bordure lumineuse qui tourne + bouton magnétique */}
+          <div data-reveal="up">
+            <div className="st-reco" data-tilt>
+              <a
+                href={main.href}
+                data-card={main.id}
+                onClick={() => trackEvent("hub_card_click", { card: main.id })}
+                className="mo-borderspin relative p-5 pt-7 sm:p-6 sm:pt-8"
+              >
+                <span className="st-badge">
+                  <span className="mo-pulse-dot" aria-hidden /> Recommandé
+                </span>
+                <CardBody p={main} dark main />
+              </a>
+            </div>
+          </div>
+
+          {others.map((p) => {
+            const dark = p.id !== "super-bnb";
+            return (
+              <div key={p.id} data-reveal="up">
+                <a
+                  href={p.href}
+                  data-card={p.id}
+                  data-tilt
+                  onClick={() => trackEvent("hub_card_click", { card: p.id })}
+                  className={`st-card group block rounded-3xl p-5 sm:p-6 ${
+                    dark
+                      ? "st-card--dark bg-ink text-white shadow-[0_8px_0_#1A6B33]"
+                      : "st-card--light border border-ink/10 bg-white text-ink shadow-[0_8px_0_rgba(26,26,26,0.1)]"
+                  }`}
+                >
+                  <CardBody p={p} dark={dark} />
+                </a>
               </div>
+            );
+          })}
+        </div>
+
+        {/* ── Réseaux ── */}
+        <div className="mt-12 text-center" data-reveal="up">
+          <p className="mb-3.5 text-xs font-bold uppercase tracking-[0.1em] text-ink/55">Suis-nous</p>
+          <div className="flex flex-wrap justify-center gap-2.5">
+            {SOCIALS.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("hub_social_click", { network: s.label })}
+                className="rounded-full border border-ink/15 bg-white px-4 py-2.5 text-[13px] font-semibold text-ink/80 transition-all hover:-translate-y-0.5 hover:border-ink hover:text-ink"
+              >
+                {s.label}
+              </a>
             ))}
           </div>
         </div>
 
-        <main className="mx-auto max-w-xl px-5 pb-14 pt-10">
-          {/* ── Choix du chemin ── */}
-          <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.14em] text-ink/55">Choisis ta situation</p>
+        <p className="mt-10 text-center text-[11px] text-ink/50">© {new Date().getFullYear()} Rentimmo Academy</p>
+      </main>
 
-          <div className="flex flex-col gap-5">
-            {PATHS.map((p, i) => {
-              const dark = i !== 1;
-              return (
-                <Reveal key={p.id} index={i}>
-                  <a
-                    href={p.href}
-                    onClick={() => trackEvent("hub_card_click", { card: p.id })}
-                    className={`group block rounded-3xl p-5 transition-all duration-500 hover:-translate-y-1.5 sm:p-6 ${
-                      dark
-                        ? "bg-ink text-white shadow-[0_8px_0_#1A6B33] hover:shadow-[0_12px_0_#2DB84B]"
-                        : "border border-ink/10 bg-white text-ink shadow-[0_8px_0_rgba(26,26,26,0.1)] hover:border-brand-green/40 hover:shadow-[0_12px_0_#2DB84B]"
-                    }`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-[26px] transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110 ${
-                          dark ? "bg-white/10" : "bg-cream"
-                        }`}
-                      >
-                        {p.emoji}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className={`text-[11.5px] font-extrabold uppercase tracking-[0.06em] ${dark ? "text-brand-light" : "text-brand-dark"}`}>
-                          {p.eyebrow}
-                        </p>
-                        <h2 className="mt-1 text-[1.05rem] font-extrabold leading-snug">{p.title}</h2>
-                        <p className={`mt-1.5 text-[13px] leading-relaxed ${dark ? "text-white/65" : "text-ink/60"}`}>{p.sub}</p>
-                        <span
-                          className={`mt-4 inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[13px] font-bold transition-all duration-300 group-hover:gap-2.5 ${
-                            dark ? "bg-brand-green text-ink" : "bg-ink text-white"
-                          }`}
-                        >
-                          {p.cta} <ArrowRight size={14} />
-                        </span>
-                      </div>
-                    </div>
-                  </a>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          {/* ── Trust bar ── */}
-          <Reveal className="mt-10">
-            <div className="flex justify-around rounded-3xl border border-ink/10 bg-white px-5 py-5 text-center shadow-[0_6px_0_rgba(26,26,26,0.06)]">
-              {[
-                { v: "+7 ans", l: "d'expérience" },
-                { v: "+697K€", l: "générés" },
-                { v: "4", l: "formations" },
-              ].map((s) => (
-                <div key={s.l}>
-                  <p className="text-lg font-extrabold text-ink">{s.v}</p>
-                  <p className="text-[11px] text-ink/55">{s.l}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* ── Réseaux ── */}
-          <Reveal className="mt-9 text-center">
-            <p className="mb-3.5 text-xs font-bold uppercase tracking-[0.1em] text-ink/55">Suis-nous</p>
-            <div className="flex flex-wrap justify-center gap-2.5">
-              {[
-                { label: "Instagram", href: "https://instagram.com/rentimmo_academy" },
-                { label: "TikTok", href: "https://tiktok.com/@rentimmoacademy" },
-                { label: "YouTube", href: "https://youtube.com/@rentimmoacademy" },
-              ].map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent("hub_social_click", { network: s.label })}
-                  className="rounded-full border border-ink/15 bg-white px-4 py-2.5 text-[13px] font-semibold text-ink/80 transition-all hover:-translate-y-0.5 hover:border-ink hover:text-ink"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
-          </Reveal>
-
-          <p className="mt-10 text-center text-[11px] text-ink/50">© {new Date().getFullYear()} Rentimmo Academy</p>
-        </main>
-      </div>
-    </MotionConfig>
+      {/* CTA collant mobile : apparaît quand ni le hero ni les cartes ne sont à l'écran */}
+      <StickyCta
+        watch={["#hero", "#situations"]}
+        href={main.href}
+        className="st-sticky-btn"
+        onClick={() => trackEvent("hub_card_click", { card: main.id, from: "sticky" })}
+      >
+        {main.cta} <ArrowRight size={16} aria-hidden />
+      </StickyCta>
+    </div>
   );
 }
