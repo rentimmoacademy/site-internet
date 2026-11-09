@@ -2,7 +2,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import Logo from "@/components/layout/Logo";
+import { Marquee, Motion, StickyCta, Words, delay as moDelay } from "@/components/motion";
 import { trackEvent, trackMeta } from "@/lib/gtag";
+import "./audit.css";
 
 const API_BASE = "/api";
 const POLL_MS = 4000;
@@ -99,36 +101,21 @@ function BarScore({ score, color }: { score: number; color: string }) {
   );
 }
 
+// Apparition au scroll pilotée par le kit motion (<Motion /> par étape) : contenu visible sans JS.
 function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setVisible(true); obs.disconnect(); }
-    }, { threshold: 0.15 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
   return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        transitionProperty: "opacity, transform",
-        transitionDuration: "700ms",
-        transitionTimingFunction: "cubic-bezier(.23,1,.32,1)",
-        transitionDelay: `${delay}ms`,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(18px)",
-      }}
-    >
+    <div className={className} data-reveal="up" data-delay={delay ? String(delay) : undefined}>
       {children}
+    </div>
+  );
+}
+
+// Fond « aurore » lime (identité Super BNB Academy)
+function Aurora() {
+  return (
+    <div className="mo-aurora sb-aurora" aria-hidden>
+      <span className="mo-blob mo-blob--a" />
+      <span className="mo-blob mo-blob--b" />
     </div>
   );
 }
@@ -250,10 +237,21 @@ export default function AuditPublicPage() {
     run.current = { listing: "", competitor: "" };
   };
 
+  // Kit motion : re-scanné à chaque étape / question (apparitions, compteurs, tilt, aimant)
+  const motionEl = <Motion gentle deps={`${step}-${quizIndex}`} revealAfter={2600} />;
+  const focusUrl = () => {
+    const el = document.getElementById("sb-url") as HTMLInputElement | null;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+    window.setTimeout(() => el.focus({ preventScroll: true }), reduce ? 0 : 450);
+  };
+
   /* ── FORM ── */
   if (step === "form") return (
-    <div className="min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
-      <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-lime/10 blur-[140px]" />
+    <div className="sb-root mo-gentle isolate min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
+      <Aurora />
+        {motionEl}
 
       <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
         <Logo className="scale-90 origin-left" />
@@ -261,29 +259,32 @@ export default function AuditPublicPage() {
       </header>
 
       <div className="max-w-xl mx-auto px-4 pt-16 pb-20 text-center">
-        <Reveal>
-          <div className="inline-flex items-center gap-2 bg-lime/10 border border-lime/25 rounded-full px-4 py-2 mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
+        <div id="sb-hero">
+          <div className="mo-enter-pop inline-flex items-center gap-2 bg-lime/10 border border-lime/25 rounded-full px-4 py-2 mb-8">
+            <span className="mo-pulse-dot sb-dot" style={{ width: 6, height: 6 }} aria-hidden />
             <span className="text-xs text-lime font-bold">Gratuit · Résultat en 90 secondes</span>
           </div>
 
           <h1 className="text-h1 text-white mb-4 tracking-tight">
-            Ton annonce est-elle{" "}
-            <span className="text-lime">optimisée ?</span>
+            <Words text="Ton annonce est-elle" />{" "}
+            <span className="text-lime sb-glow">
+              <Words text={"optimisée\u00a0?"} start={4} />
+            </span>
           </h1>
-          <p className="text-white/45 text-base mb-6 leading-relaxed">
+          <p className="mo-enter text-white/45 text-base mb-6 leading-relaxed" style={moDelay(320)}>
             Analyse IA de ton annonce Airbnb ou Booking.com · Score /100 · Benchmark concurrents · Plan d&apos;action personnalisé
           </p>
 
-          <p className="flex items-center justify-center gap-2 text-white/50 text-xs font-semibold mb-10">
+          <p className="mo-enter flex items-center justify-center gap-2 text-white/50 text-xs font-semibold mb-10" style={moDelay(400)}>
             <span>7 ans d&apos;expérience</span>
             <span className="text-white/35">·</span>
             <span>+697K€ générés sur Airbnb</span>
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal delay={120}>
-        <div className="bg-white/8 border border-white/10 rounded-2xl p-6 text-left">
+        <div className="mo-enter-pop" style={moDelay(220)}>
+        <div id="sb-form-card" className="sb-card mo-borderspin rounded-2xl p-6 text-left">
+        <div className="relative">
           <div className="flex gap-3 mb-5">
             {(["airbnb", "booking"] as Platform[]).map((p) => (
               <button key={p} onClick={() => setPlatform(p)}
@@ -299,51 +300,65 @@ export default function AuditPublicPage() {
 
           <div className="flex gap-2 bg-white/8 border border-white/10 rounded-xl p-1.5 focus-within:border-lime/50 transition-colors mb-4">
             <input
+              id="sb-url" aria-label="Lien de ton annonce"
               type="url" value={url} onChange={(e) => setUrl(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && launch()}
               placeholder={platform === "airbnb" ? "airbnb.fr/rooms/12345678" : "booking.com/hotel/..."}
               className="flex-1 bg-transparent text-white text-sm placeholder-white/20 px-3 py-2 focus:outline-none min-w-0"
             />
-            <button onClick={launch} disabled={!url.trim()}
-              className="bg-lime hover:bg-lime-dark disabled:opacity-40 disabled:hover:-translate-y-0 text-ink font-bold text-sm px-5 py-2.5 rounded-lg transition-all hover:-translate-y-0.5 shrink-0">
+            <button onClick={launch} disabled={!url.trim()} data-magnetic
+              className="mo-shine bg-lime hover:bg-lime-dark disabled:opacity-40 disabled:hover:-translate-y-0 text-ink font-bold text-sm px-5 py-2.5 rounded-lg transition-all hover:-translate-y-0.5 shrink-0">
               Analyser →
             </button>
           </div>
 
           <p className="text-white/40 text-xs text-center">Gratuit · Sans carte bancaire · Sans engagement</p>
         </div>
-        </Reveal>
+        </div>
+        </div>
+
+        {/* Bandeau défilant (textes repris de la page) */}
+        <div className="sb-strip -mx-4 mt-10 border-y border-lime/20 py-3" aria-hidden>
+          <Marquee
+            items={["Score /100", "Benchmark 5 concurrents", "Contenu IA", "Résultat en 90 secondes", "7 ans d'expérience", "+697K€ générés sur Airbnb"]}
+            speed={30}
+            itemClassName="sb-strip-item"
+            separator={<span className="mo-pulse-dot sb-dot" style={{ width: 6, height: 6, margin: "0 20px" }} aria-hidden />}
+          />
+        </div>
 
         {/* Proof */}
-        <div className="mt-10 grid grid-cols-3 gap-3 text-center">
+        <div className="mt-10 grid grid-cols-3 gap-3 text-center" data-stagger="90">
           {[
             { icon: "📊", label: "Score /100", sub: "par catégorie" },
             { icon: "🏆", label: "Benchmark", sub: "5 concurrents" },
             { icon: "✨", label: "Contenu IA", sub: "titre + description" },
-          ].map((f, i) => (
-            <Reveal key={f.label} delay={i * 80}>
-              <div className="bg-white/8 border border-white/14 rounded-xl p-4 h-full">
+          ].map((f) => (
+            <div key={f.label} data-reveal="up">
+              <div data-tilt className="sb-tile bg-white/8 border border-white/14 rounded-xl p-4 h-full">
                 <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-lime/10 border border-lime/25 flex items-center justify-center text-lg">{f.icon}</div>
                 <div className="text-white/75 text-xs font-bold">{f.label}</div>
                 <div className="text-white/45 text-xs">{f.sub}</div>
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
 
         {/* Objectifs du programme */}
-        <div className="mt-14 grid grid-cols-3 gap-3 text-center">
+        <div className="mt-14 grid grid-cols-3 gap-3 text-center" data-stagger="90">
           {[
-            { value: "+30%", label: "de CA visé" },
-            { value: "15 min", label: "de gestion / jour visées" },
-            { value: "38 pts", label: "checklist de réception" },
-          ].map((s, i) => (
-            <Reveal key={s.label} delay={i * 80}>
+            { value: "+30%", n: 30, pre: "+", suf: "%", label: "de CA visé" },
+            { value: "15 min", n: 15, pre: "", suf: " min", label: "de gestion / jour visées" },
+            { value: "38 pts", n: 38, pre: "", suf: " pts", label: "checklist de réception" },
+          ].map((s) => (
+            <div key={s.label} data-reveal="up">
               <div className="bg-white/8 border border-white/14 rounded-xl p-4 h-full">
-                <p className="text-2xl font-extrabold text-lime tracking-tight">{s.value}</p>
+                <p className="text-2xl font-extrabold text-lime tracking-tight">
+                  <span data-count={s.n} data-prefix={s.pre} data-suffix={s.suf}>{s.value}</span>
+                </p>
                 <p className="text-white/50 text-[11px] mt-1 leading-snug">{s.label}</p>
               </div>
-            </Reveal>
+            </div>
           ))}
         </div>
         <p className="text-white/35 text-[11px] text-center mt-3">Objectifs visés avec les hôtes accompagnés en Super BNB Academy</p>
@@ -358,7 +373,7 @@ export default function AuditPublicPage() {
               { q: "Que deviennent mes données ?", a: "Elles servent uniquement à générer ton rapport et, si tu le souhaites, à te recontacter pour un audit stratégique gratuit. Aucune revente à des tiers." },
               { q: "Et après l'audit ?", a: "Tu peux réserver un appel stratégique gratuit avec un coach Super BNB Academy pour aller plus loin sur ton annonce." },
             ].map((item) => (
-              <details key={item.q} className="group p-4">
+              <details key={item.q} className="sb-faq group p-4">
                 <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-semibold text-white/80">
                   {item.q}
                   <span className="text-white/50 group-open:rotate-45 transition-transform ml-3">+</span>
@@ -369,6 +384,9 @@ export default function AuditPublicPage() {
           </div>
         </Reveal>
       </div>
+      <StickyCta watch={["#sb-hero", "#sb-form-card"]} onClick={focusUrl} className="sb-sticky-btn">
+        Auditer mon annonce gratuitement →
+      </StickyCta>
     </div>
   );
 
@@ -378,8 +396,9 @@ export default function AuditPublicPage() {
     const current = quizValues[q.key];
     const answered = isQuizAnswered(q.key);
     return (
-      <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
-        <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-lime/10 blur-[140px]" />
+      <div className="sb-root mo-gentle isolate min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
+        <Aurora />
+        {motionEl}
         <div className="max-w-md w-full">
           <Reveal>
             <div className="flex items-center justify-between mb-2">
@@ -405,8 +424,8 @@ export default function AuditPublicPage() {
                 );
               })}
             </div>
-            <button onClick={advanceQuiz} disabled={!answered}
-              className="w-full bg-lime hover:bg-lime-dark disabled:opacity-40 disabled:hover:-translate-y-0 text-ink font-extrabold py-3.5 rounded-xl text-base transition-all hover:-translate-y-0.5">
+            <button onClick={advanceQuiz} disabled={!answered} data-magnetic
+              className="mo-shine w-full bg-lime hover:bg-lime-dark disabled:opacity-40 disabled:hover:-translate-y-0 text-ink font-extrabold py-3.5 rounded-xl text-base transition-all hover:-translate-y-0.5">
               {quizIndex < QUIZ_QUESTIONS.length - 1 ? "Suivant →" : "Voir mon diagnostic →"}
             </button>
           </Reveal>
@@ -424,8 +443,9 @@ export default function AuditPublicPage() {
       { label: "Analyse IA", done: false, active: msg.includes("IA") || msg.includes("nal") },
     ];
     return (
-      <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
-        <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-lime/10 blur-[140px]" />
+      <div className="sb-root mo-gentle isolate min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
+        <Aurora />
+        {motionEl}
         <Reveal>
           <div className="relative w-20 h-20 mb-8">
             <div className="absolute inset-0 rounded-full border-4 border-white/5" />
@@ -460,8 +480,9 @@ export default function AuditPublicPage() {
   if (step === "optin" && pendingAudit.current) {
     const a = pendingAudit.current;
     return (
-      <div className="min-h-screen bg-ink relative overflow-hidden py-10 px-4" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
-        <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-lime/10 blur-[140px]" />
+      <div className="sb-root mo-gentle isolate min-h-screen bg-ink relative overflow-hidden py-10 px-4" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
+        <Aurora />
+        {motionEl}
         <div className="max-w-lg mx-auto">
           {/* Preview floutée */}
           <Reveal>
@@ -534,8 +555,8 @@ export default function AuditPublicPage() {
 
             <p className="text-white/40 text-xs text-center mb-5">Ton diagnostic d&apos;activité (Scorecard) est déjà enregistré ✓</p>
 
-            <button onClick={submitOptin} disabled={!email || !firstName || !emailValid || optinLoading}
-              className="w-full bg-lime hover:bg-lime-dark disabled:opacity-40 disabled:hover:-translate-y-0 text-ink font-extrabold py-3.5 rounded-xl text-base transition-all hover:-translate-y-0.5">
+            <button onClick={submitOptin} disabled={!email || !firstName || !emailValid || optinLoading} data-magnetic
+              className="mo-shine w-full bg-lime hover:bg-lime-dark disabled:opacity-40 disabled:hover:-translate-y-0 text-ink font-extrabold py-3.5 rounded-xl text-base transition-all hover:-translate-y-0.5">
               {optinLoading ? "Chargement…" : "Voir mon rapport complet →"}
             </button>
             <p className="text-white/35 text-xs text-center mt-3">Pas de spam · Données confidentielles</p>
@@ -548,8 +569,9 @@ export default function AuditPublicPage() {
 
   /* ── RESULT ── */
   if (step === "result" && audit) return (
-    <div className="min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
-      <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-lime/10 blur-[140px]" />
+    <div className="sb-root mo-gentle isolate min-h-screen bg-ink relative overflow-hidden" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
+      <Aurora />
+        {motionEl}
       <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between max-w-2xl mx-auto">
         <Logo className="scale-90 origin-left" />
         <button onClick={reset} className="text-white/50 hover:text-white text-sm font-semibold transition-colors">← Nouvelle analyse</button>
@@ -703,7 +725,8 @@ export default function AuditPublicPage() {
                 Tu gères déjà {gestion} logement{gestion === "1" ? "" : "s"} mais tu es freiné dans ta croissance. Réserve ton audit stratégique gratuit : on analyse ton parc complet et tu repars avec le plan exact pour débloquer la suite.
               </p>
               <a href={CAL_URL} target="_blank" rel="noopener noreferrer" onClick={() => { trackEvent("audit_call_click"); trackMeta("Schedule", { content_name: "super-bnb-audit" }); }}
-                className="inline-block bg-ink text-white font-extrabold text-base px-8 py-3.5 rounded-xl hover:-translate-y-0.5 motion-reduce:hover:translate-y-0 transition-all">
+                data-magnetic
+                className="mo-shine inline-block bg-ink text-white font-extrabold text-base px-8 py-3.5 rounded-xl hover:-translate-y-0.5 motion-reduce:hover:translate-y-0 transition-all">
                 Réserver mon audit gratuit →
               </a>
               <p className="text-ink/70 text-xs mt-4">Gratuit · Sans engagement</p>
@@ -736,8 +759,9 @@ export default function AuditPublicPage() {
 
   /* ── ERROR ── */
   if (step === "error") return (
-    <div className="min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
-      <div className="pointer-events-none absolute -z-10 left-1/2 top-[-120px] -translate-x-1/2 w-[640px] h-[640px] rounded-full bg-lime/10 blur-[140px]" />
+    <div className="sb-root mo-gentle isolate min-h-screen bg-ink relative overflow-hidden flex flex-col items-center justify-center px-4 text-center" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px)", backgroundSize: "40px 40px, 40px 40px" }}>
+      <Aurora />
+        {motionEl}
       <Reveal>
         <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-5 text-3xl mx-auto">⚠️</div>
       </Reveal>
