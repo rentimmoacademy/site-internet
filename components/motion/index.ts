@@ -4,6 +4,7 @@ export { default as Marquee } from "./Marquee";
 export { default as Accordion } from "./Accordion";
 export type { AccordionItem } from "./Accordion";
 export { default as StickyCta } from "./StickyCta";
+export { default as Mark } from "./Mark";
 
 import type { CSSProperties } from "react";
 /** Délai d'entrée CSS en ms : <div className="mo-enter" style={delay(200)} /> */

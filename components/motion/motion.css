@@ -58,6 +58,29 @@
 [data-reveal][data-mo="hidden"] { opacity: 0; transform: var(--mo-from); will-change: opacity, transform; }
 [data-reveal][data-mo="in"] { opacity: 1; transform: none; }
 
+/* Marqueurs de texte (<Mark>) : surligneur / soulignement qui se dessinent au scroll */
+[data-reveal="mark"][data-mo="hidden"] { opacity: 1; transform: none; will-change: auto; }
+.mo-mark { position: relative; display: inline-block; white-space: nowrap; isolation: isolate; }
+.mo-mark-txt { position: relative; z-index: 1; }
+.mo-mark--hl::before {
+  content: ""; position: absolute; z-index: 0; left: -0.06em; right: -0.06em; top: 0.5em; bottom: 0.04em; border-radius: 3px;
+  background: rgba(45, 184, 75, 0.27); transform-origin: 0 50%;
+  transition: transform 0.75s var(--mo-ease) calc(var(--mo-d, 0) * 1ms + 150ms);
+}
+.mo-mark--hl.mo-mark--lime::before { background: rgba(182, 242, 58, 0.38); }
+.mo-mark--hl[data-mo="hidden"]::before { transform: scaleX(0); }
+.mo-mark-svg { position: absolute; left: 0; bottom: -0.12em; width: 100%; height: 0.32em; overflow: visible; pointer-events: none; color: var(--mo-green); }
+.mo-mark--lime .mo-mark-svg { color: #b6f23a; }
+.mo-mark-svg path {
+  fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: round; vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1; stroke-dashoffset: 0; transition: stroke-dashoffset 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.2s;
+}
+.mo-mark--underline[data-mo="hidden"] .mo-mark-svg path { stroke-dashoffset: 1; }
+@keyframes mo-mark-x { from { transform: scaleX(0); } }
+@keyframes mo-mark-draw { from { stroke-dashoffset: 1; } }
+.mo-mark--enter.mo-mark--hl::before { animation: mo-mark-x 0.7s var(--mo-ease) calc(var(--mo-d, 0) * 1ms) both; }
+.mo-mark--enter .mo-mark-svg path { animation: mo-mark-draw 0.8s cubic-bezier(0.65, 0, 0.35, 1) calc(var(--mo-d, 0) * 1ms) both; }
+
 /* ---------- 3. Fond aurore (blobs verts qui dérivent, compositor only) ------ */
 .mo-aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
 .mo-aurora::before {
@@ -242,6 +265,7 @@
   .mo-blob, .mo-borderspin::before, .mo-halo::before, .mo-shine::after, .mo-pulse-dot::after, .mo-skeleton { animation: none !important; }
   .mo-borderspin::before { transform: none; background: var(--mo-green); }
   .mo-check path { animation: none; stroke-dashoffset: 0; }
+  .mo-mark--hl::before, .mo-mark-svg path { transition: none !important; animation: none !important; }
   .mo-marquee { -webkit-mask-image: none; mask-image: none; overflow: visible; }
   .mo-marquee-track { animation: none !important; width: auto; flex-wrap: wrap; justify-content: center; }
   .mo-marquee-group[aria-hidden="true"] { display: none; }
@@ -264,6 +288,11 @@
   .mo-gentle [data-reveal][data-mo] { transition: opacity 0.6s ease calc(var(--mo-d, 0) * 1ms), transform 0.6s ease calc(var(--mo-d, 0) * 1ms) !important; }
   .mo-gentle [data-reveal][data-mo="hidden"] { opacity: 0 !important; transform: translate3d(0, 10px, 0) !important; }
   .mo-gentle [data-reveal][data-mo="in"] { opacity: 1 !important; transform: none !important; }
+  .mo-gentle .mo-mark--hl::before { transition: opacity 0.6s ease 0.15s !important; transform: none !important; }
+  .mo-gentle .mo-mark--hl[data-mo="hidden"]::before { opacity: 0; }
+  .mo-gentle .mo-mark-svg path { transition: stroke-dashoffset 0.9s ease 0.2s !important; }
+  .mo-gentle .mo-mark--enter.mo-mark--hl::before { animation: mo-fade 0.6s ease calc(var(--mo-d, 0) * 1ms) both !important; }
+  .mo-gentle .mo-mark--enter .mo-mark-svg path { animation: mo-mark-draw 0.9s ease calc(var(--mo-d, 0) * 1ms) both !important; }
   .mo-gentle .mo-marquee { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); overflow: hidden; }
   .mo-gentle .mo-marquee-track { animation: mo-marquee calc(var(--mo-speed, 38s) * 1.4) linear infinite !important; width: max-content; flex-wrap: nowrap; }
   .mo-gentle .mo-marquee-group[aria-hidden="true"] { display: flex; }

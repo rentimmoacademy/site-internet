@@ -1,0 +1,17 @@
+/* /masterclass : habillage motion (charte claire du site) */
+.mc-form { --mo-radius: 24px; --mo-card-bg: #fff; box-shadow: 0 8px 0 #1a6b33, 0 40px 80px -40px rgba(26, 107, 51, 0.45); }
+
+/* Levée au survol via la propriété `translate` (compatible avec le tilt qui écrit `transform`) */
+.mc-root .mc-lift { transition: transform 0.35s var(--mo-ease), translate 0.45s var(--mo-ease), box-shadow 0.45s var(--mo-ease); }
+.mc-root .mc-lift[data-tilting] { transition: transform 0.08s linear, translate 0.45s var(--mo-ease), box-shadow 0.45s var(--mo-ease); }
+@media (hover: hover) and (pointer: fine) {
+  .mc-root .mc-lift:hover { translate: 0 -6px; box-shadow: 0 14px 0 #2db84b; }
+}
+.mc-root .mo-borderspin.mc-lift { box-shadow: 0 8px 0 #1a6b33; }
+
+/* CTA collant : bandeau crème comme l'ancienne barre */
+.mc-root .mo-sticky { background: rgba(247, 246, 242, 0.96); border-top: 1px solid rgba(26, 26, 26, 0.1); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-root .mc-lift { transition: none; }
+}
