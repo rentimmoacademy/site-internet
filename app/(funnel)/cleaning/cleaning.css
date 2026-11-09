@@ -1,0 +1,58 @@
+/* /cleaning : motion du kit sur le design clair du site (structure reprise de la branche cleaning-motion) */
+
+/* Stepper (3 étapes) dans la barre du haut */
+.cl-steps { display: flex; align-items: center; }
+.cl-steps li { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: rgba(26, 26, 26, 0.45); transition: color 0.4s; }
+.cl-dot {
+  display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 11px; font-weight: 800;
+  border: 1.5px solid rgba(26, 26, 26, 0.2); background: #fff;
+  transition: background 0.4s var(--mo-ease), border-color 0.4s, color 0.4s, transform 0.4s var(--mo-ease);
+}
+.cl-steps li[data-state="active"] { color: #1a1a1a; }
+.cl-steps li[data-state="active"] .cl-dot { background: #2db84b; border-color: #2db84b; color: #1a1a1a; transform: scale(1.12); box-shadow: 0 0 0 5px rgba(45, 184, 75, 0.18); }
+.cl-steps li[data-state="done"] { color: rgba(26, 26, 26, 0.75); }
+.cl-steps li[data-state="done"] .cl-dot { background: #1a6b33; border-color: #1a6b33; color: #fff; }
+.cl-line { position: relative; display: block; width: 44px; height: 2px; margin: 0 12px; background: rgba(26, 26, 26, 0.12); overflow: hidden; border-radius: 2px; }
+.cl-line::after { content: ""; position: absolute; inset: 0; background: #2db84b; transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.8s var(--mo-ease); }
+.cl-steps li[data-state="done"] .cl-line::after { transform: scaleX(1); }
+.cl-steps-mob { display: none; }
+@media (max-width: 767px) {
+  .cl-steps-desk { display: none; }
+  .cl-steps-mob { display: block; }
+  .cl-steps-mob .cl-steps { justify-content: center; }
+  .cl-line { width: 22px; margin: 0 8px; }
+  .cl-steps li .cl-lbl { font-size: 11px; }
+  .cl-steps li:not([data-state="active"]) .cl-lbl { display: none; }
+}
+
+/* Carte formulaire */
+.cl-form { --mo-radius: 24px; --mo-card-bg: #fff; box-shadow: 0 8px 0 #1a6b33, 0 40px 80px -40px rgba(26, 107, 51, 0.45); }
+
+/* Tuiles : spotlight plus clair sur fond noir */
+.cl-tile--dark.mo-spot::after { background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(95, 216, 122, 0.22), transparent 65%); }
+
+/* Levée au survol (translate, compatible tilt) */
+.cl-root .cl-lift { transition: transform 0.35s var(--mo-ease), translate 0.45s var(--mo-ease), box-shadow 0.45s var(--mo-ease); }
+.cl-root .cl-lift[data-tilting] { transition: transform 0.08s linear, translate 0.45s var(--mo-ease), box-shadow 0.45s var(--mo-ease); }
+@media (hover: hover) and (pointer: fine) {
+  .cl-root .cl-lift:hover { translate: 0 -6px; box-shadow: 0 14px 0 #2db84b; }
+}
+
+.cl-root .mo-borderspin.cl-lift { box-shadow: 0 8px 0 #1a6b33; }
+
+/* Bandeau */
+.cl-strip-item { font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.9); white-space: nowrap; }
+
+/* CTA collant : bandeau crème */
+.cl-root .mo-sticky { background: rgba(247, 246, 242, 0.96); border-top: 1px solid rgba(26, 26, 26, 0.1); box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08); }
+
+/* Transition entre étapes */
+.cl-leave .cl-hero-grid > * { animation: cl-leave 0.4s var(--mo-ease) both; }
+.cl-leave .cl-hero-grid > *:nth-child(2) { animation-delay: 0.05s; }
+@keyframes cl-leave { to { opacity: 0; transform: translate3d(0, -14px, 0) scale(0.97); } }
+.cl-step-in { animation: mo-fade 0.5s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cl-root .cl-lift, .cl-dot, .cl-line::after { transition: none; }
+  .cl-leave .cl-hero-grid > * { animation: mo-fade 0.15s ease reverse both; }
+}
