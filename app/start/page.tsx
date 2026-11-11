@@ -56,6 +56,8 @@ const SOCIALS = [
 ];
 
 function CardBody({ p, dark, main }: { p: Path; dark: boolean; main?: boolean }) {
+  // Carte Super BNB Academy : identité propre (noir + vert lime), comme la page d'audit.
+  const sb = p.id === "super-bnb";
   return (
     <div className="relative flex items-start gap-4">
       <div
@@ -65,12 +67,12 @@ function CardBody({ p, dark, main }: { p: Path; dark: boolean; main?: boolean })
         {p.emoji}
       </div>
       <div className="min-w-0 flex-1">
-        <p className={`text-[11.5px] font-extrabold uppercase tracking-[0.06em] ${dark ? "text-brand-light" : "text-brand-dark"}`}>{p.eyebrow}</p>
+        <p className={`text-[11.5px] font-extrabold uppercase tracking-[0.06em] ${sb ? "text-lime" : dark ? "text-brand-light" : "text-brand-dark"}`}>{p.eyebrow}</p>
         <h2 className="mt-1 text-[1.05rem] font-extrabold leading-snug">{p.title}</h2>
         <p className={`mt-1.5 text-[13px] leading-relaxed ${dark ? "text-white/65" : "text-ink/60"}`}>{p.sub}</p>
         <span
           className={`mt-4 inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[13px] font-bold ${
-            dark ? "bg-brand-green text-ink" : "bg-ink text-white"
+            sb ? "bg-lime text-ink" : dark ? "bg-brand-green text-ink" : "bg-ink text-white"
           } ${main ? "st-cta-main mo-shine px-5 py-3 text-[14px]" : ""}`}
           {...(main ? { "data-magnetic": "" } : {})}
         >
@@ -192,7 +194,8 @@ export default function StartPage() {
           </div>
 
           {others.map((p) => {
-            const dark = p.id !== "super-bnb";
+            const dark = true;
+            const sb = p.id === "super-bnb";
             return (
               <div key={p.id} data-reveal="up">
                 <a
@@ -201,7 +204,9 @@ export default function StartPage() {
                   data-tilt
                   onClick={() => trackEvent("hub_card_click", { card: p.id })}
                   className={`st-card group block rounded-3xl p-5 sm:p-6 ${
-                    dark
+                    sb
+                      ? "st-card--sb bg-ink text-white shadow-[0_8px_0_#5E8A0A]"
+                      : dark
                       ? "st-card--dark bg-ink text-white shadow-[0_8px_0_#1A6B33]"
                       : "st-card--light border border-ink/10 bg-white text-ink shadow-[0_8px_0_rgba(26,26,26,0.1)]"
                   }`}

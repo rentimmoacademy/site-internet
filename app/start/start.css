@@ -48,6 +48,7 @@
   .st-card:hover, .st-reco:hover { translate: 0 -6px; }
   .st-reco:hover { box-shadow: 0 14px 0 #2db84b, 0 30px 60px -30px rgba(26, 107, 51, 0.6); }
   .st-card--dark:hover { box-shadow: 0 14px 0 #2db84b; }
+  .st-card--sb:hover { box-shadow: 0 14px 0 #b6f23a; }
   .st-card--light:hover { box-shadow: 0 14px 0 #2db84b; border-color: rgba(45, 184, 75, 0.4); }
 }
 .st-emoji { transition: transform 0.5s var(--mo-ease); }
