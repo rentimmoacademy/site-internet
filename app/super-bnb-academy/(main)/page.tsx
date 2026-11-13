@@ -328,7 +328,7 @@ export default function SuperBnbAcademyPage() {
                 Commence par voir où en est <span className="underline decoration-ink decoration-[0.12em] underline-offset-[0.18em]">ton annonce</span>
               </h2>
               <p className="text-ink/75 text-sm max-w-md mx-auto mb-8 leading-relaxed">
-                Score /100 · Points critiques · Gain de revenus estimé · Résultat en 60 secondes
+                Score /100 · Corrections prioritaires · Diagnostic de ton activité
               </p>
               <button
                 onClick={() => setAuditOpen(true)}
@@ -336,7 +336,7 @@ export default function SuperBnbAcademyPage() {
               >
                 <Sparkles size={14} className="text-lime" /> Analyser mon annonce gratuitement
               </button>
-              <p className="text-ink/70 text-xs mt-4">Sans inscription · Sans engagement</p>
+              <p className="text-ink/70 text-xs mt-4">Gratuit · Sans engagement</p>
               <Link
                 href="/super-bnb-academy/audit"
                 className="mt-3 inline-block text-xs font-semibold text-ink/75 underline underline-offset-4 hover:text-ink transition-colors"

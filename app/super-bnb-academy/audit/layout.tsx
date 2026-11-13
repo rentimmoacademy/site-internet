@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const TITLE = "Audit gratuit de ton annonce Airbnb — Score /100 en 90 secondes";
+const TITLE = "Audit gratuit de ton annonce Airbnb : score /100 et corrections prioritaires";
 const DESC =
-  "Analyse IA gratuite de ton annonce Airbnb ou Booking.com : score par catégorie, benchmark concurrents, titre optimisé et gain de revenus estimé. Gratuit, sans carte bancaire.";
+  "Audit gratuit de ton annonce Airbnb ou Booking.com : score /100 sur 7 critères (titre, photos, description, avis, statut, équipements, prix), corrections prioritaires et diagnostic de ton activité. Sans carte bancaire.";
 const URL = "https://www.rentimmoacademy.fr/super-bnb-academy/audit";
 
 export const metadata: Metadata = {
@@ -13,7 +13,6 @@ export const metadata: Metadata = {
     "analyser annonce airbnb",
     "score annonce airbnb",
     "optimiser annonce airbnb",
-    "benchmark concurrents airbnb",
     "outil gratuit propriétaire airbnb",
   ],
   alternates: {
