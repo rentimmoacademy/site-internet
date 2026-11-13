@@ -35,3 +35,80 @@
   .sb-faq summary span { transition: none; }
   .sb-root.mo-gentle .sb-card.mo-borderspin::before { background: conic-gradient(from 0deg, transparent 0 62%, rgba(182, 242, 58, 0.15) 74%, #b6f23a 88%, transparent 100%) !important; }
 }
+
+/* ═══════════ Charte Super BnB Academy (CHARTE-SUPERBNB.md) + motion « puissant » ═══════════ */
+.sb-root { font-family: inherit; }
+.sb-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #b6f23a; line-height: 1; }
+
+/* Cartes sombres : rounded-3xl, bordure white/10, fond #262626, ombre « socle » lime-deep */
+.sb-panel { border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.1); background: #262626; box-shadow: 0 8px 0 #5e8a0a; transition: box-shadow 0.35s var(--mo-ease), transform 0.35s var(--mo-ease); }
+
+/* Bouton principal : pilule lime, texte noir, socle, flèche ; mo-shine (reflet) + data-magnetic */
+.sb-btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 16px 28px; border-radius: 9999px; background: #b6f23a; color: #1a1a1a; font-weight: 800; font-size: 16px;
+  box-shadow: 0 6px 0 #5e8a0a; transition: transform 0.25s var(--mo-ease), box-shadow 0.25s, background-color 0.2s; overflow: hidden;
+}
+.sb-btn:hover:not(:disabled) { background: #8bc21a; box-shadow: 0 8px 0 #5e8a0a; transform: translateY(-2px); }
+.sb-btn:active:not(:disabled) { box-shadow: 0 2px 0 #5e8a0a; transform: translateY(4px); }
+.sb-btn:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: 0 6px 0 rgba(94, 138, 10, 0.6); }
+.sb-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+/* Options de réponse */
+.sb-opt { transition: transform 0.2s var(--mo-ease), border-color 0.2s, background-color 0.2s, box-shadow 0.2s; }
+.sb-opt:hover:not(:disabled) { border-color: rgba(182, 242, 58, 0.55); transform: translateY(-1px); }
+.sb-opt:active:not(:disabled) { transform: scale(0.98); }
+
+/* Halos lime qui respirent + quadrillage de points */
+.sb-halo { position: absolute; border-radius: 9999px; filter: blur(130px); will-change: transform, opacity; }
+.sb-halo--a { top: -220px; left: 50%; width: 560px; height: 560px; margin-left: -280px; background: rgba(182, 242, 58, 0.14); animation: sb-breathe 7s ease-in-out infinite alternate; }
+.sb-halo--b { bottom: -240px; right: -140px; width: 480px; height: 480px; background: rgba(182, 242, 58, 0.08); animation: sb-breathe 9s ease-in-out 1.5s infinite alternate-reverse; }
+@keyframes sb-breathe { from { transform: scale(0.88); opacity: 0.65; } to { transform: scale(1.12); opacity: 1; } }
+
+/* Questions : transition glissée (sens avant / arrière) */
+.sb-q { animation: sb-slide-in 0.5s var(--mo-ease) both; }
+.sb-q--back { animation-name: sb-slide-back; }
+@keyframes sb-slide-in { from { opacity: 0; transform: translate3d(44px, 0, 0); } }
+@keyframes sb-slide-back { from { opacity: 0; transform: translate3d(-44px, 0, 0); } }
+.sb-q .sb-opt { animation: sb-opt-in 0.45s var(--mo-ease) both; }
+.sb-q .sb-opt:nth-child(2) { animation-delay: 50ms; } .sb-q .sb-opt:nth-child(3) { animation-delay: 100ms; }
+.sb-q .sb-opt:nth-child(4) { animation-delay: 150ms; } .sb-q .sb-opt:nth-child(5) { animation-delay: 200ms; }
+.sb-q .sb-opt:nth-child(6) { animation-delay: 250ms; } .sb-q .sb-opt:nth-child(n+7) { animation-delay: 300ms; }
+@keyframes sb-opt-in { from { opacity: 0; transform: translate3d(0, 12px, 0); } }
+
+/* Barre de progression : largeur animée + lueur */
+.sb-progress { transition: width 0.7s var(--mo-ease); box-shadow: 0 0 14px rgba(182, 242, 58, 0.55); }
+
+/* Jauge du score : l'arc se remplit */
+.sb-gauge-arc { animation: sb-gauge 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+@keyframes sb-gauge { from { stroke-dasharray: 0 999; } }
+
+/* Barres des critères : remplissage en cascade */
+.sb-bar { transform-origin: 0 50%; animation: sb-fill 1s var(--mo-ease) calc(0.4s + var(--i, 0) * 0.12s) both; }
+@keyframes sb-fill { from { transform: scaleX(0); } }
+
+/* Écran d'analyse : radar + étapes qui se cochent */
+.sb-radar span { position: absolute; inset: 0; border-radius: 9999px; border: 2px solid #b6f23a; animation: sb-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.sb-radar span + span { animation-delay: 0.9s; }
+.sb-radar::after { content: ""; position: absolute; inset: 30%; border-radius: 9999px; background: #b6f23a; box-shadow: 0 0 18px #b6f23a; }
+@keyframes sb-ping { 0% { transform: scale(0.35); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+.sb-step { transition: border-color 0.4s, background-color 0.4s, opacity 0.4s; }
+.sb-step[data-done] .sb-check { animation: sb-pop 0.45s var(--mo-ease) both; }
+.sb-step[data-done] .sb-check path { stroke-dasharray: 1; animation: mo-mark-draw 0.4s ease 0.1s both; }
+@keyframes sb-pop { 0% { transform: scale(0.4); } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+
+/* Bloc d'appel lime : trame de points noirs à 14 % */
+.sb-lime-block { background-image: radial-gradient(rgba(26, 26, 26, 0.14) 1px, transparent 1px); background-size: 28px 28px; }
+
+/* Mouvement réduit : version douce (comme /start) — fondus et ≤ 10 px, pas de grands déplacements */
+@media (prefers-reduced-motion: reduce) {
+  .sb-halo { animation: none; }
+  .sb-q, .sb-q--back { animation: mo-fade 0.4s ease both; }
+  .sb-q .sb-opt { animation: mo-fade 0.35s ease both; }
+  .sb-bar { animation: mo-fade 0.6s ease calc(0.2s + var(--i, 0) * 0.08s) both; }
+  .sb-gauge-arc { animation: mo-fade 0.6s ease both; }
+  .sb-radar span { animation: none; opacity: 0.4; }
+  .sb-step[data-done] .sb-check { animation: none; }
+  .sb-btn, .sb-opt, .sb-panel { transition: none; }
+  .sb-btn:hover:not(:disabled), .sb-opt:hover:not(:disabled) { transform: none; }
+}

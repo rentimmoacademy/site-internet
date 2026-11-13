@@ -399,8 +399,6 @@ export function painsOf(a: DocAnswers): PainId[] {
 
 const HOURS = ["Moins de 5 h", "5 à 10 h", "10 à 20 h", "20 à 35 h", "Plus de 35 h"];
 const HOURS_MID: Record<string, number> = { "Moins de 5 h": 3, "5 à 10 h": 7.5, "10 à 20 h": 15, "20 à 35 h": 27, "Plus de 35 h": 40 };
-const HOURS_TARGET = ["Moins de 2 h", "2 à 5 h", "5 à 10 h", "10 h ou plus"];
-const HOURS_TARGET_MID: Record<string, number> = { "Moins de 2 h": 1.5, "2 à 5 h": 3.5, "5 à 10 h": 7.5, "10 h ou plus": 12 };
 
 const REVENU: Record<Exclude<Profile, "start">, { options: string[]; mid: number[] }> = {
   one: { options: ["Je perds de l'argent", "Moins de 300 €", "300 à 700 €", "700 à 1 200 €", "1 200 à 2 000 €", "Plus de 2 000 €"], mid: [0, 150, 500, 950, 1600, 2500] },
@@ -412,9 +410,16 @@ const OBJECTIF: Record<Profile, { options: string[]; val: number[] }> = {
   multi: { options: ["3 000 €", "6 000 €", "10 000 €", "20 000 €", "35 000 € et plus"], val: [3000, 6000, 10000, 20000, 35000] },
 };
 
-/** 2 questions qui font chiffrer la douleur principale (vocabulaire adapté au profil). */
+const SMALL_HOURS = ["Moins d'1 h", "1 à 3 h", "3 à 6 h", "Plus de 6 h"];
+const SMALL_HOURS_MID: Record<string, number> = { "Moins d'1 h": 0.5, "1 à 3 h": 2, "3 à 6 h": 4.5, "Plus de 6 h": 8 };
+export const ONLY_AIRBNB = "Nulle part, seulement Airbnb";
+const Q_CANAUX: DocQuestion = { id: "p_canaux", title: "En plus d'Airbnb, où loues-tu ?", hint: "Plusieurs réponses possibles.", options: [ONLY_AIRBNB, "Booking.com", "Mon propre site de réservation directe", "Autres plateformes (Abritel, Gîtes de France…)"], multi: true };
+const Q_HEURES_TOTAL: DocQuestion = { id: "p_heures", title: "Combien d'heures par semaine te prend la gestion, au total ?", hint: "Messages, ménage, check-in, imprévus, prix…", options: HOURS };
+
+/** 2 questions qui font chiffrer la douleur principale (vocabulaire adapté au profil).
+ *  Les canaux (Booking, site direct), les heures de messagerie / de ménage et l'auto-évaluation
+ *  sont posés seulement aux parcours où ils servent le diagnostic (plafond : 10 écrans). */
 function painQuestions(pain: PainId, profile: Profile, a: DocAnswers, knownRating: number | null): DocQuestion[] {
-  const logement = profile === "multi" ? "tes logements" : "ton logement";
   switch (pain) {
     case "temps":
       return profile === "start"
@@ -423,8 +428,8 @@ function painQuestions(pain: PainId, profile: Profile, a: DocAnswers, knownRatin
             { id: "p_emploi", title: "Tu as un emploi à côté ?", options: ["Oui, à temps plein", "Oui, à temps partiel", "Non, je suis disponible"] },
           ]
         : [
-            { id: "p_heures", title: `Combien d'heures par semaine passes-tu sur ${logement} ?`, hint: "Messages, ménage, check-in, imprévus, prix…", options: HOURS },
-            { id: "p_heures_cible", title: "Et combien d'heures voudrais-tu y passer, au maximum ?", options: HOURS_TARGET },
+            Q_HEURES_TOTAL,
+            { id: "p_messagerie", title: "Dont combien pour la messagerie voyageurs ?", hint: "Questions avant réservation, instructions d'arrivée, relances, avis.", options: SMALL_HOURS },
           ];
     case "rentabilite":
       return profile === "start"
@@ -434,12 +439,12 @@ function painQuestions(pain: PainId, profile: Profile, a: DocAnswers, knownRatin
           ]
         : [
             { id: "p_marge", title: "Après toutes les charges, combien il te reste par logement et par mois ?", options: ["Je perds de l'argent", "Moins de 200 €", "200 à 500 €", "500 à 1 000 €", "Plus de 1 000 €"] },
-            { id: "p_suivi", title: "Tu connais ta marge exacte, logement par logement ?", options: ["Oui, au centime", "À peu près", "Non, je regarde surtout le chiffre d'affaires"] },
+            Q_CANAUX,
           ];
     case "occupation":
       return [
         { id: "p_occupation", title: "Ton taux d'occupation sur les 3 derniers mois ?", hint: "Nuits réservées / nuits ouvertes à la réservation.", options: ["Moins de 40 %", "40 à 60 %", "60 à 75 %", "Plus de 75 %", "Je ne sais pas"] },
-        { id: "p_prix_nuit", title: "Ton prix moyen par nuit ?", options: ["Moins de 60 €", "60 à 90 €", "90 à 130 €", "130 à 200 €", "Plus de 200 €"] },
+        Q_CANAUX,
       ];
     case "scale":
       return profile === "start"
@@ -451,25 +456,26 @@ function painQuestions(pain: PainId, profile: Profile, a: DocAnswers, knownRatin
             profile === "one"
               ? { id: "p_cible_logements", title: "Combien de logements veux-tu gérer dans 6 mois ?", options: ["2 ou 3", "4 à 5", "6 à 10", "Plus de 10"] }
               : { id: "p_cible_logements", title: "Combien de logements en plus veux-tu gérer dans 6 mois ?", options: ["1 ou 2 de plus", "3 à 5 de plus", "6 à 10 de plus", "Plus de 10 de plus"] },
-            { id: "p_frein_scale", title: "Qu'est-ce qui bloque le prochain logement ?", options: ["Trouver des biens ou des propriétaires", "Le financement ou les cautions", "Le temps pour en gérer plus", "Convaincre les propriétaires", "Le cadre légal"] },
+            Q_CANAUX,
           ];
     case "delegation":
       return [
-        { id: "p_qui", title: "Qui fait le ménage et les check-in aujourd'hui ?", options: ["Moi", "Un proche", "Un ou des freelances", "Une société de ménage ou une conciergerie"] },
-        { id: "p_heures", title: "Combien d'heures par semaine y passes-tu toi-même ?", hint: "Ménage, check-in, remplacements de dernière minute, contrôle.", options: HOURS },
+        Q_HEURES_TOTAL,
+        { id: "p_menage", title: "Dont combien pour organiser le ménage et les check-in ?", hint: "Planning, remplacements de dernière minute, contrôle, linge.", options: SMALL_HOURS },
       ];
     case "process":
       return [
         { id: "p_manuel", title: profile === "start" ? "Qu'est-ce qui te paraît le plus flou dans l'organisation ?" : "Qu'est-ce qui se fait encore à la main ?", hint: "Plusieurs réponses possibles.", options: ["Messages voyageurs", "Prix", "Planning ménage", "Accès / remise des clés", "Demandes d'avis"], multi: true },
         profile === "start"
           ? { id: "p_mode", title: "Tu comptes tout gérer toi-même ou déléguer ?", options: ["Tout gérer moi-même", "Déléguer le ménage", "Tout déléguer", "Je ne sais pas encore"] }
-          : { id: "p_heures", title: "Combien d'heures par semaine ça te prend ?", options: HOURS },
+          : { id: "p_messagerie", title: "Combien d'heures par semaine passes-tu sur la messagerie voyageurs ?", options: SMALL_HOURS },
       ];
     case "avis": {
       const qs: DocQuestion[] = [];
-      if (knownRating == null) qs.push({ id: "p_note", title: "Ta note moyenne aujourd'hui ?", options: ["Moins de 4,5", "4,5 à 4,69", "4,7 à 4,79", "4,8 et plus"] });
+      qs.push(knownRating == null
+        ? { id: "p_note", title: "Ta note moyenne aujourd'hui ?", options: ["Moins de 4,5", "4,5 à 4,69", "4,7 à 4,79", "4,8 et plus"] }
+        : { id: "p_perf", title: "Comment juges-tu ta performance actuelle ?", options: ["Calendrier trop vide", "Bien rempli, mais prix trop bas", "Rempli et bien payé, mais avis moyens", "Plutôt bonne partout", "Je ne sais pas me situer"] });
       qs.push({ id: "p_reproche", title: "Le reproche qui revient le plus dans tes avis ?", options: ["La propreté", "Un check-in compliqué", "Pas conforme aux photos", "Bruit ou équipements", "La communication"] });
-      if (qs.length < 2) qs.push({ id: "p_reponse_avis", title: "Tu réponds à tes avis négatifs ?", options: ["Toujours", "Parfois", "Jamais"] });
       return qs;
     }
   }
@@ -519,6 +525,7 @@ export interface Diagnostic {
   painMetric: { value: string; label: string } | null;
   painTitle: string;
   painLine: string;
+  extraLines: string[];
   callPoints: string[];
   blockers: string[];
   motivation: number | null;
@@ -557,7 +564,7 @@ const TRIED_REFORMULATION: Record<string, string> = {
 
 const eur = (n: number) => `${Math.round(n).toLocaleString("fr-FR")} €`;
 
-export function computeDiagnostic(a: DocAnswers, auditScore: number | null): Diagnostic | null {
+export function computeDiagnostic(a: DocAnswers, auditScore: number | null, ctx: { nightlyPrice?: number | null } = {}): Diagnostic | null {
   const profile = profileOf(a);
   const pains = painsOf(a);
   if (!profile || !pains.length) return null;
@@ -575,37 +582,51 @@ export function computeDiagnostic(a: DocAnswers, auditScore: number | null): Dia
   const h = HOURS_MID[a.p_heures as string];
   if (pain === "temps" && profile === "start") {
     painLine = `Tu peux y consacrer ${String(a.p_heures_dispo || "?").toLowerCase()} par semaine (${String(a.p_emploi || "situation à préciser").toLowerCase()}) : ton modèle doit tenir dans ce temps-là dès le premier logement.`;
-  } else if ((pain === "temps" || pain === "delegation" || pain === "process") && h != null) {
-    const ht = pain === "temps" ? HOURS_TARGET_MID[a.p_heures_cible as string] ?? 3.5 : 3.5;
-    const lost = Math.max(0, h - ht);
-    painMetric = { value: `≈ ${Math.round(lost * 26)} h`, label: "de ton temps sur 6 mois, au-delà de ce que tu veux y passer" };
-    painLine = lost > 0
-      ? `Tu passes environ ${fr(h)} h par semaine sur la gestion${pain === "temps" ? `, pour un objectif de ${fr(ht)} h` : ""} : près de ${fr(Math.round(lost))} h de trop chaque semaine.`
-      : `Tu passes environ ${fr(h)} h par semaine sur la gestion.`;
-    if (lost <= 0) painMetric = { value: `≈ ${fr(Math.round(h * 26))} h`, label: "de gestion sur les 6 prochains mois" };
+  } else if (pain === "temps" || pain === "delegation" || pain === "process") {
+    const sub = pain === "delegation" ? SMALL_HOURS_MID[a.p_menage as string] : SMALL_HOURS_MID[a.p_messagerie as string];
+    const what = pain === "delegation" ? "à organiser le ménage et les check-in" : "sur la messagerie voyageurs";
+    if (sub != null) {
+      painMetric = { value: `≈ ${fr(Math.round(sub * 26))} h`, label: pain === "delegation" ? "d'organisation du ménage sur 6 mois, délégables" : "de messagerie sur 6 mois, automatisables en grande partie" };
+      painLine = `${h != null ? `La gestion te prend environ ${fr(h)} h par semaine, dont` : "Tu passes"} près de ${fr(sub)} h ${what}${pain === "delegation" ? " : c'est le premier bloc à confier à une équipe." : " : des messages programmés et des réponses enregistrées peuvent en absorber l'essentiel."}`;
+    } else if (h != null) {
+      painMetric = { value: `≈ ${fr(Math.round(h * 26))} h`, label: "de gestion sur les 6 prochains mois" };
+      painLine = `La gestion te prend environ ${fr(h)} h par semaine.`;
+    }
+    if (pain === "process" && ((a.p_manuel as string[]) || []).length) painLine = `Encore fait à la main : ${((a.p_manuel as string[]) || []).join(", ").toLowerCase()}. ${painLine}`.trim();
   } else if (pain === "occupation") {
     const occ = { "Moins de 40 %": 0.35, "40 à 60 %": 0.5, "60 à 75 %": 0.68, "Plus de 75 %": 0.8 }[a.p_occupation as string];
-    const price = { "Moins de 60 €": 50, "60 à 90 €": 75, "90 à 130 €": 110, "130 à 200 €": 165, "Plus de 200 €": 220 }[a.p_prix_nuit as string];
-    if (occ != null && price != null && occ < 0.75) {
+    const price = ctx.nightlyPrice && ctx.nightlyPrice > 0 ? Math.round(ctx.nightlyPrice) : null;
+    if (occ != null && occ < 0.75) {
       const nights = Math.round((0.75 - occ) * 30);
-      painMetric = { value: `≈ ${eur(nights * price)}`, label: `de nuits vides par mois et par logement (${nights} nuits sous un objectif de 75 % d'occupation)` };
-      painLine = `Avec un remplissage autour de ${Math.round(occ * 100)} % à environ ${price} € la nuit, il te manque près de ${nights} nuits par mois pour atteindre 75 %.`;
+      painMetric = price
+        ? { value: `≈ ${eur(nights * price)}`, label: `de nuits vides par mois et par logement (${nights} nuits sous 75 % d'occupation, à ${price} € la nuit)` }
+        : { value: `${nights} nuits`, label: "vides par mois et par logement, sous un objectif de 75 % d'occupation" };
+      painLine = `Avec un remplissage autour de ${Math.round(occ * 100)} %, il te manque près de ${nights} nuits par mois et par logement pour atteindre 75 %.`;
     } else painLine = "Ton remplissage et tes prix sont à reprendre ensemble, chiffres en main.";
   } else if (pain === "scale") {
     const cible = String(a.p_cible_logements || "");
     const plus = /de plus/.test(cible);
-    painLine = `Tu vises ${plus ? cible.replace(" de plus", " logements de plus") : `${cible} logement${cible === "1" ? "" : "s"}`} dans 6 mois. Ce qui bloque : ${String(a.p_frein_scale || "à préciser").toLowerCase()}.`;
+    painLine = profile === "start"
+      ? `Tu vises ${cible} logement${cible === "1" ? "" : "s"} dans 6 mois. Ce qui bloque : ${String(a.p_frein_scale || "à préciser").toLowerCase()}.`
+      : `Tu vises ${plus ? cible.replace(" de plus", " logements de plus") : `${cible} logements`} dans 6 mois.`;
     painMetric = cible ? { value: plus ? `+${cible.replace(" de plus", "").replace("Plus de ", "")}` : cible, label: plus ? "logements de plus visés dans 6 mois" : "logements visés dans 6 mois" } : null;
   } else if (pain === "rentabilite") {
     painLine = profile === "start"
       ? `Budget de départ : ${String(a.p_budget || "?").toLowerCase()}. Calcul de rentabilité : ${String(a.p_calcul || "?").toLowerCase()}.`
-      : `Marge par logement : ${String(a.p_marge || "?").toLowerCase()} par mois. Suivi de la marge : ${String(a.p_suivi || "?").toLowerCase()}.`;
+      : `Il te reste ${String(a.p_marge || "?").toLowerCase()} par logement et par mois, une fois toutes les charges payées.`;
   } else if (pain === "avis") {
-    painLine = `Le reproche qui revient : ${String(a.p_reproche || "?").toLowerCase()}.`;
+    painLine = `Le reproche qui revient : ${String(a.p_reproche || "?").toLowerCase()}.${a.p_perf ? ` Ton auto-évaluation : ${String(a.p_perf).toLowerCase()}.` : ""}`;
   } else if (pain === "process" && profile === "start") {
     painLine = `Ce qui te paraît flou : ${((a.p_manuel as string[]) || []).join(", ").toLowerCase() || "à préciser"}. Ton choix : ${String(a.p_mode || "à préciser").toLowerCase()}.`;
-  } else if (pain === "process") {
-    painLine = `Encore fait à la main : ${((a.p_manuel as string[]) || []).join(", ").toLowerCase() || "à préciser"}.`;
+  }
+
+  // Canaux : dépendance aux plateformes
+  const extraLines: string[] = [];
+  const canaux = (a.p_canaux as string[]) || [];
+  const hasDirect = canaux.some((c) => /site de réservation directe/.test(c));
+  if (canaux.length) {
+    if (!hasDirect) extraLines.push(canaux.includes("Booking.com") ? "0 réservation directe : tu dépends à 100 % d'Airbnb et de Booking (et de leurs commissions)." : "0 réservation directe : tu dépends à 100 % d'Airbnb.");
+    else extraLines.push("Tu as déjà un site de réservation directe : on regarde quelle part de tes réservations il apporte vraiment.");
   }
 
   const blockers: string[] = [];
@@ -613,6 +634,7 @@ export function computeDiagnostic(a: DocAnswers, auditScore: number | null): Dia
   for (const t of (a.essaye as string[]) || []) if (TRIED_REFORMULATION[t] && blockers.length < 3) blockers.push(TRIED_REFORMULATION[t]);
 
   const callPoints = [...CALL_POINTS[pain]];
+  if (canaux.length && !hasDirect) callPoints.splice(2, 0, "Ta dépendance aux plateformes : Booking, site de réservation directe, dans quel ordre");
   if (auditScore != null && auditScore < 80 && pain !== "occupation") callPoints.push(`Les corrections prioritaires de ton annonce (score actuel : ${auditScore}/100)`);
 
   const motivation = Number(a.motivation) || null;
@@ -624,7 +646,7 @@ export function computeDiagnostic(a: DocAnswers, auditScore: number | null): Dia
 
   return {
     profile, pain, otherPains: labels.slice(1), current, target, gapMonthly, inaction6m, painMetric,
-    painTitle: PAIN_TITLES[pain], painLine, callPoints: callPoints.slice(0, 4), blockers: blockers.slice(0, 3), motivation, hook,
+    painTitle: PAIN_TITLES[pain], painLine, extraLines, callPoints: callPoints.slice(0, 4), blockers: blockers.slice(0, 3), motivation, hook,
   };
 }
 

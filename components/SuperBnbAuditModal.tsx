@@ -28,7 +28,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
   const go = () => {
     const u = url.trim();
     if (!u) return;
-    if (!/airbnb\.|abnb\.me|booking\.com/i.test(u)) { setErr("Colle le lien de ton annonce Airbnb ou Booking.com."); return; }
+    if (!/airbnb\.|abnb\.me/i.test(u)) { setErr("L'audit fonctionne avec une annonce Airbnb : colle le lien de ton annonce Airbnb (ex. airbnb.fr/rooms/12345678)."); return; }
     trackEvent("audit_modal_submit");
     window.location.href = `/super-bnb-academy/audit/?url=${encodeURIComponent(u)}`;
   };
@@ -44,7 +44,7 @@ export default function SuperBnbAuditModal({ open, onClose }: { open: boolean; o
           <span className="text-[10px] font-bold text-ink uppercase tracking-widest">Audit gratuit</span>
         </div>
         <h2 id="sb-modal-title" className="text-2xl font-extrabold text-ink tracking-tight mb-2">Colle le lien de ton annonce</h2>
-        <p className="text-ink/65 text-sm mb-5">Score /100, corrections prioritaires et diagnostic de ton activité.</p>
+        <p className="text-ink/65 text-sm mb-5">Ton annonce Airbnb notée sur 6 critères, comparée à ta ville, puis le diagnostic de ton activité.</p>
         <form onSubmit={(e) => { e.preventDefault(); go(); }} className="flex flex-col gap-2">
           <input ref={inputRef} type="url" inputMode="url" value={url} onChange={(e) => { setUrl(e.target.value); setErr(""); }}
             placeholder="airbnb.fr/rooms/12345678" aria-label="Lien de ton annonce"
