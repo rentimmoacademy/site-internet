@@ -104,7 +104,9 @@ function grade(score: number) {
 }
 
 const impactOf = (lost: number): Impact => (lost >= 5 ? "HIGH" : lost >= 3 ? "MEDIUM" : "LOW");
-const fr = (n: number) => n.toLocaleString("fr-FR", { maximumFractionDigits: 2 });
+// Plus Jakarta Sans n'affiche pas l'espace fine U+202F d'Intl fr-FR : on la remplace par une espace insécable U+00A0
+export const nbsp = (s: string) => s.replace(/\u202f/g, "\u00a0");
+const fr = (n: number) => nbsp(n.toLocaleString("fr-FR", { maximumFractionDigits: 2 }));
 const r1 = (n: number) => Math.round(n * 10) / 10;
 
 interface Norm {
@@ -209,8 +211,8 @@ export function computeAudit(source: Source, ex: ExtractedListing | null, declar
     if (source === "airbnb" && n.descriptionLength != null) {
       const L = n.descriptionLength;
       s = (L >= 1000 ? 6 : L >= 500 ? 4 : L >= 250 ? 2 : 1) + (n.descriptionSections >= 2 ? 4 : n.descriptionSections === 1 ? 2 : 0);
-      note = `${L.toLocaleString("fr-FR")} caractères · ${n.descriptionSections} rubrique${n.descriptionSections > 1 ? "s" : ""}`;
-      if (s < 8) f.push({ category: "Description", icon: "📝", lost: 10 - s, action: `Ta description fait ${L.toLocaleString("fr-FR")} caractères${n.descriptionSections < 2 ? " et n'est pas découpée en rubriques" : ""}. Remplis « Le logement », « Accès des voyageurs » et « Autres remarques », et réponds d'avance aux questions qu'on te pose en message (parking, check-in, literie).` });
+      note = `${fr(L)} caractères · ${n.descriptionSections} rubrique${n.descriptionSections > 1 ? "s" : ""}`;
+      if (s < 8) f.push({ category: "Description", icon: "📝", lost: 10 - s, action: `Ta description fait ${fr(L)} caractères${n.descriptionSections < 2 ? " et n'est pas découpée en rubriques" : ""}. Remplis « Le logement », « Accès des voyageurs » et « Autres remarques », et réponds d'avance aux questions qu'on te pose en message (parking, check-in, literie).` });
     } else {
       const lvl = n.descriptionLevel;
       s = lvl === "detailed" ? 9 : lvl === "paragraph" ? 5 : lvl === "short" ? 2 : 5;
@@ -229,17 +231,17 @@ export function computeAudit(source: Source, ex: ExtractedListing | null, declar
     if (med && declaredPrice) {
       const ratio = declaredPrice / med;
       const quality = n.rating != null && n.rating >= 4.85;
-      note += ` · ${declaredPrice} €/nuit vs médiane ${Math.round(med)} € (${comp!.count} comparables)`;
+      note += ` · ${declaredPrice}\u00a0€/nuit vs médiane ${Math.round(med)}\u00a0€ (${comp!.count} comparables)`;
       if (ratio < 0.8 && quality) {
         s += 1;
-        f.push({ category: "Prix", icon: "💶", lost: 4, action: `Tu es à ${declaredPrice} €/nuit quand la médiane des ${comp!.count} annonces comparables de ${ex?.city || "ta ville"} est à ${Math.round(med)} €, alors que ta note est au-dessus du lot. Teste une hausse progressive (par paliers de 5 %) sur les dates à forte demande.` });
+        f.push({ category: "Prix", icon: "💶", lost: 4, action: `Tu es à ${declaredPrice}\u00a0€/nuit quand la médiane des ${comp!.count} annonces comparables de ${ex?.city || "ta ville"} est à ${Math.round(med)}\u00a0€, alors que ta note est au-dessus du lot. Teste une hausse progressive (par paliers de 5 %) sur les dates à forte demande.` });
       } else if (ratio > 1.25 && !quality) {
         s += 1.5;
-        f.push({ category: "Prix", icon: "💶", lost: 3, action: `À ${declaredPrice} €/nuit, tu es au-dessus de la médiane des comparables (${Math.round(med)} €) sans avoir la note qui le justifie. Soit tu baisses sur les dates creuses, soit tu montes en gamme (photos, équipements) pour défendre ce prix.` });
+        f.push({ category: "Prix", icon: "💶", lost: 3, action: `À ${declaredPrice}\u00a0€/nuit, tu es au-dessus de la médiane des comparables (${Math.round(med)}\u00a0€) sans avoir la note qui le justifie. Soit tu baisses sur les dates creuses, soit tu montes en gamme (photos, équipements) pour défendre ce prix.` });
       } else s += 4;
     } else if (med) {
       s += 2;
-      note += ` · médiane des comparables : ${Math.round(med)} €/nuit`;
+      note += ` · médiane des comparables : ${Math.round(med)}\u00a0€/nuit`;
     } else s += 2;
     s = Math.min(10, s);
     if (checkup.pricing === "fixed") f.push({ category: "Prix", icon: "💶", lost: 6, action: "Un prix fixe toute l'année, c'est trop bas les week-ends et événements, trop cher les jours creux. Passe à une tarification dynamique : outil (PriceLabs, Beyond…) ou au minimum des règles par saison, jour de la semaine et délai de réservation." });
@@ -562,7 +564,7 @@ const TRIED_REFORMULATION: Record<string, string> = {
   "Une formation ou un coaching": "Une première formation ne t'a pas suffi à passer à l'action.",
 };
 
-const eur = (n: number) => `${Math.round(n).toLocaleString("fr-FR")} €`;
+const eur = (n: number) => `${fr(Math.round(n))}\u00a0€`;
 
 export function computeDiagnostic(a: DocAnswers, auditScore: number | null, ctx: { nightlyPrice?: number | null } = {}): Diagnostic | null {
   const profile = profileOf(a);
@@ -599,7 +601,7 @@ export function computeDiagnostic(a: DocAnswers, auditScore: number | null, ctx:
     if (occ != null && occ < 0.75) {
       const nights = Math.round((0.75 - occ) * 30);
       painMetric = price
-        ? { value: `≈ ${eur(nights * price)}`, label: `de nuits vides par mois et par logement (${nights} nuits sous 75 % d'occupation, à ${price} € la nuit)` }
+        ? { value: `≈ ${eur(nights * price)}`, label: `de nuits vides par mois et par logement (${nights} nuits sous 75 % d'occupation, à ${price}\u00a0€ la nuit)` }
         : { value: `${nights} nuits`, label: "vides par mois et par logement, sous un objectif de 75 % d'occupation" };
       painLine = `Avec un remplissage autour de ${Math.round(occ * 100)} %, il te manque près de ${nights} nuits par mois et par logement pour atteindre 75 %.`;
     } else painLine = "Ton remplissage et tes prix sont à reprendre ensemble, chiffres en main.";

@@ -113,7 +113,7 @@ export default function Motion({
         const pre = el.dataset.prefix || "";
         const suf = el.dataset.suffix || "";
         const fmt = (v: number) =>
-          pre + v.toLocaleString("fr-FR", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+          pre + v.toLocaleString("fr-FR", { minimumFractionDigits: dec, maximumFractionDigits: dec }).replace(/\u202f/g, "\u00a0") + suf;
         const dur = 1400;
         const t0 = performance.now();
         const tick = (now: number) => {

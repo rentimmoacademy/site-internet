@@ -5,7 +5,7 @@ import Logo from "@/components/layout/Logo";
 import { Marquee, Mark, Motion, StickyCta, Words, delay as moDelay } from "@/components/motion";
 import { trackEvent, trackMeta } from "@/lib/gtag";
 import {
-  computeAudit, buildDocQuestions, computeDiagnostic, summarizeAnswers, ONLY_AIRBNB,
+  computeAudit, buildDocQuestions, computeDiagnostic, summarizeAnswers, ONLY_AIRBNB, nbsp,
   type AiResult, type AuditResult, type CheckupAnswers, type DeclaredAnswers, type DocAnswers, type DocQuestion, type ExtractedListing, type Impact,
 } from "@/lib/listingAudit";
 import "./audit.css";
@@ -26,7 +26,8 @@ type AiState = { state: "idle" | "loading" | "ok" | "failed"; result: AiResult |
 const detectPlatform = (u: string) => (/booking\.com/i.test(u) ? "booking" : /airbnb\.|abnb\.me/i.test(u) ? "airbnb" : null);
 // L'audit n'accepte que les annonces Airbnb ; Booking et le site direct sont abordés dans le diagnostic.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const eur = (n: number) => `${Math.round(n).toLocaleString("fr-FR")} €`;
+const fr = (n: number, d = 2) => nbsp(n.toLocaleString("fr-FR", { maximumFractionDigits: d }));
+const eur = (n: number) => `${fr(Math.round(n))}\u00a0€`;
 
 // ?xtest=1 : parcours de test, rien n'est écrit dans Systeme.io (en-tête X-Test lu par audit-optin)
 const isTestMode = () => typeof window !== "undefined" && new URLSearchParams(window.location.search).has("xtest");
@@ -79,9 +80,9 @@ function BarScore({ score, max, color, index = 0 }: { score: number; max: number
 
 /** Texte « ≈ 299 h » / « 66 000 € » : la partie numérique compte jusqu'à sa valeur (kit motion). */
 function CountText({ text }: { text: string }) {
-  const m = text.match(/^([^\d]*)([\d\s\u202f]+)(.*)$/);
+  const m = text.match(/^([^\d]*)(\d(?:[\d\s\u00a0\u202f]*\d)?)(.*)$/);
   if (!m) return <>{text}</>;
-  const n = Number(m[2].replace(/[\s\u202f]/g, ""));
+  const n = Number(m[2].replace(/[\s\u00a0\u202f]/g, ""));
   if (!Number.isFinite(n)) return <>{text}</>;
   return <span data-count={n} data-prefix={m[1]} data-suffix={m[3]}>{text}</span>;
 }
@@ -828,7 +829,7 @@ export default function AuditPublicPage() {
                       : "Audit Airbnb · d'après tes réponses"}
                   </p>
                   <h2 className="text-white font-extrabold text-lg leading-tight mb-1">{l?.title || declared.title || "Ton annonce"}</h2>
-                  {l && <p className="text-white/50 text-xs mb-2">{[l.city, l.propertyType, l.rating != null && l.reviewCount ? `★ ${l.rating.toLocaleString("fr-FR")} (${l.reviewCount} avis)` : null].filter(Boolean).join(" · ")}</p>}
+                  {l && <p className="text-white/50 text-xs mb-2">{[l.city, l.propertyType, l.rating != null && l.reviewCount ? `★ ${fr(l.rating)} (${l.reviewCount} avis)` : null].filter(Boolean).join(" · ")}</p>}
                   <p className="text-white/70 text-sm leading-relaxed">
                     {audit.summary || `${firstName.trim() ? `${firstName.trim()}, v` : "V"}oici les corrections qui feront le plus bouger ton annonce, par ordre d'impact.`}
                   </p>
@@ -877,7 +878,7 @@ export default function AuditPublicPage() {
                       <div className="flex items-center gap-2 mb-1.5">
                         <span aria-hidden>{c.icon}</span>
                         <span className="text-white/80 text-xs font-semibold flex-1">{c.label}</span>
-                        <span className="text-xs font-extrabold" style={{ color }}>{c.score.toLocaleString("fr-FR")}/10</span>
+                        <span className="text-xs font-extrabold" style={{ color }}>{fr(c.score)}/10</span>
                       </div>
                       <BarScore score={c.score} max={c.max} color={color} index={audit.categories.indexOf(c)} />
                       <p className="text-white/50 text-xs mt-1 ml-6 leading-snug">{c.verdict || c.note}</p>
@@ -895,8 +896,8 @@ export default function AuditPublicPage() {
                 <p className="text-white/45 text-xs mb-4">{comp.count} annonces similaires à {l?.city}, relevées sur Airbnb pour les mêmes dates ({comp.dates}).</p>
                 <div className="grid grid-cols-3 gap-2 text-center">
                   {[
-                    { v: comp.medianNightlyPrice != null ? `${Math.round(comp.medianNightlyPrice)} €` : "–", l: "prix médian / nuit", mine: audit.declaredPrice != null ? `toi : ${audit.declaredPrice} €` : null },
-                    { v: comp.medianRating != null ? comp.medianRating.toLocaleString("fr-FR", { maximumFractionDigits: 2 }) : "–", l: "note médiane", mine: l?.rating != null && l.reviewCount ? `toi : ${l.rating.toLocaleString("fr-FR")}` : null },
+                    { v: comp.medianNightlyPrice != null ? `${Math.round(comp.medianNightlyPrice)}\u00a0€` : "–", l: "prix médian / nuit", mine: audit.declaredPrice != null ? `toi : ${audit.declaredPrice}\u00a0€` : null },
+                    { v: comp.medianRating != null ? fr(comp.medianRating) : "–", l: "note médiane", mine: l?.rating != null && l.reviewCount ? `toi : ${fr(l.rating)}` : null },
                     { v: comp.medianReviews != null ? String(Math.round(comp.medianReviews)) : "–", l: "avis (médiane)", mine: l ? `toi : ${l.reviewCount}` : null },
                   ].map((s) => (
                     <div key={s.l} className="rounded-xl bg-white/[0.06] border border-white/10 p-3">
