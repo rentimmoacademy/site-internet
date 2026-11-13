@@ -28,6 +28,14 @@ const detectPlatform = (u: string) => (/booking\.com/i.test(u) ? "booking" : /ai
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const fr = (n: number, d = 2) => nbsp(n.toLocaleString("fr-FR", { maximumFractionDigits: d }));
 const eur = (n: number) => `${fr(Math.round(n))}\u00a0€`;
+/** WhatsApp au format international (06 12 34 56 78 → +33612345678) ; vide si non reconnu. */
+const intlPhone = (raw: string) => {
+  const d = raw.replace(/[^\d+]/g, "");
+  if (/^\+\d{8,15}$/.test(d)) return d;
+  if (/^00\d{8,15}$/.test(d)) return `+${d.slice(2)}`;
+  if (/^0[1-9]\d{8}$/.test(d)) return `+33${d.slice(1)}`;
+  return "";
+};
 
 // ?xtest=1 : parcours de test, rien n'est écrit dans Systeme.io (en-tête X-Test lu par audit-optin)
 const isTestMode = () => typeof window !== "undefined" && new URLSearchParams(window.location.search).has("xtest");
@@ -451,6 +459,16 @@ export default function AuditPublicPage() {
     return lines.join("\n").slice(0, 1800);
   }, [audit, extract.listing, url, answers, diag]);
 
+  /** Champs de l'événement Cal.com 5307727 (slugs) : préremplis dans l'agenda intégré et le lien de secours. */
+  const calPrefill = useCallback((): Record<string, string> => {
+    const f: Record<string, string> = { name: firstName.trim(), email: email.trim(), notes: calNotes() };
+    const tel = intlPhone(phone);
+    if (tel) f.attendeePhoneNumber = tel;
+    const annonce = extract.listing?.url || url.trim();
+    if (annonce) f["lien-annonce-airbnb"] = annonce;
+    return f;
+  }, [firstName, email, phone, calNotes, extract.listing, url]);
+
   useEffect(() => {
     if (step !== "booking") return;
     let cancelled = false;
@@ -461,9 +479,9 @@ export default function AuditPublicPage() {
       ns()?.("inline", {
         elementOrSelector: "#sb-cal-inline",
         calLink: CAL_LINK,
-        config: { layout: "month_view", theme: "dark", name: firstName.trim(), email: email.trim(), notes: calNotes() },
+        config: { layout: "month_view", theme: "light", ...calPrefill() },
       });
-      ns()?.("ui", { theme: "dark", hideEventTypeDetails: false, layout: "month_view", cssVarsPerTheme: { dark: { "cal-brand": "#B6F23A" } } });
+      ns()?.("ui", { theme: "light", hideEventTypeDetails: false, layout: "month_view", cssVarsPerTheme: { light: { "cal-brand": "#1A1A1A" } } });
       const onBooked = () => {
         if (booked.current) return;
         booked.current = true;
@@ -485,7 +503,7 @@ export default function AuditPublicPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
-  const calHref = `${CAL_URL}?${new URLSearchParams({ name: firstName.trim(), email: email.trim(), notes: calNotes() }).toString()}`;
+  const calHref = `${CAL_URL}?${new URLSearchParams(calPrefill()).toString()}`;
   const onCallClick = (where: string) => { trackEvent("audit_call_click", { where }); };
 
   const reset = () => {
@@ -1079,8 +1097,10 @@ export default function AuditPublicPage() {
                   {d?.hook || "Un coach reprend ton audit et tes réponses avec toi."} Gratuit, sans engagement.
                 </p>
               </div>
-              <div id="sb-cal-inline" className="w-full min-h-[560px] overflow-auto" />
-              <div className="px-5 pb-5 pt-2 text-center">
+              <div className="mx-3 sm:mx-5 rounded-3xl bg-white shadow-[0_8px_0_#5E8A0A] overflow-hidden">
+                <div id="sb-cal-inline" className="w-full min-h-[560px] overflow-auto" />
+              </div>
+              <div className="px-5 pb-5 pt-5 text-center">
                 {calFailed && <p className="text-white/70 text-sm mb-2">L&apos;agenda ne s&apos;affiche pas ?</p>}
                 <a href={calHref} target="_blank" rel="noopener noreferrer" onClick={() => onCallClick(calFailed ? "fallback" : "link")}
                   className={calFailed
